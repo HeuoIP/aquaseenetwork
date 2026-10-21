@@ -80,7 +80,10 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-5">
+      {/* Disclosure — the hero visual is a concept render, so the label has
+          to be visible in the first screen, not buried at the end of the
+          section. */}
+      <div className="pointer-events-none absolute inset-x-0 top-[5.5rem]">
         <div className="shell flex justify-end">
           <ImageDisclosure>Concept render &mdash; not a completed project</ImageDisclosure>
         </div>
@@ -88,4 +91,5 @@ export function Hero() {
     </section>
   );
 }
+
 
