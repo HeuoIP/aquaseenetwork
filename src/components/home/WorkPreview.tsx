@@ -1,6 +1,7 @@
 import Link from 'next/link';
-import { Art } from '@/components/art/Art';
+import { StudyVisual } from '@/components/art/StudyVisual';
 import { DisclosureTag } from '@/components/ui/DisclosureTag';
+import { ImageDisclosure } from '@/components/ui/ImageDisclosure';
 import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { capabilityStudies, disclosureNote } from '@/content/projects';
@@ -50,19 +51,22 @@ export function WorkPreview() {
             <Reveal key={study.slug} delay={i * 110}>
               <article className="group flex h-full flex-col">
                 <div className="relative aspect-[4/3] overflow-hidden bg-ink">
-                  <Art
-                    variant={study.art}
+                  <StudyVisual
+                    visual={study.visual}
+                    sizes="(min-width: 768px) 33vw, 100vw"
                     className="transition-transform duration-[1.4s] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
                   />
                   <span className="absolute left-4 top-4 rounded-full border border-white/20 bg-ink/70 px-3 py-1 font-mono text-[0.5625rem] uppercase tracking-[0.16em] text-on-dark backdrop-blur-sm">
                     {study.discipline}
                   </span>
+                  <div className="absolute inset-x-4 bottom-4">
+                    <ImageDisclosure>{study.disclosure}</ImageDisclosure>
+                  </div>
                 </div>
 
                 <div className="flex flex-1 flex-col pt-6">
                   <h3 className="text-[1.25rem] leading-snug">{study.title}</h3>
                   <p className="mt-3 text-[0.9375rem] leading-relaxed text-body">{study.summary}</p>
-                  <DisclosureTag className="mt-5">{study.disclosure}</DisclosureTag>
                 </div>
               </article>
             </Reveal>

@@ -1,16 +1,29 @@
-import { HeroArt } from '@/components/art/HeroArt';
+import Image from 'next/image';
 import { ActionLink } from '@/components/ui/Action';
+import { ImageDisclosure } from '@/components/ui/ImageDisclosure';
 import { site } from '@/content/site';
 
 export function Hero() {
   return (
     <section className="relative overflow-hidden bg-ink pt-[4.5rem] text-paper">
       {/* Composition */}
-      <div className="absolute inset-0 opacity-70" aria-hidden="true">
-        <HeroArt />
+
+      <div className="absolute inset-0" aria-hidden="true">
+        <Image
+          src="/images/resort-arrival.webp"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[64%_center]"
+        />
       </div>
       <div
-        className="absolute inset-0 bg-[linear-gradient(90deg,rgba(12,16,19,0.94)_0%,rgba(12,16,19,0.72)_45%,rgba(12,16,19,0.35)_100%)]"
+        className="absolute inset-0 bg-[linear-gradient(90deg,rgba(12,16,19,0.96)_0%,rgba(12,16,19,0.84)_34%,rgba(12,16,19,0.46)_68%,rgba(12,16,19,0.26)_100%)]"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,16,19,0.6)_0%,rgba(12,16,19,0)_22%,rgba(12,16,19,0)_58%,rgba(12,16,19,0.82)_100%)]"
         aria-hidden="true"
       />
 
@@ -18,7 +31,7 @@ export function Hero() {
         <div className="flex min-h-[calc(100svh-4.5rem)] items-center py-20 sm:min-h-[80svh] lg:py-28">
           <div className="max-w-4xl">
             <p className="flex items-center gap-3 font-mono text-[0.6875rem] uppercase tracking-[0.2em] text-aqua">
-              <span aria-hidden="true" className="h-px w-10 bg-accent-2/70" />
+              <span aria-hidden="true" className="h-px w-10 bg-aqua/70" />
               {site.name} — {site.tagline}
             </p>
 
@@ -66,8 +79,13 @@ export function Hero() {
           </div>
         </div>
       </div>
+
+      <div className="pointer-events-none absolute inset-x-0 bottom-5">
+        <div className="shell flex justify-end">
+          <ImageDisclosure>Concept render &mdash; not a completed project</ImageDisclosure>
+        </div>
+      </div>
     </section>
   );
 }
-
 

@@ -1,3 +1,5 @@
+import type { StudyVisualData } from '@/components/art/StudyVisual';
+
 /**
  * Capability studies.
  *
@@ -6,6 +8,9 @@
  * capability study, clearly labelled as such in the interface. When verified
  * project photography and references become available, add them here with
  * `disclosure: 'Completed project'` and real attribution.
+ *
+ * The photographic visuals are AI-generated concept renders. They are used to
+ * communicate design intent, never as evidence of delivered work.
  */
 export type ProjectStudy = {
   slug: string;
@@ -17,34 +22,13 @@ export type ProjectStudy = {
   scope: string[];
   outcome: string;
   disclosure: string;
-  art: 'strata' | 'arc' | 'stack' | 'grid' | 'flow' | 'module';
+  visual: StudyVisualData;
   featured?: boolean;
 };
 
 export const capabilityStudies: ProjectStudy[] = [
   {
-    slug: 'water-play-environment',
-    title: 'Destination water-play environment',
-    discipline: 'Resort & leisure',
-    category: 'Experience design, custom equipment, production delivery',
-    scale: 'Resort-scale guest facility',
-    summary:
-      'A full design and delivery concept for an interactive water-play environment: a structured concept developed with landscape and engineering partners, custom play elements designed for a hot-climate resort context, and a production plan covering fabrication, testing and phased site installation.',
-    scope: [
-      'Concept framing and experience narrative',
-      'Spatial layout and level design',
-      'Custom play element design and prototyping',
-      'Materials, drainage and maintenance access',
-      'Production sequencing and site phasing',
-    ],
-    outcome:
-      'A single coordinated package — design, specification, supplier structure and installation logic — rather than separate documents to be reconciled later.',
-    disclosure: 'Concept study — illustrative visualisation, not a completed project',
-    art: 'flow',
-    featured: true,
-  },
-  {
-    slug: 'arrival-sequence',
+    slug: 'resort-arrival-sequence',
     title: 'Resort arrival sequence & lobby installation',
     discipline: 'Hospitality',
     category: 'Spatial design, bespoke fabrication, installation',
@@ -60,8 +44,37 @@ export const capabilityStudies: ProjectStudy[] = [
     ],
     outcome:
       'An arrival experience that is coherent end to end, with a single specification that the fabricator can build from without reinterpretation.',
-    disclosure: 'Concept study — illustrative visualisation, not a completed project',
-    art: 'arc',
+    disclosure: 'Concept render — generated illustration, not a completed project',
+    visual: {
+      kind: 'image',
+      src: '/images/resort-arrival.webp',
+      alt: 'Concept render of a landscaped resort arrival courtyard with a sculptural gold installation at its centre.',
+    },
+    featured: true,
+  },
+  {
+    slug: 'destination-water-play-environment',
+    title: 'Destination water-play environment',
+    discipline: 'Resort & leisure',
+    category: 'Experience design, custom equipment, production delivery',
+    scale: 'Resort-scale guest facility',
+    summary:
+      'A full design and delivery concept for an interactive water-play environment: a structured concept developed with landscape and engineering partners, custom play elements designed for a hot-climate resort context, and a production plan covering fabrication, testing and phased site installation.',
+    scope: [
+      'Concept framing and experience narrative',
+      'Spatial layout and level design',
+      'Custom play element design and prototyping',
+      'Materials, drainage and maintenance access',
+      'Production sequencing and site phasing',
+    ],
+    outcome:
+      'A single coordinated package — design, specification, supplier structure and installation logic — rather than separate documents to be reconciled later.',
+    disclosure: 'Concept render — generated illustration, not a completed project',
+    visual: {
+      kind: 'image',
+      src: '/images/resort-masterplan.webp',
+      alt: 'Concept aerial render of a tropical resort masterplan with large lagoons, villa accommodation and a water-play zone.',
+    },
     featured: true,
   },
   {
@@ -81,8 +94,12 @@ export const capabilityStudies: ProjectStudy[] = [
     ],
     outcome:
       'A manufacturable system that reads as one idea, rather than a collection of unrelated products.',
-    disclosure: 'Concept study — illustrative visualisation, not a completed project',
-    art: 'module',
+    disclosure: 'Concept render — generated illustration, not a completed project',
+    visual: {
+      kind: 'image',
+      src: '/images/leisure-play.webp',
+      alt: 'Concept render of a sculpted play landscape with undulating white forms, timber pods and colourful ground elements.',
+    },
     featured: true,
   },
   {
@@ -102,8 +119,12 @@ export const capabilityStudies: ProjectStudy[] = [
     ],
     outcome:
       'An installation designed around the reality of being operated, cleaned, repaired and inspected for years.',
-    disclosure: 'Concept study — illustrative visualisation, not a completed project',
-    art: 'grid',
+    disclosure: 'Illustrative workshop image — production runs through qualified manufacturing partners',
+    visual: {
+      kind: 'image',
+      src: '/images/prototype-workshop.webp',
+      alt: 'Illustrative photograph of a tubular steel frame structure being assembled in a fabrication workshop.',
+    },
   },
   {
     slug: 'landscape-integration',
@@ -122,8 +143,8 @@ export const capabilityStudies: ProjectStudy[] = [
     ],
     outcome:
       'Fewer surprises during installation, because the difficult interfaces were resolved on paper.',
-    disclosure: 'Concept study — illustrative visualisation, not a completed project',
-    art: 'stack',
+    disclosure: 'Concept diagram — illustrative only',
+    visual: { kind: 'diagram', art: 'stack' },
   },
   {
     slug: 'thematic-fabrication',
@@ -142,10 +163,10 @@ export const capabilityStudies: ProjectStudy[] = [
     ],
     outcome:
       'A scope a fabrication partner can price accurately and build consistently.',
-    disclosure: 'Concept study — illustrative visualisation, not a completed project',
-    art: 'strata',
+    disclosure: 'Concept diagram — illustrative only',
+    visual: { kind: 'diagram', art: 'strata' },
   },
 ];
 
 export const disclosureNote =
-  'The visuals below are abstract concept studies produced to demonstrate approach. They are not photographs of completed AQUASEE projects, and no client work is represented here.';
+  'The visuals on this page are concept work produced to demonstrate approach. Photographic visuals are generated illustrations, and the remaining visuals are abstract diagrams. None of them are photographs of completed AQUASEE projects, and no client work is represented here.';

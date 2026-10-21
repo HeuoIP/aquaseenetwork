@@ -1,5 +1,7 @@
 import Link from 'next/link';
+import { StudyVisual } from '@/components/art/StudyVisual';
 import { ActionLink } from '@/components/ui/Action';
+import { ImageDisclosure } from '@/components/ui/ImageDisclosure';
 import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import type { ServiceDetail } from '@/content/services';
@@ -61,6 +63,23 @@ export function ServicePage({ service }: { service: ServiceDetail }) {
         </div>
       </section>
 
+      {/* Visual */}
+      <section className="bg-paper pb-20 sm:pb-24 lg:pb-28">
+        <div className="shell">
+          <Reveal>
+            <figure className="relative aspect-[16/10] overflow-hidden bg-ink sm:aspect-[2/1]">
+              <StudyVisual
+                visual={service.visual}
+                sizes="(min-width: 1320px) 1232px, 100vw"
+                className="transition-transform duration-[1.6s] ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.03]"
+              />
+              <figcaption className="absolute inset-x-5 bottom-5">
+                <ImageDisclosure>{service.visualCaption}</ImageDisclosure>
+              </figcaption>
+            </figure>
+          </Reveal>
+        </div>
+      </section>
       {/* Capabilities */}
       <section className="bg-sand py-20 sm:py-24 lg:py-28">
         <div className="shell">
@@ -221,6 +240,7 @@ export function ServicePage({ service }: { service: ServiceDetail }) {
     </>
   );
 }
+
 
 
 

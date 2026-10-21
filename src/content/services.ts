@@ -1,3 +1,5 @@
+import type { StudyVisualData } from '@/components/art/StudyVisual';
+
 export type ServiceDetail = {
   slug: string;
   href: string;
@@ -11,6 +13,8 @@ export type ServiceDetail = {
   deliverables: string[];
   engagement: { phase: string; description: string }[];
   bestFor: string[];
+  visual: StudyVisualData;
+  visualCaption: string;
   related: { href: string; label: string }[];
 };
 
@@ -80,6 +84,12 @@ export const serviceDetails: ServiceDetail[] = [
       'Operators commissioning an experience rather than a product',
       'Teams whose scope has grown faster than their plan',
     ],
+    visual: {
+      kind: 'image',
+      src: '/images/resort-masterplan.webp',
+      alt: 'Concept aerial render of a tropical resort masterplan with lagoons and villa accommodation.',
+    },
+    visualCaption: 'Concept render — generated illustration, not a completed project',
     related: [
       { href: '/creative-design', label: 'Creative Design & R&D' },
       { href: '/supply-chain', label: 'Supply Chain & Project Delivery' },
@@ -150,6 +160,12 @@ export const serviceDetails: ServiceDetail[] = [
       'Teams needing custom elements nobody catalogues',
       'Operators upgrading an existing environment',
     ],
+    visual: {
+      kind: 'image',
+      src: '/images/leisure-play.webp',
+      alt: 'Concept render of a sculpted play landscape with undulating forms and colourful ground elements.',
+    },
+    visualCaption: 'Concept render — generated illustration, not a completed project',
     related: [
       { href: '/strategy', label: 'Strategy & Consulting' },
       { href: '/supply-chain', label: 'Supply Chain & Project Delivery' },
@@ -220,6 +236,13 @@ export const serviceDetails: ServiceDetail[] = [
       'Custom or one-off elements with no standard supplier',
       'Teams managing an unfamiliar production landscape',
     ],
+    visual: {
+      kind: 'image',
+      src: '/images/prototype-workshop.webp',
+      alt: 'Illustrative photograph of a tubular steel frame structure being assembled in a fabrication workshop.',
+    },
+    visualCaption:
+      'Illustrative workshop image — production is delivered through qualified manufacturing partners, not an AQUASEE-owned factory',
     related: [
       { href: '/strategy', label: 'Strategy & Consulting' },
       { href: '/creative-design', label: 'Creative Design & R&D' },
@@ -234,3 +257,4 @@ export function getService(slug: string): ServiceDetail {
   }
   return found;
 }
+

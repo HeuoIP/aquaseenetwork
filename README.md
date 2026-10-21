@@ -57,15 +57,18 @@ src/
 │   ├── service/              # Shared service-page template
 │   ├── site/                 # Header, Footer
 │   └── ui/                   # Action, SectionHeader, DisclosureTag, Reveal
+├── components/art/           # Abstract SVG diagrams + StudyVisual (image or diagram)
 ├── content/                  # ← ALL EDITABLE COPY LIVES HERE
 │   ├── site.ts               # Brand, nav, services index, contact details
 │   ├── services.ts           # Full service page content
 │   ├── projects.ts           # Capability studies
 │   ├── process.ts            # Six-stage workflow
 │   └── collaboration.ts      # Collaboration model, audience list
-└── lib/
+├── lib/
     ├── inquiry.ts            # Field options, validation, sanitisation
     └── cn.ts
+public/
+└── images/                   # Concept renders (see "Imagery" in section 8)
 ```
 
 **Editing content:** you never need to touch a component to change copy. Edit the files in
@@ -93,6 +96,12 @@ Defined as CSS custom properties inside the `@theme` block of `src/app/globals.c
 Motion is limited to a single scroll-reveal transition and is fully disabled under
 `prefers-reduced-motion`. The reveal is progressive enhancement: without JavaScript the
 content renders visible.
+
+The reveal is deliberately defensive (`src/components/ui/Reveal.tsx`). It combines
+IntersectionObserver, a shared scroll sweep and a 400 ms polling fallback, and it treats an
+element the reader has already scrolled past as "reached". A missed scroll event — background
+tabs, embedded browsers, anchor links, a restored scroll position, a fast flick — can therefore
+never leave a section permanently invisible.
 
 ---
 
@@ -221,19 +230,33 @@ HTTPS is handled by the host; no certificates are managed inside this repository
 
 ### Imagery
 
-There is **no project photography** on this site, by design. Every visual is an abstract SVG
-composition generated in `src/components/art/`, and every project entry is labelled
-*"Concept study — illustrative visualisation, not a completed project"*.
+There is **no client project photography** on this site, by design — AQUASEE has not authorised
+publication of completed projects.
+
+The current visuals are:
+
+| File | Used on | Nature |
+| --- | --- | --- |
+| `public/images/resort-arrival.webp` | Home hero, Projects, Creative Design study | AI-generated concept render |
+| `public/images/resort-masterplan.webp` | Projects, Strategy page | AI-generated concept render |
+| `public/images/leisure-play.webp` | Projects, Creative Design page | AI-generated concept render |
+| `public/images/prototype-workshop.webp` | Projects, Supply Chain page | Illustrative workshop image |
+| `src/components/art/` | Projects (2 studies) | Abstract SVG diagrams |
+
+Every photographic visual carries an **on-image disclosure chip** (rendered by
+`src/components/ui/ImageDisclosure.tsx`) plus a matching `disclosure` string in the content file,
+and the projects page opens with a banner explaining what the visuals are. The site never presents
+a render, prototype or diagram as a delivered project.
 
 When real, authorised project photography becomes available:
 
-1. Drop optimised files in `public/projects/<slug>/` (AVIF/WebP, ≤ 200 KB each).
-2. Replace the `<Art>` block in `src/app/projects/page.tsx` with `next/image`.
-3. Update the `disclosure` string in `src/content/projects.ts` to `Completed project` and add
-   the real attribution, client and year.
-4. Remove the disclosure banner at the top of the projects page.
+1. Drop optimised files in `public/images/` (AVIF or WebP, ≤ 250 KB each).
+2. Point the study's `visual.src` in `src/content/projects.ts` at the new file and update `alt`.
+3. Change the `disclosure` string to `Completed project` and add the real attribution, client and
+   year.
+4. Remove the disclosure banner at the top of the projects page and the chip on the hero.
 
-**Do not** present a render, prototype or concept as a delivered project.
+**Do not** present a render, prototype or concept as a completed project.
 
 ### Claims to keep accurate
 
@@ -267,3 +290,5 @@ the underlying facts change.
 ---
 
 © AQUASEE. All rights reserved.
+
+

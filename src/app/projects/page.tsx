@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
-import { Art } from '@/components/art/Art';
+import { StudyVisual } from '@/components/art/StudyVisual';
+import { ActionLink } from '@/components/ui/Action';
 import { DisclosureTag } from '@/components/ui/DisclosureTag';
+import { ImageDisclosure } from '@/components/ui/ImageDisclosure';
 import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeader } from '@/components/ui/SectionHeader';
-import { ActionLink } from '@/components/ui/Action';
-import { capabilityStudies, disclosureNote } from '@/content/projects';
 import { audiences } from '@/content/collaboration';
+import { capabilityStudies, disclosureNote } from '@/content/projects';
 
 export const metadata: Metadata = {
   title: 'Projects & Capabilities',
@@ -27,7 +28,7 @@ export default function ProjectsPage() {
         <div className="shell">
           <div className="max-w-3xl py-20 lg:py-28">
             <p className="flex items-center gap-3 font-mono text-[0.6875rem] uppercase tracking-[0.2em] text-aqua">
-              <span aria-hidden="true" className="h-px w-10 bg-accent-2/70" />
+              <span aria-hidden="true" className="h-px w-10 bg-aqua/70" />
               Projects & Capabilities
             </p>
             <h1 className="mt-8 font-display text-[length:var(--text-display)] font-normal leading-[1.04] tracking-[-0.025em] text-on-dark-strong">
@@ -58,9 +59,9 @@ export default function ProjectsPage() {
                   About the visuals on this page
                 </p>
                 <p className="mt-2 max-w-4xl text-[0.9375rem] leading-relaxed text-body">
-                  {disclosureNote} Every study is drawn as an abstract diagram rather than a
-                  photograph. Nothing here should be read as a completed, delivered or client-owned
-                  project.
+                  {disclosureNote} Every study is labelled on the image itself, and the workshop
+                  image illustrates fabrication through a manufacturing partner rather than an
+                  AQUASEE-owned facility.
                 </p>
               </div>
             </div>
@@ -74,11 +75,16 @@ export default function ProjectsPage() {
           <div className="space-y-20 lg:space-y-28">
             {capabilityStudies.map((study, i) => (
               <article key={study.slug} className="grid gap-10 lg:grid-cols-12 lg:gap-14">
-                <Reveal
-                  className={`lg:col-span-6 ${i % 2 === 1 ? 'lg:order-2' : ''}`}
-                >
+                <Reveal className={`lg:col-span-6 ${i % 2 === 1 ? 'lg:order-2' : ''}`}>
                   <div className="relative aspect-[4/3] overflow-hidden bg-ink">
-                    <Art variant={study.art} />
+                    <StudyVisual
+                      visual={study.visual}
+                      sizes="(min-width: 1024px) 50vw, 100vw"
+                      className="transition-transform duration-[1.4s] ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.03]"
+                    />
+                    <div className="absolute inset-x-4 bottom-4">
+                      <ImageDisclosure>{study.disclosure}</ImageDisclosure>
+                    </div>
                   </div>
                 </Reveal>
 
@@ -151,4 +157,3 @@ export default function ProjectsPage() {
     </>
   );
 }
-
