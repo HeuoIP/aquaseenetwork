@@ -79,7 +79,7 @@ export function Header() {
             />
           </Link>
 
-          <nav aria-label="Primary" className="hidden items-center gap-8 lg:flex">
+          <nav aria-label="Primary" className="hidden items-center gap-8 xl:flex">
             {nav.map((item) => (
               <Link
                 key={item.href}
@@ -112,7 +112,7 @@ export function Header() {
             <Link
               href="/contact"
               className={cn(
-                'hidden h-10 items-center rounded-full px-5 text-[0.8125rem] font-medium transition-colors duration-500 sm:inline-flex',
+                'hidden h-10 shrink-0 items-center whitespace-nowrap rounded-full px-5 text-[0.8125rem] font-medium transition-colors duration-500 sm:inline-flex',
                 solid
                   ? 'bg-ink text-paper hover:bg-accent'
                   : 'border border-white/25 text-on-dark-strong hover:border-white/60 hover:bg-white/5'
@@ -128,7 +128,7 @@ export function Header() {
               aria-controls="mobile-nav"
               aria-label={open ? 'Close menu' : 'Open menu'}
               className={cn(
-                'inline-flex h-10 w-10 items-center justify-center rounded-full border transition-colors duration-500 lg:hidden',
+                'inline-flex h-10 w-10 items-center justify-center rounded-full border transition-colors duration-500 xl:hidden',
                 solid
                   ? 'border-line text-ink hover:border-line-2'
                   : 'border-white/25 text-on-dark-strong hover:border-white/60'
@@ -151,7 +151,7 @@ export function Header() {
       <div
         id="mobile-nav"
         className={cn(
-          'overflow-hidden border-t border-line bg-paper transition-[max-height,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] lg:hidden',
+          'overflow-hidden border-t border-line bg-paper transition-[max-height,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] xl:hidden',
           open ? 'max-h-[80vh] opacity-100' : 'max-h-0 opacity-0'
         )}
       >
@@ -180,5 +180,7 @@ export function Header() {
     </header>
   );
 }
+
+
 
 

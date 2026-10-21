@@ -36,7 +36,7 @@
 
   --radius-xs: 2px;
 
-  --text-hero: clamp(2.75rem, 7.2vw, 6.5rem);
+  --text-hero: clamp(2.4rem, 4.7vw, 4.25rem);
   --text-display: clamp(2rem, 4.4vw, 3.75rem);
   --text-title: clamp(1.5rem, 2.8vw, 2.375rem);
   --text-lede: clamp(1.0625rem, 1.35vw, 1.3125rem);
@@ -160,5 +160,104 @@
   }
 }
 
+
+
+
+/* --------------------------------------------------------------------------
+   Signature hero — "Idea → Structure → Realization"
+   Four light layers: atmosphere, aqua trajectories, key-art parallax, and a
+   staggered text entrance. Everything degrades to a static composition under
+   prefers-reduced-motion.
+   -------------------------------------------------------------------------- */
+
+/* Layer A — background atmosphere: a very slow shift in light */
+.hero-atmosphere {
+  background:
+    radial-gradient(58% 52% at 70% 40%, rgba(47, 138, 129, 0.20), transparent 70%),
+    radial-gradient(42% 38% at 88% 74%, rgba(14, 90, 84, 0.16), transparent 72%);
+  animation: hero-atmosphere 30s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+
+@keyframes hero-atmosphere {
+  from {
+    opacity: 0.5;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(-1.1%, 0.7%, 0) scale(1.06);
+  }
+}
+
+/* Layer B — aqua contour trajectories */
+.hero-trace {
+  stroke-dasharray: 38 620;
+  animation: hero-trace 28s linear infinite;
+}
+
+.hero-trace-2 {
+  animation-duration: 38s;
+  animation-delay: -11s;
+}
+
+.hero-trace-3 {
+  animation-duration: 48s;
+  animation-delay: -27s;
+}
+
+@keyframes hero-trace {
+  from {
+    stroke-dashoffset: 658;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Layer C — pointer parallax on the key art (CSS variables only) */
+.hero-art {
+  transform: translate3d(var(--hero-px, 0px), var(--hero-py, 0px), 0) scale(1.035);
+  transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+/* Layer D — text entrance */
+.hero-enter {
+  animation: hero-enter 0.95s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-enter-1 { animation-delay: 0.05s; }
+.hero-enter-2 { animation-delay: 0.15s; }
+.hero-enter-3 { animation-delay: 0.25s; }
+.hero-enter-4 { animation-delay: 0.35s; }
+.hero-enter-5 { animation-delay: 0.45s; }
+
+@keyframes hero-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-atmosphere,
+  .hero-trace,
+  .hero-art {
+    animation: none !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  /* Without the animation the element falls back to its natural (visible)
+     state, so the headline is never withheld. */
+  .hero-enter {
+    animation: none !important;
+  }
+}
 
 

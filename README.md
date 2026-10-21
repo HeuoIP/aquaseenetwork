@@ -93,9 +93,28 @@ Defined as CSS custom properties inside the `@theme` block of `src/app/globals.c
 | `--font-sans` | Inter | Body / UI |
 | `--font-mono` | IBM Plex Mono | Eyebrows, labels, metadata |
 
-Motion is limited to a single scroll-reveal transition and is fully disabled under
-`prefers-reduced-motion`. The reveal is progressive enhancement: without JavaScript the
-content renders visible.
+Motion is limited to the homepage hero plus a single scroll-reveal transition, and all of it is
+disabled under `prefers-reduced-motion`. The reveal is progressive enhancement: without
+JavaScript the content renders visible.
+
+### Homepage hero — "Idea → Structure → Realization"
+
+`src/components/home/Hero.tsx` + the `.hero-*` rules in `src/app/globals.css`.
+
+| Layer | What it does | How |
+| --- | --- | --- |
+| A · atmosphere | a very slow shift in background light | `.hero-atmosphere`, 30 s alternate keyframe on a radial-gradient |
+| B · trajectories | three fine aqua contour lines drifting across the key art | inline SVG paths, `stroke-dasharray` + `stroke-dashoffset` keyframe, 28/38/48 s |
+| C · parallax | the key art drifts a few pixels toward/away from the pointer | CSS variables `--hero-px` / `--hero-py` written from a single `pointermove` listener — React never re-renders |
+| D · entrance | headline, copy, CTAs and summary fade up in sequence | `.hero-enter` with staggered `animation-delay` (50–450 ms) |
+
+No animation framework, no WebGL, no new dependency. The key art is a `next/image` fill layer;
+the decorative SVG and the image itself are hidden from assistive technology, and the visual is
+labelled *"Creative concept visualization"* so it is never read as a completed client project.
+
+Pointer parallax is skipped for `prefers-reduced-motion` and for touch devices
+(`hover: none`). Under reduced motion the hero renders as a static composition and the headline
+falls back to its natural visible state.
 
 The reveal is deliberately defensive (`src/components/ui/Reveal.tsx`). It combines
 IntersectionObserver, a shared scroll sweep and a 400 ms polling fallback, and it treats an
@@ -237,7 +256,8 @@ The current visuals are:
 
 | File | Used on | Nature |
 | --- | --- | --- |
-| `public/images/resort-arrival.webp` | Home hero, Projects, Creative Design study | AI-generated concept render |
+| `public/images/aquasee-hero-lab-v2.webp` | Homepage hero | Generated concept artwork (see below) |
+| `public/images/resort-arrival.webp` | Projects, Creative Design study | AI-generated concept render |
 | `public/images/resort-masterplan.webp` | Projects, Strategy page | AI-generated concept render |
 | `public/images/leisure-play.webp` | Projects, Creative Design page | AI-generated concept render |
 | `public/images/prototype-workshop.webp` | Projects, Supply Chain page | Illustrative workshop image |
@@ -257,6 +277,24 @@ When real, authorised project photography becomes available:
 4. Remove the disclosure banner at the top of the projects page and the chip on the hero.
 
 **Do not** present a render, prototype or concept as a completed project.
+
+### Regenerating the hero artwork
+
+The hero key art was produced with the project's configured image service. To regenerate it:
+
+```bash
+python "<codex-home>/skills/text-to-image/scripts/t2i.py" \
+  --prompt "<the hero prompt>" \
+  --provider nanobanana \
+  --model "gpt-image-2.5-ext" \
+  --size "16:9" \
+  --resolution 2K \
+  --out "public/images/aquasee-hero-lab-v2.raw.png"
+```
+
+Then convert it to WebP with sharp (already a transitive dependency) and update the `src` in
+`src/components/home/Hero.tsx`. Use a **new filename** when replacing an image — Next.js caches
+optimised images by URL, so reusing a path serves the stale file.
 
 ### Claims to keep accurate
 
@@ -290,5 +328,6 @@ the underlying facts change.
 ---
 
 © AQUASEE. All rights reserved.
+
 
 
