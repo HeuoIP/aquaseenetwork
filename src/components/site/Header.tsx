@@ -12,10 +12,21 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    // The header switches between a transparent (over the dark hero) and a
+    // solid treatment. Scroll events are not delivered in every environment
+    // — background tabs, embedded browsers, automated navigation — and a
+    // missed event would leave light text sitting on a light section, so the
+    // state is also polled.
+    const update = () => setScrolled(window.scrollY > 12);
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
+    const timer = window.setInterval(update, 200);
+    return () => {
+      window.removeEventListener('scroll', update);
+      window.removeEventListener('resize', update);
+      window.clearInterval(timer);
+    };
   }, []);
 
   useEffect(() => {
@@ -169,4 +180,5 @@ export function Header() {
     </header>
   );
 }
+
 
