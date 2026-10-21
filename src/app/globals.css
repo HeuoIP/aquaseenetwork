@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+/* --------------------------------------------------------------------------
+   Type system
+   -------------------------------------------------------------------------- */
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: var(--font-newsreader), "Iowan Old Style", "Times New Roman", Georgia, serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+
+/* --------------------------------------------------------------------------
+   Palette — refined neutrals with a single restrained accent (deep aqua)
+   -------------------------------------------------------------------------- */
+@theme {
+  --color-ink: #0c1013;
+  --color-ink-2: #161d22;
+  --color-ink-3: #222b31;
+
+  --color-body: #48525a;
+  --color-muted: #7c858d;
+  --color-faint: #a3abb1;
+
+  --color-line: #e4e1db;
+  --color-line-2: #d2cec5;
+  --color-paper: #fbfaf8;
+  --color-sand: #f1eee7;
+  --color-sand-2: #e9e5dc;
+
+  --color-accent: #0e5a54;
+  --color-accent-2: #2f8a81;
+  --color-aqua: #8ad9cf;
+  --color-accent-tint: #e6efee;
+  --color-on-dark: #a7b0b6;
+  --color-on-dark-strong: #eef1f2;
+
+  --radius-xs: 2px;
+
+  --text-hero: clamp(2.75rem, 7.2vw, 6.5rem);
+  --text-display: clamp(2rem, 4.4vw, 3.75rem);
+  --text-title: clamp(1.5rem, 2.8vw, 2.375rem);
+  --text-lede: clamp(1.0625rem, 1.35vw, 1.3125rem);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-body);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "kern", "liga";
+  }
+
+  h1, h2, h3, h4 {
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  p { text-wrap: pretty; }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@utility shell {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 82rem;
+  padding-inline: clamp(1.25rem, 4vw, 3.5rem);
+}
+
+@utility shell-narrow {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 60rem;
+  padding-inline: clamp(1.25rem, 4vw, 3.5rem);
+}
+
+@utility rule {
+  height: 1px;
+  width: 100%;
+  background-color: var(--color-line);
+}
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+@utility display-italic {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+}
+
+@utility link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  &:hover { background-size: 100% 1px; }
+}
+
+/* --------------------------------------------------------------------------
+   Scroll reveal
+   -------------------------------------------------------------------------- */
+.reveal {
+  transition:
+    opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* The `js` class is set by an inline script, so without JavaScript the
+   content simply stays visible instead of being hidden by the animation. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  will-change: opacity, transform;
+}
+
+.js .reveal.reveal-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+
+
