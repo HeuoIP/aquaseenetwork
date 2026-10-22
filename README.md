@@ -97,9 +97,15 @@ Motion is limited to the homepage hero plus a single scroll-reveal transition, a
 disabled under `prefers-reduced-motion`. The reveal is progressive enhancement: without
 JavaScript the content renders visible.
 
-### Homepage hero — "Idea → Structure → Realization"
+### Hero shell — "Idea → Structure → Realization"
 
-`src/components/home/Hero.tsx` + the `.hero-*` rules in `src/app/globals.css`.
+`src/components/site/HeroShell.tsx` owns the visual signature and its four motion layers;
+`src/components/home/Hero.tsx` and `src/components/service/CapabilityHero.tsx` supply the copy.
+The `.hero-*` rules live in `src/app/globals.css`.
+
+Applied on the homepage, all three capability pages and the projects page, each with its own
+key art. Layout is identical across them: full-bleed art behind a two-column grid from `lg` up,
+recomposed into copy → art band → summary row below it.
 
 | Layer | What it does | How |
 | --- | --- | --- |
@@ -257,6 +263,10 @@ The current visuals are:
 | File | Used on | Nature |
 | --- | --- | --- |
 | `public/images/aquasee-hero-lab-v2.webp` | Homepage hero | Generated concept artwork (see below) |
+| `public/images/aquasee-key-strategy.webp` | Strategy & Consulting hero | Generated concept artwork |
+| `public/images/aquasee-key-design.webp` | Creative Design & R&D hero | Generated concept artwork |
+| `public/images/aquasee-key-supply.webp` | Supply Chain & Delivery hero | Generated concept artwork |
+| `public/images/aquasee-key-projects.webp` | Projects & Capabilities hero | Generated concept artwork |
 | `public/images/resort-arrival.webp` | Projects, Creative Design study | AI-generated concept render |
 | `public/images/resort-masterplan.webp` | Projects, Strategy page | AI-generated concept render |
 | `public/images/leisure-play.webp` | Projects, Creative Design page | AI-generated concept render |
@@ -296,6 +306,9 @@ Then convert it to WebP with sharp (already a transitive dependency) and update 
 `src/components/home/Hero.tsx`. Use a **new filename** when replacing an image — Next.js caches
 optimised images by URL, so reusing a path serves the stale file.
 
+The same command produced the four capability / projects key arts:
+`aquasee-key-strategy`, `aquasee-key-design`, `aquasee-key-supply`, `aquasee-key-projects`.
+
 ### Claims to keep accurate
 
 The copy deliberately avoids claiming owned factories, a large in-house design team, or
@@ -328,6 +341,7 @@ the underlying facts change.
 ---
 
 © AQUASEE. All rights reserved.
+
 
 
 

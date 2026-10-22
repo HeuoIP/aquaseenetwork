@@ -13,8 +13,9 @@ export type ServiceDetail = {
   deliverables: string[];
   engagement: { phase: string; description: string }[];
   bestFor: string[];
-  visual: StudyVisualData;
+  visual: Extract<StudyVisualData, { kind: 'image' }>;
   visualCaption: string;
+  mobilePosition?: string;
   related: { href: string; label: string }[];
 };
 
@@ -86,10 +87,11 @@ export const serviceDetails: ServiceDetail[] = [
     ],
     visual: {
       kind: 'image',
-      src: '/images/resort-masterplan.webp',
-      alt: 'Concept aerial render of a tropical resort masterplan with lagoons and villa accommodation.',
+      src: '/images/aquasee-key-strategy.webp',
+      alt: 'Generated concept artwork: an exploded axonometric assembly of translucent planning volumes threaded with aqua trajectory lines.',
     },
-    visualCaption: 'Concept render — generated illustration, not a completed project',
+    mobilePosition: '52%',
+    visualCaption: 'Creative concept visualization',
     related: [
       { href: '/creative-design', label: 'Creative Design & R&D' },
       { href: '/supply-chain', label: 'Supply Chain & Project Delivery' },
@@ -162,10 +164,11 @@ export const serviceDetails: ServiceDetail[] = [
     ],
     visual: {
       kind: 'image',
-      src: '/images/leisure-play.webp',
-      alt: 'Concept render of a sculpted play landscape with undulating forms and colourful ground elements.',
+      src: '/images/aquasee-key-design.webp',
+      alt: 'Generated concept artwork: sculptural material and form studies suspended above a dark reflective surface, traced with aqua contour lines.',
     },
-    visualCaption: 'Concept render — generated illustration, not a completed project',
+    mobilePosition: '72%',
+    visualCaption: 'Creative concept visualization',
     related: [
       { href: '/strategy', label: 'Strategy & Consulting' },
       { href: '/supply-chain', label: 'Supply Chain & Project Delivery' },
@@ -238,11 +241,11 @@ export const serviceDetails: ServiceDetail[] = [
     ],
     visual: {
       kind: 'image',
-      src: '/images/prototype-workshop.webp',
-      alt: 'Illustrative photograph of a tubular steel frame structure being assembled in a fabrication workshop.',
+      src: '/images/aquasee-key-supply.webp',
+      alt: 'Generated concept artwork: indexed modular components stacked on structural frames, connected by aqua route lines.',
     },
-    visualCaption:
-      'Illustrative workshop image — production is delivered through qualified manufacturing partners, not an AQUASEE-owned factory',
+    mobilePosition: '52%',
+    visualCaption: 'Creative concept visualization',
     related: [
       { href: '/strategy', label: 'Strategy & Consulting' },
       { href: '/creative-design', label: 'Creative Design & R&D' },
@@ -257,4 +260,6 @@ export function getService(slug: string): ServiceDetail {
   }
   return found;
 }
+
+
 

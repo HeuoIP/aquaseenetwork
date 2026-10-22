@@ -60,6 +60,14 @@ export function ActionLink({
     </>
   );
 
+  if (href.startsWith('#')) {
+    return (
+      <a href={href} className={classes}>
+        {inner}
+      </a>
+    );
+  }
+
   if (isExternal) {
     return (
       <a href={href} className={classes} target="_blank" rel="noreferrer noopener">
@@ -74,3 +82,4 @@ export function ActionLink({
     </Link>
   );
 }
+

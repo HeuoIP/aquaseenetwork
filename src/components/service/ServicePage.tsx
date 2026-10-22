@@ -1,7 +1,6 @@
 import Link from 'next/link';
-import { StudyVisual } from '@/components/art/StudyVisual';
+import { CapabilityHero } from '@/components/service/CapabilityHero';
 import { ActionLink } from '@/components/ui/Action';
-import { ImageDisclosure } from '@/components/ui/ImageDisclosure';
 import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import type { ServiceDetail } from '@/content/services';
@@ -9,42 +8,9 @@ import type { ServiceDetail } from '@/content/services';
 export function ServicePage({ service }: { service: ServiceDetail }) {
   return (
     <>
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-ink pt-[4.5rem] text-paper">
-        <div
-          aria-hidden="true"
-          className="absolute inset-y-0 right-0 hidden w-1/2 opacity-[0.18] lg:block"
-        >
-          <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" className="h-full w-full">
-            <rect width="800" height="600" fill="#0c1013" />
-            {[0, 1, 2, 3, 4].map((i) => (
-              <path
-                key={i}
-                d={`M0 ${140 + i * 96} C 220 ${100 + i * 96}, 430 ${200 + i * 90}, 800 ${130 + i * 96} L 800 ${182 + i * 96} C 430 ${252 + i * 90}, 220 ${152 + i * 96}, 0 ${192 + i * 96} Z`}
-                fill={i % 2 === 0 ? '#2f8a81' : '#e9e5dc'}
-                opacity={i % 2 === 0 ? 0.5 : 0.16}
-              />
-            ))}
-          </svg>
-        </div>
+      <CapabilityHero service={service} />
 
-        <div className="shell relative">
-          <div className="max-w-3xl py-20 lg:py-28">
-            <p className="flex items-center gap-3 font-mono text-[0.6875rem] uppercase tracking-[0.2em] text-aqua">
-              <span aria-hidden="true" className="h-px w-10 bg-aqua/70" />
-              Capability {service.index}
-            </p>
-            <h1 className="mt-8 font-display text-[length:var(--text-display)] font-normal leading-[1.04] tracking-[-0.025em] text-on-dark-strong">
-              {service.title}
-            </h1>
-            <p className="mt-7 max-w-xl text-[1.125rem] leading-relaxed text-on-dark">
-              {service.lede}
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Intro */}
+      {/* ---- Overview ------------------------------------------------------ */}
       <section className="bg-paper py-20 sm:py-24 lg:py-28">
         <div className="shell">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
@@ -63,60 +29,50 @@ export function ServicePage({ service }: { service: ServiceDetail }) {
         </div>
       </section>
 
-      {/* Visual */}
-      <section className="bg-paper pb-20 sm:pb-24 lg:pb-28">
-        <div className="shell">
-          <Reveal>
-            <figure className="relative aspect-[16/10] overflow-hidden bg-ink sm:aspect-[2/1]">
-              <StudyVisual
-                visual={service.visual}
-                sizes="(min-width: 1320px) 1232px, 100vw"
-                className="transition-transform duration-[1.6s] ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.03]"
-              />
-              <figcaption className="absolute inset-x-5 bottom-5">
-                <ImageDisclosure>{service.visualCaption}</ImageDisclosure>
-              </figcaption>
-            </figure>
-          </Reveal>
-        </div>
-      </section>
-      {/* Capabilities */}
-      <section className="bg-sand py-20 sm:py-24 lg:py-28">
+      {/* ---- Activities ---------------------------------------------------- */}
+      <section id="activities" className="scroll-mt-24 bg-ink py-20 text-on-dark sm:py-24 lg:py-28">
         <div className="shell">
           <Reveal>
             <SectionHeader
+              tone="dark"
               eyebrow="What We Do"
-              title={`${service.title}, in detail.`}
-              lede="The specific activities that make up this part of the engagement."
+              title="The specific activities that make up this part of the engagement."
+              lede="Each one is a defined piece of work with a named output — not a phase of vague effort."
             />
           </Reveal>
 
-          <div className="mt-14 grid gap-px overflow-hidden rounded-sm border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+          <ol className="mt-14 divide-y divide-white/10 border-y border-white/10">
             {service.capabilities.map((cap, i) => (
-              <Reveal key={cap.title} delay={i * 60} className="bg-paper">
-                <div className="h-full p-8">
-                  <span className="font-mono text-[0.6875rem] tracking-[0.16em] text-accent">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <h3 className="mt-5 text-[1.125rem] leading-snug">{cap.title}</h3>
-                  <p className="mt-3 text-[0.9375rem] leading-relaxed text-body">{cap.description}</p>
-                </div>
+              <Reveal
+                as="li"
+                key={cap.title}
+                delay={i * 60}
+                className="grid gap-x-8 gap-y-2 py-7 sm:grid-cols-[3rem_1fr] lg:grid-cols-[3rem_15rem_1fr]"
+              >
+                <span className="font-display text-[1.625rem] leading-none text-aqua">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <h3 className="text-[1.0625rem] leading-snug text-on-dark-strong">{cap.title}</h3>
+                <p className="text-[0.9375rem] leading-relaxed text-on-dark/80">{cap.description}</p>
               </Reveal>
             ))}
-          </div>
+          </ol>
         </div>
       </section>
 
-      {/* Deliverables + fit */}
+      {/* ---- Deliverables & engagement -------------------------------------- */}
       <section className="bg-paper py-20 sm:py-24 lg:py-28">
         <div className="shell">
-          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-            <Reveal className="lg:col-span-6">
+          <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
+            <Reveal className="lg:col-span-5">
               <p className="eyebrow text-accent">Deliverables</p>
               <h2 className="mt-5 text-title">What you receive.</h2>
               <ul className="mt-8 divide-y divide-line border-y border-line">
                 {service.deliverables.map((d) => (
-                  <li key={d} className="flex items-start gap-3 py-4 text-[0.9375rem] leading-relaxed text-ink">
+                  <li
+                    key={d}
+                    className="flex items-start gap-3 py-4 text-[0.9375rem] leading-relaxed text-ink"
+                  >
                     <svg
                       width="16"
                       height="16"
@@ -139,13 +95,13 @@ export function ServicePage({ service }: { service: ServiceDetail }) {
               </ul>
             </Reveal>
 
-            <Reveal delay={120} className="lg:col-span-6">
+            <Reveal delay={120} className="lg:col-span-7">
               <p className="eyebrow text-accent">Engagement</p>
               <h2 className="mt-5 text-title">How the work runs.</h2>
-              <ol className="mt-8 space-y-5">
+              <ol className="mt-8 divide-y divide-line border-y border-line">
                 {service.engagement.map((phase, i) => (
-                  <li key={phase.phase} className="flex gap-5 border-b border-line pb-5 last:border-0 last:pb-0">
-                    <span className="mt-0.5 font-display text-[1.25rem] leading-none text-accent">
+                  <li key={phase.phase} className="flex gap-6 py-5">
+                    <span className="font-display text-[1.375rem] leading-none text-accent">
                       {String(i + 1).padStart(2, '0')}
                     </span>
                     <span>
@@ -159,57 +115,39 @@ export function ServicePage({ service }: { service: ServiceDetail }) {
               </ol>
             </Reveal>
           </div>
+        </div>
+      </section>
 
-          <Reveal>
-            <div className="mt-16 grid gap-px overflow-hidden rounded-sm border border-line bg-line md:grid-cols-2">
-              <div className="bg-ink p-8 text-on-dark lg:p-10">
-                <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-aqua">
-                  This is a good fit if
-                </p>
-                <ul className="mt-6 space-y-3">
-                  {service.bestFor.map((b) => (
-                    <li key={b} className="flex gap-3 text-[0.9375rem] leading-relaxed text-on-dark">
-                      <span aria-hidden="true" className="mt-[0.55rem] h-1 w-1 shrink-0 rounded-full bg-aqua" />
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="bg-paper p-8 lg:p-10">
-                <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-accent">
-                  Continue
-                </p>
-                <div className="mt-6 flex flex-col gap-3">
-                  {service.related.map((r) => (
-                    <Link
-                      key={r.href}
-                      href={r.href}
-                      className="group flex items-center justify-between border-b border-line pb-3 text-[1.0625rem] text-ink transition-colors hover:text-accent"
-                    >
-                      {r.label}
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        aria-hidden="true"
-                        className="transition-transform duration-300 group-hover:translate-x-1"
-                      >
-                        <path
-                          d="M2 8h12M9 3l5 5-5 5"
-                          stroke="currentColor"
-                          strokeWidth="1.4"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </Link>
-                  ))}
+      {/* ---- Fit & continue -------------------------------------------------- */}
+      <section className="bg-sand py-20 sm:py-24 lg:py-28">
+        <div className="shell">
+          <div className="grid gap-px overflow-hidden rounded-sm border border-line bg-line md:grid-cols-2">
+            <Reveal className="bg-ink p-8 text-on-dark lg:p-10">
+              <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-aqua">
+                This is a good fit if
+              </p>
+              <ul className="mt-7 space-y-3">
+                {service.bestFor.map((b) => (
+                  <li key={b} className="flex gap-3 text-[0.9375rem] leading-relaxed text-on-dark">
+                    <span aria-hidden="true" className="mt-[0.55rem] h-1 w-1 shrink-0 rounded-full bg-aqua" />
+                    {b}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+
+            <Reveal delay={120} className="bg-paper p-8 lg:p-10">
+              <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-accent">
+                Continue
+              </p>
+              <div className="mt-6 flex flex-col">
+                {service.related.map((r) => (
                   <Link
-                    href="/projects"
-                    className="group flex items-center justify-between border-b border-line pb-3 text-[1.0625rem] text-ink transition-colors hover:text-accent"
+                    key={r.href}
+                    href={r.href}
+                    className="group flex items-center justify-between border-b border-line py-3.5 text-[1.0625rem] text-ink transition-colors hover:text-accent"
                   >
-                    Projects & Capabilities
+                    {r.label}
                     <svg
                       width="16"
                       height="16"
@@ -227,20 +165,38 @@ export function ServicePage({ service }: { service: ServiceDetail }) {
                       />
                     </svg>
                   </Link>
-                </div>
-
-                <ActionLink href="/contact" className="mt-8">
-                  Discuss your project
-                </ActionLink>
+                ))}
+                <Link
+                  href="/projects"
+                  className="group flex items-center justify-between border-b border-line py-3.5 text-[1.0625rem] text-ink transition-colors hover:text-accent"
+                >
+                  Projects &amp; Capabilities
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    aria-hidden="true"
+                    className="transition-transform duration-300 group-hover:translate-x-1"
+                  >
+                    <path
+                      d="M2 8h12M9 3l5 5-5 5"
+                      stroke="currentColor"
+                      strokeWidth="1.4"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </Link>
               </div>
-            </div>
-          </Reveal>
+
+              <ActionLink href="/contact" className="mt-9">
+                Discuss your project
+              </ActionLink>
+            </Reveal>
+          </div>
         </div>
       </section>
     </>
   );
 }
-
-
-
-

@@ -17,3 +17,6 @@ next-env.d.ts
 
 # local hand-off bundles
 share
+
+# local screenshot tooling (playwright-core + Chrome)
+.tools

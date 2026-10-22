@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { StudyVisual } from '@/components/art/StudyVisual';
-import { DisclosureTag } from '@/components/ui/DisclosureTag';
 import { ImageDisclosure } from '@/components/ui/ImageDisclosure';
 import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeader } from '@/components/ui/SectionHeader';
@@ -46,7 +45,7 @@ export function WorkPreview() {
           </Reveal>
         </div>
 
-        <div className="mt-14 grid gap-8 md:grid-cols-3">
+        <div className="mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
           {featured.map((study, i) => (
             <Reveal key={study.slug} delay={i * 110}>
               <article className="group flex h-full flex-col">
@@ -56,16 +55,21 @@ export function WorkPreview() {
                     sizes="(min-width: 768px) 33vw, 100vw"
                     className="transition-transform duration-[1.4s] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
                   />
-                  <span className="absolute left-4 top-4 rounded-full border border-white/20 bg-ink/70 px-3 py-1 font-mono text-[0.5625rem] uppercase tracking-[0.16em] text-on-dark backdrop-blur-sm">
+                  <span className="absolute left-5 top-5 font-mono text-[0.5625rem] uppercase tracking-[0.16em] text-on-dark">
                     {study.discipline}
                   </span>
-                  <div className="absolute inset-x-4 bottom-4">
+                  <div className="absolute inset-x-5 bottom-5">
                     <ImageDisclosure>{study.disclosure}</ImageDisclosure>
                   </div>
                 </div>
 
-                <div className="flex flex-1 flex-col pt-6">
-                  <h3 className="text-[1.25rem] leading-snug">{study.title}</h3>
+                <div className="flex flex-1 flex-col border-t border-line pt-6">
+                  <div className="flex items-baseline gap-4">
+                    <span className="font-display text-[1.5rem] leading-none text-accent">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <h3 className="text-[1.25rem] leading-snug">{study.title}</h3>
+                  </div>
                   <p className="mt-3 text-[0.9375rem] leading-relaxed text-body">{study.summary}</p>
                 </div>
               </article>
@@ -74,7 +78,7 @@ export function WorkPreview() {
         </div>
 
         <Reveal>
-          <p className="mt-12 max-w-3xl border-t border-line pt-6 text-[0.8125rem] leading-relaxed text-muted">
+          <p className="mt-14 max-w-3xl border-t border-line pt-6 text-[0.8125rem] leading-relaxed text-muted">
             {disclosureNote}
           </p>
         </Reveal>

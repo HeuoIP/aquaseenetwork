@@ -44,7 +44,7 @@ export const capabilityStudies: ProjectStudy[] = [
     ],
     outcome:
       'An arrival experience that is coherent end to end, with a single specification that the fabricator can build from without reinterpretation.',
-    disclosure: 'Concept render — generated illustration, not a completed project',
+    disclosure: 'Concept render — not a completed project',
     visual: {
       kind: 'image',
       src: '/images/resort-arrival.webp',
@@ -69,7 +69,7 @@ export const capabilityStudies: ProjectStudy[] = [
     ],
     outcome:
       'A single coordinated package — design, specification, supplier structure and installation logic — rather than separate documents to be reconciled later.',
-    disclosure: 'Concept render — generated illustration, not a completed project',
+    disclosure: 'Concept render — not a completed project',
     visual: {
       kind: 'image',
       src: '/images/resort-masterplan.webp',
@@ -94,7 +94,7 @@ export const capabilityStudies: ProjectStudy[] = [
     ],
     outcome:
       'A manufacturable system that reads as one idea, rather than a collection of unrelated products.',
-    disclosure: 'Concept render — generated illustration, not a completed project',
+    disclosure: 'Concept render — not a completed project',
     visual: {
       kind: 'image',
       src: '/images/leisure-play.webp',
@@ -119,7 +119,7 @@ export const capabilityStudies: ProjectStudy[] = [
     ],
     outcome:
       'An installation designed around the reality of being operated, cleaned, repaired and inspected for years.',
-    disclosure: 'Illustrative workshop image — production runs through qualified manufacturing partners',
+    disclosure: 'Illustrative workshop image — partner fabrication',
     visual: {
       kind: 'image',
       src: '/images/prototype-workshop.webp',
@@ -170,3 +170,4 @@ export const capabilityStudies: ProjectStudy[] = [
 
 export const disclosureNote =
   'The visuals on this page are concept work produced to demonstrate approach. Photographic visuals are generated illustrations, and the remaining visuals are abstract diagrams. None of them are photographs of completed AQUASEE projects, and no client work is represented here.';
+

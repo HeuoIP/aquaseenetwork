@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { StudyVisual } from '@/components/art/StudyVisual';
+import { HeroShell } from '@/components/site/HeroShell';
 import { ActionLink } from '@/components/ui/Action';
 import { DisclosureTag } from '@/components/ui/DisclosureTag';
 import { ImageDisclosure } from '@/components/ui/ImageDisclosure';
@@ -24,26 +25,39 @@ export const metadata: Metadata = {
 export default function ProjectsPage() {
   return (
     <>
-      <section className="bg-ink pt-[4.5rem] text-paper">
-        <div className="shell">
-          <div className="max-w-3xl py-20 lg:py-28">
-            <p className="flex items-center gap-3 font-mono text-[0.6875rem] uppercase tracking-[0.2em] text-aqua">
-              <span aria-hidden="true" className="h-px w-10 bg-aqua/70" />
-              Projects & Capabilities
-            </p>
-            <h1 className="mt-8 font-display text-[length:var(--text-display)] font-normal leading-[1.04] tracking-[-0.025em] text-on-dark-strong">
-              What we are set up to do.
-            </h1>
-            <p className="mt-7 max-w-xl text-[1.125rem] leading-relaxed text-on-dark">
-              A set of illustrative studies describing the scope, method and outcome of typical
-              AQUASEE engagements — for developers, hospitality groups, design practices and
-              leisure developers.
-            </p>
+      {/* ---- Hero ---------------------------------------------------------- */}
+      <HeroShell
+        art="/images/aquasee-key-projects.webp"
+        artAlt="Generated concept artwork: a landscape plate, a bespoke fixture element and an equipment module mounted on one shared structural armature."
+        caption="Creative concept visualization"
+        mobilePosition="72%"
+        priority
+      >
+        <div className="order-1 px-[clamp(1.25rem,4vw,3.5rem)] pb-10 pt-[4.5rem] lg:col-span-6 lg:col-start-1 lg:row-start-1 lg:px-0 lg:pb-0 lg:pt-0">
+          <p className="hero-enter hero-enter-1 flex items-center gap-3 font-mono text-[0.6875rem] uppercase tracking-[0.2em] text-aqua">
+            <span aria-hidden="true" className="h-px w-10 bg-aqua/70" />
+            Projects &amp; Capabilities
+          </p>
+
+          <h1 className="hero-enter hero-enter-2 mt-7 font-display text-[length:var(--text-cap)] font-normal leading-[1.03] tracking-[-0.025em] text-on-dark-strong">
+            What we are set up to do.
+          </h1>
+
+          <p className="hero-enter hero-enter-3 mt-7 max-w-xl text-[1.0625rem] leading-relaxed text-on-dark sm:text-lg">
+            A set of illustrative studies describing the scope, method and outcome of typical AQUASEE
+            engagements — for developers, hospitality groups, design practices and leisure
+            developers.
+          </p>
+
+          <div className="hero-enter hero-enter-4 mt-9">
+            <ActionLink href="/contact" size="lg">
+              Start a Project
+            </ActionLink>
           </div>
         </div>
-      </section>
+      </HeroShell>
 
-      {/* Disclosure */}
+      {/* ---- Disclosure ---------------------------------------------------- */}
       <section className="bg-accent-tint py-10">
         <div className="shell">
           <Reveal>
@@ -55,9 +69,7 @@ export default function ProjectsPage() {
                 i
               </span>
               <div>
-                <p className="text-[0.9375rem] font-medium text-ink">
-                  About the visuals on this page
-                </p>
+                <p className="text-[0.9375rem] font-medium text-ink">About the visuals on this page</p>
                 <p className="mt-2 max-w-4xl text-[0.9375rem] leading-relaxed text-body">
                   {disclosureNote} Every study is labelled on the image itself, and the workshop
                   image illustrates fabrication through a manufacturing partner rather than an
@@ -69,62 +81,109 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      {/* Studies */}
-      <section className="bg-paper py-20 sm:py-24 lg:py-28">
+      {/* ---- Index ---------------------------------------------------------- */}
+      <section className="bg-paper pt-16 sm:pt-20">
+        <div className="shell">
+          <Reveal>
+            <ol className="grid gap-px overflow-hidden rounded-sm border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+              {capabilityStudies.map((study, i) => (
+                <li key={study.slug} className="bg-paper">
+                  <a
+                    href={`#${study.slug}`}
+                    className="group flex items-baseline gap-4 p-5 transition-colors duration-300 hover:bg-accent-tint"
+                  >
+                    <span className="font-mono text-[0.625rem] tracking-[0.16em] text-accent">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <span className="text-[0.9375rem] leading-snug text-ink">{study.title}</span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ---- Studies -------------------------------------------------------- */}
+      <section className="bg-paper py-16 sm:py-20 lg:py-24">
         <div className="shell">
           <div className="space-y-20 lg:space-y-28">
-            {capabilityStudies.map((study, i) => (
-              <article key={study.slug} className="grid gap-10 lg:grid-cols-12 lg:gap-14">
-                <Reveal className={`lg:col-span-6 ${i % 2 === 1 ? 'lg:order-2' : ''}`}>
-                  <div className="relative aspect-[4/3] overflow-hidden bg-ink">
-                    <StudyVisual
-                      visual={study.visual}
-                      sizes="(min-width: 1024px) 50vw, 100vw"
-                      className="transition-transform duration-[1.4s] ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.03]"
-                    />
-                    <div className="absolute inset-x-4 bottom-4">
-                      <ImageDisclosure>{study.disclosure}</ImageDisclosure>
+            {capabilityStudies.map((study, i) => {
+              const flipped = i % 2 === 1;
+              return (
+                <article
+                  key={study.slug}
+                  id={study.slug}
+                  className="grid scroll-mt-24 gap-10 lg:grid-cols-12 lg:gap-14"
+                >
+                  <Reveal
+                    className={`lg:col-span-6 ${flipped ? 'lg:col-start-7' : 'lg:col-start-1'}`}
+                  >
+                    <div className="relative aspect-[16/10] overflow-hidden bg-ink">
+                      <StudyVisual
+                        visual={study.visual}
+                        sizes="(min-width: 1024px) 50vw, 100vw"
+                        className="transition-transform duration-[1.4s] ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.03]"
+                      />
+                      <div className="absolute inset-x-5 bottom-5">
+                        <ImageDisclosure>{study.disclosure}</ImageDisclosure>
+                      </div>
                     </div>
-                  </div>
-                </Reveal>
+                  </Reveal>
 
-                <Reveal delay={100} className={`lg:col-span-6 ${i % 2 === 1 ? 'lg:order-1' : ''}`}>
-                  <p className="font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-accent">
-                    {study.discipline} — {study.category}
-                  </p>
-                  <h2 className="mt-5 text-title">{study.title}</h2>
-                  <p className="mt-4 text-[0.875rem] uppercase tracking-[0.08em] text-muted">
-                    {study.scale}
-                  </p>
-                  <p className="mt-5 text-[1.0625rem] leading-[1.75] text-body">{study.summary}</p>
+                  <Reveal
+                    delay={100}
+                    className={`lg:col-span-6 ${flipped ? 'lg:col-start-1 lg:row-start-1' : 'lg:col-start-7'}`}
+                  >
+                    <div className="flex items-baseline gap-4">
+                      <span className="font-display text-[2.25rem] leading-none text-accent">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted">
+                        {study.discipline}
+                      </p>
+                    </div>
 
-                  <div className="mt-8">
-                    <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted">
-                      Scope
+                    <h2 className="mt-5 text-title">{study.title}</h2>
+                    <p className="mt-3 font-mono text-[0.6875rem] uppercase tracking-[0.12em] text-muted">
+                      {study.scale}
                     </p>
-                    <ul className="mt-4 grid gap-2 sm:grid-cols-2">
-                      {study.scope.map((s) => (
-                        <li key={s} className="flex gap-2.5 text-[0.9375rem] leading-relaxed text-ink">
-                          <span aria-hidden="true" className="mt-[0.5rem] h-1 w-1 shrink-0 rounded-full bg-accent" />
-                          {s}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                    <p className="mt-6 text-[1.0625rem] leading-[1.7] text-body">{study.summary}</p>
 
-                  <div className="mt-8 border-l-2 border-accent pl-5">
-                    <p className="text-[0.9375rem] leading-relaxed text-body">{study.outcome}</p>
-                  </div>
+                    <div className="mt-8 border-t border-line pt-6">
+                      <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted">
+                        Scope
+                      </p>
+                      <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+                        {study.scope.map((s) => (
+                          <li
+                            key={s}
+                            className="flex gap-2.5 text-[0.9375rem] leading-relaxed text-ink"
+                          >
+                            <span
+                              aria-hidden="true"
+                              className="mt-[0.5rem] h-1 w-1 shrink-0 rounded-full bg-accent"
+                            />
+                            {s}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
 
-                  <DisclosureTag className="mt-7">{study.disclosure}</DisclosureTag>
-                </Reveal>
-              </article>
-            ))}
+                    <div className="mt-8 border-l-2 border-accent pl-5">
+                      <p className="text-[0.9375rem] leading-relaxed text-body">{study.outcome}</p>
+                    </div>
+
+                    <DisclosureTag className="mt-7">{study.disclosure}</DisclosureTag>
+                  </Reveal>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Who we serve */}
+      {/* ---- Sectors -------------------------------------------------------- */}
       <section className="bg-sand py-20 sm:py-24 lg:py-28">
         <div className="shell">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
@@ -157,3 +216,5 @@ export default function ProjectsPage() {
     </>
   );
 }
+
+
