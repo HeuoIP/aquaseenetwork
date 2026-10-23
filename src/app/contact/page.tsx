@@ -1,17 +1,19 @@
 import type { Metadata } from 'next';
+import { Contours } from '@/components/art/Contours';
 import { InquiryForm } from '@/components/contact/InquiryForm';
+import { ActionLink } from '@/components/ui/Action';
 import { Reveal } from '@/components/ui/Reveal';
 import { site } from '@/content/site';
 
 export const metadata: Metadata = {
-  title: 'Start a Project',
+  title: 'Contact',
   description:
-    'Send AQUASEE a short project brief — the stage you are at, the ambition, the constraints and the timeline. We reply with an honest read on what is realistic.',
+    'Talk to AQUASEE about a project brief — strategy and consulting, creative design and R&D, or supply chain and delivery. Send an enquiry or reach us directly.',
   alternates: { canonical: '/contact' },
   openGraph: {
-    title: 'Start a Project — AQUASEE',
+    title: 'Contact — AQUASEE',
     description:
-      'Send a short project brief and we will come back with an honest read on what is realistic.',
+      'Send a project brief to AQUASEE, or reach us directly for general and partnership enquiries.',
     url: '/contact',
   },
 };
@@ -19,66 +21,117 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      <section className="bg-ink pt-[4.5rem] text-paper">
-        <div className="shell">
-          <div className="max-w-3xl py-20 lg:py-28">
-            <p className="flex items-center gap-3 font-mono text-[0.6875rem] uppercase tracking-[0.2em] text-aqua">
-              <span aria-hidden="true" className="h-px w-10 bg-accent-2/70" />
-              Start a Project
-            </p>
-            <h1 className="mt-8 font-display text-[length:var(--text-display)] font-normal leading-[1.04] tracking-[-0.025em] text-on-dark-strong">
-              Tell us what you are trying to build.
-            </h1>
-            <p className="mt-7 max-w-xl text-[1.125rem] leading-relaxed text-on-dark">
-              The more concrete the brief, the more useful our reply. If you are still early, say
-              that — an unfinished idea is a perfectly good place to start.
-            </p>
+      {/* ---- Hero ---------------------------------------------------------- */}
+      <section className="relative isolate overflow-hidden bg-ink pt-[4.5rem] text-paper">
+        <Contours className="pointer-events-none absolute inset-y-0 right-0 hidden h-full w-[58%] lg:block" />
+
+        <div className="shell relative">
+          <div className="grid gap-10 py-16 sm:py-20 lg:grid-cols-12 lg:items-end lg:py-24">
+            <div className="lg:col-span-7">
+              <p className="hero-enter hero-enter-1 flex items-center gap-3 font-mono text-[0.6875rem] uppercase tracking-[0.2em] text-aqua">
+                <span aria-hidden="true" className="h-px w-10 bg-aqua/70" />
+                Contact
+              </p>
+
+              <h1 className="hero-enter hero-enter-2 mt-7 font-display text-[length:var(--text-cap)] font-normal leading-[1.03] tracking-[-0.025em] text-on-dark-strong">
+                Let&rsquo;s talk about what you are building.
+              </h1>
+
+              <p className="hero-enter hero-enter-3 mt-7 max-w-xl text-[1.0625rem] leading-relaxed text-on-dark sm:text-lg">
+                The more concrete the brief, the more useful our reply. Tell us the stage you are at,
+                the ambition and the constraints — and we will come back with an honest read on what
+                is realistic.
+              </p>
+            </div>
+
+            <div className="hero-enter hero-enter-4 lg:col-span-5">
+              <dl className="grid gap-px overflow-hidden rounded-sm border border-white/12 bg-white/12 sm:grid-cols-2 lg:grid-cols-1">
+                <div className="bg-ink p-5">
+                  <dt className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-aqua">
+                    New projects
+                  </dt>
+                  <dd className="mt-2.5 text-[0.9375rem] leading-relaxed text-on-dark">
+                    Use the brief form — it reaches the people who will actually work on it.
+                  </dd>
+                </div>
+                <div className="bg-ink p-5">
+                  <dt className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-aqua">
+                    Everything else
+                  </dt>
+                  <dd className="mt-2.5 text-[0.9375rem] leading-relaxed text-on-dark">
+                    <a
+                      href={`mailto:${site.contact.email}`}
+                      className="text-on-dark-strong underline underline-offset-4 transition-colors hover:text-aqua"
+                    >
+                      {site.contact.email}
+                    </a>
+                    <span className="mt-1.5 block text-on-dark/70">{site.contact.location}</span>
+                  </dd>
+                </div>
+              </dl>
+            </div>
           </div>
         </div>
       </section>
 
+      {/* ---- Form + details ------------------------------------------------- */}
       <section className="bg-paper py-16 sm:py-20 lg:py-24">
         <div className="shell">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
-            <Reveal className="lg:col-span-7 xl:col-span-8">
-              <InquiryForm />
-            </Reveal>
+            <div className="lg:col-span-7 xl:col-span-8">
+              <Reveal>
+                <p className="eyebrow text-accent">Project brief</p>
+                <h2 className="mt-5 text-title">Start a project</h2>
+                <p className="mt-4 max-w-xl text-[0.9375rem] leading-relaxed text-body">
+                  Nothing here is obligatory beyond the basics — but a little context makes the first
+                  reply far more useful.
+                </p>
+              </Reveal>
 
-            <Reveal delay={120} className="lg:col-span-5 xl:col-span-4">
-              <div className="lg:sticky lg:top-28">
+              <div className="mt-10">
+                <InquiryForm />
+              </div>
+            </div>
+
+            <aside className="lg:col-span-5 xl:col-span-4">
+              <Reveal delay={120}>
                 <div className="rounded-sm border border-line bg-sand p-7">
-                  <p className="eyebrow text-accent">Direct contact</p>
-                  <ul className="mt-5 space-y-4 text-[0.9375rem]">
-                    <li>
-                      <span className="block font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted">
-                        Email
-                      </span>
-                      <a
-                        href={`mailto:${site.contact.email}`}
-                        className="mt-1.5 block text-ink underline underline-offset-4 hover:text-accent"
-                      >
-                        {site.contact.email}
-                      </a>
-                    </li>
-                    <li>
-                      <span className="block font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted">
-                        Location
-                      </span>
-                      <span className="mt-1.5 block text-ink">{site.contact.location}</span>
-                    </li>
+                  <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-accent">
+                    What to include
+                  </p>
+                  <ul className="mt-5 space-y-3">
+                    {[
+                      'The stage you are at — idea, brief, design or delivery',
+                      'The ambition, in one or two sentences',
+                      'The constraints that are already fixed',
+                      'A rough timeline',
+                      'An indicative budget range',
+                    ].map((item) => (
+                      <li key={item} className="flex gap-3 text-[0.9375rem] leading-relaxed text-ink">
+                        <span aria-hidden="true" className="mt-[0.55rem] h-1 w-1 shrink-0 rounded-full bg-accent" />
+                        {item}
+                      </li>
+                    ))}
                   </ul>
+                  <p className="mt-6 border-t border-line pt-5 text-[0.8125rem] leading-relaxed text-muted">
+                    Skip anything you do not know yet. An unknown budget is a normal place to start.
+                  </p>
                 </div>
+              </Reveal>
 
+              <Reveal delay={180}>
                 <div className="mt-6 rounded-sm border border-line bg-paper p-7">
-                  <p className="eyebrow text-accent">What happens next</p>
+                  <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-accent">
+                    What happens next
+                  </p>
                   <ol className="mt-5 space-y-4">
                     {[
                       'We read the brief and check it against the work we are set up to take on.',
                       'If it is a fit, one of our leads replies with questions, a first read and a proposed next step.',
                       'If it is not a fit, we say so plainly and, where we can, point you somewhere better.',
                     ].map((item, i) => (
-                      <li key={i} className="flex gap-3.5 text-[0.9375rem] leading-relaxed text-body">
-                        <span className="mt-0.5 font-mono text-[0.6875rem] text-accent">
+                      <li key={item} className="flex gap-3.5 text-[0.9375rem] leading-relaxed text-body">
+                        <span className="mt-0.5 font-mono text-[0.625rem] tracking-[0.16em] text-accent">
                           {String(i + 1).padStart(2, '0')}
                         </span>
                         {item}
@@ -86,14 +139,78 @@ export default function ContactPage() {
                     ))}
                   </ol>
                 </div>
+              </Reveal>
 
+              <Reveal delay={240}>
                 <div className="mt-6 rounded-sm border border-line bg-paper p-7">
-                  <p className="eyebrow text-accent">Privacy</p>
-                  <p className="mt-4 text-[0.875rem] leading-relaxed text-body">
-                    The details you submit are used only to respond to your inquiry. We do not sell
-                    or share contact details, and we do not add you to a marketing list. If you ask
-                    us to delete your details, we will.
+                  <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-accent">
+                    Privacy
                   </p>
+                  <p className="mt-4 text-[0.875rem] leading-relaxed text-body">
+                    The details you submit are used only to respond to your enquiry. We do not sell or
+                    share contact details, and we do not add you to a marketing list. If you ask us to
+                    delete your details, we will.
+                  </p>
+                </div>
+              </Reveal>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      {/* ---- Other enquiries ------------------------------------------------ */}
+      <section className="bg-sand py-16 sm:py-20 lg:py-24">
+        <div className="shell">
+          <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
+            <Reveal className="lg:col-span-5">
+              <p className="eyebrow text-accent">Other enquiries</p>
+              <h2 className="mt-5 text-title">Not a project brief?</h2>
+              <p className="mt-4 text-[0.9375rem] leading-relaxed text-body">
+                Partnership proposals, supplier introductions, press, careers and general questions
+                all reach the same inbox. Say what it is in the first line and it will reach the
+                right person faster.
+              </p>
+            </Reveal>
+
+            <Reveal delay={120} className="lg:col-span-7">
+              <div className="grid gap-px overflow-hidden rounded-sm border border-line bg-line sm:grid-cols-2">
+                <div className="bg-paper p-7">
+                  <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-accent">
+                    Email
+                  </p>
+                  <a
+                    href={`mailto:${site.contact.email}`}
+                    className="mt-3 block text-[1.0625rem] text-ink underline underline-offset-4 transition-colors hover:text-accent"
+                  >
+                    {site.contact.email}
+                  </a>
+                </div>
+                <div className="bg-paper p-7">
+                  <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-accent">
+                    Where we are
+                  </p>
+                  <p className="mt-3 text-[1.0625rem] leading-snug text-ink">{site.contact.location}</p>
+                  {site.contact.phone ? (
+                    <a
+                      href={`tel:${site.contact.phone}`}
+                      className="mt-2 block text-[0.9375rem] text-body underline underline-offset-4 hover:text-accent"
+                    >
+                      {site.contact.phone}
+                    </a>
+                  ) : null}
+                </div>
+                <div className="bg-paper p-7 sm:col-span-2">
+                  <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-accent">
+                    How we work
+                  </p>
+                  <p className="mt-3 max-w-2xl text-[0.9375rem] leading-relaxed text-body">
+                    We are set up for international projects where integrated creative, technical and
+                    manufacturing support is genuinely useful — and we say so plainly when a brief is
+                    not a fit for us.
+                  </p>
+                  <ActionLink href="/projects" className="mt-6">
+                    See capability studies
+                  </ActionLink>
                 </div>
               </div>
             </Reveal>
@@ -103,5 +220,3 @@ export default function ContactPage() {
     </>
   );
 }
-
-

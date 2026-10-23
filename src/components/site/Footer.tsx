@@ -61,6 +61,14 @@ export function Footer() {
                 </a>
               </li>
               <li className="text-on-dark/75">{site.contact.location}</li>
+              <li>
+                <Link
+                  href="/contact"
+                  className="text-on-dark transition-colors duration-300 hover:text-on-dark-strong"
+                >
+                  Contact page
+                </Link>
+              </li>
             </ul>
 
             {site.social.length > 0 ? (
@@ -103,4 +111,5 @@ export function Footer() {
     </footer>
   );
 }
+
 

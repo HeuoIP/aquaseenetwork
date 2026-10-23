@@ -273,13 +273,18 @@ The current visuals are:
 | `public/images/service-strategy-consulting.webp` | Strategy page body + homepage card | Service illustration (cultural-tourism planning) |
 | `public/images/service-creative-design.webp` | Creative Design body + homepage card | Service illustration (landscape play environment) |
 | `public/images/service-supply-chain.webp` | Supply Chain body + homepage card | Service illustration (deconstructed modules on a partner workshop floor) |
+| `public/images/study-resort-arrival.webp` | Projects — resort arrival study | Generated concept render |
+| `public/images/study-water-play.webp` | Projects — water-play study | Generated concept render |
+| `public/images/study-play-equipment.webp` | Projects — play equipment study | Generated concept render |
+| `public/images/study-installation.webp` | Projects — interactive installation study | Generated concept render |
+| `public/images/study-landscape.webp` | Projects — landscape integration study | Generated concept render |
+| `public/images/study-thematic.webp` | Projects — thematic fabrication study | Generated concept render |
 | `public/images/prototype-workshop.webp` | *currently unreferenced* | Real workshop photograph, kept for a future case study |
 
-The homepage carries the three service illustrations on the capability cards; the projects page
-carries abstract diagrams rather than photography, because no client project imagery has been
-authorised for publication yet. Each of the six case studies is labelled *"Abstract diagram — not
-project photography"*, and the page opens with a banner saying the entries are standing in for
-published work.
+The homepage carries the three service illustrations on the capability cards. The projects page
+carries one generated concept render per case study, each labelled *"Concept render — generated
+illustration, not a completed project"*, with a banner explaining that no client project imagery
+has been authorised for publication yet.
 | `src/components/art/` | Projects (2 studies) | Abstract SVG diagrams |
 
 Every photographic visual carries an **on-image disclosure chip** (rendered by
@@ -316,8 +321,10 @@ Then convert it to WebP with sharp (already a transitive dependency) and update 
 optimised images by URL, so reusing a path serves the stale file.
 
 The same command produced the four capability / projects key arts
-(`aquasee-key-strategy`, `-design`, `-supply`, `-projects`) and the three service illustrations
-(`service-strategy-consulting`, `service-creative-design`, `service-supply-chain`).
+(`aquasee-key-strategy`, `-design`, `-supply`, `-projects`), the three service illustrations
+(`service-strategy-consulting`, `service-creative-design`, `service-supply-chain`) and the six
+case-study renders (`study-resort-arrival`, `-water-play`, `-play-equipment`, `-installation`,
+`-landscape`, `-thematic`).
 
 ### Supply-chain positioning
 
@@ -366,6 +373,7 @@ the underlying facts change.
 ---
 
 © AQUASEE. All rights reserved.
+
 
 
 

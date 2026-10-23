@@ -4,13 +4,13 @@ import type { StudyVisualData } from '@/components/art/StudyVisual';
  * Capability studies.
  *
  * IMPORTANT: AQUASEE has not authorised publication of completed client
- * projects, and none are presented here. Every entry below is an illustrative
+ * projects, and none are presented here. Every entry is an illustrative
  * capability study, clearly labelled as such in the interface. When verified
  * project photography and references become available, add them here with
  * `disclosure: 'Completed project'` and real attribution.
  *
- * The photographic visuals are AI-generated concept renders. They are used to
- * communicate design intent, never as evidence of delivered work.
+ * The visuals are generated concept renders. They communicate design intent for
+ * a kind of engagement; they are never photographs of delivered work.
  */
 export type ProjectStudy = {
   slug: string;
@@ -44,8 +44,12 @@ export const capabilityStudies: ProjectStudy[] = [
     ],
     outcome:
       'An arrival experience that is coherent end to end, with a single specification that the fabricator can build from without reinterpretation.',
-    disclosure: 'Abstract diagram — not project photography',
-    visual: { kind: 'diagram', art: 'strata' },
+    disclosure: 'Concept render — generated illustration, not a completed project',
+    visual: {
+      kind: 'image',
+      src: '/images/study-resort-arrival.webp',
+      alt: 'Concept render of a resort arrival courtyard at dusk, with timber and glass pavilions, a polished metal sculpture and a reflecting water basin.',
+    },
     featured: true,
   },
   {
@@ -65,8 +69,12 @@ export const capabilityStudies: ProjectStudy[] = [
     ],
     outcome:
       'A single coordinated package — design, specification, supplier structure and installation logic — rather than separate documents to be reconciled later.',
-    disclosure: 'Abstract diagram — not project photography',
-    visual: { kind: 'diagram', art: 'flow' },
+    disclosure: 'Concept render — generated illustration, not a completed project',
+    visual: {
+      kind: 'image',
+      src: '/images/study-water-play.webp',
+      alt: 'Concept aerial render of a tropical resort with turquoise lagoons, low-rise pavilions and a dedicated water-play zone.',
+    },
     featured: true,
   },
   {
@@ -86,8 +94,12 @@ export const capabilityStudies: ProjectStudy[] = [
     ],
     outcome:
       'A manufacturable system that reads as one idea, rather than a collection of unrelated products.',
-    disclosure: 'Abstract diagram — not project photography',
-    visual: { kind: 'diagram', art: 'module' },
+    disclosure: 'Concept render — generated illustration, not a completed project',
+    visual: {
+      kind: 'image',
+      src: '/images/study-play-equipment.webp',
+      alt: 'Concept render of a family of bespoke play elements — a timber climbing tower, a stainless tube slide and a spinning platform — in a landscaped park.',
+    },
     featured: true,
   },
   {
@@ -107,8 +119,12 @@ export const capabilityStudies: ProjectStudy[] = [
     ],
     outcome:
       'An installation designed around the reality of being operated, cleaned, repaired and inspected for years.',
-    disclosure: 'Abstract diagram — not project photography',
-    visual: { kind: 'diagram', art: 'grid' },
+    disclosure: 'Concept render — generated illustration, not a completed project',
+    visual: {
+      kind: 'image',
+      src: '/images/study-installation.webp',
+      alt: 'Concept render of a suspended array of luminous sculptural elements and rings of light above a public plaza at night.',
+    },
   },
   {
     slug: 'landscape-integration',
@@ -127,8 +143,12 @@ export const capabilityStudies: ProjectStudy[] = [
     ],
     outcome:
       'Fewer surprises during installation, because the difficult interfaces were resolved on paper.',
-    disclosure: 'Abstract diagram — not project photography',
-    visual: { kind: 'diagram', art: 'stack' },
+    disclosure: 'Concept render — generated illustration, not a completed project',
+    visual: {
+      kind: 'image',
+      src: '/images/study-landscape.webp',
+      alt: 'Concept render of a landscaped public realm at dusk with a sunken garden, linear water channel, stepped timber terraces and a steel-and-glass canopy.',
+    },
   },
   {
     slug: 'thematic-fabrication',
@@ -147,12 +167,14 @@ export const capabilityStudies: ProjectStudy[] = [
     ],
     outcome:
       'A scope a fabrication partner can price accurately and build consistently.',
-    disclosure: 'Abstract diagram — not project photography',
-    visual: { kind: 'diagram', art: 'arc' },
+    disclosure: 'Concept render — generated illustration, not a completed project',
+    visual: {
+      kind: 'image',
+      src: '/images/study-thematic.webp',
+      alt: 'Concept render of a themed environment in fabrication — sculpted rockwork forms, ribbed panels and finish samples on steel frames in a workshop.',
+    },
   },
 ];
 
 export const disclosureNote =
-  'The six entries below are capability studies standing in for published work. The visuals are abstract diagrams, not photographs of client projects; project imagery, names and references will be published once they are authorised.';
-
-
+  'Each visual below is a generated concept render produced to communicate design intent for that kind of engagement. They are not photographs of completed AQUASEE projects, and no client work is represented here. Project imagery, names and references will be published once they are authorised.';

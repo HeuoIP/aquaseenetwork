@@ -26,6 +26,8 @@ export const nav = [
   { href: '/creative-design', label: 'Creative Design & R&D' },
   { href: '/supply-chain', label: 'Supply Chain & Delivery' },
   { href: '/projects', label: 'Projects & Capabilities' },
+  { href: '/contact', label: 'Contact' },
 ] as const;
+
 
 
