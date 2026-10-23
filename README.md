@@ -136,13 +136,17 @@ never leave a section permanently invisible.
 ## 4. The inquiry form — read this before launch
 
 `POST /api/inquiry` validates the payload server-side (shared validator in
-`src/lib/inquiry.ts`) and then attempts delivery through **one of two channels**:
+`src/lib/inquiry.ts`) and then attempts delivery through **one of three channels**:
 
 | Priority | Channel | Environment variables |
 | --- | --- | --- |
 | A | Generic webhook (Zapier / Make / n8n / Formspree-style) | `INQUIRY_WEBHOOK_URL` (optional `INQUIRY_WEBHOOK_SECRET`) |
-| B | Direct email via Resend | `RESEND_API_KEY` + `INQUIRY_TO_EMAIL` (optional `INQUIRY_FROM_EMAIL`) |
+| B | SMTP email — Feishu Mail / Lark Mail, Tencent Exmail, Alibaba Mail, any SMTP server | `SMTP_HOST` + `SMTP_PORT` + `SMTP_USER` + `SMTP_PASS` + `INQUIRY_TO_EMAIL` (optional `INQUIRY_FROM_EMAIL`, `SMTP_SECURE`) |
+| C | Direct email via Resend | `RESEND_API_KEY` + `INQUIRY_TO_EMAIL` (optional `INQUIRY_FROM_EMAIL`) |
 | — | **Nothing configured** | returns `503 delivery_not_configured` |
+
+Delivery target in production: **Feishu Mail** (`smtp.feishu.cn`) delivering to
+`victor@aquasee.art` using a client-specific password from 飞书邮箱 → 设置.
 
 **The site never claims an inquiry was sent when it was not.** With no channel configured the
 form shows an explicit "Your inquiry was not sent" state plus a *mailto* link with the message
@@ -172,63 +176,79 @@ Other protections: a honeypot field, server-side length caps, email format valid
 `X-Content-Type-Options` / `Referrer-Policy` / `X-Frame-Options` headers (set in
 `next.config.ts`).
 
-> **Before launch:** connect a delivery channel (Option A or B) and send a real test inquiry
+> **Before launch:** connect a delivery channel (Option A, B or C) and send a real test inquiry
 > end-to-end. Until then the form is honest but not yet operational.
 
 ---
 
 ## 5. Deployment
 
-The site is a standard static Next.js build — it runs on any managed host. No VPS is required.
+Production target: **Cloudflare Workers** (through the OpenNext adapter). The site is deployed
+as a Worker with a static asset binding, so there is no server to manage and no VPS.
 
-### 5.1 Vercel (fastest route)
-
-```bash
-npx vercel          # preview
-npx vercel --prod   # production
-```
-
-No configuration file is required. Set the environment variables from section 4 in the project
-settings.
-
-### 5.2 Cloudflare Pages
-
-Cloudflare Pages needs the OpenNext adapter to serve a Next.js App Router project:
+### 5.1 One-time local commands
 
 ```bash
-npm i -D @opennextjs/cloudflare
-npx opennextjs-cloudflare build     # output -> .open-next/
-npx opennextjs-cloudflare deploy
+npm install
+npm run build:opennext          # Next build + OpenNext bundle -> .open-next/
+npm run preview:cloudflare      # run the Worker locally, exactly as it behaves in production
+npm run deploy:cloudflare       # build + push to Cloudflare
+npm run deploy:cloudflare:dry   # build + validate the upload without publishing
 ```
 
-`open-next.config.ts` and `wrangler.jsonc` in the repository root are pre-written for this
-flow. In the Cloudflare dashboard set:
+`open-next.config.ts` and `wrangler.jsonc` in the repository root drive this flow. The Worker
+is named `aquasee-website`, runs with the `nodejs_compat` flag and serves the built assets
+through the `ASSETS` binding. Observability is enabled.
 
-- **Build command:** `npx opennextjs-cloudflare build`
-- **Build output directory:** `.open-next`
-- **Node version:** 20 or newer
+### 5.2 Automatic deployment (GitHub Actions)
 
-### 5.3 Any other static host
+`.github/workflows/deploy.yml` builds and deploys on every push to `main`, and can also be run
+manually from the Actions tab. Two repository secrets are required:
 
-`npm run build` produces a self-contained server bundle. Hosts that need a plain static
-export can be served via `output: 'export'` in `next.config.ts` — but note the inquiry API
-route then needs to move to a separate function or serverless endpoint.
+| Secret | Value |
+| --- | --- |
+| `CLOUDFLARE_API_TOKEN` | Cloudflare API token with Workers edit rights |
+| `CLOUDFLARE_ACCOUNT_ID` | The account id shown in the Cloudflare dashboard sidebar |
+
+The workflow runs `npm ci` → `npm run typecheck` → `npm run build:opennext` → `wrangler deploy`,
+so a broken type or build never reaches production.
+
+### 5.3 Runtime secrets (inquiry delivery)
+
+The inquiry API route reads its delivery settings from Worker secrets, not from files:
+
+```bash
+npx wrangler secret put SMTP_HOST        # e.g. smtp.feishu.cn
+npx wrangler secret put SMTP_PORT        # 465 (SSL) or 587 (STARTTLS)
+npx wrangler secret put SMTP_USER        # victor@aquasee.art
+npx wrangler secret put SMTP_PASS        # client-specific password from Feishu Mail
+npx wrangler secret put INQUIRY_TO_EMAIL # victor@aquasee.art
+npx wrangler secret put INQUIRY_FROM_EMAIL
+```
+
+`npm run deploy:cloudflare` never overwrites secrets — they stay attached to the Worker.
+
+### 5.4 Other hosts
+
+`npm run build` produces a self-contained server bundle. Hosts that need a plain static export
+can be served via `output: 'export'` in `next.config.ts` — but note the inquiry API route then
+needs to move to a separate function or serverless endpoint.
 
 ---
 
-## 6. Custom domain and HTTPS
+## 6. Custom domain, HTTPS and the canonical host
 
-1. Point `aquasee.art` (and `www.aquasee.art`) at the host:
-   - **Vercel:** add the domain in Project → Settings → Domains; Vercel issues the TLS
-     certificate automatically.
-   - **Cloudflare:** create a CNAME to the Pages project, or use the Cloudflare for
-     SaaS/custom-domain attach. Cloudflare issues the certificate automatically.
-2. Redirect one apex → www (or the reverse) so there is a single canonical host.
-3. Update `site.url` in `src/content/site.ts` if the canonical host changes — it feeds
-   `metadataBase`, the sitemap, robots.txt and every canonical/OG URL.
-4. Re-run `npm run build` so the generated sitemap and OG URLs point at the final host.
+The canonical host is **`www.aquasee.art`**. The apex `aquasee.art` answers with a permanent
+(308) redirect to it, so the two addresses are never treated as two separate sites.
 
-HTTPS is handled by the host; no certificates are managed inside this repository.
+1. `wrangler.jsonc` lists both `www.aquasee.art` and `aquasee.art` as Worker custom domains.
+   Because the zone is already on Cloudflare, attaching them issues the TLS certificate
+   automatically — nothing to buy and nothing to renew by hand.
+2. The apex → www redirect itself lives in `src/middleware.ts`, so it behaves identically
+   everywhere rather than depending on a dashboard rule.
+3. `site.url` in `src/content/site.ts` feeds `metadataBase`, the sitemap, robots.txt and every
+   canonical/Open Graph URL. Change it there and rebuild if the host ever changes.
+4. Re-run `npm run build:opennext` so the generated sitemap and OG URLs point at the final host.
 
 ---
 
@@ -373,6 +393,8 @@ the underlying facts change.
 ---
 
 © AQUASEE. All rights reserved.
+
+
 
 
 
