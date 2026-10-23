@@ -1,5 +1,16 @@
 import type { StudyVisualData } from '@/components/art/StudyVisual';
 
+export type AiPoint = {
+  title: string;
+  description: string;
+};
+
+export type AiUsage = {
+  title: string;
+  points: AiPoint[];
+  note: string;
+};
+
 export type ServiceDetail = {
   slug: string;
   href: string;
@@ -13,9 +24,16 @@ export type ServiceDetail = {
   deliverables: string[];
   engagement: { phase: string; description: string }[];
   bestFor: string[];
+  /** Dark key art used for the page hero. */
   visual: Extract<StudyVisualData, { kind: 'image' }>;
   visualCaption: string;
   mobilePosition?: string;
+  /** Concrete service illustration used in the body of the page. */
+  illustration: { src: string; alt: string; caption: string };
+  /** Present only where AI genuinely assists this part of the work. */
+  aiUsage?: AiUsage;
+  /** Short label surfaced on the homepage capability card. */
+  aiTag?: string;
   related: { href: string; label: string }[];
 };
 
@@ -90,8 +108,35 @@ export const serviceDetails: ServiceDetail[] = [
       src: '/images/aquasee-key-strategy.webp',
       alt: 'Generated concept artwork: an exploded axonometric assembly of translucent planning volumes threaded with aqua trajectory lines.',
     },
-    mobilePosition: '52%',
     visualCaption: 'Creative concept visualization',
+    mobilePosition: '52%',
+    illustration: {
+      src: '/images/service-strategy-consulting.webp',
+      alt: 'Illustrative visualisation of a revitalised riverside heritage quarter with a new public waterfront promenade, planted streets and a timber cultural pavilion.',
+      caption: 'Service illustration — conceptual rendering',
+    },
+    aiUsage: {
+      title: 'Where AI assists us',
+      points: [
+        {
+          title: 'Direction generation',
+          description:
+            'From a brief we generate a wide set of directions and scenarios, so decisions are made between options rather than against a single guess.',
+        },
+        {
+          title: 'Early visual option testing',
+          description:
+            'Contextual imagery assembled while a direction is still cheap to change, so a direction can be judged rather than described.',
+        },
+        {
+          title: 'Assumption stress-testing',
+          description:
+            'Scale, programme and cost assumptions checked against a site and a budget while the options are still open.',
+        },
+      ],
+      note: 'AI does not replace the engineer, the specification or the factory. It widens the range of directions we can put in front of you.',
+    },
+    aiTag: 'AI-assisted consulting',
     related: [
       { href: '/creative-design', label: 'Creative Design & R&D' },
       { href: '/supply-chain', label: 'Supply Chain & Project Delivery' },
@@ -167,8 +212,35 @@ export const serviceDetails: ServiceDetail[] = [
       src: '/images/aquasee-key-design.webp',
       alt: 'Generated concept artwork: sculptural material and form studies suspended above a dark reflective surface, traced with aqua contour lines.',
     },
-    mobilePosition: '72%',
     visualCaption: 'Creative concept visualization',
+    mobilePosition: '72%',
+    illustration: {
+      src: '/images/service-creative-design.webp',
+      alt: 'Illustrative visualisation of a bespoke landscape play environment with timber and steel play elements, a shallow water-play basin and integrated planting.',
+      caption: 'Service illustration — conceptual rendering',
+    },
+    aiUsage: {
+      title: 'Where AI assists us',
+      points: [
+        {
+          title: 'Multi-direction ideation',
+          description:
+            'Many form directions generated and compared early, so the client selects a direction instead of commenting on one.',
+        },
+        {
+          title: 'Visualisation from the model',
+          description:
+            'Client-facing imagery built from the actual model rather than a hand-drawn approximation.',
+        },
+        {
+          title: 'Material & finish exploration',
+          description:
+            'Colour, texture and lighting combinations tested before samples are commissioned.',
+        },
+      ],
+      note: 'AI does not replace the maker or the specification. It widens the range of directions we can put in front of you, and shortens the distance between a brief and something you can actually judge.',
+    },
+    aiTag: 'AI-assisted creation',
     related: [
       { href: '/strategy', label: 'Strategy & Consulting' },
       { href: '/supply-chain', label: 'Supply Chain & Project Delivery' },
@@ -180,72 +252,96 @@ export const serviceDetails: ServiceDetail[] = [
     index: '03',
     eyebrow: 'Supply Chain & Project Delivery',
     title: 'Supply Chain & Project Delivery',
-    lede: 'Good design is only worth what it becomes on site.',
+    lede: 'We do not manufacture. We bring the know-how that makes bespoke product buildable — and then let you decide how much of it you make yourself.',
     intro:
-      'AQUASEE is not a factory. We are the team that organises the factory — identifying qualified manufacturing and specialist partners, running a controlled production programme, and protecting quality from the drawing to the delivery note.',
+      'We do not manufacture. We bring something more useful than a factory: years of taking bespoke products apart, understanding how every part is made, and reorganising that knowledge so it can be built — by us, by a partner, or by you.',
     paragraphs: [
-      'Working through a vetted partner network keeps quality high and the right expertise available, without the overhead of owning plant we would not be able to run well. Each partner is assessed against the specific requirement — capability, capacity, communication, and record of similar work.',
-      'We then hold the whole chain together: one specification, one schedule, one point of accountability. Clients deal with AQUASEE; we deal with the complexity.',
+      'AQUASEE has spent years specifying, sourcing, dismantling and delivering bespoke product for landscape, play and hospitality projects. That work produces a specific kind of knowledge: how a complicated object breaks into modules, which modules are worth making in-house, and how the rest should be bought.',
+      'We bring that knowledge to you as an option set. A product can be delivered complete, as a kit you assemble yourself, or as semi-finished modules your own team completes. Every route is costed against one specification, and you choose.',
     ],
     capabilities: [
       {
-        title: 'Supplier sourcing & qualification',
+        title: 'Product deconstruction & module design',
+        description:
+          'Taking a bespoke item apart into modules that can each be specified, priced, made and assembled independently.',
+      },
+      {
+        title: 'Make–buy–assemble option modelling',
+        description:
+          'Comparing full supply, client assembly from a kit, and semi-finished module supply — costed against one specification.',
+      },
+      {
+        title: 'Supplier qualification & comparison',
         description:
           'Identifying, assessing and shortlisting partners against technical, capacity and commercial criteria.',
       },
       {
-        title: 'RFQ & commercial management',
-        description:
-          'Preparing request-for-quotation packages, comparing responses on equal terms and negotiating terms clearly.',
-      },
-      {
-        title: 'Production management',
+        title: 'Production management & progress control',
         description:
           'Scheduling, progress control and issue escalation across one or several production partners.',
       },
       {
-        title: 'Quality control',
+        title: 'Quality inspection & pre-shipment verification',
         description:
           'In-process inspection, sample review and pre-shipment verification against an agreed specification.',
       },
       {
-        title: 'Logistics & shipping',
+        title: 'Assembly support & handover',
         description:
-          'Packing, consolidation, documentation and freight coordination for international delivery.',
-      },
-      {
-        title: 'Site support & commissioning',
-        description:
-          'Installation attendance, on-site resolution and handover support where the scope requires it.',
+          'Documentation, assembly guidance and on-site support so a client-side build goes smoothly.',
       },
     ],
     deliverables: [
-      'Approved supplier shortlist',
-      'RFQ package and comparative analysis',
-      'Production schedule and progress reports',
-      'Inspection records and quality sign-off',
-      'Shipping and customs documentation',
-      'Handover and commissioning records',
+      'Product deconstruction report',
+      'Module specification and drawings',
+      'Assembly kit and semi-finished package definition',
+      'Make–buy–assemble option matrix with costs',
+      'Qualified supplier shortlist',
+      'Production schedule and quality records',
+      'Assembly manual and handover pack',
     ],
     engagement: [
-      { phase: 'Source', description: 'Identify and qualify the partners best suited to the actual requirement.' },
-      { phase: 'Contract', description: 'Run a fair comparison, negotiate and place clear orders.' },
-      { phase: 'Produce', description: 'Track the programme, inspect quality and keep issues out of the critical path.' },
-      { phase: 'Deliver', description: 'Ship, install, support handover and close the loop on site.' },
+      {
+        phase: 'Diagnose',
+        description:
+          'Read the product, the brief and the budget. Establish what is actually driving the cost.',
+      },
+      {
+        phase: 'Deconstruct',
+        description:
+          'Break the product into modules; identify which are critical, which are generic, and which the client should make.',
+      },
+      {
+        phase: 'Option',
+        description:
+          'Cost the three delivery routes against one specification and recommend one.',
+      },
+      {
+        phase: 'Deliver',
+        description:
+          'Manage production, inspection and shipping — and, where the client is assembling, handover and support.',
+      },
     ],
     bestFor: [
-      'International projects needing a manufacturing partner',
-      'Buyers who want one accountable interface, not ten',
-      'Custom or one-off elements with no standard supplier',
-      'Teams managing an unfamiliar production landscape',
+      'Clients who want to reduce cost without reducing quality',
+      'Clients with their own fabrication team or site workshop',
+      'Bespoke products where a supplier has quoted too high',
+      'Projects where the client wants to own part of the production',
+      'Teams who want a supply chain they can understand and control',
     ],
     visual: {
       kind: 'image',
       src: '/images/aquasee-key-supply.webp',
       alt: 'Generated concept artwork: indexed modular components stacked on structural frames, connected by aqua route lines.',
     },
-    mobilePosition: '52%',
     visualCaption: 'Creative concept visualization',
+    mobilePosition: '52%',
+    illustration: {
+      src: '/images/service-supply-chain.webp',
+      alt: 'Illustrative photograph of a fabrication workshop where a bespoke product has been deconstructed into modules and semi-finished sub-assemblies.',
+      caption:
+        'Illustrative workshop image — production runs through qualified manufacturing partners',
+    },
     related: [
       { href: '/strategy', label: 'Strategy & Consulting' },
       { href: '/creative-design', label: 'Creative Design & R&D' },
@@ -260,6 +356,3 @@ export function getService(slug: string): ServiceDetail {
   }
   return found;
 }
-
-
-

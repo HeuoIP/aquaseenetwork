@@ -4,7 +4,6 @@ import { Hero } from '@/components/home/Hero';
 import { Intro } from '@/components/home/Intro';
 import { Pillars } from '@/components/home/Pillars';
 import { Process } from '@/components/home/Process';
-import { WorkPreview } from '@/components/home/WorkPreview';
 import type { Metadata } from 'next';
 import { site } from '@/content/site';
 
@@ -20,11 +19,9 @@ export default function HomePage() {
       <Hero />
       <Intro />
       <Pillars />
-      <WorkPreview />
       <Process />
       <Collaboration />
       <CtaBand />
     </>
   );
 }
-

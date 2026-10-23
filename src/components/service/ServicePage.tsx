@@ -1,6 +1,8 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { CapabilityHero } from '@/components/service/CapabilityHero';
 import { ActionLink } from '@/components/ui/Action';
+import { ImageDisclosure } from '@/components/ui/ImageDisclosure';
 import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import type { ServiceDetail } from '@/content/services';
@@ -11,7 +13,7 @@ export function ServicePage({ service }: { service: ServiceDetail }) {
       <CapabilityHero service={service} />
 
       {/* ---- Overview ------------------------------------------------------ */}
-      <section className="bg-paper py-20 sm:py-24 lg:py-28">
+      <section className="bg-paper pb-12 pt-20 sm:pb-16 sm:pt-24 lg:pb-20 lg:pt-28">
         <div className="shell">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <Reveal className="lg:col-span-4">
@@ -29,8 +31,69 @@ export function ServicePage({ service }: { service: ServiceDetail }) {
         </div>
       </section>
 
+      {/* ---- Service illustration ------------------------------------------- */}
+      <section className="bg-paper pb-20 sm:pb-24 lg:pb-28">
+        <div className="shell">
+          <Reveal>
+            <figure className="relative aspect-[16/9] overflow-hidden bg-ink">
+              <Image
+                src={service.illustration.src}
+                alt={service.illustration.alt}
+                fill
+                sizes="(min-width: 1320px) 1200px, 100vw"
+                className="object-cover"
+              />
+              <figcaption className="absolute bottom-4 right-4">
+                <ImageDisclosure>{service.illustration.caption}</ImageDisclosure>
+              </figcaption>
+            </figure>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ---- AI (only where it genuinely applies) --------------------------- */}
+      {service.aiUsage ? (
+        <section className="bg-ink py-20 text-on-dark sm:py-24 lg:py-28">
+          <div className="shell">
+            <Reveal>
+              <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-aqua">
+                {service.aiUsage.title}
+              </p>
+              <h2 className="mt-5 max-w-3xl text-title text-on-dark-strong">
+                Where AI earns its place in this work.
+              </h2>
+            </Reveal>
+
+            <div className="mt-12 grid gap-px overflow-hidden rounded-sm border border-white/10 bg-white/10 md:grid-cols-3">
+              {service.aiUsage.points.map((point, i) => (
+                <Reveal key={point.title} delay={i * 80} className="bg-ink p-7 lg:p-8">
+                  <span className="font-mono text-[0.625rem] tracking-[0.16em] text-aqua">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <h3 className="mt-4 text-[1.0625rem] leading-snug text-on-dark-strong">
+                    {point.title}
+                  </h3>
+                  <p className="mt-3 text-[0.9375rem] leading-relaxed text-on-dark/80">
+                    {point.description}
+                  </p>
+                </Reveal>
+              ))}
+            </div>
+
+            <Reveal delay={120}>
+              <p className="mt-9 max-w-3xl border-l-2 border-aqua pl-5 text-[0.9375rem] leading-relaxed text-on-dark/80">
+                {service.aiUsage.note}
+              </p>
+            </Reveal>
+          </div>
+        </section>
+      ) : null}
+
       {/* ---- Activities ---------------------------------------------------- */}
-      <section id="activities" className="scroll-mt-24 bg-ink py-20 text-on-dark sm:py-24 lg:py-28">
+      <section
+        id="activities"
+        className="scroll-mt-24 bg-ink py-20 text-on-dark sm:py-24 lg:py-28"
+      >
         <div className="shell">
           <Reveal>
             <SectionHeader

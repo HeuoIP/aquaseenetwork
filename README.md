@@ -75,6 +75,9 @@ public/
 `src/content/` and the pages update. Adding a service page means adding one entry to
 `serviceDetails` in `src/content/services.ts` and one thin route file.
 
+`src/content/services.ts` is the single source of truth for the three capabilities: the homepage
+cards and the capability pages both read from it, so they cannot drift apart.
+
 ---
 
 ## 3. Design system
@@ -267,10 +270,16 @@ The current visuals are:
 | `public/images/aquasee-key-design.webp` | Creative Design & R&D hero | Generated concept artwork |
 | `public/images/aquasee-key-supply.webp` | Supply Chain & Delivery hero | Generated concept artwork |
 | `public/images/aquasee-key-projects.webp` | Projects & Capabilities hero | Generated concept artwork |
-| `public/images/resort-arrival.webp` | Projects, Creative Design study | AI-generated concept render |
-| `public/images/resort-masterplan.webp` | Projects, Strategy page | AI-generated concept render |
-| `public/images/leisure-play.webp` | Projects, Creative Design page | AI-generated concept render |
-| `public/images/prototype-workshop.webp` | Projects, Supply Chain page | Illustrative workshop image |
+| `public/images/service-strategy-consulting.webp` | Strategy page body + homepage card | Service illustration (cultural-tourism planning) |
+| `public/images/service-creative-design.webp` | Creative Design body + homepage card | Service illustration (landscape play environment) |
+| `public/images/service-supply-chain.webp` | Supply Chain body + homepage card | Service illustration (deconstructed modules on a partner workshop floor) |
+| `public/images/prototype-workshop.webp` | *currently unreferenced* | Real workshop photograph, kept for a future case study |
+
+The homepage carries the three service illustrations on the capability cards; the projects page
+carries abstract diagrams rather than photography, because no client project imagery has been
+authorised for publication yet. Each of the six case studies is labelled *"Abstract diagram — not
+project photography"*, and the page opens with a banner saying the entries are standing in for
+published work.
 | `src/components/art/` | Projects (2 studies) | Abstract SVG diagrams |
 
 Every photographic visual carries an **on-image disclosure chip** (rendered by
@@ -306,8 +315,24 @@ Then convert it to WebP with sharp (already a transitive dependency) and update 
 `src/components/home/Hero.tsx`. Use a **new filename** when replacing an image — Next.js caches
 optimised images by URL, so reusing a path serves the stale file.
 
-The same command produced the four capability / projects key arts:
-`aquasee-key-strategy`, `aquasee-key-design`, `aquasee-key-supply`, `aquasee-key-projects`.
+The same command produced the four capability / projects key arts
+(`aquasee-key-strategy`, `-design`, `-supply`, `-projects`) and the three service illustrations
+(`service-strategy-consulting`, `service-creative-design`, `service-supply-chain`).
+
+### Supply-chain positioning
+
+The supply-chain capability page is written from a deliberate position: **AQUASEE does not
+manufacture.** It brings the product-deconstruction and production-organisation experience to the
+client, so a product can be delivered complete, as a kit the client assembles, or as
+semi-finished modules the client's own team completes — with each route costed against one
+specification.
+
+This wording lives on the supply-chain page only. The homepage introduction, the collaboration
+model ("Qualified partners, not owned factories") and the footer keep their existing framing.
+
+> **Check before launch:** the six AI points on the Strategy and Creative Design pages describe
+> how AI is used *in our own workflow*. Confirm they match what the team actually does — the
+> site must not claim something you have not done.
 
 ### Claims to keep accurate
 
@@ -341,6 +366,7 @@ the underlying facts change.
 ---
 
 © AQUASEE. All rights reserved.
+
 
 
 

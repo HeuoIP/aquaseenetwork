@@ -44,12 +44,8 @@ export const capabilityStudies: ProjectStudy[] = [
     ],
     outcome:
       'An arrival experience that is coherent end to end, with a single specification that the fabricator can build from without reinterpretation.',
-    disclosure: 'Concept render — not a completed project',
-    visual: {
-      kind: 'image',
-      src: '/images/resort-arrival.webp',
-      alt: 'Concept render of a landscaped resort arrival courtyard with a sculptural gold installation at its centre.',
-    },
+    disclosure: 'Abstract diagram — not project photography',
+    visual: { kind: 'diagram', art: 'strata' },
     featured: true,
   },
   {
@@ -69,12 +65,8 @@ export const capabilityStudies: ProjectStudy[] = [
     ],
     outcome:
       'A single coordinated package — design, specification, supplier structure and installation logic — rather than separate documents to be reconciled later.',
-    disclosure: 'Concept render — not a completed project',
-    visual: {
-      kind: 'image',
-      src: '/images/resort-masterplan.webp',
-      alt: 'Concept aerial render of a tropical resort masterplan with large lagoons, villa accommodation and a water-play zone.',
-    },
+    disclosure: 'Abstract diagram — not project photography',
+    visual: { kind: 'diagram', art: 'flow' },
     featured: true,
   },
   {
@@ -94,12 +86,8 @@ export const capabilityStudies: ProjectStudy[] = [
     ],
     outcome:
       'A manufacturable system that reads as one idea, rather than a collection of unrelated products.',
-    disclosure: 'Concept render — not a completed project',
-    visual: {
-      kind: 'image',
-      src: '/images/leisure-play.webp',
-      alt: 'Concept render of a sculpted play landscape with undulating white forms, timber pods and colourful ground elements.',
-    },
+    disclosure: 'Abstract diagram — not project photography',
+    visual: { kind: 'diagram', art: 'module' },
     featured: true,
   },
   {
@@ -119,12 +107,8 @@ export const capabilityStudies: ProjectStudy[] = [
     ],
     outcome:
       'An installation designed around the reality of being operated, cleaned, repaired and inspected for years.',
-    disclosure: 'Illustrative workshop image — partner fabrication',
-    visual: {
-      kind: 'image',
-      src: '/images/prototype-workshop.webp',
-      alt: 'Illustrative photograph of a tubular steel frame structure being assembled in a fabrication workshop.',
-    },
+    disclosure: 'Abstract diagram — not project photography',
+    visual: { kind: 'diagram', art: 'grid' },
   },
   {
     slug: 'landscape-integration',
@@ -143,7 +127,7 @@ export const capabilityStudies: ProjectStudy[] = [
     ],
     outcome:
       'Fewer surprises during installation, because the difficult interfaces were resolved on paper.',
-    disclosure: 'Concept diagram — illustrative only',
+    disclosure: 'Abstract diagram — not project photography',
     visual: { kind: 'diagram', art: 'stack' },
   },
   {
@@ -163,11 +147,12 @@ export const capabilityStudies: ProjectStudy[] = [
     ],
     outcome:
       'A scope a fabrication partner can price accurately and build consistently.',
-    disclosure: 'Concept diagram — illustrative only',
-    visual: { kind: 'diagram', art: 'strata' },
+    disclosure: 'Abstract diagram — not project photography',
+    visual: { kind: 'diagram', art: 'arc' },
   },
 ];
 
 export const disclosureNote =
-  'The visuals on this page are concept work produced to demonstrate approach. Photographic visuals are generated illustrations, and the remaining visuals are abstract diagrams. None of them are photographs of completed AQUASEE projects, and no client work is represented here.';
+  'The six entries below are capability studies standing in for published work. The visuals are abstract diagrams, not photographs of client projects; project imagery, names and references will be published once they are authorised.';
+
 

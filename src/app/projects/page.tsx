@@ -71,9 +71,7 @@ export default function ProjectsPage() {
               <div>
                 <p className="text-[0.9375rem] font-medium text-ink">About the visuals on this page</p>
                 <p className="mt-2 max-w-4xl text-[0.9375rem] leading-relaxed text-body">
-                  {disclosureNote} Every study is labelled on the image itself, and the workshop
-                  image illustrates fabrication through a manufacturing partner rather than an
-                  AQUASEE-owned facility.
+                  {disclosureNote}
                 </p>
               </div>
             </div>
@@ -216,5 +214,6 @@ export default function ProjectsPage() {
     </>
   );
 }
+
 
 
