@@ -20,3 +20,9 @@ share
 
 # local screenshot tooling (playwright-core + Chrome)
 .tools
+
+# cloudflare build output
+.open-next
+.wrangler
+.dev.vars
+
