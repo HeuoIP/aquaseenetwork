@@ -12,7 +12,7 @@ import { NextResponse, type NextRequest } from 'next/server';
 const CANONICAL_HOST = 'www.aquasee.art';
 const ROOT_DOMAIN = 'aquasee.art';
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const host = (request.headers.get('host') ?? '').split(':')[0].toLowerCase();
 
   if (host === ROOT_DOMAIN) {
