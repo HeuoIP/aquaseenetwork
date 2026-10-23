@@ -12,8 +12,8 @@
     "enabled": true
   },
   "workers_dev": true,
-  "custom_domains": [
-    { "pattern": "www.aquasee.art" },
-    { "pattern": "aquasee.art" }
+  "routes": [
+    { "pattern": "www.aquasee.art", "custom_domain": true },
+    { "pattern": "aquasee.art", "custom_domain": true }
   ]
 }
