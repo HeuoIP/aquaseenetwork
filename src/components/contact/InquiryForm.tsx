@@ -180,7 +180,7 @@ export function InquiryForm() {
         >
           <p className="text-[0.9375rem] font-medium text-[#8f3a30]">Your inquiry was not sent.</p>
           <p className="mt-2 text-[0.875rem] leading-relaxed text-body">{status.message}</p>
-          {status.code === 'delivery_not_configured' && mailtoHref ? (
+          {mailtoHref ? (
             <a
               href={mailtoHref}
               className="mt-4 inline-flex h-10 items-center rounded-full bg-ink px-5 text-[0.8125rem] font-medium text-paper transition-colors hover:bg-accent"
@@ -463,3 +463,4 @@ export function InquiryForm() {
     </form>
   );
 }
+

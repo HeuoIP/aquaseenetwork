@@ -111,6 +111,9 @@ export async function POST(request: Request) {
               company: inquiry.company,
               subject,
               message: text,
+              ...(process.env.INQUIRY_WEBHOOK_ACCESS_KEY
+                ? { access_key: process.env.INQUIRY_WEBHOOK_ACCESS_KEY }
+                : {}),
             };
 
       const response = await fetch(webhookUrl, {
@@ -130,6 +133,7 @@ export async function POST(request: Request) {
             ok: false,
             code: 'delivery_failed',
             message: 'The inquiry could not be delivered. Please email us directly.',
+            mailto: buildMailtoBody(inquiry),
           },
           { status: 502 }
         );
@@ -142,6 +146,7 @@ export async function POST(request: Request) {
           ok: false,
           code: 'delivery_failed',
           message: 'The inquiry could not be delivered. Please email us directly.',
+          mailto: buildMailtoBody(inquiry),
         },
         { status: 502 }
       );
@@ -183,6 +188,7 @@ export async function POST(request: Request) {
           ok: false,
           code: 'delivery_failed',
           message: 'The inquiry could not be delivered. Please email us directly.',
+          mailto: buildMailtoBody(inquiry),
         },
         { status: 502 }
       );
@@ -214,6 +220,7 @@ export async function POST(request: Request) {
             ok: false,
             code: 'delivery_failed',
             message: 'The inquiry could not be delivered. Please email us directly.',
+            mailto: buildMailtoBody(inquiry),
           },
           { status: 502 }
         );
@@ -226,6 +233,7 @@ export async function POST(request: Request) {
           ok: false,
           code: 'delivery_failed',
           message: 'The inquiry could not be delivered. Please email us directly.',
+          mailto: buildMailtoBody(inquiry),
         },
         { status: 502 }
       );
@@ -245,5 +253,6 @@ export async function POST(request: Request) {
     { status: 503 }
   );
 }
+
 
 
