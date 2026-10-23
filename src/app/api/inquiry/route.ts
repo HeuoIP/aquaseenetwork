@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import {
+  buildInquiryHtml,
   buildMailtoBody,
   sanitiseInquiry,
   validateInquiry,
@@ -64,6 +65,7 @@ export async function POST(request: Request) {
   const fromEmail = process.env.INQUIRY_FROM_EMAIL ?? 'website@aquasee.art';
   const subject = `New project inquiry — ${inquiry.company} (${reference})`;
   const text = buildMailtoBody(inquiry);
+  const html = buildInquiryHtml(inquiry, reference);
 
   // --- Option A: webhook ---------------------------------------------------
   if (webhookUrl) {
@@ -171,6 +173,7 @@ export async function POST(request: Request) {
         replyTo: inquiry.email,
         subject,
         text,
+        html,
       });
 
       return NextResponse.json({ ok: true, reference, channel: 'email' });
@@ -201,6 +204,7 @@ export async function POST(request: Request) {
           reply_to: inquiry.email,
           subject,
           text,
+          html,
         }),
       });
 

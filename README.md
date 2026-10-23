@@ -228,6 +228,28 @@ npx wrangler secret put INQUIRY_FROM_EMAIL
 
 `npm run deploy:cloudflare` never overwrites secrets — they stay attached to the Worker.
 
+**Current delivery channel:** Feishu Mail (飞书邮箱) over SMTP, delivering to `victor@aquasee.art`.
+
+| Variable | Value |
+| --- | --- |
+| `SMTP_HOST` | `smtp.feishu.cn` |
+| `SMTP_PORT` | `465` (SSL) |
+| `SMTP_SECURE` | `true` |
+| `SMTP_USER` | `victor@aquasee.art` |
+| `SMTP_PASS` | client-specific password from 飞书邮箱 → 设置 → 第三方邮箱客户端登录 |
+| `INQUIRY_TO_EMAIL` | `victor@aquasee.art` |
+| `INQUIRY_FROM_EMAIL` | `victor@aquasee.art` |
+
+The password is the only secret; it lives in `.env.local` locally and in Worker secrets in
+production. It is never committed.
+
+**Local development.** Copy `.env.example` to `.env.local` and fill in the values above — Next
+loads `.env.local` automatically and `npm run dev` then delivers real inquiry emails instead of
+the `delivery_not_configured` fallback.
+
+**Verification.** `POST /api/inquiry` returns `{"ok":true,"channel":"email"}` when the channel
+works, `503 delivery_not_configured` when no channel is configured, and `502 delivery_failed`
+when a channel is configured but the delivery failed.
 ### 5.4 Other hosts
 
 `npm run build` produces a self-contained server bundle. Hosts that need a plain static export
