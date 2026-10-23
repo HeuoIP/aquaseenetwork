@@ -14,7 +14,11 @@ export const runtime = 'nodejs';
  *
  * Delivery is intentionally explicit — the route never claims success unless a
  * real delivery channel is configured:
- *   1. INQUIRY_WEBHOOK_URL  -> POST the payload as JSON to a webhook.
+ *   1. INQUIRY_WEBHOOK_URL  -> POST the inquiry to a webhook.
+ *                              A Feishu / Lark group-bot hook is detected from
+ *                              the URL and receives a chat message; anything
+ *                              else receives a JSON payload (with flat aliases
+ *                              so generic form services work too).
  *   2. SMTP_*               -> send the email through any SMTP server
  *                              (Feishu Mail / Lark Mail, Tencent Exmail,
  *                              Alibaba Mail, Resend SMTP, Gmail SMTP, ...).
@@ -51,7 +55,7 @@ export async function POST(request: Request) {
   const inquiry = sanitiseInquiry(payload as InquiryPayload);
   const reference = `AQS-${new Date().toISOString().slice(2, 10).replace(/-/g, '')}-${Math.random()
     .toString(36)
-    .slice(0, 4)
+    .slice(2, 6)
     .toUpperCase()}`;
 
   const webhookUrl = process.env.INQUIRY_WEBHOOK_URL;
@@ -61,9 +65,52 @@ export async function POST(request: Request) {
   const subject = `New project inquiry — ${inquiry.company} (${reference})`;
   const text = buildMailtoBody(inquiry);
 
-  // --- Option A: generic webhook -----------------------------------------
+  // --- Option A: webhook ---------------------------------------------------
   if (webhookUrl) {
     try {
+      // A Feishu / Lark group bot expects its own message envelope, not a
+      // generic JSON body — detected from the hook URL unless overridden.
+      const kind =
+        process.env.INQUIRY_WEBHOOK_KIND ??
+        (/open-apis\/bot\/v2\/hook/.test(webhookUrl) ? 'feishu' : 'generic');
+
+      const chatText = [
+        '📨 新询盘 / New website inquiry',
+        '',
+        `编号 Reference: ${reference}`,
+        `姓名 Name: ${inquiry.name}`,
+        `公司 Company: ${inquiry.company}`,
+        `邮箱 Email: ${inquiry.email}`,
+        `国家/地区 Country: ${inquiry.country}`,
+        `项目类型 Project type: ${inquiry.projectType}`,
+        `所需服务 Services: ${inquiry.services.join(', ')}`,
+        inquiry.budget ? `预算 Budget: ${inquiry.budget}` : '',
+        inquiry.timeline ? `周期 Timeline: ${inquiry.timeline}` : '',
+        '',
+        '项目描述 Description:',
+        inquiry.description,
+        '',
+        '可直接按客户邮箱联系。',
+      ]
+        .filter(Boolean)
+        .join('\n');
+
+      const body =
+        kind === 'feishu'
+          ? { msg_type: 'text', content: { text: chatText } }
+          : {
+              reference,
+              receivedAt: new Date().toISOString(),
+              inquiry,
+              // Flat aliases so generic form services (Formspree-style) map
+              // the payload onto their own fields.
+              name: inquiry.name,
+              email: inquiry.email,
+              company: inquiry.company,
+              subject,
+              message: text,
+            };
+
       const response = await fetch(webhookUrl, {
         method: 'POST',
         headers: {
@@ -72,7 +119,7 @@ export async function POST(request: Request) {
             ? { 'X-Aquasee-Secret': process.env.INQUIRY_WEBHOOK_SECRET }
             : {}),
         },
-        body: JSON.stringify({ reference, receivedAt: new Date().toISOString(), inquiry }),
+        body: JSON.stringify(body),
       });
 
       if (!response.ok) {
@@ -86,7 +133,7 @@ export async function POST(request: Request) {
         );
       }
 
-      return NextResponse.json({ ok: true, reference, channel: 'webhook' });
+      return NextResponse.json({ ok: true, reference, channel: kind === 'feishu' ? 'feishu' : 'webhook' });
     } catch {
       return NextResponse.json(
         {
@@ -194,3 +241,5 @@ export async function POST(request: Request) {
     { status: 503 }
   );
 }
+
+
