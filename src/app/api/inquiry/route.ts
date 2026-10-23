@@ -170,6 +170,12 @@ export async function POST(request: Request) {
         port,
         secure,
         auth: { user: smtpUser, pass: smtpPass },
+        // Fail fast. A blocked or unroutable SMTP endpoint must not leave a
+        // customer staring at a spinner for two minutes — the mailto fallback
+        // is far better than a long silence.
+        connectionTimeout: 10_000,
+        greetingTimeout: 10_000,
+        socketTimeout: 15_000,
       });
 
       await transport.sendMail({
