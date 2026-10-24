@@ -103,7 +103,7 @@ export function Header({
                 href={href(item.href)}
                 aria-current={isActive(item.href) ? 'page' : undefined}
                 className={cn(
-                  'relative text-[0.875rem] transition-colors duration-300',
+                  'relative whitespace-nowrap text-[0.875rem] transition-colors duration-300',
                   solid
                     ? isActive(item.href)
                       ? 'text-ink'
@@ -133,7 +133,7 @@ export function Header({
             <Link
               href={href('/contact')}
               className={cn(
-                'hidden h-10 shrink-0 items-center whitespace-nowrap rounded-full px-5 text-[0.8125rem] font-medium transition-colors duration-500 sm:inline-flex',
+                'hidden h-10 shrink-0 items-center whitespace-nowrap rounded-full px-5 text-[0.8125rem] font-medium transition-colors duration-500 2xl:inline-flex',
                 solid
                   ? 'bg-ink text-paper hover:bg-accent'
                   : 'border border-white/25 text-on-dark-strong hover:border-white/60 hover:bg-white/5'

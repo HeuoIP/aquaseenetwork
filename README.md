@@ -62,7 +62,7 @@ src/
 │   ├── art/ · home/ · service/ · site/ · ui/ · insights/
 ├── content/
 │   ├── types.ts                   # The content model, shared by every language
-│   ├── en/ · zh/ · ar/ · ru/      # One folder per language
+│   ├── en/ · zh/ · ar/ · ru/      # One folder per language (all four published)
 ├── lib/
 │   ├── locale.ts                  # Locales, URL rules, hreflang, rewrite rules
 │   ├── dictionary.ts              # Content access per language
@@ -96,8 +96,9 @@ loader is registered (`src/lib/dictionary.ts`). The language switcher, the
 sitemap and the hreflang map all follow that list, so a language can never be
 advertised before it exists.
 
-**Published: English, Chinese and Arabic.** Russian is prepared but not
-published — its content module does not exist yet. Two rules keep a half-built
+**Published: English, Chinese, Arabic and Russian** — the four languages of
+the programme. The insight library exists in English only, so the other three
+omit it from their navigation and do not advertise its URLs. Two rules keep a half-built
 language from leaking:
 
 - the chrome (section headings, buttons, form labels, table headers) lives in

@@ -10,5 +10,5 @@ Everything passed.
 ## Notes
 
 - Base URL: http://127.0.0.1:8787
-- Published locales checked: en, zh, ar
+- Published locales checked: en, zh, ar, ru
 - Routes per locale: 9

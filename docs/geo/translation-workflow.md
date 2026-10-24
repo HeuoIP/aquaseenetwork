@@ -20,11 +20,17 @@ are no longer the same business.
 
 ## 2. The order of work
 
-**Published so far: English, Chinese and Arabic.** Each of the two new editions
-covers every content module except the insight library, so their navigation
-omits the `Insights` entry and the library page states plainly that it is
-being written. Russian follows the same route; the termbase is already locked
-in all four languages, so the work is writing, not deciding.
+**Published: English, Chinese, Arabic and Russian.** Each of the three new
+editions covers every content module except the insight library, so their
+navigation omits the `Insights` entry and the library page states plainly that
+it is being written.
+
+**One localisation decision worth recording.** The navigation labels are not
+forced to equal the capability names. In Russian the full names do not fit a
+desktop header, so the navigation says «Стратегия» and «Цепочка поставок»
+while the page titles, the footer and the entity description keep the full
+names. The termbase governs what the company is called; the menu is an
+editorial choice.
 
 **Arabic needed one engineering change.** The design system tracks eyebrows
 and labels wide for Latin; in Arabic that tracking breaks the joining forms of

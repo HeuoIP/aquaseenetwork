@@ -15,13 +15,13 @@ assumption presented as a measurement.
 
 | Layer | Metric | Value | How it was measured |
 | --- | --- | --- | --- |
-| Structure | Pages built | **30** (21 English, 9 Chinese) | `npm run geo:check` against the build output |
-| Structure | Pages answering in the Worker runtime | **30 / 30** | `npm run geo:runtime` against the local workerd preview |
-| Structure | Languages published | **2** (English, Chinese) | `src/lib/locale.ts` |
+| Structure | Pages built | **48** (21 English, 9 each in Chinese, Arabic and Russian) | `npm run geo:check` against the build output |
+| Structure | Pages answering in the Worker runtime | **36 / 36** | `npm run geo:runtime` against the local workerd preview |
+| Structure | Languages published | **4** (English, Chinese, Arabic, Russian) | `src/lib/locale.ts` |
 | Structure | JSON-LD blocks, valid | **all pages** | structure gate |
 | Structure | hreflang reciprocity | **complete for every published path** | structure gate |
 | Structure | Sitemap coverage | **30 / 30** | structure gate |
-| Structure | Languages with a complete chrome (headings, buttons, form labels) | **2** | the chrome was moved into the content layer and published per language |
+| Structure | Languages with a complete chrome (headings, buttons, form labels) | **4** | the chrome was moved into the content layer and published per language |
 | Structure | Locales that are advertised but incomplete | **0** | the gate fails if a hreflang points at a page that does not exist |
 | Research | Seeds defined | **44** (English 34, Chinese 4, Arabic 3, Russian 3) | `scripts/research/seeds.mjs` |
 | Research | Buyer phrasings captured from live autocomplete | **3** | the capture ran against a hostile network; see §4 |
