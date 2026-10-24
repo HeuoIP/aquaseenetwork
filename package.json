@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "next typegen && tsc --noEmit",
     "build:opennext": "opennextjs-cloudflare build",
     "preview:cloudflare": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "setup:mail": "node scripts/set-mail-secrets.mjs",
