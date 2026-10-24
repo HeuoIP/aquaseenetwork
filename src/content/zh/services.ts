@@ -109,27 +109,6 @@ export const serviceDetails: ServiceDetail[] = [
       alt: '更新后的滨水遗产街区的示意效果图：新的公共滨水步道、种植街道与一座木构文化 pavilion。',
       caption: '服务示意图——概念渲染',
     },
-    aiUsage: {
-      title: 'AI 协助我们的地方',
-      points: [
-        {
-          title: '方向生成',
-          description:
-            '从一份任务书生成大量方向与情景，让决策发生在方案之间，而不是围绕某个单一猜测。',
-        },
-        {
-          title: '早期视觉方案比选',
-          description:
-            '在方向还便宜、还能改的时候做情境化图像，让方向可以被评判，而不是被描述。',
-        },
-        {
-          title: '假设压力测试',
-          description: '在选项仍然开放时，对照现场与预算检验规模、工期与成本假设。',
-        },
-      ],
-      note: 'AI 不能替代工程师、规格书或工厂。它做的是把更多方向摆到你面前。',
-    },
-    aiTag: 'AI 辅助的咨询',
     related: [
       { href: '/creative-design', label: '创意设计与研发' },
       { href: '/supply-chain', label: '供应链与交付' },
@@ -239,25 +218,6 @@ export const serviceDetails: ServiceDetail[] = [
       alt: '定制景观游乐环境的示意效果图：木质与钢制游乐构件、浅水戏水池与一体化种植。',
       caption: '服务示意图——概念渲染',
     },
-    aiUsage: {
-      title: 'AI 协助我们的地方',
-      points: [
-        {
-          title: '多方向创意',
-          description: '早期生成并比较多种形态方向，让客户是在“选方向”，而不是只对一个方案提意见。',
-        },
-        {
-          title: '基于模型的可视化',
-          description: '面向客户的图示直接来自真实模型，而不是手绘的近似效果。',
-        },
-        {
-          title: '材料与工艺探索',
-          description: '在打样之前，先测试颜色、肌理与灯光的组合。',
-        },
-      ],
-      note: 'AI 不能替代制造者或规格书。它做的是把更多方向摆到你面前，并缩短从任务书到可评判实物之间的距离。',
-    },
-    aiTag: 'AI 辅助的创作',
     related: [
       { href: '/strategy', label: '前期策划咨询' },
       { href: '/supply-chain', label: '供应链与交付' },

@@ -8,14 +8,6 @@ export type FaqItem = {
   pillar?: 'strategy' | 'creative-design' | 'supply-chain';
 };
 
-/** Where AI genuinely assists a specific part of the work. */
-export type AiPoint = { title: string; description: string };
-export type AiUsage = {
-  title: string;
-  points: AiPoint[];
-  note: string;
-};
-
 export type ServiceDetail = {
   slug: string;
   href: string;
@@ -46,8 +38,6 @@ export type ServiceDetail = {
   visualCaption: string;
   mobilePosition?: string;
   illustration: { src: string; alt: string; caption: string };
-  aiUsage?: AiUsage;
-  aiTag?: string;
   related: { href: string; label: string }[];
 };
 
@@ -285,7 +275,6 @@ export type UiStrings = {
     questionsEyebrow: string;
     questionsTitle: string;
     seeCoverage: string;
-    aiTitle: string;
     aiNote: string;
   };
   about: {

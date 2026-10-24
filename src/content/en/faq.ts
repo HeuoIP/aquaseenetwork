@@ -45,6 +45,13 @@ export const faq: FaqItem[] = [
     a: 'Yes. AQUASEE is based in China and works with clients worldwide, in English, Chinese, Arabic and Russian. International work is planned around the things that actually go wrong at a distance: freight by dimension and weight, customs classification and duties, wooden packaging and quarantine rules, local certification requirements, installation labour and site access, and who supports the asset once it is live.',
   },
 
+  {
+    pillar: 'creative-design',
+    q: 'Do you use AI in the design work?',
+    a:
+      'In three narrow places: to generate more directions to choose from, to visualise from the actual model rather than a sketch, and to test material and lighting combinations before samples are made. It does not decide the specification, and nothing is manufactured from it. What a factory builds from is always a written document a person approved — and if you would rather we did not use it at any stage, say so in the brief and we will not.',
+  },
+
   // ---- Design ---------------------------------------------------------------
   {
     pillar: 'creative-design',

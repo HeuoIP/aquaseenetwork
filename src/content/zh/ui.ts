@@ -60,7 +60,6 @@ export const ui: UiStrings = {
     questionsEyebrow: '常见问题',
     questionsTitle: '买家在这一部分最常问的问题。',
     seeCoverage: '看看包含什么',
-    aiTitle: 'AI 在这项工作里真正用得上的地方。',
     aiNote: '',
   },
   about: {

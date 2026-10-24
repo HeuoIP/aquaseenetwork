@@ -70,11 +70,6 @@ export function Pillars({ services, locale, ui }: { services: ServiceDetail[]; l
                     <span className="font-display text-[1.5rem] leading-none text-accent">
                       {service.index}
                     </span>
-                    {service.aiTag ? (
-                      <span className="rounded-full border border-accent/25 bg-accent-tint px-2.5 py-1 font-mono text-[0.5625rem] uppercase tracking-[0.14em] text-accent">
-                        {service.aiTag}
-                      </span>
-                    ) : null}
                   </div>
 
                   <h3 className="mt-4 text-[1.25rem] leading-snug">{service.title}</h3>

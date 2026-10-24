@@ -63,7 +63,6 @@ export const ui: UiStrings = {
     questionsEyebrow: 'Вопросы',
     questionsTitle: 'Вопросы, которые задают покупатели об этой части работы.',
     seeCoverage: 'Посмотреть, что входит',
-    aiTitle: 'Где искусственный интеллект действительно полезен.',
     aiNote: '',
   },
   about: {

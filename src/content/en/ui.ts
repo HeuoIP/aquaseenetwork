@@ -64,7 +64,6 @@ export const ui: UiStrings = {
     questionsEyebrow: 'Questions',
     questionsTitle: 'The questions buyers ask about this part of the work.',
     seeCoverage: 'See what this covers',
-    aiTitle: 'Where AI earns its place in this work.',
     aiNote: '',
   },
   about: {

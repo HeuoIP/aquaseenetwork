@@ -88,42 +88,6 @@ export function ServicePage({
         </div>
       </section>
 
-      {/* ---- AI (only where it genuinely applies) --------------------------- */}
-      {service.aiUsage ? (
-        <section className="bg-ink py-20 text-on-dark sm:py-24 lg:py-28">
-          <div className="shell">
-            <Reveal>
-              <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-aqua">
-                {service.aiUsage.title}
-              </p>
-              <h2 className="mt-5 max-w-3xl text-title text-on-dark-strong">{ui.service.aiTitle}</h2>
-            </Reveal>
-
-            <div className="mt-12 grid gap-px overflow-hidden rounded-sm border border-white/10 bg-white/10 md:grid-cols-3">
-              {service.aiUsage.points.map((point, i) => (
-                <Reveal key={point.title} delay={i * 80} className="bg-ink p-7 lg:p-8">
-                  <span className="font-mono text-[0.625rem] tracking-[0.16em] text-aqua">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <h3 className="mt-4 text-[1.0625rem] leading-snug text-on-dark-strong">
-                    {point.title}
-                  </h3>
-                  <p className="mt-3 text-[0.9375rem] leading-relaxed text-on-dark/80">
-                    {point.description}
-                  </p>
-                </Reveal>
-              ))}
-            </div>
-
-            <Reveal delay={120}>
-              <p className="mt-9 max-w-3xl border-l-2 border-aqua pl-5 text-[0.9375rem] leading-relaxed text-on-dark/80">
-                {service.aiUsage.note}
-              </p>
-            </Reveal>
-          </div>
-        </section>
-      ) : null}
-
       {/* ---- Activities ---------------------------------------------------- */}
       <section
         id="activities"

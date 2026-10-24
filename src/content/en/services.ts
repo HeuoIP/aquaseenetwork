@@ -114,28 +114,6 @@ export const serviceDetails: ServiceDetail[] = [
       alt: 'Illustrative visualisation of a revitalised riverside heritage quarter with a new public waterfront promenade, planted streets and a timber cultural pavilion.',
       caption: 'Service illustration — conceptual rendering',
     },
-    aiUsage: {
-      title: 'Where AI assists us',
-      points: [
-        {
-          title: 'Direction generation',
-          description:
-            'From a brief we generate a wide set of directions and scenarios, so decisions are made between options rather than against a single guess.',
-        },
-        {
-          title: 'Early visual option testing',
-          description:
-            'Contextual imagery assembled while a direction is still cheap to change, so a direction can be judged rather than described.',
-        },
-        {
-          title: 'Assumption stress-testing',
-          description:
-            'Scale, programme and cost assumptions checked against a site and a budget while the options are still open.',
-        },
-      ],
-      note: 'AI does not replace the engineer, the specification or the factory. It widens the range of directions we can put in front of you.',
-    },
-    aiTag: 'AI-assisted consulting',
     related: [
       { href: '/creative-design', label: 'Creative Design & R&D' },
       { href: '/supply-chain', label: 'Supply Chain & Delivery' },
@@ -250,28 +228,6 @@ export const serviceDetails: ServiceDetail[] = [
       alt: 'Illustrative visualisation of a bespoke landscape play environment with timber and steel play elements, a shallow water-play basin and integrated planting.',
       caption: 'Service illustration — conceptual rendering',
     },
-    aiUsage: {
-      title: 'Where AI assists us',
-      points: [
-        {
-          title: 'Multi-direction ideation',
-          description:
-            'Many form directions generated and compared early, so the client selects a direction instead of commenting on one.',
-        },
-        {
-          title: 'Visualisation from the model',
-          description:
-            'Client-facing imagery built from the actual model rather than a hand-drawn approximation.',
-        },
-        {
-          title: 'Material & finish exploration',
-          description:
-            'Colour, texture and lighting combinations tested before samples are commissioned.',
-        },
-      ],
-      note: 'AI does not replace the maker or the specification. It widens the range of directions we can put in front of you, and shortens the distance between a brief and something you can actually judge.',
-    },
-    aiTag: 'AI-assisted creation',
     related: [
       { href: '/strategy', label: 'Strategy & Consulting' },
       { href: '/supply-chain', label: 'Supply Chain & Delivery' },

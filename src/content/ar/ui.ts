@@ -59,7 +59,6 @@ export const ui: UiStrings = {
     questionsEyebrow: 'أسئلة',
     questionsTitle: 'الأسئلة التي يطرحها المشترون حول هذه المرحلة من العمل.',
     seeCoverage: 'تعرّف على ما تشمله',
-    aiTitle: 'أين يضيف الذكاء الاصطناعي قيمة حقيقية في هذا العمل.',
     aiNote: '',
   },
   about: {
