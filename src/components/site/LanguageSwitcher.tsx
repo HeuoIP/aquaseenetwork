@@ -36,7 +36,7 @@ export function LanguageSwitcher({ current, ui }: { current?: string; ui: UiStri
             lang={locale}
             aria-current={isActive ? 'true' : undefined}
             className={[
-              'rounded-full px-2.5 py-1 text-[0.6875rem] font-medium transition-colors duration-300',
+              'whitespace-nowrap rounded-full px-2.5 py-1 text-[0.6875rem] font-medium transition-colors duration-300',
               isActive
                 ? 'bg-accent-tint text-accent'
                 : 'text-muted hover:text-ink',

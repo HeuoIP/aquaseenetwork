@@ -138,7 +138,7 @@ export const serviceDetails: ServiceDetail[] = [
     aiTag: 'AI-assisted consulting',
     related: [
       { href: '/creative-design', label: 'Creative Design & R&D' },
-      { href: '/supply-chain', label: 'Supply Chain & Project Delivery' },
+      { href: '/supply-chain', label: 'Supply Chain & Delivery' },
     ],
   },
   {
@@ -274,7 +274,7 @@ export const serviceDetails: ServiceDetail[] = [
     aiTag: 'AI-assisted creation',
     related: [
       { href: '/strategy', label: 'Strategy & Consulting' },
-      { href: '/supply-chain', label: 'Supply Chain & Project Delivery' },
+      { href: '/supply-chain', label: 'Supply Chain & Delivery' },
     ],
   },
   {
@@ -314,8 +314,8 @@ export const serviceDetails: ServiceDetail[] = [
     ],
     href: '/supply-chain',
     index: '03',
-    eyebrow: 'Supply Chain & Project Delivery',
-    title: 'Supply Chain & Project Delivery',
+    eyebrow: 'Supply Chain & Delivery',
+    title: 'Supply Chain & Delivery',
     lede: 'We do not manufacture. We bring the know-how that makes bespoke product buildable — and then let you decide how much of it you make yourself.',
     intro:
       'We do not manufacture. We bring something more useful than a factory: years of taking bespoke products apart, understanding how every part is made, and reorganising that knowledge so it can be built — by us, by a partner, or by you.',

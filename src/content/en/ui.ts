@@ -199,7 +199,7 @@ export const ui: UiStrings = {
     serviceOptions: [
       'Strategy & Consulting',
       'Creative Design & R&D',
-      'Supply Chain & Project Delivery',
+      'Supply Chain & Delivery',
       'Full project management',
       'Not sure yet — please advise',
     ],

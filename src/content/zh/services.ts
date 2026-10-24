@@ -132,7 +132,7 @@ export const serviceDetails: ServiceDetail[] = [
     aiTag: 'AI 辅助的咨询',
     related: [
       { href: '/creative-design', label: '创意设计与研发' },
-      { href: '/supply-chain', label: '供应链与项目交付' },
+      { href: '/supply-chain', label: '供应链与交付' },
     ],
   },
   {
@@ -260,7 +260,7 @@ export const serviceDetails: ServiceDetail[] = [
     aiTag: 'AI 辅助的创作',
     related: [
       { href: '/strategy', label: '前期策划咨询' },
-      { href: '/supply-chain', label: '供应链与项目交付' },
+      { href: '/supply-chain', label: '供应链与交付' },
     ],
   },
   {
@@ -301,8 +301,8 @@ export const serviceDetails: ServiceDetail[] = [
     ],
     href: '/supply-chain',
     index: '03',
-    eyebrow: '供应链与项目交付',
-    title: '供应链与项目交付',
+    eyebrow: '供应链与交付',
+    title: '供应链与交付',
     lede: '我们不制造。我们带来的是让定制产品变得可制造的know-how——然后由你决定其中多少自己做。',
     intro:
       '我们不制造。我们带来的不是一座工厂，而是更有用的东西：多年拆解定制产品、理解每个部件如何被制造，并把这份知识重新组织成可被制造的状态——由我们、由伙伴，或由你。',

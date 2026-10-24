@@ -278,3 +278,13 @@ html[lang="ar"] {
 
 
 
+/* --------------------------------------------------------------------------
+   Right to left
+   -------------------------------------------------------------------------- */
+/* Arabic joins its letters, and letter-spacing breaks the joining forms. The
+   design system tracks eyebrows and labels wide for Latin, and that tracking
+   has to go in a right-to-left layout. */
+[dir='rtl'] [class*='tracking-'],
+[dir='rtl'] .eyebrow {
+  letter-spacing: normal !important;
+}

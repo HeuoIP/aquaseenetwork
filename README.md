@@ -96,8 +96,8 @@ loader is registered (`src/lib/dictionary.ts`). The language switcher, the
 sitemap and the hreflang map all follow that list, so a language can never be
 advertised before it exists.
 
-**Published: English and Chinese.** Arabic and Russian are prepared but not
-published — their content modules do not exist yet. Two rules keep a half-built
+**Published: English, Chinese and Arabic.** Russian is prepared but not
+published — its content module does not exist yet. Two rules keep a half-built
 language from leaking:
 
 - the chrome (section headings, buttons, form labels, table headers) lives in

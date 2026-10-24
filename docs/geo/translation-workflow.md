@@ -20,11 +20,16 @@ are no longer the same business.
 
 ## 2. The order of work
 
-**Published so far: English and Chinese.** The Chinese edition covers every
-content module except the insight library, so its navigation omits the
-`Insights` entry and the library page states plainly that it is being
-written. Arabic and Russian follow the same route; the termbase is already
-locked in all four languages, so the work is writing, not deciding.
+**Published so far: English, Chinese and Arabic.** Each of the two new editions
+covers every content module except the insight library, so their navigation
+omits the `Insights` entry and the library page states plainly that it is
+being written. Russian follows the same route; the termbase is already locked
+in all four languages, so the work is writing, not deciding.
+
+**Arabic needed one engineering change.** The design system tracks eyebrows
+and labels wide for Latin; in Arabic that tracking breaks the joining forms of
+the script, so it is removed under `[dir='rtl']`. The comparison table, the
+numbers in tables and the mobile menu were checked on screen afterwards.
 
 For each language:
 

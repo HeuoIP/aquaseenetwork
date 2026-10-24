@@ -17,6 +17,7 @@ import { DEFAULT_LOCALE, isLocale, type Locale } from '@/lib/locale';
 const loaders: Partial<Record<Locale, () => Promise<Dictionary>>> = {
   en: () => import('@/content/en').then((m) => m.dictionary),
   zh: () => import('@/content/zh').then((m) => m.dictionary),
+  ar: () => import('@/content/ar').then((m) => m.dictionary),
 };
 
 export async function getDictionary(locale: string): Promise<Dictionary> {
