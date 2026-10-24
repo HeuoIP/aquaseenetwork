@@ -17,6 +17,7 @@
     "geo:audit": "node scripts/geo/answer-audit.mjs",
     "geo:serp": "node scripts/geo/serp-track.mjs",
     "geo:scorecard": "node scripts/geo/scorecard.mjs",
+    "geo:runtime": "node scripts/geo/preview-check.mjs",
     "research:demand": "node scripts/research/demand.mjs",
     "research:serp": "node scripts/research/serp-map.mjs"
   },

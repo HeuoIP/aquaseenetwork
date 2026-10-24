@@ -1,0 +1,10 @@
+{
+  "base": "http://127.0.0.1:8787",
+  "failures": [],
+  "warnings": [],
+  "notes": [
+    "Base URL: http://127.0.0.1:8787",
+    "Published locales checked: en",
+    "Routes per locale: 9"
+  ]
+}
