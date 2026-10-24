@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { CapabilityHero } from '@/components/service/CapabilityHero';
+import { ServiceGallery } from '@/components/service/ServiceGallery';
 import { JsonLd } from '@/components/site/JsonLd';
 import { ActionLink } from '@/components/ui/Action';
 import { DefinitionList } from '@/components/ui/DefinitionList';
@@ -26,12 +27,17 @@ export function ServicePage({
   service,
   locale,
   ui,
+  labels,
 }: {
   service: ServiceDetail;
   locale: Locale;
   ui: UiStrings;
+  /** How the page names the two kinds of picture: our own material, or an illustration. */
+  labels: { work: string; illustration: string };
 }) {
   const href = (path: string) => localePath(locale, path);
+  const galleryAt = (slot: 'overview' | 'activities' | 'cost') =>
+    (service.gallery ?? []).filter((item) => item.after === slot);
 
   return (
     <>
@@ -68,6 +74,10 @@ export function ServicePage({
         </div>
       </section>
 
+
+      {galleryAt('overview').length ? (
+        <ServiceGallery items={galleryAt('overview')} labels={labels} />
+      ) : null}
       {/* ---- Service illustration ------------------------------------------- */}
       <section className="bg-paper pb-20 sm:pb-24 lg:pb-28">
         <div className="shell">
@@ -122,6 +132,10 @@ export function ServicePage({
         </div>
       </section>
 
+
+      {galleryAt('activities').length ? (
+        <ServiceGallery items={galleryAt('activities')} labels={labels} />
+      ) : null}
       {/* ---- Deliverables, boundaries, cost -------------------------------- */}
       <section className="bg-paper py-20 sm:py-24 lg:py-28">
         <div className="shell">
@@ -223,6 +237,10 @@ export function ServicePage({
         </div>
       </section>
 
+
+      {galleryAt('cost').length ? (
+        <ServiceGallery items={galleryAt('cost')} labels={labels} />
+      ) : null}
       {/* ---- Fit & continue -------------------------------------------------- */}
       <section className="bg-sand py-20 sm:py-24 lg:py-28">
         <div className="shell">

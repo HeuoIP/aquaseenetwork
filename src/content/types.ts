@@ -8,6 +8,28 @@ export type FaqItem = {
   pillar?: 'strategy' | 'creative-design' | 'supply-chain';
 };
 
+/**
+ * Where a gallery image sits in the page.
+ *
+ * A capability page is a long read: the pictures are not decoration at the
+ * end, they are the rhythm of the page - a paragraph, then the thing it
+ * describes.
+ */
+export type GallerySlot = 'overview' | 'activities' | 'cost';
+
+export type GalleryItem = {
+  after: GallerySlot;
+  src: string;
+  alt: string;
+  caption: string;
+  /**
+   * 'work' is our own material; 'illustration' is a rendering or a generated
+   * scene. The page says which is which - a picture that is passed off as
+   * more than it is costs the whole site its credibility.
+   */
+  kind: 'work' | 'illustration';
+};
+
 export type ServiceDetail = {
   slug: string;
   href: string;
@@ -35,6 +57,8 @@ export type ServiceDetail = {
   /** Optional override for the call-to-action label on this page. */
   ctaLabel?: string;
   visual: { kind: 'image'; src: string; alt: string };
+  /** Pictures placed through the page, between the blocks of text. */
+  gallery?: GalleryItem[];
   visualCaption: string;
   mobilePosition?: string;
   illustration: { src: string; alt: string; caption: string };
@@ -254,6 +278,8 @@ export type UiStrings = {
   };
   service: {
     inOneParagraph: string;
+    galleryWork: string;
+    galleryIllustration: string;
     overview: string;
     activitiesEyebrow: string;
     activitiesTitle: string;

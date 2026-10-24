@@ -37,6 +37,8 @@ export const ui: UiStrings = {
     viewStudies: '查看能力研究',
   },
   service: {
+    galleryWork: '我们的作品',
+    galleryIllustration: '示意图',
     inOneParagraph: '用一段话说清',
     overview: '概述',
     activitiesEyebrow: '我们做什么',

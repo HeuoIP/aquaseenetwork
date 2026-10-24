@@ -97,6 +97,24 @@ export const serviceDetails: ServiceDetail[] = [
       '采购的是一种体验而非一件产品的运营方',
       '范围增长快于计划的团队',
     ],
+    gallery: [
+      {
+        after: 'overview',
+        src: '/images/gallery/strategy-concept.webp',
+        kind: 'illustration',
+        caption:
+          '亲子文旅目的地的概念方案：在画任何一张施工图之前，先把分区、动线与种植定下来。',
+        alt: '亲子文旅目的地的俯视概念效果图，河边有戏水区、遮荫座椅、曲折步道与种植。',
+      },
+      {
+        after: 'activities',
+        src: '/images/gallery/strategy-planning.webp',
+        kind: 'illustration',
+        caption:
+          '方案变成决定的那一步：做什么、不做什么，以及现场不允许什么。',
+        alt: '规划桌上的大幅总平面打印图、实体模型，以及显示体块模型的笔记本电脑。',
+      },
+    ],
     visual: {
       kind: 'image',
       src: '/images/hero/strategy-plan.webp',
@@ -206,6 +224,40 @@ export const serviceDetails: ServiceDetail[] = [
       '希望找到既能设计也能交付的设计伙伴的开发商',
       '需要目录里买不到的定制构件的团队',
       '正在升级既有环境的运营方',
+    ],
+    gallery: [
+      {
+        after: 'overview',
+        src: '/images/gallery/design-swan.webp',
+        kind: 'work',
+        caption:
+          '一件主题游乐构筑物的手绘稿，还在讨论形态的阶段。',
+        alt: '天鹅造型游乐构筑物的线稿，含滑梯与攀爬网，水绿色线条画在深色底上。',
+      },
+      {
+        after: 'overview',
+        src: '/images/gallery/design-bird.webp',
+        kind: 'work',
+        caption:
+          '把一件雕塑放进场地里的草图：这个物体要长在场地中，而不是摆在场地上。',
+        alt: '手绘概念草图：种植景观中一只大型粉色鸟形雕塑，带滑梯与木质攀爬构件。',
+      },
+      {
+        after: 'activities',
+        src: '/images/gallery/design-capybara.webp',
+        kind: 'work',
+        caption:
+          '一个主题游乐世界，先画后建：同一个构想，从第一张草图到公园里立着的那套设备。',
+        alt: '水豚主题游乐场的插画，配一条色板与公园中已建成设备的实拍照片。',
+      },
+      {
+        after: 'cost',
+        src: '/images/gallery/design-equipment.webp',
+        kind: 'work',
+        caption:
+          '从一张游乐设备草图，到公园里立起来的那套设备。',
+        alt: '木质游乐结构的概念草图，配公园中已安装完成的设备实拍照片。',
+      },
     ],
     visual: {
       kind: 'image',
@@ -319,6 +371,56 @@ export const serviceDetails: ServiceDetail[] = [
       '供应商报价过高的定制产品',
       '希望自己掌握部分生产的项目',
       '希望拥有一条自己看得懂、控得住的供应链的团队',
+    ],
+    gallery: [
+      {
+        after: 'overview',
+        src: '/images/gallery/supply-laser.webp',
+        kind: 'illustration',
+        caption:
+          '激光下料：轮廓从一张平板里走出来，精度取决于连接件靠不靠得住。',
+        alt: '激光切割头在钢板上一条弧形轮廓，切口处火花四溅。',
+      },
+      {
+        after: 'overview',
+        src: '/images/gallery/supply-cutting.webp',
+        kind: 'illustration',
+        caption:
+          '木构件的数控开料：零件的尺寸是按现场装得上做的，不是按图纸好看做的。',
+        alt: '木工车间里数控雕刻机切割层压木板上的弧形构件，切好的板材堆在一旁。',
+      },
+      {
+        after: 'activities',
+        src: '/images/gallery/supply-drilling.webp',
+        kind: 'illustration',
+        caption:
+          '钻孔精度按连接件的要求来——孔位偏一个，就装不上。',
+        alt: '钻床在弧形钢制连接板上钻一排孔，四周是卷曲的金属屑。',
+      },
+      {
+        after: 'activities',
+        src: '/images/gallery/supply-welding.webp',
+        kind: 'illustration',
+        caption:
+          '焊接骨架：承重、也要扛住几年风雨的那一部分。',
+        alt: '戴防护面罩的焊工在大型定制游乐架上焊接钢制节点，火花与弧光四起。',
+      },
+      {
+        after: 'cost',
+        src: '/images/gallery/supply-assembly.webp',
+        kind: 'illustration',
+        caption:
+          '组装：零件对上，一个结构才成为一体。',
+        alt: '两名工人在车间里组装弧形的木质与钢制游乐构件。',
+      },
+      {
+        after: 'cost',
+        src: '/images/gallery/supply-transport.webp',
+        kind: 'illustration',
+        caption:
+          '运输：包好、绑牢、按到现场的路线算好尺寸。',
+        alt: '黎明时分，长平板车载着包裹好的大型钢制与木质游乐构件行驶在公路上。',
+      },
     ],
     visual: {
       kind: 'image',

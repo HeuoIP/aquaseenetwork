@@ -82,6 +82,11 @@ The project images served on `/projects` live in `public/images/cases/`, one
 web-ready WebP per piece, each labelled with the stage it was produced at
 (rendering, concept sketch, concept plan). The 432 MB source library is not in
 the repository.
+
+The pictures inside the three capability pages live in `public/images/gallery/`.
+Each one carries a badge saying whether it is our own material or an
+illustration, and the supply-chain set was generated to show the making: laser
+cutting, CNC cutting, drilling, welding, assembly, transport.
 ```
 
 **Editing content:** you never need to touch a component to change copy. Edit the

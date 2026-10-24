@@ -38,6 +38,8 @@ export const ui: UiStrings = {
     viewStudies: 'Смотреть исследования возможностей',
   },
   service: {
+    galleryWork: 'Наша работа',
+    galleryIllustration: 'Иллюстрация',
     inOneParagraph: 'Одним абзацем',
     overview: 'Обзор',
     activitiesEyebrow: 'Что мы делаем',

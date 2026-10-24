@@ -102,6 +102,24 @@ export const serviceDetails: ServiceDetail[] = [
       'Operators commissioning an experience rather than a product',
       'Teams whose scope has grown faster than their plan',
     ],
+    gallery: [
+      {
+        after: 'overview',
+        src: '/images/gallery/strategy-concept.webp',
+        kind: 'illustration',
+        caption:
+          'Concept for a parent-child leisure destination: the zones, the routes and the planting settled before anything is drawn.',
+        alt: 'Aerial concept render of a parent-child leisure destination beside a river, with a water-play area, shaded seating, winding paths and planting.',
+      },
+      {
+        after: 'activities',
+        src: '/images/gallery/strategy-planning.webp',
+        kind: 'illustration',
+        caption:
+          'The stage where a plan becomes a decision: what we build, what we drop, and what the site will not allow.',
+        alt: 'A planning table with a large printed site plan, a scale model and a laptop showing a three-dimensional massing model.',
+      },
+    ],
     visual: {
       kind: 'image',
       src: '/images/hero/strategy-plan.webp',
@@ -216,6 +234,40 @@ export const serviceDetails: ServiceDetail[] = [
       'Developers seeking a design partner who can also deliver',
       'Teams needing custom elements nobody catalogues',
       'Operators upgrading an existing environment',
+    ],
+    gallery: [
+      {
+        after: 'overview',
+        src: '/images/gallery/design-swan.webp',
+        kind: 'work',
+        caption:
+          'A themed play structure drawn at the stage where the form is still being argued about.',
+        alt: 'A line drawing of a swan-shaped play structure with slides and a climbing net, drawn in aqua on a dark ground.',
+      },
+      {
+        after: 'overview',
+        src: '/images/gallery/design-bird.webp',
+        kind: 'work',
+        caption:
+          'A sculptural feature sketched into a landscape: the object has to sit in the site, not stand on it.',
+        alt: 'A hand-drawn concept sketch of a large pink bird sculpture in a planted landscape, with slides and a timber climbing structure.',
+      },
+      {
+        after: 'activities',
+        src: '/images/gallery/design-capybara.webp',
+        kind: 'work',
+        caption:
+          'A themed play world, drawn and then built: one idea, from the first sketch to the equipment standing in the park.',
+        alt: 'An illustration of a capybara-themed playground with a colour strip and photographs of the finished equipment installed in a park.',
+      },
+      {
+        after: 'cost',
+        src: '/images/gallery/design-equipment.webp',
+        kind: 'work',
+        caption:
+          'From a concept sketch of a play device to the equipment standing in a park.',
+        alt: 'A concept sketch of a timber play structure, with photographs of the finished equipment installed in a public park.',
+      },
     ],
     visual: {
       kind: 'image',
@@ -350,6 +402,56 @@ export const serviceDetails: ServiceDetail[] = [
       'Bespoke products where a supplier has quoted too high',
       'Projects where the client wants to own part of the production',
       'Teams who want a supply chain they can understand and control',
+    ],
+    gallery: [
+      {
+        after: 'overview',
+        src: '/images/gallery/supply-laser.webp',
+        kind: 'illustration',
+        caption:
+          'Laser cutting: the profile comes out of a flat sheet, to a tolerance the fixings depend on.',
+        alt: 'A laser cutting head tracing a curved profile into a steel plate, sparks along the cut line.',
+      },
+      {
+        after: 'overview',
+        src: '/images/gallery/supply-cutting.webp',
+        kind: 'illustration',
+        caption:
+          'CNC cutting of the timber panels: the parts are sized so they fit on site, not in the office.',
+        alt: 'A CNC router cutting curved panels from laminated timber in a woodworking workshop, the cut parts stacked alongside.',
+      },
+      {
+        after: 'activities',
+        src: '/images/gallery/supply-drilling.webp',
+        kind: 'illustration',
+        caption:
+          'Holes bored to the tolerance the fixing depends on - one hole in the wrong place and the part does not fit.',
+        alt: 'A drill press boring a row of holes into a curved steel bracket, curled metal shavings around it.',
+      },
+      {
+        after: 'activities',
+        src: '/images/gallery/supply-welding.webp',
+        kind: 'illustration',
+        caption:
+          'Welding the frame: the part that carries the load and takes the weather for years.',
+        alt: 'A welder in a protective helmet joining a steel joint on a large custom playground frame, arc light and sparks.',
+      },
+      {
+        after: 'cost',
+        src: '/images/gallery/supply-assembly.webp',
+        kind: 'illustration',
+        caption:
+          'Assembly: the parts meet, and a structure becomes one piece.',
+        alt: 'Two workers assembling curved timber and steel playground components in a workshop.',
+      },
+      {
+        after: 'cost',
+        src: '/images/gallery/supply-transport.webp',
+        kind: 'illustration',
+        caption:
+          'Transport: wrapped, strapped and sized for the route to the site.',
+        alt: 'A long flatbed truck carrying large wrapped steel and timber components of a playground structure on a highway at dawn.',
+      },
     ],
     visual: {
       kind: 'image',

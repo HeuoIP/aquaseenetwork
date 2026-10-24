@@ -36,6 +36,8 @@ export const ui: UiStrings = {
     viewStudies: 'اطّلع على دراسات القدرات',
   },
   service: {
+    galleryWork: 'عملنا',
+    galleryIllustration: 'رسم توضيحي',
     inOneParagraph: 'في فقرة واحدة',
     overview: 'نظرة عامة',
     activitiesEyebrow: 'ماذا نعمل',

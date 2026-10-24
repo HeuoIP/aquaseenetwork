@@ -98,6 +98,24 @@ export const serviceDetails: ServiceDetail[] = [
       'مشغّلين يشترون تجربة لا منتجًا',
       'فرق تجاوز نطاقه خطّطه بسرعة',
     ],
+    gallery: [
+      {
+        after: 'overview',
+        src: '/images/gallery/strategy-concept.webp',
+        kind: 'illustration',
+        caption:
+          'مفهوم وجهة ترفيه عائلية: تُحسم المناطق والمسارات والزراعة قبل رسم أي تفصيلة تنفيذية.',
+        alt: 'تصيير جوي مفاهيمي لوجهة ترفيه عائلية على ضفاف نهر، مع منطقة لعب مائي ومقاعد مظللة ومسارات متعرجة وزراعة.',
+      },
+      {
+        after: 'activities',
+        src: '/images/gallery/strategy-planning.webp',
+        kind: 'illustration',
+        caption:
+          'المرحلة التي يصبح فيها المخطط قرارًا: ما نبنيه، وما نتركه، وما لا يسمح به الموقع.',
+        alt: 'طاولة تخطيط عليها مخطط موقع مطبوع كبير، ونموذج مصغّر، وحاسوب محمول يعرض نموذج كتلة ثلاثي الأبعاد.',
+      },
+    ],
     visual: {
       kind: 'image',
       src: '/images/hero/strategy-plan.webp',
@@ -207,6 +225,40 @@ export const serviceDetails: ServiceDetail[] = [
       'مطوّرين يبحثون عن شريك تصميم يستطيع التنفيذ أيضًا',
       'فرق تحتاج عناصر مخصّصة لا توجد في الكتالوجات',
       'مشغّلين يرقّون بيئة قائمة',
+    ],
+    gallery: [
+      {
+        after: 'overview',
+        src: '/images/gallery/design-swan.webp',
+        kind: 'work',
+        caption:
+          'منشأة لعب موضوعية مرسومة، في مرحلة ما زالت فيها الشكل قيد النقاش.',
+        alt: 'رسم خطي لمنشأة لعب على هيئة بطة مع زحلقية وشبكة تسلّق، مرسوم بالخطوط المائية على أرضية داكنة.',
+      },
+      {
+        after: 'overview',
+        src: '/images/gallery/design-bird.webp',
+        kind: 'work',
+        caption:
+          'عنصر نحتية مرسوم داخل مشهد طبيعي: يجب أن يستقرّ العنصر في الموقع لا أن يقف فوقه.',
+        alt: 'رسمة مفاهيمية مرسومة باليد لنحتة طائر وردي كبير في مشهد مزروع، مع زحلقية وبنية تسلّق خشبية.',
+      },
+      {
+        after: 'activities',
+        src: '/images/gallery/design-capybara.webp',
+        kind: 'work',
+        caption:
+          'عالم لعب موضوعي، رُسم ثم بُني: فكرة واحدة، من أول مسوّدة إلى المعدات قائمة في الحديقة.',
+        alt: 'رسم توضيحي لملعب بطيء الشكل مع شريط ألوان وصور للمعدات النهائية مركّبة في حديقة.',
+      },
+      {
+        after: 'cost',
+        src: '/images/gallery/design-equipment.webp',
+        kind: 'work',
+        caption:
+          'من مسوّدة مفاهيمية لجهاز لعب إلى المعدات قائمة في الحديقة.',
+        alt: 'مسوّدة مفاهيمية لهيكل لعب خشبي، مع صور للمعدات النهائية مركّبة في حديقة عامة.',
+      },
     ],
     visual: {
       kind: 'image',
@@ -332,6 +384,56 @@ export const serviceDetails: ServiceDetail[] = [
       'منتجات مخصّصة عرض موردها سعرًا مرتفعًا',
       'مشاريع يريد العميل أن يملك جزءًا من الإنتاج',
       'فرق تريد سلسلة توريد يفهمونها ويتحكمون بها',
+    ],
+    gallery: [
+      {
+        after: 'overview',
+        src: '/images/gallery/supply-laser.webp',
+        kind: 'illustration',
+        caption:
+          'القص بالليزر: يُستخرج المقطع من صفيحة مسطحة، بدقة تعتمد عليها التثبيتات.',
+        alt: 'رأس ليزر يقطع ملفًا منحنيًا في صفيحة فولاذية، مع شرارات على خط القطع.',
+      },
+      {
+        after: 'overview',
+        src: '/images/gallery/supply-cutting.webp',
+        kind: 'illustration',
+        caption:
+          'القص数控 لألواح الخشب: تُقاس القطع لتركب في الموقع لا لتبدو جميلة على الورق.',
+        alt: 'آلة نحت رقمية تقطع ألواحًا منحنية من الخشب الرقائقي في ورشة نجارة، والقطع المفرزة مكدسة بجانبها.',
+      },
+      {
+        after: 'activities',
+        src: '/images/gallery/supply-drilling.webp',
+        kind: 'illustration',
+        caption:
+          'ثقوب بدقة تعتمد عليها التثبيتات — ثقب واحد في غير موضعه يعني أن القطعة لا تركب.',
+        alt: 'آلة حفر تثقب صفًا من الثقوب في ك brackets فولاذي منحني، حوله برادة معدنية ملتفة.',
+      },
+      {
+        after: 'activities',
+        src: '/images/gallery/supply-welding.webp',
+        kind: 'illustration',
+        caption:
+          'لحام الإطار: الجزء الذي يحمل الحمل ويقاوم الطقس سنوات.',
+        alt: 'لحام يرتدي خوذة وقاية يجمع وصلة فولاذية في هيكل لعب مخصص كبير، مع ضوء القوس والشرارات.',
+      },
+      {
+        after: 'cost',
+        src: '/images/gallery/supply-assembly.webp',
+        kind: 'illustration',
+        caption:
+          'التجميع: تلتقي الأجزاء، فيصبح الهيكل قطعة واحدة.',
+        alt: 'عاملان يجمّعان مكوّنات لعب منحنية من الخشب والصلب في ورشة.',
+      },
+      {
+        after: 'cost',
+        src: '/images/gallery/supply-transport.webp',
+        kind: 'illustration',
+        caption:
+          'النقل: تُغلَّف وتُوثَّق وتُقاس لتناسب الطريق إلى الموقع.',
+        alt: 'شاحنة مسطحة طويلة تحمل مكوّنات كبيرة مغلّفة من الفولاذ والخشب لملعب، على طريق عند الفجر.',
+      },
     ],
     visual: {
       kind: 'image',
