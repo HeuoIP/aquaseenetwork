@@ -1,21 +1,33 @@
-# Demand map — the questions buyers actually ask
+# Demand mining — R2
 
-Generated from the captured question bank (0 unique phrasings from 44 seeds, captured 2026-10-24).
+Generated: 2026-10-24T01:34:11.588Z
+Seeds: 44 | unique buyer phrasings collected: 3
 
-Every line below is a real query taken from search autocomplete, with the seed it came from. Nothing here is a guess about what buyers might ask — it is what they typed.
+## Page shapes that win the decision & specification queries
 
-## How to read this
+| Shape | Results won |
+| --- | --- |
 
-The phrasings are the vocabulary. When a phrase appears here, it is the wording the market uses, and it belongs in the page that answers that question — in the title, the first sentence, or the body.
+## Domains most present across the query set
 
-The seeds themselves were chosen against the strategy: decision and specification questions in three capabilities, three verticals and four languages, and deliberately no "who is the manufacturer" queries — those belong to a different kind of supplier and are not our battlefield.
-
-## Coverage to close
-
-| Capability | Phrasings captured | Notes |
+| Domain | Results | Capabilities it shows up for |
 | --- | --- | --- |
-| Strategy & Consulting | 0 | — |
-| Creative Design & R&D | 0 | — |
-| Supply Chain & Delivery | 0 | — |
 
-The demand map is re-mined every quarter. Buyer phrasing drifts with the market, and a page written against last year’s wording is quietly losing the argument.
+## Buyer phrasings by pillar
+
+### strategy (3)
+
+**en**
+
+- travel leisure resort development  _← how to scope a resort leisure project_
+- project closure leisure time  _← how to scope a resort leisure project_
+- scope of recreational activities  _← how to scope a resort leisure project_
+
+## Failures (network / rate limiting)
+
+- how to write a brief for a design and build supplier → Client network socket disconnected before secure TLS connection was established
+- choosing between a design agency and a manufacturing partner → Client network socket disconnected before secure TLS connection was established
+- how much does a custom playground installation cost → Client network socket disconnected before secure TLS connection was established
+- who to hire to develop a themed attraction → Client network socket disconnected before secure TLS connection was established
+- how to evaluate playground equipment suppliers → Client network socket disconnected before secure TLS connection was established
+- tender documentation for a custom public space installation → Client network socket disconnected before secure TLS connection was established

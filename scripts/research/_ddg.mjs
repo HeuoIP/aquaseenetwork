@@ -70,6 +70,61 @@ function hostOf(url) {
   }
 }
 
+/**
+ * Bing's suggestion endpoint.
+ *
+ * A second, independent source of real buyer phrasing — and a relevant one,
+ * because Bing's index is what Copilot answers from. It stays available when
+ * DuckDuckGo refuses traffic, which matters: the demand bank must not depend
+ * on a single host.
+ */
+export async function autocompleteBing(query) {
+  const url = `https://api.bing.com/osjson.aspx?query=${encodeURIComponent(query)}`;
+  const raw = await get(url);
+  const parsed = JSON.parse(raw);
+  const list = Array.isArray(parsed) && Array.isArray(parsed[1]) ? parsed[1] : [];
+  return list.map((s) => String(s).trim()).filter(Boolean);
+}
+
+/**
+ * Real buyer phrasing from whichever source is answering.
+ *
+ * Both endpoints are public suggestion services; neither needs a key.
+ */
+let preferredSource;
+
+/**
+ * Real buyer phrasing from whichever source is answering.
+ *
+ * The preferred source is remembered: when one host starts refusing traffic,
+ * every subsequent request would otherwise spend its full timeout before
+ * falling back. Both endpoints are public suggestion services; neither needs
+ * a key.
+ */
+export async function autocompleteAny(query) {
+  const sources = [
+    ['duckduckgo', autocomplete],
+    ['bing', autocompleteBing],
+  ];
+  const ordered = preferredSource
+    ? [...sources.filter(([n]) => n === preferredSource), ...sources.filter(([n]) => n !== preferredSource)]
+    : sources;
+
+  let lastError;
+  for (const [name, fn] of ordered) {
+    try {
+      const out = await fn(query);
+      if (out.length) {
+        preferredSource = name;
+        return { phrases: out, source: name };
+      }
+    } catch (err) {
+      lastError = err;
+    }
+  }
+  throw lastError || new Error('no suggestion source available');
+}
+
 /** Top organic results: title, url and domain for one query. */
 export async function serp(query, limit = 10) {
   const url = `https://html.duckduckgo.com/html/?q=${encodeURIComponent(query)}`;

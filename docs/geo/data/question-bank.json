@@ -1,5 +1,39 @@
 {
-  "generatedAt": "2026-10-24T01:16:06.779Z",
+  "generatedAt": "2026-10-24T01:34:11.586Z",
   "seedCount": 44,
-  "questions": []
+  "questions": [
+    {
+      "phrase": "travel leisure resort development",
+      "seed": "how to scope a resort leisure project",
+      "pillar": "strategy",
+      "vertical": "tourism",
+      "locale": "en",
+      "evidence": "bing autocomplete for \"how to scope a resort leisure project\"",
+      "seeds": [
+        "how to scope a resort leisure project"
+      ]
+    },
+    {
+      "phrase": "project closure leisure time",
+      "seed": "how to scope a resort leisure project",
+      "pillar": "strategy",
+      "vertical": "tourism",
+      "locale": "en",
+      "evidence": "bing autocomplete for \"how to scope a resort leisure project\"",
+      "seeds": [
+        "how to scope a resort leisure project"
+      ]
+    },
+    {
+      "phrase": "scope of recreational activities",
+      "seed": "how to scope a resort leisure project",
+      "pillar": "strategy",
+      "vertical": "tourism",
+      "locale": "en",
+      "evidence": "bing autocomplete for \"how to scope a resort leisure project\"",
+      "seeds": [
+        "how to scope a resort leisure project"
+      ]
+    }
+  ]
 }

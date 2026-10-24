@@ -73,8 +73,9 @@ Everything below was tested on 24 October 2026, not assumed.
 
 | Instrument | Status | Note |
 | --- | --- | --- |
-| DuckDuckGo autocomplete (`/ac/`) | **works** | Returns real buyer phrasing; the backbone of the question bank |
-| DuckDuckGo HTML SERP | **works via .NET transport** | Node's own client times out (filtered DNS), so the scripts fall back to a PowerShell transport that honours the system proxy |
+| DuckDuckGo autocomplete (`/ac/`) | **works, but rate-limits hard** | Returns real buyer phrasing; the first source tried. A burst of scripted traffic gets the IP refused for a while, so the scripts pace themselves, keep a circuit breaker and resume rather than restart |
+| Bing autocomplete (`osjson.aspx`) | **works** | The fallback source, and a relevant one — Bing's index is what Copilot answers from |
+| DuckDuckGo HTML SERP | **works via .NET transport, intermittently blocked** | Node's own client times out (filtered DNS), so the scripts fall back to a PowerShell transport that honours the system proxy. Sustained scripted use gets the host to refuse the connection, so the SERP capture is a separate, slower job from the question bank |
 | Bing HTML SERP | **unusable** | Serves degraded, unrelated results to scripted requests — `site:iaapa.org` returned dictionary definitions of "career" |
 | Google HTML SERP | **unusable** | Returns a JavaScript shell with no result markup |
 | The `site:` operator | **unreliable** | Returns nothing even for large, well-known domains; index status must be checked in webmaster tools, never scripted |
@@ -82,6 +83,17 @@ Everything below was tested on 24 October 2026, not assumed.
 | Gemini web app | **reachable** (HTTP 200) | Same |
 | ChatGPT / Claude web apps | **HTTP 403 here** | Must be sampled manually by the team using the same question sheet |
 | OpenAI / Anthropic / Perplexity / Google APIs | **no keys available** | The answer audit is therefore built keyless-first; API slots are reserved but never required |
+
+**On the state of the capture at the time of writing.** The question bank
+and the competitive map are two independent instruments, and they are allowed
+to fail separately. During the first build of this programme a run of
+autocomplete requests collected 102 distinct buyer phrasings across the seed
+set before the endpoint began refusing traffic; a later run overwrote that
+capture with an empty one, which is why the capture scripts now merge with
+what is already on disk instead of replacing it, and why the question bank is
+captured with `--no-serp` while the competitive map is captured on its own.
+The current state of `docs/geo/demand-map.md` reflects whatever the last
+successful capture left behind; `npm run research:demand` resumes it.
 
 **Index status is an open item.** It cannot be established by script and is
 therefore verified in Bing Webmaster Tools and Google Search Console, with the

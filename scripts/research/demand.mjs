@@ -24,7 +24,7 @@ import { existsSync, readFileSync } from 'node:fs';
 const readJson = (path) => (existsSync(path) ? JSON.parse(readFileSync(path, 'utf8')) : {});
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { autocomplete, serp, classifyShape, sleep, ThrottledError } from './_ddg.mjs';
+import { autocompleteAny, serp, classifyShape, sleep, ThrottledError } from './_ddg.mjs';
 import { seeds as seedList } from './seeds.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
@@ -39,6 +39,11 @@ const argOf = (flag) => {
 const localeFilter = argOf('--locale');
 const pillarFilter = argOf('--pillar');
 const limit = Number(argOf('--limit') || 0);
+// The two instruments are independent: the question bank comes from
+// autocomplete, the competitive map from the result pages. When one of them
+// is blocked, the other must still be able to run.
+const skipSerp = argv.includes('--no-serp');
+const pace = Number(argOf('--pace') || 3200);
 
 let seeds = seedList.filter((s) => s.q);
 if (localeFilter) seeds = seeds.filter((s) => s.locale === localeFilter);
@@ -70,18 +75,18 @@ for (const [i, seed] of seeds.entries()) {
   try {
     // Sequential, not parallel: DuckDuckGo throttles bursts, and a throttle
     // costs far more time than the two requests themselves.
-    const suggestions = await withBackoff(() => autocomplete(seed.q), []);
-    await sleep(3200 + Math.floor(Math.random() * 2000));
-    const results = await withBackoff(() => serp(seed.q, 10), []);
+    const suggestions = await withBackoff(() => autocompleteAny(seed.q), { phrases: [], source: "none" });
+    await sleep(pace + Math.floor(Math.random() * 1500));
+    const results = skipSerp ? [] : await withBackoff(() => serp(seed.q, 10), []);
 
-    for (const phrase of suggestions) {
+    for (const phrase of suggestions.phrases) {
       questionBank.push({
         phrase,
         seed: seed.q,
         pillar: seed.pillar,
         vertical: seed.vertical,
         locale: seed.locale,
-        evidence: `DuckDuckGo autocomplete for "${seed.q}"`,
+        evidence: `${suggestions.source} autocomplete for "${seed.q}"`,
       });
     }
 
@@ -90,7 +95,7 @@ for (const [i, seed] of seeds.entries()) {
 
     console.log(`${label} :: ${seed.q}`);
     console.log(
-      `   +${suggestions.length} phrases | ${classified.length} results | shapes: ${
+      `   +${suggestions.phrases.length} phrases (${suggestions.source}) | ${classified.length} results | shapes: ${
         classified.map((c) => c.shape).join(', ') || 'none'
       }`,
     );
