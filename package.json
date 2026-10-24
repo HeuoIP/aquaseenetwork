@@ -12,7 +12,13 @@
     "preview:cloudflare": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "setup:mail": "node scripts/set-mail-secrets.mjs",
     "deploy:cloudflare": "opennextjs-cloudflare build && wrangler deploy",
-    "deploy:cloudflare:dry": "opennextjs-cloudflare build && wrangler deploy --dry-run"
+    "deploy:cloudflare:dry": "opennextjs-cloudflare build && wrangler deploy --dry-run",
+    "geo:check": "node scripts/geo/struct-check.mjs",
+    "geo:audit": "node scripts/geo/answer-audit.mjs",
+    "geo:serp": "node scripts/geo/serp-track.mjs",
+    "geo:scorecard": "node scripts/geo/scorecard.mjs",
+    "research:demand": "node scripts/research/demand.mjs",
+    "research:serp": "node scripts/research/serp-map.mjs"
   },
   "dependencies": {
     "next": "16.4.2",

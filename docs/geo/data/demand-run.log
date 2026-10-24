@@ -1,0 +1,135 @@
+远程服务器返回错误: (403) 已禁止。
+[1/44] en strategy :: FAILED how to scope a resort leisure project -> 403 for https://html.duckduckgo.com/html/?q=how%20to%20scope%20a%20resort%20leisure%20project
+远程服务器返回错误: (403) 已禁止。
+[2/44] en strategy :: FAILED how to write a brief for a design and build supplier -> 403 for https://html.duckduckgo.com/html/?q=how%20to%20write%20a%20brief%20for%20a%20design%20and%20build%20supplier
+远程服务器返回错误: (403) 已禁止。
+[3/44] en strategy :: FAILED choosing between a design agency and a manufacturing partner -> 403 for https://html.duckduckgo.com/html/?q=choosing%20between%20a%20design%20agency%20and%20a%20manufacturing%20partner
+远程服务器返回错误: (403) 已禁止。
+[4/44] en strategy :: FAILED how much does a custom playground installation cost -> 403 for https://html.duckduckgo.com/html/?q=how%20much%20does%20a%20custom%20playground%20installation%20cost
+远程服务器返回错误: (403) 已禁止。
+[5/44] en strategy :: FAILED who to hire to develop a themed attraction -> 403 for https://html.duckduckgo.com/html/?q=who%20to%20hire%20to%20develop%20a%20themed%20attraction
+远程服务器返回错误: (403) 已禁止。
+[6/44] en strategy :: FAILED how to evaluate playground equipment suppliers -> 403 for https://html.duckduckgo.com/html/?q=how%20to%20evaluate%20playground%20equipment%20suppliers
+远程服务器返回错误: (403) 已禁止。
+[7/44] en strategy :: FAILED tender documentation for a custom public space installation -> 403 for https://html.duckduckgo.com/html/?q=tender%20documentation%20for%20a%20custom%20public%20space%20installation
+远程服务器返回错误: (403) 已禁止。
+[8/44] en strategy :: FAILED feasibility study for a resort water play area -> 403 for https://html.duckduckgo.com/html/?q=feasibility%20study%20for%20a%20resort%20water%20play%20area
+远程服务器返回错误: (403) 已禁止。
+[9/44] en strategy :: FAILED how to compare quotes from different suppliers -> 403 for https://html.duckduckgo.com/html/?q=how%20to%20compare%20quotes%20from%20different%20suppliers
+远程服务器返回错误: (403) 已禁止。
+[10/44] en strategy :: FAILED who manages playground equipment supply for a resort -> 403 for https://html.duckduckgo.com/html/?q=who%20manages%20playground%20equipment%20supply%20for%20a%20resort
+远程服务器返回错误: (403) 已禁止。
+[11/44] en creative-design :: FAILED how to turn a concept into buildable drawings -> 403 for https://html.duckduckgo.com/html/?q=how%20to%20turn%20a%20concept%20into%20buildable%20drawings
+远程服务器返回错误: (403) 已禁止。
+[12/44] en creative-design :: FAILED should we prototype a custom installation -> 403 for https://html.duckduckgo.com/html/?q=should%20we%20prototype%20a%20custom%20installation
+远程服务器返回错误: (403) 已禁止。
+[13/44] en creative-design :: FAILED materials for outdoor play equipment in hot humid climates -> 403 for https://html.duckduckgo.com/html/?q=materials%20for%20outdoor%20play%20equipment%20in%20hot%20humid%20climates
+远程服务器返回错误: (403) 已禁止。
+[14/44] en creative-design :: FAILED EN 1176 playground safety standard requirements -> 403 for https://html.duckduckgo.com/html/?q=EN%201176%20playground%20safety%20standard%20requirements
+远程服务器返回错误: (403) 已禁止。
+[15/44] en creative-design :: FAILED landscape architect working with a fabricator -> 403 for https://html.duckduckgo.com/html/?q=landscape%20architect%20working%20with%20a%20fabricator
+远程服务器返回错误: (403) 已禁止。
+[16/44] en creative-design :: FAILED lighting design for a public space installation -> 403 for https://html.duckduckgo.com/html/?q=lighting%20design%20for%20a%20public%20space%20installation
+基础连接已经关闭: 发送时发生错误。
+The SSL connection could not be established, see inner exception.
+[17/44] en creative-design :: FAILED resort themed attraction design process -> Command failed: pwsh -NoProfile -NonInteractive -Command 
+$ErrorActionPreference = 'Stop'
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+try {
+  $headers = @{
+  'User-Agent' = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36';
+  'Accept-Language' = 'en-US,en;q=0.9'
+  }
+  $r = Invoke-WebRequest -Uri 'https://html.duckduckgo.com/html/?q=resort%20themed%20attraction%20design%20process' -UseBasicParsing -TimeoutSec 25 -Headers $headers
+  [System.IO.File]::WriteAllText('C:\Users\ADMINI~1\AppData\Local\Temp\geo-fetch-26548-1792803646662.html', $r.Content, (New-Object System.Text.UTF8Encoding($false)))
+  Write-Output $r.StatusCode
+} catch {
+  [Console]::Error.WriteLine($_.Exception.Message)
+  if ($_.Exception.Response) { Write-Output ([int]$_.Exception.Response.StatusCode) } else { exit 1 }
+}
+The SSL connection could not be established, see inner exception.
+
+基础连接已经关闭: 发送时发生错误。
+The SSL connection could not be established, see inner exception.
+[18/44] en creative-design :: FAILED inclusive playground design guidance -> Client network socket disconnected before secure TLS connection was established
+基础连接已经关闭: 发送时发生错误。
+The SSL connection could not be established, see inner exception.
+[19/44] en supply-chain :: FAILED how to vet a contract manufacturer in China -> Client network socket disconnected before secure TLS connection was established
+基础连接已经关闭: 发送时发生错误。
+The SSL connection could not be established, see inner exception.
+[20/44] en supply-chain :: FAILED factory inspection checklist for custom fabrication -> Client network socket disconnected before secure TLS connection was established
+基础连接已经关闭: 发送时发生错误。
+The SSL connection could not be established, see inner exception.
+[21/44] en supply-chain :: FAILED shipping oversized playground equipment overseas -> Client network socket disconnected before secure TLS connection was established
+基础连接已经关闭: 发送时发生错误。
+The SSL connection could not be established, see inner exception.
+[22/44] en supply-chain :: FAILED customs clearance for imported play equipment -> Client network socket disconnected before secure TLS connection was established
+基础连接已经关闭: 发送时发生错误。
+The SSL connection could not be established, see inner exception.
+[23/44] en supply-chain :: FAILED installing a large installation without closing the venue -> Client network socket disconnected before secure TLS connection was established
+基础连接已经关闭: 发送时发生错误。
+The SSL connection could not be established, see inner exception.
+[24/44] en supply-chain :: FAILED warranty and spare parts for custom play equipment -> Client network socket disconnected before secure TLS connection was established
+基础连接已经关闭: 发送时发生错误。
+The SSL connection could not be established, see inner exception.
+[25/44] en supply-chain :: FAILED who owns the mould for a custom product -> Client network socket disconnected before secure TLS connection was established
+基础连接已经关闭: 发送时发生错误。
+The SSL connection could not be established, see inner exception.
+[26/44] en supply-chain :: FAILED quality control during production of custom equipment -> Client network socket disconnected before secure TLS connection was established
+基础连接已经关闭: 发送时发生错误。
+The SSL connection could not be established, see inner exception.
+[27/44] en creative-design :: FAILED resort water park design consultant -> Client network socket disconnected before secure TLS connection was established
+基础连接已经关闭: 发送时发生错误。
+The SSL connection could not be established, see inner exception.
+[28/44] en creative-design :: FAILED children museum interactive installation designer -> Client network socket disconnected before secure TLS connection was established
+基础连接已经关闭: 发送时发生错误。
+The SSL connection could not be established, see inner exception.
+[29/44] en strategy :: FAILED city council playground design requirements -> Client network socket disconnected before secure TLS connection was established
+基础连接已经关闭: 发送时发生错误。
+The SSL connection could not be established, see inner exception.
+[30/44] en creative-design :: FAILED school playground design requirements -> Client network socket disconnected before secure TLS connection was established
+基础连接已经关闭: 发送时发生错误。
+The SSL connection could not be established, see inner exception.
+[31/44] en creative-design :: FAILED hotel kids club design supplier -> Client network socket disconnected before secure TLS connection was established
+基础连接已经关闭: 发送时发生错误。
+The SSL connection could not be established, see inner exception.
+[32/44] en creative-design :: FAILED playground surfacing and safety requirements -> Client network socket disconnected before secure TLS connection was established
+基础连接已经关闭: 发送时发生错误。
+The SSL connection could not be established, see inner exception.
+[33/44] en supply-chain :: FAILED public realm lighting installation contractor -> Client network socket disconnected before secure TLS connection was established
+基础连接已经关闭: 发送时发生错误。
+The SSL connection could not be established, see inner exception.
+[34/44] en strategy :: FAILED is it cheaper to manufacture play equipment in Asia -> Client network socket disconnected before secure TLS connection was established
+基础连接已经关闭: 发送时发生错误。
+The SSL connection could not be established, see inner exception.
+[35/44] zh strategy :: FAILED 水育乐园 设备 供应商 怎么选 -> Client network socket disconnected before secure TLS connection was established
+基础连接已经关闭: 发送时发生错误。
+The SSL connection could not be established, see inner exception.
+[36/44] zh strategy :: FAILED 儿童乐园 设计 招标 要求 -> Client network socket disconnected before secure TLS connection was established
+基础连接已经关闭: 发送时发生错误。
+The SSL connection could not be established, see inner exception.
+[37/44] zh strategy :: FAILED 度假区 景观 顾问 公司 -> Client network socket disconnected before secure TLS connection was established
+基础连接已经关闭: 发送时发生错误。
+The SSL connection could not be established, see inner exception.
+[38/44] zh supply-chain :: FAILED 游乐设备 出海 认证 标准 -> Client network socket disconnected before secure TLS connection was established
+基础连接已经关闭: 发送时发生错误。
+The SSL connection could not be established, see inner exception.
+[39/44] ar strategy :: FAILED مورد معدات ألعاب أطفال للفنادق -> Client network socket disconnected before secure TLS connection was established
+基础连接已经关闭: 发送时发生错误。
+The SSL connection could not be established, see inner exception.
+[40/44] ar strategy :: FAILED شركة استشارات تصميم مناطق ترفيه Resort -> Client network socket disconnected before secure TLS connection was established
+基础连接已经关闭: 发送时发生错误。
+The SSL connection could not be established, see inner exception.
+[41/44] ar creative-design :: FAILED متطلبات سلامة معدات الملاعب的标准 -> Client network socket disconnected before secure TLS connection was established
+基础连接已经关闭: 发送时发生错误。
+The SSL connection could not be established, see inner exception.
+[42/44] ru strategy :: FAILED производитель аттракционов для парков развлечений -> Client network socket disconnected before secure TLS connection was established
+基础连接已经关闭: 发送时发生错误。
+The SSL connection could not be established, see inner exception.
+[43/44] ru creative-design :: FAILED детская площадка стандарт безопасности -> Client network socket disconnected before secure TLS connection was established
+基础连接已经关闭: 发送时发生错误。
+The SSL connection could not be established, see inner exception.
+[44/44] ru supply-chain :: FAILED контроль качества на производстве оборудования -> Client network socket disconnected before secure TLS connection was established
+
+Done. 0 unique phrasings, 0 SERPs.
+44 seed(s) failed.
