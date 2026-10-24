@@ -281,7 +281,7 @@ export const serviceDetails: ServiceDetail[] = [
     slug: 'supply-chain',
     definition: 'AQUASEE Supply Chain and Delivery organises how a design becomes a physical asset: selecting and contracting qualified manufacturing partners, controlling quality during production, managing logistics and customs, installing on site around the reality of the venue, and handing over a documented, maintainable result with one accountable party.',
     notIncluded: [
-          "Ownership or operation of manufacturing capacity — we are not a factory and do not pretend to be one",
+          'Ownership or operation of manufacturing capacity — production is run by qualified partners under our brief and our inspection',
           "Unlimited revisions after handover — changes are handled as controlled changes with a stated cost",
           "Supply of standard catalogue products at distributor pricing",
           "Local trade labour where the client’s own site team is contracted to carry out installation"
@@ -316,9 +316,9 @@ export const serviceDetails: ServiceDetail[] = [
     index: '03',
     eyebrow: 'Supply Chain & Delivery',
     title: 'Supply Chain & Delivery',
-    lede: 'We do not manufacture. We bring the know-how that makes bespoke product buildable — and then let you decide how much of it you make yourself.',
+    lede: 'The making is one part of the job; landing it on your site is another. We bring the know-how that makes bespoke product buildable — and then let you decide how much of it you make yourself.',
     intro:
-      'We do not manufacture. What we bring instead is the knowledge that makes a bespoke product buildable: years of taking such products apart, understanding how every part is made, and reorganising that knowledge so it can be built — by us, by a partner, or by you.',
+      'A factory quote covers the manufacture. What we bring is everything around it: years of taking bespoke products apart, understanding how every part is made, and reorganising that knowledge so it can be built — by us, by a partner, or by you.',
     paragraphs: [
       'We have spent years specifying, sourcing, dismantling and delivering bespoke product for landscape, play and hospitality projects. That work produces a specific kind of knowledge: how a complicated object breaks into modules, which modules are worth making in-house, and how the rest should be bought.',
       'We hand you that knowledge as a set of options. A product can arrive complete, as a kit your team assembles, or as semi-finished modules your own team completes. Every route is costed against one specification, and you choose.',

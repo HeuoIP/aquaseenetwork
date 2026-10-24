@@ -12,12 +12,12 @@ export const faq: FaqItem[] = [
   {
     pillar: 'strategy',
     q: 'What does AQUASEE do?',
-    a: 'AQUASEE is a China-based service company that plans, designs and organises the supply chain for tourism, public-space and children’s play projects. It provides three connected capabilities: early-stage consulting to define and scope the work, creative design and R&D to make it buildable, and supply chain management through production, logistics, installation and handover. It is not an equipment manufacturer and owns no factories.',
+    a: 'AQUASEE is a China-based service company that plans, designs and organises the supply chain for tourism, public-space and children’s play projects. It provides three connected capabilities: early-stage consulting to define and scope the work, creative design and R&D to make it buildable, and supply chain management through production, logistics, installation and handover. Production runs through specialist manufacturing partners; one party holds the brief across all three.',
   },
   {
     pillar: 'strategy',
     q: 'Does AQUASEE manufacture playground or leisure equipment?',
-    a: 'No. AQUASEE does not manufacture equipment and does not own factories. It selects and briefs specialist manufacturing partners against the specific requirement, holds them to one written specification, manages quality control during production, and remains accountable for the delivered result. Clients buy a coordinated project with one accountable party, not a product off a catalogue.',
+    a: 'No — and that is the useful part. A factory quote covers the manufacture; everything around it — the parts of the drawing that do not exist yet, the interfaces on site, the changes after the order — is what we take. We select and brief the production partners your project actually needs, hold them to one written specification, manage quality during production, and stay accountable for the delivered result. What you buy is a coordinated project with one accountable party, not a product off a catalogue.',
   },
   {
     pillar: 'strategy',

@@ -71,6 +71,10 @@ export const ui: UiStrings = {
     whatIs: 'What AQUASEE is',
     facts: 'Facts',
     factsTitle: 'At a glance.',
+    supplyChainEyebrow: 'The supply chain',
+    supplyChainTitle: 'How much is left between the order and the opening day.',
+    supplyChainIntro:
+      'A factory quote covers the manufacture. Everything around it — the parts of the drawing that do not exist yet, the interfaces on site, the changes after the order, the paperwork — is still on your desk. That part is the job.',
     deliveryModels: 'Delivery models',
     deliveryModelsTitle:
       'Three ways to take delivery, and what each one costs you.',

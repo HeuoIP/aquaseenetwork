@@ -110,6 +110,11 @@ export type AboutContent = {
   facts: { label: string; value: string }[];
   deliveryModels: DeliveryModel[];
   costDrivers: string[];
+  /**
+   * Why the supply-chain route serves a buyer better than a factory quote.
+   * Written in the buyer's terms, because that is the decision being made.
+   */
+  supplyChainPoints: { title: string; description: string }[];
   comparison: {
     intro: string;
     rows: ComparisonRow[];
@@ -270,6 +275,9 @@ export type UiStrings = {
     whatIs: string;
     facts: string;
     factsTitle: string;
+    supplyChainEyebrow: string;
+    supplyChainTitle: string;
+    supplyChainIntro: string;
     deliveryModels: string;
     deliveryModelsTitle: string;
     yourRole: string;

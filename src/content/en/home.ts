@@ -22,7 +22,7 @@ export const home: HomeContent = {
     title: 'One team, from the first sketch to the finished site.',
     paragraphs: [
       'You have an idea, a site and a date. What you need is for someone to carry it from "should we do this?" to "it is built, installed and working" — without the plan breaking in three places on the way. That is one job, and we take it as one job.',
-      'We are not a factory and we will not pretend to be one. We bring in the specialist or manufacturing partner each part of your project actually needs, brief them to one specification, and stay answerable for the result.',
+      'Every part of your project is made by the partner best suited to it — under one written specification, with inspection at agreed milestones. What comes back to you is one result, and the space in between is our responsibility.',
       'What that buys you: fewer handovers, fewer gaps between the drawing and the site, and a project that still looks like what you asked for on the day it opens.',
     ],
     audiences: [

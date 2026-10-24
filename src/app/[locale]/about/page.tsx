@@ -77,6 +77,38 @@ export default async function AboutPage({ params }: PageProps<'/[locale]/about'>
         </div>
       </section>
 
+      {/* ---- Why the supply chain ------------------------------------------ */}
+      <section className="bg-paper pb-16 sm:pb-20 lg:pb-24">
+        <div className="shell">
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+            <Reveal className="lg:col-span-5">
+              <p className="eyebrow text-accent">{ui.about.supplyChainEyebrow}</p>
+              <h2 className="mt-5 max-w-3xl text-title">{ui.about.supplyChainTitle}</h2>
+              <p className="mt-5 text-[0.9375rem] leading-relaxed text-body">
+                {ui.about.supplyChainIntro}
+              </p>
+            </Reveal>
+            <Reveal delay={100} className="lg:col-span-7">
+              <ol className="divide-y divide-line border-y border-line">
+                {about.supplyChainPoints.map((point, i) => (
+                  <li key={point.title} className="flex gap-6 py-5">
+                    <span className="font-mono text-[0.75rem] tracking-[0.16em] text-accent">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <span>
+                      <span className="block text-[1rem] font-medium text-ink">{point.title}</span>
+                      <span className="mt-1.5 block text-[0.9375rem] leading-relaxed text-body">
+                        {point.description}
+                      </span>
+                    </span>
+                  </li>
+                ))}
+              </ol>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
       {/* ---- Delivery models ----------------------------------------------- */}
       <section className="bg-sand py-16 sm:py-20 lg:py-24">
         <div className="shell">

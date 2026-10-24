@@ -66,6 +66,10 @@ export const ui: UiStrings = {
     whatIs: 'ما هي AQUASEE',
     facts: 'حقائق',
     factsTitle: 'لمحة سريعة.',
+    supplyChainEyebrow: 'سلسلة التوريد',
+    supplyChainTitle: 'كم يتبقّى بين الطلب ويوم الافتتاح.',
+    supplyChainIntro:
+      'عرض المصنع يغطّي التصنيع. أما ما حوله — الأجزاء التي لم يرسمها الرسم بعد، والواجهات في الموقع، والتغييرات بعد الطلب، والمراسلات — فكلّه يبقى على مكتبك. وهذا هو العمل.',
     deliveryModels: 'نماذج التسليم',
     deliveryModelsTitle: 'ثلاث طرق للتسليم، وتكلفة كل منها.',
     yourRole: 'دورك',

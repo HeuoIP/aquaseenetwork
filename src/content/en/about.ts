@@ -12,11 +12,11 @@ import type { AboutContent } from '@/content/types';
  */
 export const about: AboutContent = {
   eyebrow: 'About AQUASEE',
-  title: 'A service company, not a factory.',
+  title: 'Between the drawing and the opening day.',
   lede:
-    'Bring us a tourism, public-space or children’s play project and we will plan it, design it and organise the supply chain that builds it. One brief, held across all three, and no production capacity of our own.',
+    'Bring us a tourism, public-space or children’s play project and we will plan it, design it and organise the supply chain that builds it — including the parts that usually get left to you.',
   definition:
-    'AQUASEE is a China-based service company for developers, operators and design practices working on tourism, public-space and children’s play projects. It provides three connected capabilities: early-stage consulting that defines and scopes the work, creative design and R&D that makes it buildable, and organised supply chain management through production, logistics, installation and handover. It is not an equipment manufacturer and owns no factories; it selects, briefs, manages and verifies specialist manufacturing partners, and remains accountable for the result.',
+    'AQUASEE is a China-based service company for developers, operators and design practices working on tourism, public-space and children’s play projects. It provides three connected capabilities: early-stage consulting that defines and scopes the work, creative design and R&D that makes it buildable, and organised supply chain management through production, logistics, installation and handover. It is not an equipment manufacturer; production runs through specialist manufacturing partners it selects, briefs, inspects and verifies, and it remains accountable for the result.',
   facts: [
     { label: 'Base', value: 'China, working with clients worldwide' },
     { label: 'Capabilities', value: 'Strategy and consulting · Creative design and R&D · Supply chain and delivery' },
@@ -58,6 +58,33 @@ export const about: AboutContent = {
         'Oversized or site-constrained work, international shipping, or sites where fabrication on site is impractical.',
       tradeOff:
         'The best option for complex geometry and long logistics chains, and the one that needs the most careful planning early.',
+    },
+  ],
+  supplyChainPoints: [
+    {
+      title: 'The parts the drawing does not cover',
+      description:
+        'How the piece meets structure, drainage, power and lighting. How it is fixed. How it is cleaned, maintained and opened. We settle these before they turn into variations on site.',
+    },
+    {
+      title: 'A change is a conversation, not a new invoice',
+      description:
+        'The cost plan and the change log are held by one party. When the design moves, you see what it does to the whole project — not what it does to one purchase order.',
+    },
+    {
+      title: 'One specification, not five',
+      description:
+        'Every supplier works to the same written specification, with inspection at agreed milestones and records handed over at completion.',
+    },
+    {
+      title: 'Shipping is not installation',
+      description:
+        'Customs, wooden packing and quarantine, night work around a venue that stays open, commissioning, training and the handover pack.',
+    },
+    {
+      title: 'What you actually receive',
+      description:
+        'An installed, commissioned, maintainable asset — and one party answerable for it from the first sketch to the day it opens.',
     },
   ],
   costDrivers: [
@@ -119,7 +146,7 @@ export const about: AboutContent = {
       },
     ],
     note:
-      'We are describing our own model accurately, not ranking the others. A factory is the right choice for a standard product with a finished drawing, and a design studio is the right choice when the design is the whole problem.',
+      'We are describing our own model accurately, not ranking the others. If you have a standard product and a finished drawing, a factory is the right choice — and we will tell you so. This site is for the other case: when the design, the interfaces and the site are still open questions.',
   },
   glossary: [
     {
@@ -174,7 +201,7 @@ export const about: AboutContent = {
     },
   ],
   boundaries: [
-    'We do not manufacture equipment and we do not own factories.',
+    'Production is carried out by qualified manufacturing partners — we brief them, inspect at agreed milestones and accept the work.',
     'We do not publish client projects without written authorisation, and we do not present concept work as delivered work.',
     'We do not take on work we believe cannot be delivered responsibly for the budget and programme stated.',
     'We do not provide legal, structural-engineering or certification services; we engage qualified specialists and hold them to the brief.',

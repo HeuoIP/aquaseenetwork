@@ -15,9 +15,9 @@ export const collaborationModel = [
       'We bring in the expertise your project actually requires — landscape architects, structural and electrical engineers, fabricators, lighting and control specialists — and hold all of them to one brief.',
   },
   {
-    title: 'No factory of our own — and no pretending',
+    title: 'The right production partner for each part',
     description:
-      'We work with a vetted network of specialist and manufacturing partners rather than claiming factory ownership. That means the right capability for the job, and one party answerable for the outcome.',
+      'Production runs through a vetted network of specialist and manufacturing partners, so every part is made where it is best made. Your counterpart is one party; theirs is another.',
   },
   {
     title: 'Everything that matters is in writing',

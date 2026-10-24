@@ -67,6 +67,10 @@ export const ui: UiStrings = {
     whatIs: 'AQUASEE 是什么',
     facts: '事实',
     factsTitle: '基本情况。',
+    supplyChainEyebrow: '供应链',
+    supplyChainTitle: '从下单到开业，中间还剩多少事。',
+    supplyChainIntro:
+      '工厂报价覆盖的是"生产"。生产周围那些事——图纸上还没画出来的部分、现场的各种接口、下单之后的变更、文件往来——还都留在你桌上。那正是我们要接的活。',
     deliveryModels: '交付模式',
     deliveryModelsTitle: '三种交付方式，以及各自的代价。',
     yourRole: '你的角色',
