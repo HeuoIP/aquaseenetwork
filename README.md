@@ -36,49 +36,65 @@ Requires Node.js 20.9+ (developed on Node 24).
 ```
 src/
 ├── app/
-│   ├── layout.tsx            # Root layout, fonts, global metadata, OG image
-│   ├── page.tsx              # Home
-│   ├── globals.css           # Design tokens (@theme), base styles, utilities
-│   ├── icon.tsx              # Favicon (generated)
-│   ├── opengraph-image.tsx   # Social share card (generated)
-│   ├── robots.ts             # robots.txt
-│   ├── sitemap.ts            # sitemap.xml
-│   ├── not-found.tsx         # 404
-│   ├── strategy/             # Service page — Strategy & Consulting
-│   ├── creative-design/      # Service page — Creative Design & R&D
-│   ├── supply-chain/         # Service page — Supply Chain & Project Delivery
-│   ├── projects/             # Selected Projects & Capabilities
-│   ├── contact/              # Start a Project (inquiry form)
-│   └── api/inquiry/          # Inquiry endpoint (validation + delivery)
+│   ├── [locale]/                  # ← every page lives under the locale segment
+│   │   ├── layout.tsx             # Root layout (html lang/dir, fonts, Organization + WebSite JSON-LD)
+│   │   ├── page.tsx               # Home
+│   │   ├── strategy/              # Strategy & Consulting
+│   │   ├── creative-design/       # Creative Design & R&D
+│   │   ├── supply-chain/          # Supply Chain & Delivery
+│   │   ├── projects/              # Capability studies
+│   │   ├── about/                 # Entity facts page
+│   │   ├── faq/                   # Questions, grouped by capability
+│   │   ├── insights/              # Insight library
+│   │   │   └── [slug]/            # One page per guide
+│   │   ├── contact/               # Inquiry form
+│   │   └── unsubscribe/           # One-click unsubscribe
+│   ├── api/inquiry/               # Inquiry endpoint (validation + delivery + attribution)
+│   ├── api/unsubscribe/           # Unsubscribe endpoint (Cloudflare KV)
+│   ├── llms.txt/route.ts          # Machine-readable summary for answer engines
+│   ├── llms-full.txt/route.ts     # The whole site as plain markdown
+│   ├── global-not-found.tsx       # 404, rendered outside the locale tree
+│   ├── robots.ts                  # Crawler policy (answer engines allowed, training crawlers blocked)
+│   ├── sitemap.ts                 # Every published URL + hreflang alternates
+│   ├── icon.tsx · opengraph-image.tsx
+│   └── globals.css                # Design tokens (@theme), font stacks, RTL
 ├── components/
-│   ├── art/                  # Abstract SVG compositions (HeroArt, Art)
-│   ├── contact/              # InquiryForm (client component)
-│   ├── home/                 # Homepage sections
-│   ├── service/              # Shared service-page template
-│   ├── site/                 # Header, Footer
-│   └── ui/                   # Action, SectionHeader, DisclosureTag, Reveal
-├── components/art/           # Abstract SVG diagrams + StudyVisual (image or diagram)
-├── content/                  # ← ALL EDITABLE COPY LIVES HERE
-│   ├── site.ts               # Brand, nav, services index, contact details
-│   ├── services.ts           # Full service page content
-│   ├── projects.ts           # Capability studies
-│   ├── process.ts            # Six-stage workflow
-│   └── collaboration.ts      # Collaboration model, audience list
+│   ├── art/ · home/ · service/ · site/ · ui/ · insights/
+├── content/
+│   ├── types.ts                   # The content model, shared by every language
+│   ├── en/ · zh/ · ar/ · ru/      # One folder per language
 ├── lib/
-    ├── inquiry.ts            # Field options, validation, sanitisation
-    └── cn.ts
-public/
-└── images/                   # Concept renders (see "Imagery" in section 8)
+│   ├── locale.ts                  # Locales, URL rules, hreflang, rewrite rules
+│   ├── dictionary.ts              # Content access per language
+│   ├── metadata.ts · jsonld.ts    # Canonical URLs, hreflang, structured data
+│   ├── attribution.ts             # Where an inquiry came from (AI engine, search, campaign)
+│   └── inquiry.ts · cn.ts
+├── proxy.ts                       # Canonical host + language routing
+scripts/
+├── research/                      # Demand mining (R2, R3)
+├── geo/                           # Measurement (T2, T3) and the release gate
+└── set-mail-secrets.mjs
+docs/geo/                         # The GEO programme: memo, metrics, maps, ledger, scorecard
 ```
 
-**Editing content:** you never need to touch a component to change copy. Edit the files in
-`src/content/` and the pages update. Adding a service page means adding one entry to
-`serviceDetails` in `src/content/services.ts` and one thin route file.
+**Editing content:** you never need to touch a component to change copy. Edit the
+files in `src/content/<language>/` and the pages update. The three capabilities
+live in one array (`services.ts`) so the homepage cards and the capability
+pages can never drift apart.
 
-`src/content/services.ts` is the single source of truth for the three capabilities: the homepage
-cards and the capability pages both read from it, so they cannot drift apart.
+### Languages
 
----
+English is served from the root paths (`/strategy`); other languages carry a
+prefix (`/zh/strategy`, `/ar/strategy`). The whole tree sits under a
+`[locale]` segment, and an internal rewrite in `src/proxy.ts` maps the
+unprefixed English URLs onto it — so a visitor never sees an `/en/` prefix
+while the application still has exactly one implementation per page.
+
+A language is only published when three things are true: its content module
+exists, it is listed in `PUBLISHED_LOCALES` (`src/lib/locale.ts`), and its
+loader is registered (`src/lib/dictionary.ts`). The language switcher, the
+sitemap and the hreflang map all follow that list, so a language can never be
+advertised before it exists.
 
 ## 3. Design system
 
@@ -411,6 +427,62 @@ the underlying facts change.
 - `.env` and `.env*.local` are git-ignored — never commit API keys.
 - `.env.example` documents every supported variable without any real values.
 - `node_modules`, `.next` and build output are git-ignored.
+
+---
+
+## 11. The GEO programme
+
+The site is written to be **cited by answer engines** — ChatGPT, Claude,
+Perplexity, Gemini, Copilot — in the target markets: the Gulf, Southeast and
+East Asia, Oceania, Eastern Europe, Central Asia and Africa, where tourism,
+public-space and children’s-play investment is active.
+
+Everything about that goal is documented in `docs/geo/`:
+
+| File | What it holds |
+| --- | --- |
+| `methodology-memo.md` | The methods adopted (from the Princeton GEO paper), the ones deliberately rejected, the battlefield decision and the instruments that actually work |
+| `metrics-dictionary.md` | Every metric, its formula and how it is measured |
+| `demand-map.md` | The buyer question bank, collected from real search data |
+| `competitive-map.md` | Which page shapes win those questions, and who owns them |
+| `experiment-ledger.md` | One row per iteration round — hypothesis, change, result, decision |
+| `scorecard.md` | The four layers and eight metrics, generated from the measurements |
+| `answer-audit.md` · `search-visibility.md` | The latest measurements |
+
+### The four layers
+
+| Layer | Question | Instrument |
+| --- | --- | --- |
+| L1 retrievability | Can the target market find us at all? | Crawler logs, search visibility tracking, webmaster tools |
+| L2 citation | Do engines answer with us? | The answer audit — a fixed set of 26 buyer questions |
+| L3 framing | Do engines describe us correctly? | The same audit, scored on the service-vs-manufacturer test |
+| L4 commercial | Do those visitors become inquiries? | The inquiry source field on every inquiry |
+
+### Running it
+
+```bash
+npm run geo:check       # release gate: JSON-LD, hreflang, sitemap, llms.txt, framing
+npm run geo:audit       # the answer audit (no API key needed)
+npm run geo:serp        # weekly search visibility tracking
+npm run geo:scorecard   # one page with the four layers and eight metrics
+npm run research:demand # re-mine the question bank
+npm run research:serp   # re-map the competitive landscape
+```
+
+`npm run geo:check` runs against the build output and is the gate to pass
+before publishing: it fails the build if a page loses its JSON-LD, if a
+hreflang points at a page that does not exist, if the sitemap drifts from the
+route set, if `llms.txt` stops matching the pages, or if any page describes
+AQUASEE as a manufacturer.
+
+### The one thing that must not drift
+
+AQUASEE is a **service company** — early-stage consulting, creative design and
+R&D, and organised supply chain through to delivery. It does not manufacture and
+does not own factories. Every page states this, and the audit scores it. The
+vertical is dominated by equipment suppliers, so the site competes on decision
+and specification questions, never on "who is the manufacturer".
+
 
 ---
 
