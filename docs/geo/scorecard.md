@@ -1,6 +1,6 @@
 # GEO scorecard
 
-Generated: 2026-10-24T01:17:11.619Z
+Generated: 2026-10-24T02:35:07.912Z
 
 ## The four layers
 
@@ -29,6 +29,6 @@ Generated: 2026-10-24T01:17:11.619Z
 
 ## Iteration
 
-Experiments recorded in the ledger: **2**
+Experiments recorded in the ledger: **4**
 
 Decision rule: three consecutive rounds with no movement on L2 means the content is not the bottleneck — change the page form, the angle, or the external signal.

@@ -20,6 +20,12 @@ are no longer the same business.
 
 ## 2. The order of work
 
+**Published so far: English and Chinese.** The Chinese edition covers every
+content module except the insight library, so its navigation omits the
+`Insights` entry and the library page states plainly that it is being
+written. Arabic and Russian follow the same route; the termbase is already
+locked in all four languages, so the work is writing, not deciding.
+
 For each language:
 
 1. `site.ts` — brand, navigation, contact. The navigation decides which
@@ -81,6 +87,9 @@ A language is published when all of these are true:
 - `npm run typecheck` and `npm run build` pass;
 - `npm run geo:check` passes — it checks the hreflang map against the pages
   that actually exist, so a half-published language fails the gate;
+- `npm run geo:runtime` passes against the local Worker preview — the build
+  can be green while the language routing is broken in the runtime the site
+  is served from;
 - a native speaker has read the pages that carry the claims: the facts page,
   the three capability definitions, and the questions.
 

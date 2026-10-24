@@ -96,6 +96,20 @@ loader is registered (`src/lib/dictionary.ts`). The language switcher, the
 sitemap and the hreflang map all follow that list, so a language can never be
 advertised before it exists.
 
+**Published: English and Chinese.** Arabic and Russian are prepared but not
+published — their content modules do not exist yet. Two rules keep a half-built
+language from leaking:
+
+- the chrome (section headings, buttons, form labels, table headers) lives in
+  `src/content/<locale>/ui.ts`, so a published language is published with its
+  frame, not with English buttons;
+- the hreflang map only advertises a language for a path that exists in it, so
+  an English article that has no Chinese edition is never advertised as having
+  one.
+
+The Chinese edition has no insight library yet, so its navigation omits
+`Insights` and the library page says so plainly.
+
 ## 3. Design system
 
 Defined as CSS custom properties inside the `@theme` block of `src/app/globals.css`.
@@ -462,6 +476,7 @@ Everything about that goal is documented in `docs/geo/`:
 
 ```bash
 npm run geo:check       # release gate: JSON-LD, hreflang, sitemap, llms.txt, framing
+npm run geo:runtime     # the same gate, against a running server (local Worker preview)
 npm run geo:audit       # the answer audit (no API key needed)
 npm run geo:serp        # weekly search visibility tracking
 npm run geo:scorecard   # one page with the four layers and eight metrics
@@ -473,7 +488,15 @@ npm run research:serp   # re-map the competitive landscape
 before publishing: it fails the build if a page loses its JSON-LD, if a
 hreflang points at a page that does not exist, if the sitemap drifts from the
 route set, if `llms.txt` stops matching the pages, or if any page describes
-AQUASEE as a manufacturer.
+AQUASEE as a manufacturer. It is language-aware: every page is checked with
+the rules of its own language, not with the English ones.
+
+`npm run geo:runtime` is the second half of the gate. The build can be green
+and the site still broken in the runtime it is served from — the internal
+language rewrite, the prefixed routes, the asset handling. It drives a
+running local server (the workerd preview, or `next dev`) over every
+published language, every route and every hreflang target, and asserts that
+each one answers. It never touches Cloudflare: the target is a local server.
 
 ### The one thing that must not drift
 
