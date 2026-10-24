@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { StudyVisual } from '@/components/art/StudyVisual';
 import { HeroShell } from '@/components/site/HeroShell';
 import { ActionLink } from '@/components/ui/Action';
@@ -29,6 +30,7 @@ export default async function ProjectsPage({ params }: PageProps<'/[locale]/proj
   const capabilityStudies = dict.studies;
   const disclosureNote = dict.about.processNote;
   const audiences = dict.collaboration.audiences;
+  const materials = dict.materials;
   const ui = dict.ui;
   return (
     <>
@@ -53,6 +55,47 @@ export default async function ProjectsPage({ params }: PageProps<'/[locale]/proj
           </div>
         </div>
       </HeroShell>
+
+      {/* ---- Project material ---------------------------------------------- */}
+      <section className="bg-paper pb-16 sm:pb-20 lg:pb-24">
+        <div className="shell">
+          <Reveal>
+            <p className="eyebrow text-accent">{ui.projects.materialsEyebrow}</p>
+            <h2 className="mt-5 max-w-3xl text-title">{ui.projects.materialsTitle}</h2>
+            <p className="mt-5 max-w-3xl text-[0.9375rem] leading-relaxed text-body">
+              {ui.projects.materialsIntro}
+            </p>
+          </Reveal>
+
+          <div className="mt-12 grid gap-10 md:grid-cols-2 lg:gap-12">
+            {materials.map((material, i) => (
+              <Reveal key={material.slug} delay={i * 60}>
+                <figure>
+                  <div className="relative aspect-[16/10] overflow-hidden bg-ink">
+                    <Image
+                      src={material.image.src}
+                      alt={material.image.alt}
+                      fill
+                      sizes="(min-width: 1024px) 46vw, 100vw"
+                      className="object-cover"
+                    />
+                    <span className="absolute left-5 top-5 rounded-full border border-white/20 bg-ink/70 px-3 py-1 font-mono text-[0.5625rem] uppercase tracking-[0.16em] text-on-dark backdrop-blur-sm">
+                      {material.stage}
+                    </span>
+                  </div>
+                  <p className="mt-4 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-accent">
+                    {material.discipline}
+                  </p>
+                  <h3 className="mt-2 text-[1.25rem] leading-snug text-ink">{material.title}</h3>
+                  <p className="mt-3 text-[0.9375rem] leading-relaxed text-body">
+                    {material.description}
+                  </p>
+                </figure>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ---- Disclosure ---------------------------------------------------- */}
       <section className="bg-accent-tint py-10">

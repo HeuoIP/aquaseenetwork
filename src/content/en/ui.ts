@@ -115,6 +115,10 @@ export const ui: UiStrings = {
     eyebrow: 'Projects & Capabilities',
     title: 'What we are set up to do.',
     lede: 'A set of illustrative studies describing the scope, method and outcome of typical AQUASEE engagements — for developers, hospitality groups, design practices and leisure developers.',
+    materialsEyebrow: 'Project material',
+    materialsTitle: 'Our work, with the stage each piece came from.',
+    materialsIntro:
+      'Design work is published at the stage it was produced: a rendering, a sketch, a plan. We publish the stage with the picture, because a rendering is not a photograph and a plan is not a building.',
     aboutVisuals: 'About the visuals on this page',
     artAlt:
       'Generated concept artwork: a landscape plate, a bespoke fixture element and an equipment module mounted on one shared structural armature.',

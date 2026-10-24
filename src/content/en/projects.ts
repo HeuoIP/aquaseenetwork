@@ -1,4 +1,5 @@
 import type { StudyVisualData } from '@/components/art/StudyVisual';
+import type { ProjectMaterial } from '@/content/types';
 
 /**
  * Capability studies.
@@ -25,6 +26,87 @@ export type ProjectStudy = {
   visual: StudyVisualData;
   featured?: boolean;
 };
+
+export const materials: ProjectMaterial[] = [
+  {
+    slug: 'dongyuan-rooftop',
+    title: 'Rooftop playground, Dongyuan kindergarten',
+    discipline: 'Creative design',
+    stage: 'Rendering',
+    description:
+      'A play environment on the roof of a kindergarten: soft-surfaced play, a climbing tower with a tube slide, timber play edges and planted terraces, laid around the building rather than beside it.',
+    image: {
+      kind: 'image',
+      src: '/images/cases/dongyuan-rooftop.webp',
+      alt: 'Aerial rendering of a kindergarten rooftop playground, with a blue soft-surfaced play area, a white climbing tower and slide, timber edges and planters between two wings of the building.',
+    },
+  },
+  {
+    slug: 'club-aerial',
+    title: 'Themed club playground, Quanzhou',
+    discipline: 'Creative design',
+    stage: 'Rendering',
+    description:
+      'A themed playground laid out around a water feature: a timber tower, looping elevated walks, a sand-and-water basin and a separate quiet zone at the edge.',
+    image: {
+      kind: 'image',
+      src: '/images/cases/club-aerial.webp',
+      alt: 'Aerial rendering of a themed playground with a timber play tower, looping elevated walkways, blue sand-and-water play surfacing and curved paths through planted areas.',
+    },
+  },
+  {
+    slug: 'yunwen-square',
+    title: 'Themed playground, Yunwen square, Tianchang',
+    discipline: 'Creative design',
+    stage: 'Rendering',
+    description:
+      'A themed playground with animal-shaped play forms, a slide and water play, set into a planted park and read as a destination rather than an add-on.',
+    image: {
+      kind: 'image',
+      src: '/images/cases/yunwen-square.webp',
+      alt: 'Rendering of a colourful themed playground in a flowering park, with animal-shaped play forms, a yellow slide and water play features.',
+    },
+  },
+  {
+    slug: 'wuyi-forest',
+    title: 'Forest-themed family park, Wuyishan',
+    discipline: 'Creative design · Planning',
+    stage: 'Rendering',
+    description:
+      'A family park laid out under existing woodland: shaded tents, a natural-play ground, sand and water, and a play tower among the trees.',
+    image: {
+      kind: 'image',
+      src: '/images/cases/wuyi-forest.webp',
+      alt: 'Aerial rendering of a nature playground under woodland, with shaded tent structures, a sandy play area, timber play elements and paths between trees.',
+    },
+  },
+  {
+    slug: 'concept-sketch',
+    title: 'Concept sketch — themed play structure',
+    discipline: 'Design development',
+    stage: 'Concept sketch',
+    description:
+      'A hand-drawn study of a themed play structure, published at the stage where the form is still being argued about.',
+    image: {
+      kind: 'image',
+      src: '/images/cases/concept-sketch.webp',
+      alt: 'Hand-drawn concept sketch of a themed play structure, with annotations marking the play elements.',
+    },
+  },
+  {
+    slug: 'concept-plan',
+    title: 'Concept plan — campsite',
+    discipline: 'Planning',
+    stage: 'Concept plan',
+    description:
+      'A hand-drawn master plan for a campsite, used to test the layout, the zoning and the sequence of spaces before anything is modelled.',
+    image: {
+      kind: 'image',
+      src: '/images/cases/concept-plan.webp',
+      alt: 'Hand-drawn concept master plan of a campsite, showing the play area, the planting and the circulation between them.',
+    },
+  },
+];
 
 export const capabilityStudies: ProjectStudy[] = [
   {
@@ -177,4 +259,4 @@ export const capabilityStudies: ProjectStudy[] = [
 ];
 
 export const disclosureNote =
-  'Each visual below is a generated concept render produced to communicate design intent for that kind of engagement. They are not photographs of completed AQUASEE projects, and no client work is represented here. Project imagery, names and references will be published once they are authorised.';
+  'The capability studies below are illustrative: they describe the scope, method and outcome of a typical engagement, and the visuals are generated concept renders. The project material above is our own work, published with the stage each piece came from.';

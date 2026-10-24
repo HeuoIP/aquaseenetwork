@@ -77,6 +77,11 @@ scripts/
 docs/geo/                         # The GEO programme: memo, metrics, maps, ledger, scorecard
 docs/editorial-rules.md           # How the copy is written: buyer first, not us first
 docs/market-research.md           # Internal: where to research next (not site content)
+
+The project images served on `/projects` live in `public/images/cases/`, one
+web-ready WebP per piece, each labelled with the stage it was produced at
+(rendering, concept sketch, concept plan). The 432 MB source library is not in
+the repository.
 ```
 
 **Editing content:** you never need to touch a component to change copy. Edit the

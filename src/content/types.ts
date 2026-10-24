@@ -65,6 +65,23 @@ export type ProjectStudy = {
   featured?: boolean;
 };
 
+/**
+ * A piece of real project material, published with the stage it came from.
+ *
+ * A rendering is not a photograph and a concept plan is not a building, so
+ * the stage travels with the picture. Nothing here claims an outcome that
+ * the material does not show.
+ */
+export type ProjectMaterial = {
+  slug: string;
+  title: string;
+  discipline: string;
+  /** The stage this material was produced at, in the site's language. */
+  stage: string;
+  description: string;
+  image: { kind: 'image'; src: string; alt: string };
+};
+
 export type ProcessStep = {
   index: string;
   title: string;
@@ -313,6 +330,9 @@ export type UiStrings = {
     lede: string;
     aboutVisuals: string;
     artAlt: string;
+    materialsEyebrow: string;
+    materialsTitle: string;
+    materialsIntro: string;
   };
   insights: {
     eyebrow: string;
@@ -405,6 +425,8 @@ export type Dictionary = {
   contact: ContactContent;
   services: ServiceDetail[];
   studies: ProjectStudy[];
+  /** Our own project material, with the stage each piece came from. */
+  materials: ProjectMaterial[];
   process: ProcessStep[];
   collaboration: { model: readonly CollaborationItem[]; audiences: readonly string[] };
   about: AboutContent;

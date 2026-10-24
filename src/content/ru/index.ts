@@ -5,7 +5,7 @@ import { contact } from './contact';
 import { faq } from './faq';
 import { home } from './home';
 import { processSteps } from './process';
-import { capabilityStudies, disclosureNote } from './projects';
+import { capabilityStudies, disclosureNote, materials } from './projects';
 import { serviceDetails } from './services';
 import { site } from './site';
 import { ui } from './ui';
@@ -26,6 +26,7 @@ export const dictionary: Dictionary = {
   contact,
   services: serviceDetails,
   studies: capabilityStudies,
+  materials,
   process: processSteps,
   collaboration: { model: collaborationModel, audiences },
   about,

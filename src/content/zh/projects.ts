@@ -1,4 +1,5 @@
 import type { StudyVisualData } from '@/components/art/StudyVisual';
+import type { ProjectMaterial } from '@/content/types';
 
 /**
  * 能力研究 —— 中文。
@@ -22,6 +23,87 @@ export type ProjectStudy = {
   visual: StudyVisualData;
   featured?: boolean;
 };
+
+export const materials: ProjectMaterial[] = [
+  {
+    slug: 'dongyuan-rooftop',
+    title: '东源幼儿园屋顶游乐场',
+    discipline: '创意设计',
+    stage: '设计效果',
+    description:
+      '幼儿园屋顶的游乐环境：软质地面、攀爬塔与管状滑梯、木质游乐边界与种植平台，环绕建筑布置，而不是贴在建筑旁边。',
+    image: {
+      kind: 'image',
+      src: '/images/cases/dongyuan-rooftop.webp',
+      alt: '幼儿园屋顶游乐场的俯视效果图，蓝色软质游乐区、白色攀爬塔与滑梯、木质边界与楼间种植。',
+    },
+  },
+  {
+    slug: 'club-aerial',
+    title: '泉州主题俱乐部乐园',
+    discipline: '创意设计',
+    stage: '设计效果',
+    description:
+      '围绕水景布置的主题乐园：木构塔架、环形高架步道、沙水游戏区，以及边缘一处单独的安静区。',
+    image: {
+      kind: 'image',
+      src: '/images/cases/club-aerial.webp',
+      alt: '主题乐园俯视效果图，木构游乐塔、环形高架步道、蓝色沙水游戏地面与穿过种植区的曲线步道。',
+    },
+  },
+  {
+    slug: 'yunwen-square',
+    title: '安徽天长云纹广场主题乐园',
+    discipline: '创意设计',
+    stage: '设计效果',
+    description:
+      '以动物造型游乐设施、滑梯与戏水组成的主题乐园，落在有绿化的公园里，作为一个目的地而不是附属设施。',
+    image: {
+      kind: 'image',
+      src: '/images/cases/yunwen-square.webp',
+      alt: '花树公园中的彩色主题乐园效果图，动物造型游乐设施、黄色滑梯与戏水设施。',
+    },
+  },
+  {
+    slug: 'wuyi-forest',
+    title: '武夷山森林亲子乐园',
+    discipline: '创意设计 · 策划咨询',
+    stage: '设计效果',
+    description:
+      '保留现状林木下的亲子乐园：遮荫帐篷、自然游乐场地、沙水区，以及林间的游乐塔。',
+    image: {
+      kind: 'image',
+      src: '/images/cases/wuyi-forest.webp',
+      alt: '林下自然游乐场俯视效果图，遮荫帐篷结构、沙地游乐区、木质游乐构件与树木之间的步道。',
+    },
+  },
+  {
+    slug: 'concept-sketch',
+    title: '概念草图：主题游乐构筑物',
+    discipline: '设计推敲',
+    stage: '概念草图',
+    description:
+      '一张关于主题游乐构筑物的手绘研究稿，发布在形态还在被讨论的阶段。',
+    image: {
+      kind: 'image',
+      src: '/images/cases/concept-sketch.webp',
+      alt: '主题游乐构筑物的手绘概念草图，图中标注了各个游乐构件。',
+    },
+  },
+  {
+    slug: 'concept-plan',
+    title: '概念方案：营地',
+    discipline: '策划咨询',
+    stage: '概念方案',
+    description:
+      '一份营地概念总平面手稿，用于在建模之前推敲布局、分区与空间序列。',
+    image: {
+      kind: 'image',
+      src: '/images/cases/concept-plan.webp',
+      alt: '营地概念总平面手稿，标出游乐区、种植与两者之间的流线。',
+    },
+  },
+];
 
 export const capabilityStudies: ProjectStudy[] = [
   {
@@ -170,4 +252,4 @@ export const capabilityStudies: ProjectStudy[] = [
 ];
 
 export const disclosureNote =
-  '以下每一张图都是为传达该类合作的设计意图而生成的概念渲染图。它们不是 AQUASEE 已完成项目的照片，本站也未展示任何客户作品。项目图片、名称与业绩，将在获得授权后发布。';
+  '下面的能力研究是示意性的：它们描述典型合作的范围、方法与成果，配图是生成的概念渲染图。上面的项目材料是我们自己的工作，并标注了它出自哪个阶段。';

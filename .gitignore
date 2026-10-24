@@ -26,3 +26,7 @@ share
 .wrangler
 .dev.vars
 
+
+# The project image library (432 MB of source material). The web-ready
+# versions that the site actually serves live in public/images/cases/.
+网站案例图片
