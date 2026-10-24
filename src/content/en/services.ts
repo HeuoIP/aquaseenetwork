@@ -104,10 +104,11 @@ export const serviceDetails: ServiceDetail[] = [
     ],
     visual: {
       kind: 'image',
-      src: '/images/aquasee-key-strategy.webp',
-      alt: 'Generated concept artwork: an exploded axonometric assembly of translucent planning volumes threaded with aqua trajectory lines.',
+      src: '/images/hero/strategy-plan.webp',
+      alt: 'The company\'s own hand-drawn concept master plan for a campsite, showing the play areas, the planting and the circulation between them.',
     },
-    visualCaption: 'Creative concept visualization',
+
+    visualCaption: 'Concept master plan — early-stage planning',
     mobilePosition: '52%',
     illustration: {
       src: '/images/service-strategy-consulting.webp',
@@ -218,10 +219,11 @@ export const serviceDetails: ServiceDetail[] = [
     ],
     visual: {
       kind: 'image',
-      src: '/images/aquasee-key-design.webp',
-      alt: 'Generated concept artwork: sculptural material and form studies suspended above a dark reflective surface, traced with aqua contour lines.',
+      src: '/images/hero/design-sculpture.webp',
+      alt: 'A hand-drawn concept sketch of a whale-shaped play sculpture, with slides, a climbing net and wave forms.',
     },
-    visualCaption: 'Creative concept visualization',
+
+    visualCaption: 'Concept sketch — a sculptural play structure',
     mobilePosition: '72%',
     illustration: {
       src: '/images/service-creative-design.webp',
@@ -351,10 +353,11 @@ export const serviceDetails: ServiceDetail[] = [
     ],
     visual: {
       kind: 'image',
-      src: '/images/aquasee-key-supply.webp',
-      alt: 'Generated concept artwork: indexed modular components stacked on structural frames, connected by aqua route lines.',
+      src: '/images/hero/supply-fabrication.webp',
+      alt: 'An exploded technical drawing of an installation broken into its manufacturable parts: foundation, structure, facade panels and membranes.',
     },
-    visualCaption: 'Creative concept visualization',
+
+    visualCaption: 'Fabrication breakdown — the parts before the site',
     mobilePosition: '52%',
     illustration: {
       src: '/images/service-supply-chain.webp',

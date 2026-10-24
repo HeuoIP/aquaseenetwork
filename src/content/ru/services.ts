@@ -106,10 +106,11 @@ export const serviceDetails: ServiceDetail[] = [
     ],
     visual: {
       kind: 'image',
-      src: '/images/aquasee-key-strategy.webp',
-      alt: 'Сгенерированный концепт: разнесённая аксонометрическая сборка полупрозрачных объёмов планирования, пронизанных бирюзовыми линиями траекторий.',
+      src: '/images/hero/strategy-plan.webp',
+      alt: 'Наш собственный рисованный от руки концептный генплан кемпинга: игровые зоны, озеленение и движение между ними.',
     },
-    visualCaption: 'Концептная визуализация',
+
+    visualCaption: 'Концептный генплан — раннее планирование',
     mobilePosition: '52%',
     illustration: {
       src: '/images/service-strategy-consulting.webp',
@@ -221,10 +222,11 @@ export const serviceDetails: ServiceDetail[] = [
     ],
     visual: {
       kind: 'image',
-      src: '/images/aquasee-key-design.webp',
-      alt: 'Сгенерированный концепт: скульптурные этюды материалов и форм, парящие над тёмной отражающей поверхностью, очерченные бирюзовыми линиями рельефа.',
+      src: '/images/hero/design-sculpture.webp',
+      alt: 'Рисованный от руки эскиз игровой скульптуры в форме кита, со скатами, сеткой для лазания и волнообразными элементами.',
     },
-    visualCaption: 'Концептная визуализация',
+
+    visualCaption: 'Концептный эскиз — скульптурная игровая форма',
     mobilePosition: '72%',
     illustration: {
       src: '/images/service-creative-design.webp',
@@ -353,10 +355,11 @@ export const serviceDetails: ServiceDetail[] = [
     ],
     visual: {
       kind: 'image',
-      src: '/images/aquasee-key-supply.webp',
-      alt: 'Сгенерированный концепт: индексированные модульные компоненты, сложенные на металлических каркасах и связанные бирюзовыми линиями маршрутов.',
+      src: '/images/hero/supply-fabrication.webp',
+      alt: 'Взрывная техническая схема установки, разложенная на изготавливаемые части: основание, каркас, обшивка и мембраны.',
     },
-    visualCaption: 'Концептная визуализация',
+
+    visualCaption: 'Разборка изготовления — детали до монтажа',
     mobilePosition: '52%',
     illustration: {
       src: '/images/service-supply-chain.webp',

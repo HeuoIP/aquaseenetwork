@@ -106,6 +106,19 @@ export const materials: ProjectMaterial[] = [
       alt: 'Hand-drawn concept master plan of a campsite, showing the play area, the planting and the circulation between them.',
     },
   },
+  {
+    slug: 'built-installation',
+    title: 'Illuminated installation, built and lit',
+    discipline: 'Delivery',
+    stage: 'Built and lit',
+    description:
+      'The finished thing: a lit tunnel installation in a public place, photographed after the site work was done.',
+    image: {
+      kind: 'image',
+      src: '/images/cases/built-installation.webp',
+      alt: 'A real photograph of a curved, colour-lit tunnel installation in a public square, with people walking through it.',
+    },
+  },
 ];
 
 export const capabilityStudies: ProjectStudy[] = [

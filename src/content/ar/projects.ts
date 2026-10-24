@@ -105,6 +105,19 @@ export const materials: ProjectMaterial[] = [
       alt: 'مخطط رئيسي تصوري مرسوم باليد لمخيم، يُظهر منطقة اللعب والزراعة ودوران الحركة بينهما.',
     },
   },
+  {
+    slug: 'built-installation',
+    title: 'تركيب مضاء، مبني ومضاء',
+    discipline: 'التسليم',
+    stage: 'مبني ومضاء',
+    description:
+      'النتيجة النهائية: تركيب نفقي مضاء في مكان عام، مصوَّر بعد انتهاء أعمال الموقع.',
+    image: {
+      kind: 'image',
+      src: '/images/cases/built-installation.webp',
+      alt: 'صورة حقيقية لتركيب نفقي منحني مضاء بالألوان في ساحة عامة، يمرّ فيه الناس.',
+    },
+  },
 ];
 
 export const capabilityStudies: ProjectStudy[] = [

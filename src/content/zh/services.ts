@@ -99,10 +99,11 @@ export const serviceDetails: ServiceDetail[] = [
     ],
     visual: {
       kind: 'image',
-      src: '/images/aquasee-key-strategy.webp',
-      alt: '生成的概念图：半透明的规划体量以轴测爆炸方式展开，穿插着水绿色的轨迹线。',
+      src: '/images/hero/strategy-plan.webp',
+      alt: '我们自己手绘的营地概念总平面：游乐区、种植，以及两者之间的流线。',
     },
-    visualCaption: '创意概念可视化',
+
+    visualCaption: '概念总平面——前期规划',
     mobilePosition: '52%',
     illustration: {
       src: '/images/service-strategy-consulting.webp',
@@ -208,10 +209,11 @@ export const serviceDetails: ServiceDetail[] = [
     ],
     visual: {
       kind: 'image',
-      src: '/images/aquasee-key-design.webp',
-      alt: '生成的概念图：雕塑化的材料与形态研究悬停在深色反光表面之上，勾勒出水绿色等高线。',
+      src: '/images/hero/design-sculpture.webp',
+      alt: '一件鲸鱼造型游乐雕塑的手绘概念草图，带滑梯、攀爬网与波浪形构件。',
     },
-    visualCaption: '创意概念可视化',
+
+    visualCaption: '概念草图——雕塑化的游乐构筑物',
     mobilePosition: '72%',
     illustration: {
       src: '/images/service-creative-design.webp',
@@ -320,10 +322,11 @@ export const serviceDetails: ServiceDetail[] = [
     ],
     visual: {
       kind: 'image',
-      src: '/images/aquasee-key-supply.webp',
-      alt: '生成的概念图：带索引的模块化构件堆叠在结构框架上，由水绿色的路线线连接。',
+      src: '/images/hero/supply-fabrication.webp',
+      alt: '一件装置的拆解技术图：基础、结构、表皮板与膜材，分解为可制造的部件。',
     },
-    visualCaption: '创意概念可视化',
+
+    visualCaption: '制作拆解——抵达现场之前的那些部件',
     mobilePosition: '52%',
     illustration: {
       src: '/images/service-supply-chain.webp',

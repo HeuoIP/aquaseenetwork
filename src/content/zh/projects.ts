@@ -103,6 +103,19 @@ export const materials: ProjectMaterial[] = [
       alt: '营地概念总平面手稿，标出游乐区、种植与两者之间的流线。',
     },
   },
+  {
+    slug: 'built-installation',
+    title: '灯光装置，建成并亮起',
+    discipline: '交付',
+    stage: '建成实景',
+    description:
+      '建成之后的样子：一处公共空间里的灯光隧道装置，是现场施工完成之后拍的。',
+    image: {
+      kind: 'image',
+      src: '/images/cases/built-installation.webp',
+      alt: '实景照片：公共广场上一条带彩色灯光的弧形通道装置，人们从中间走过。',
+    },
+  },
 ];
 
 export const capabilityStudies: ProjectStudy[] = [

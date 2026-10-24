@@ -100,10 +100,11 @@ export const serviceDetails: ServiceDetail[] = [
     ],
     visual: {
       kind: 'image',
-      src: '/images/aquasee-key-strategy.webp',
-      alt: 'رسم مفاهيمي مولَّد: تفكيك axonometric لحجم تخطيطي شفاف تتخلّله خطوط مسار بلون مائي.',
+      src: '/images/hero/strategy-plan.webp',
+      alt: 'مخطط رئيسي تصوري مرسوم باليد لمخيم، يُظهر مناطق اللعب والزراعة ودوران الحركة بينها.',
     },
-    visualCaption: 'تصوّر مفاهيمي إبداعي',
+
+    visualCaption: 'مخطط رئيسي تصوري — التخطيط المبكر',
     mobilePosition: '52%',
     illustration: {
       src: '/images/service-strategy-consulting.webp',
@@ -209,10 +210,11 @@ export const serviceDetails: ServiceDetail[] = [
     ],
     visual: {
       kind: 'image',
-      src: '/images/aquasee-key-design.webp',
-      alt: 'رسم مفاهيمي مولَّد: دراسات نحتية في المواد والشكل معلّقة فوق سطح عاكس داكن، مرسومة بخطوط كنتور مائية.',
+      src: '/images/hero/design-sculpture.webp',
+      alt: 'رسمة تصورية مرسومة باليد لنحتة لعب على هيئة حوت، مع زحلقية وشبكة تسلّق وأشكال موجية.',
     },
-    visualCaption: 'تصوّر مفاهيمي إبداعي',
+
+    visualCaption: 'رسمة تصورية — منشأة لعب نحتية',
     mobilePosition: '72%',
     illustration: {
       src: '/images/service-creative-design.webp',
@@ -333,10 +335,11 @@ export const serviceDetails: ServiceDetail[] = [
     ],
     visual: {
       kind: 'image',
-      src: '/images/aquasee-key-supply.webp',
-      alt: 'رسم مفاهيمي مولَّد: مكوّنات معيارية مفهرسة مكدّسة على هياكل معدنية، موصولة بخطوط مسار مائية.',
+      src: '/images/hero/supply-fabrication.webp',
+      alt: 'رسم فني تفكيلي لتركيب مقسَّم إلى أجزائه القابلة للتصنيع: الأساس، والهيكل، وألواح الغلاف، والأغشية.',
     },
-    visualCaption: 'تصوّر مفاهيمي إبداعي',
+
+    visualCaption: 'تفكيك التصنيع — الأجزاء قبل الوصول إلى الموقع',
     mobilePosition: '52%',
     illustration: {
       src: '/images/service-supply-chain.webp',
