@@ -100,18 +100,26 @@ export const serviceDetails: ServiceDetail[] = [
     gallery: [
       {
         after: 'overview',
+        src: '/images/gallery/strategy-site.webp',
+        kind: 'illustration',
+        alt: '黄昏时分的河畔空地：草地、一排行道树与一条被踩出来的小路，前景里拿着一份测绘图。',
+      },
+      {
+        after: 'activities',
+        src: '/images/gallery/strategy-stages.webp',
+        kind: 'illustration',
+        alt: '工作室墙上的概念图纸：一张分区气泡图、一张分区平面和一张主题乐园的效果图。',
+      },
+      {
+        after: 'overview',
         src: '/images/gallery/strategy-concept.webp',
         kind: 'illustration',
-        caption:
-          '亲子文旅目的地的概念方案：在画任何一张施工图之前，先把分区、动线与种植定下来。',
         alt: '亲子文旅目的地的俯视概念效果图，河边有戏水区、遮荫座椅、曲折步道与种植。',
       },
       {
         after: 'activities',
         src: '/images/gallery/strategy-planning.webp',
         kind: 'illustration',
-        caption:
-          '方案变成决定的那一步：做什么、不做什么，以及现场不允许什么。',
         alt: '规划桌上的大幅总平面打印图、实体模型，以及显示体块模型的笔记本电脑。',
       },
     ],
@@ -124,10 +132,12 @@ export const serviceDetails: ServiceDetail[] = [
     visualCaption: '概念总平面——前期规划',
     mobilePosition: '52%',
     illustration: {
-      src: '/images/service-strategy-consulting.webp',
-      alt: '更新后的滨水遗产街区的示意效果图：新的公共滨水步道、种植街道与一座木构文化 pavilion。',
-      caption: '服务示意图——概念渲染',
+      src: '/images/service/strategy-consulting-v2.webp',
+      alt: '铺在桌面上的主题乐园概念总平面打印图：游乐、水、种植与路线的分区着色，附比例尺与指北针。',
+      caption: '概念总平面（示意）——一个目的地是怎么被规划的',
     },
+
+
     related: [
       { href: '/creative-design', label: '创意设计与研发' },
       { href: '/supply-chain', label: '供应链与交付' },
@@ -228,34 +238,38 @@ export const serviceDetails: ServiceDetail[] = [
     gallery: [
       {
         after: 'overview',
+        src: '/images/gallery/design-sketch.webp',
+        kind: 'work',
+        alt: '一件游乐结构的手绘汇报稿，带滑梯与攀爬架，并画了人作为尺度参照。',
+      },
+      {
+        after: 'activities',
+        src: '/images/gallery/design-render.webp',
+        kind: 'work',
+        alt: '一处游乐区的俯视效果图：滑梯、沙地铺装、种植与木质攀爬架。',
+      },
+      {
+        after: 'overview',
         src: '/images/gallery/design-swan.webp',
         kind: 'work',
-        caption:
-          '一件主题游乐构筑物的手绘稿，还在讨论形态的阶段。',
         alt: '天鹅造型游乐构筑物的线稿，含滑梯与攀爬网，水绿色线条画在深色底上。',
       },
       {
         after: 'overview',
         src: '/images/gallery/design-bird.webp',
         kind: 'work',
-        caption:
-          '把一件雕塑放进场地里的草图：这个物体要长在场地中，而不是摆在场地上。',
         alt: '手绘概念草图：种植景观中一只大型粉色鸟形雕塑，带滑梯与木质攀爬构件。',
       },
       {
         after: 'activities',
         src: '/images/gallery/design-capybara.webp',
         kind: 'work',
-        caption:
-          '一个主题游乐世界，先画后建：同一个构想，从第一张草图到公园里立着的那套设备。',
         alt: '水豚主题游乐场的插画，配一条色板与公园中已建成设备的实拍照片。',
       },
       {
         after: 'cost',
         src: '/images/gallery/design-equipment.webp',
         kind: 'work',
-        caption:
-          '从一张游乐设备草图，到公园里立起来的那套设备。',
         alt: '木质游乐结构的概念草图，配公园中已安装完成的设备实拍照片。',
       },
     ],
@@ -268,10 +282,11 @@ export const serviceDetails: ServiceDetail[] = [
     visualCaption: '概念草图——雕塑化的游乐构筑物',
     mobilePosition: '72%',
     illustration: {
-      src: '/images/service-creative-design.webp',
-      alt: '定制景观游乐环境的示意效果图：木质与钢制游乐构件、浅水戏水池与一体化种植。',
-      caption: '服务示意图——概念渲染',
+      src: '/images/service/creative-design.webp',
+      alt: '幼儿园院子里的屋顶游乐环境：滑梯、木质游乐构件与黄色攀爬坡。',
+      caption: '游乐环境——由我们设计与渲染',
     },
+
     related: [
       { href: '/strategy', label: '前期策划咨询' },
       { href: '/supply-chain', label: '供应链与交付' },
@@ -377,48 +392,36 @@ export const serviceDetails: ServiceDetail[] = [
         after: 'overview',
         src: '/images/gallery/supply-laser.webp',
         kind: 'illustration',
-        caption:
-          '激光下料：轮廓从一张平板里走出来，精度取决于连接件靠不靠得住。',
         alt: '激光切割头在钢板上一条弧形轮廓，切口处火花四溅。',
       },
       {
         after: 'overview',
         src: '/images/gallery/supply-cutting.webp',
         kind: 'illustration',
-        caption:
-          '木构件的数控开料：零件的尺寸是按现场装得上做的，不是按图纸好看做的。',
         alt: '木工车间里数控雕刻机切割层压木板上的弧形构件，切好的板材堆在一旁。',
       },
       {
         after: 'activities',
         src: '/images/gallery/supply-drilling.webp',
         kind: 'illustration',
-        caption:
-          '钻孔精度按连接件的要求来——孔位偏一个，就装不上。',
         alt: '钻床在弧形钢制连接板上钻一排孔，四周是卷曲的金属屑。',
       },
       {
         after: 'activities',
         src: '/images/gallery/supply-welding.webp',
         kind: 'illustration',
-        caption:
-          '焊接骨架：承重、也要扛住几年风雨的那一部分。',
         alt: '戴防护面罩的焊工在大型定制游乐架上焊接钢制节点，火花与弧光四起。',
       },
       {
         after: 'cost',
         src: '/images/gallery/supply-assembly.webp',
         kind: 'illustration',
-        caption:
-          '组装：零件对上，一个结构才成为一体。',
         alt: '两名工人在车间里组装弧形的木质与钢制游乐构件。',
       },
       {
         after: 'cost',
         src: '/images/gallery/supply-transport.webp',
         kind: 'illustration',
-        caption:
-          '运输：包好、绑牢、按到现场的路线算好尺寸。',
         alt: '黎明时分，长平板车载着包裹好的大型钢制与木质游乐构件行驶在公路上。',
       },
     ],
@@ -431,10 +434,11 @@ export const serviceDetails: ServiceDetail[] = [
     visualCaption: '制作拆解——抵达现场之前的那些部件',
     mobilePosition: '52%',
     illustration: {
-      src: '/images/service-supply-chain.webp',
-      alt: '加工车间的示意照片：一件定制产品被拆解为模块与半成品分总成。',
-      caption: '车间示意图——生产由合格的生产合作伙伴完成',
+      src: '/images/service/supply-delivery.webp',
+      alt: '完工的游乐结构裹上防护泡棉、绑在木托架上，准备出厂。',
+      caption: '打包完毕，准备发运（示意）',
     },
+
     related: [
       { href: '/strategy', label: '前期策划咨询' },
       { href: '/creative-design', label: '创意设计与研发' },

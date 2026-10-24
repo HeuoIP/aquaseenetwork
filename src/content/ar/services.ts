@@ -101,18 +101,26 @@ export const serviceDetails: ServiceDetail[] = [
     gallery: [
       {
         after: 'overview',
+        src: '/images/gallery/strategy-site.webp',
+        kind: 'illustration',
+        alt: 'موقع مفتوح على ضفاف نهر في الساعة الذهبية: مرج، صف من الأشجار ومسار متآكل، مع مخطط مسح في المقدمة.',
+      },
+      {
+        after: 'activities',
+        src: '/images/gallery/strategy-stages.webp',
+        kind: 'illustration',
+        alt: 'جدار في الاستوديو مغطّى بأوراق المفاهيم: مخطط فقاعي للمناطق، ومخطط تخصيص، وتصيير ملوّن لحديقة موضوعية.',
+      },
+      {
+        after: 'overview',
         src: '/images/gallery/strategy-concept.webp',
         kind: 'illustration',
-        caption:
-          'مفهوم وجهة ترفيه عائلية: تُحسم المناطق والمسارات والزراعة قبل رسم أي تفصيلة تنفيذية.',
         alt: 'تصيير جوي مفاهيمي لوجهة ترفيه عائلية على ضفاف نهر، مع منطقة لعب مائي ومقاعد مظللة ومسارات متعرجة وزراعة.',
       },
       {
         after: 'activities',
         src: '/images/gallery/strategy-planning.webp',
         kind: 'illustration',
-        caption:
-          'المرحلة التي يصبح فيها المخطط قرارًا: ما نبنيه، وما نتركه، وما لا يسمح به الموقع.',
         alt: 'طاولة تخطيط عليها مخطط موقع مطبوع كبير، ونموذج مصغّر، وحاسوب محمول يعرض نموذج كتلة ثلاثي الأبعاد.',
       },
     ],
@@ -125,10 +133,12 @@ export const serviceDetails: ServiceDetail[] = [
     visualCaption: 'مخطط رئيسي تصوري — التخطيط المبكر',
     mobilePosition: '52%',
     illustration: {
-      src: '/images/service-strategy-consulting.webp',
-      alt: 'تصوّر توضيحي لحي تراثي نهري مُجدَّد مع رصيف عام مائي جديد وشوارع مزروعة ومنصّة ثقافية خشبية.',
-      caption: 'رسم توضيحي للخدمة — تصيير مفاهيمي',
+      src: '/images/service/strategy-consulting-v2.webp',
+      alt: 'مخطط رئيسي مفاهيمي مطبوع لحديقة موضوعية ممدد على طاولة: مناطق ملوّنة للّعب والماء والزراعة والمسارات، مع مقياس وشمال.',
+      caption: 'مخطط رئيسي مفاهيمي (توضيحي) — كيف تُخطَّط الوجهة',
     },
+
+
     related: [
       { href: '/creative-design', label: 'التصميم الإبداعي والتطوير' },
       { href: '/supply-chain', label: 'سلسلة التوريد والتسليم' },
@@ -229,34 +239,38 @@ export const serviceDetails: ServiceDetail[] = [
     gallery: [
       {
         after: 'overview',
+        src: '/images/gallery/design-sketch.webp',
+        kind: 'work',
+        alt: 'رسمة عرض مرسومة باليد لمنشأة لعب فيها زحلقية وهياكل تسلّق، ورُسم أشخاص لتوضيح المقياس.',
+      },
+      {
+        after: 'activities',
+        src: '/images/gallery/design-render.webp',
+        kind: 'work',
+        alt: 'تصيير جوي لمنطقة لعب فيها زحلقية، وأرضيات رملية، وزراعة، وهيكل تسلّق خشبي.',
+      },
+      {
+        after: 'overview',
         src: '/images/gallery/design-swan.webp',
         kind: 'work',
-        caption:
-          'منشأة لعب موضوعية مرسومة، في مرحلة ما زالت فيها الشكل قيد النقاش.',
         alt: 'رسم خطي لمنشأة لعب على هيئة بطة مع زحلقية وشبكة تسلّق، مرسوم بالخطوط المائية على أرضية داكنة.',
       },
       {
         after: 'overview',
         src: '/images/gallery/design-bird.webp',
         kind: 'work',
-        caption:
-          'عنصر نحتية مرسوم داخل مشهد طبيعي: يجب أن يستقرّ العنصر في الموقع لا أن يقف فوقه.',
         alt: 'رسمة مفاهيمية مرسومة باليد لنحتة طائر وردي كبير في مشهد مزروع، مع زحلقية وبنية تسلّق خشبية.',
       },
       {
         after: 'activities',
         src: '/images/gallery/design-capybara.webp',
         kind: 'work',
-        caption:
-          'عالم لعب موضوعي، رُسم ثم بُني: فكرة واحدة، من أول مسوّدة إلى المعدات قائمة في الحديقة.',
         alt: 'رسم توضيحي لملعب بطيء الشكل مع شريط ألوان وصور للمعدات النهائية مركّبة في حديقة.',
       },
       {
         after: 'cost',
         src: '/images/gallery/design-equipment.webp',
         kind: 'work',
-        caption:
-          'من مسوّدة مفاهيمية لجهاز لعب إلى المعدات قائمة في الحديقة.',
         alt: 'مسوّدة مفاهيمية لهيكل لعب خشبي، مع صور للمعدات النهائية مركّبة في حديقة عامة.',
       },
     ],
@@ -269,10 +283,11 @@ export const serviceDetails: ServiceDetail[] = [
     visualCaption: 'رسمة تصورية — منشأة لعب نحتية',
     mobilePosition: '72%',
     illustration: {
-      src: '/images/service-creative-design.webp',
-      alt: 'تصوّر توضيحي لبيئة لعب مخصّصة في الموقع: عناصر لعب خشبية وفولاذية، وحوض ماء ضحل، وت vegetations مدمجة.',
-      caption: 'رسم توضيحي للخدمة — تصيير مفاهيمي',
+      src: '/images/service/creative-design.webp',
+      alt: 'بيئة لعب على سطح روضة أطفال: زحلقية، وهيكل لعب خشبي، وتلّة تسلّق صفراء.',
+      caption: 'بيئة لعب — صمّمها ورسمناها',
     },
+
     related: [
       { href: '/strategy', label: 'الاستشارات الاستراتيجية' },
       { href: '/supply-chain', label: 'سلسلة التوريد والتسليم' },
@@ -390,48 +405,36 @@ export const serviceDetails: ServiceDetail[] = [
         after: 'overview',
         src: '/images/gallery/supply-laser.webp',
         kind: 'illustration',
-        caption:
-          'القص بالليزر: يُستخرج المقطع من صفيحة مسطحة، بدقة تعتمد عليها التثبيتات.',
         alt: 'رأس ليزر يقطع ملفًا منحنيًا في صفيحة فولاذية، مع شرارات على خط القطع.',
       },
       {
         after: 'overview',
         src: '/images/gallery/supply-cutting.webp',
         kind: 'illustration',
-        caption:
-          'القص数控 لألواح الخشب: تُقاس القطع لتركب في الموقع لا لتبدو جميلة على الورق.',
         alt: 'آلة نحت رقمية تقطع ألواحًا منحنية من الخشب الرقائقي في ورشة نجارة، والقطع المفرزة مكدسة بجانبها.',
       },
       {
         after: 'activities',
         src: '/images/gallery/supply-drilling.webp',
         kind: 'illustration',
-        caption:
-          'ثقوب بدقة تعتمد عليها التثبيتات — ثقب واحد في غير موضعه يعني أن القطعة لا تركب.',
         alt: 'آلة حفر تثقب صفًا من الثقوب في ك brackets فولاذي منحني، حوله برادة معدنية ملتفة.',
       },
       {
         after: 'activities',
         src: '/images/gallery/supply-welding.webp',
         kind: 'illustration',
-        caption:
-          'لحام الإطار: الجزء الذي يحمل الحمل ويقاوم الطقس سنوات.',
         alt: 'لحام يرتدي خوذة وقاية يجمع وصلة فولاذية في هيكل لعب مخصص كبير، مع ضوء القوس والشرارات.',
       },
       {
         after: 'cost',
         src: '/images/gallery/supply-assembly.webp',
         kind: 'illustration',
-        caption:
-          'التجميع: تلتقي الأجزاء، فيصبح الهيكل قطعة واحدة.',
         alt: 'عاملان يجمّعان مكوّنات لعب منحنية من الخشب والصلب في ورشة.',
       },
       {
         after: 'cost',
         src: '/images/gallery/supply-transport.webp',
         kind: 'illustration',
-        caption:
-          'النقل: تُغلَّف وتُوثَّق وتُقاس لتناسب الطريق إلى الموقع.',
         alt: 'شاحنة مسطحة طويلة تحمل مكوّنات كبيرة مغلّفة من الفولاذ والخشب لملعب، على طريق عند الفجر.',
       },
     ],
@@ -444,10 +447,11 @@ export const serviceDetails: ServiceDetail[] = [
     visualCaption: 'تفكيك التصنيع — الأجزاء قبل الوصول إلى الموقع',
     mobilePosition: '52%',
     illustration: {
-      src: '/images/service-supply-chain.webp',
-      alt: 'صورة توضيحية لورشة تصنيع فُكّك فيها منتج مخصّص إلى وحدات ومجموعات فرعية شبه مصنّعة.',
-      caption: 'صورة ورشة توضيحية — الإنتاج يمرّ عبر شركاء تصنيع مؤهَّلين',
+      src: '/images/service/supply-delivery.webp',
+      alt: 'منشأة لعب مكتملة مغلّفة برغوةٍ واقية ومربوطة على منصات خشبية، جاهزة لمغادرة الورشة.',
+      caption: 'معبّأة وجاهزة للشحن (توضيحي)',
     },
+
     related: [
       { href: '/strategy', label: 'الاستشارات الاستراتيجية' },
       { href: '/creative-design', label: 'التصميم الإبداعي والتطوير' },

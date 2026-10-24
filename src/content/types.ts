@@ -21,7 +21,6 @@ export type GalleryItem = {
   after: GallerySlot;
   src: string;
   alt: string;
-  caption: string;
   /**
    * 'work' is our own material; 'illustration' is a rendering or a generated
    * scene. The page says which is which - a picture that is passed off as
