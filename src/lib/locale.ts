@@ -23,7 +23,7 @@ export const DEFAULT_LOCALE: Locale = 'en';
  * reviewed. The language switcher, the sitemap and the hreflang map all read
  * this list, so a language never appears as a choice before it is ready.
  */
-export const PUBLISHED_LOCALES: readonly Locale[] = ['en'];
+export const PUBLISHED_LOCALES: readonly Locale[] = ['en', 'zh'];
 
 /** Languages written right to left. */
 export const RTL_LOCALES: readonly Locale[] = ['ar'];

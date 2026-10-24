@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { getDictionary } from '@/lib/dictionary';
-import { PUBLISHED_LOCALES, alternatesFor, localePath, type Locale } from '@/lib/locale';
+import { PUBLISHED_LOCALES, localePath, type Locale } from '@/lib/locale';
+import { languageAlternates } from '@/lib/metadata';
 
 /**
  * The sitemap.
@@ -42,7 +43,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: new Date(SITE_UPDATED),
         changeFrequency: route.changeFrequency,
         priority: route.priority,
-        alternates: { languages: toAbsolute(alternatesFor(route.path)) },
+        alternates: { languages: toAbsolute(await languageAlternates(route.path)) },
       });
     }
 
@@ -52,7 +53,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: new Date(article.updatedAt),
         changeFrequency: 'monthly',
         priority: 0.7,
-        alternates: { languages: toAbsolute(alternatesFor(`/insights/${article.slug}`)) },
+        alternates: { languages: toAbsolute(await languageAlternates(`/insights/${article.slug}`)) },
       });
     }
   }

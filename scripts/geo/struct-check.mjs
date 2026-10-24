@@ -1,3 +1,6 @@
+import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
+import { join, relative } from 'node:path';
+
 /**
  * Release gate for the GEO work.
  *
@@ -12,14 +15,16 @@
  *   6. every page opens with a paragraph that can be quoted on its own
  *   7. no page describes AQUASEE as a manufacturer or a factory
  *
+ * The gate is language-aware: a page in another language is checked with the
+ * rules of that language, not with the English ones.
+ *
  * Usage: node scripts/geo/struct-check.mjs
  */
-import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
-import { join, relative } from 'node:path';
+const { PUBLISHED_LOCALES } = await import('../../src/lib/locale.ts');
 
 const APP_DIR = '.next/server/app';
 const ORIGIN = 'https://www.aquasee.art';
-const PUBLISHED = ['en'];
+const PUBLISHED = PUBLISHED_LOCALES;
 
 const failures = [];
 const warnings = [];
@@ -55,12 +60,41 @@ const pages = [];
 for (const file of htmlFiles) {
   const html = readFileSync(file, 'utf8');
   const rel = relative(APP_DIR, file).replace(/\\/g, '/').replace(/\.html$/, '');
-  const url = rel === 'en' ? '/' : rel.replace(/^en/, '') || '/';
   const locale = rel.split('/')[0];
-  pages.push({ file, rel, url, locale, html });
+  const sub = rel.slice(locale.length + 1);
+  // English keeps the root path; every other language carries its prefix.
+  const url = ((locale === 'en' ? '' : `/${locale}`) + (sub ? `/${sub}` : '')) || '/';
+  pages.push({ file, rel, url, sub: sub ? `/${sub}` : '/', locale, html });
 }
 
 notes.push(`Pages checked: ${pages.length}`);
+notes.push(`Languages checked: ${[...new Set(pages.map((p) => p.locale))].join(', ')}`);
+
+/** The rules that are written in words, per language. */
+const LANGUAGE_RULES = {
+  en: {
+    serviceMarkers: /consult|design|supply chain|delivery|service|advisory/i,
+    manufacturerMarkers: [
+      /we manufacture/i,
+      /our factory/i,
+      /our own factory/i,
+      /we are a manufacturer/i,
+      /our production facility/i,
+    ],
+    quoteable: /AQUASEE is a|AQUASEE provides|AQUASEE is an|is a China-based|we are a service/i,
+  },
+  zh: {
+    serviceMarkers: /咨询|设计|供应链|服务|交付/,
+    manufacturerMarkers: [/我们是[^。]{0,6}制造商/, /我们的自有工厂/, /自有生产工厂/],
+    quoteable: /AQUASEE\s*是一家|AQUASEE\s*是/,
+  },
+};
+const rulesFor = (locale) =>
+  LANGUAGE_RULES[locale] ?? {
+    serviceMarkers: /consult|design|supply chain|service/i,
+    manufacturerMarkers: [/we manufacture/i, /our factory/i],
+    quoteable: /AQUASEE/i,
+  };
 
 // --- 1. JSON-LD -----------------------------------------------------------
 const EXPECTED_TYPES = {
@@ -75,6 +109,7 @@ const EXPECTED_TYPES = {
 };
 
 for (const page of pages) {
+  const rules = rulesFor(page.locale);
   const blocks = [...page.html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
   if (!blocks.length) {
     fail(page.url, 'no JSON-LD found');
@@ -87,10 +122,10 @@ for (const page of pages) {
       types.push(parsed['@type']);
       if (!parsed['@context']) fail(page.url, 'JSON-LD block without @context');
       if (parsed['@type'] === 'Organization') {
-        if (!/consult|design|supply chain|service/i.test(JSON.stringify(parsed))) {
+        if (!rules.serviceMarkers.test(JSON.stringify(parsed))) {
           fail(page.url, 'Organization description does not describe the service business');
         }
-        if (/manufacturer|factory owner/i.test(JSON.stringify(parsed))) {
+        if (rules.manufacturerMarkers.some((re) => re.test(JSON.stringify(parsed)))) {
           fail(page.url, 'Organization mentions manufacturing as its own business');
         }
       }
@@ -98,13 +133,14 @@ for (const page of pages) {
       fail(page.url, `invalid JSON-LD: ${err.message}`);
     }
   }
-  const expected = EXPECTED_TYPES[page.url];
+  const hasLibrary = pages.some((p) => p.locale === page.locale && p.sub.startsWith('/insights/'))
+  const expected = EXPECTED_TYPES[page.sub]?.filter((type) => type !== 'ItemList' || hasLibrary);
   if (expected) {
     for (const type of expected) {
       if (!types.includes(type)) fail(page.url, `missing ${type} JSON-LD (found: ${types.join(', ')})`);
     }
   }
-  if (page.url.startsWith('/insights/') && !types.includes('Article')) {
+  if (page.sub.startsWith('/insights/') && !types.includes('Article')) {
     fail(page.url, 'insight article without Article JSON-LD');
   }
 }
@@ -161,6 +197,7 @@ for (const name of ['llms.txt', 'llms-full.txt']) {
 
 // --- 6. answer-first paragraph -------------------------------------------
 for (const page of pages) {
+  const rules = rulesFor(page.locale);
   const body = page.html.replace(/<script[\s\S]*?<\/script>/g, ' ').replace(/<style[\s\S]*?<\/style>/g, ' ');
   const text = body
     .replace(/<[^>]+>/g, ' ')
@@ -169,24 +206,17 @@ for (const page of pages) {
     .trim();
   const lead = text.slice(0, 700);
   const isQuoteable =
-    /AQUASEE is a|AQUASEE provides|AQUASEE is an|is a China-based|we are a service/i.test(lead) ||
-    text.split('. ').slice(0, 4).join(' ').length > 180;
+    rules.quoteable.test(lead) || text.split('. ').slice(0, 4).join(' ').length > 180;
   if (!isQuoteable) warn(page.url, 'the opening does not read as a standalone, quotable statement');
 }
 
 // --- 7. framing -----------------------------------------------------------
 for (const page of pages) {
+  const rules = rulesFor(page.locale);
   const text = page.html.replace(/<[^>]+>/g, ' ');
-  const bad = [
-    /we manufacture/i,
-    /our factory/i,
-    /our own factory/i,
-    /we are a manufacturer/i,
-    /our production facility/i,
-  ].filter((re) => re.test(text));
+  const bad = rules.manufacturerMarkers.filter((re) => re.test(text));
   if (bad.length) fail(page.url, `framing risk: ${bad.map((r) => r.source).join(', ')}`);
 }
-
 
 /**
  * Machine-readable endpoints are route handlers: depending on the build they
