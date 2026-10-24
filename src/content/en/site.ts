@@ -33,6 +33,5 @@ export const site: SiteConfig = {
     { href: '/contact', label: 'Contact' },
   ],
   ctaLabel: 'Start a Project',
-  marketsLine:
-    'Working across the Gulf, Southeast Asia, East Asia, Oceania, Eastern Europe, Central Asia and Africa.',
+  marketsLine: 'Based in China. Working with clients across Asia, the Gulf, Europe and Africa.',
 };

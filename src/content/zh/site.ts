@@ -31,5 +31,5 @@ export const site: SiteConfig = {
     { href: '/contact', label: '联系我们' },
   ],
   ctaLabel: '启动一个项目',
-  marketsLine: '业务覆盖海湾地区、东南亚、东亚、大洋洲、东欧、中亚与非洲。',
+  marketsLine: '总部在中国，与亚洲、海湾、欧洲和非洲的客户合作。',
 };

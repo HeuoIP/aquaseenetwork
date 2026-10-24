@@ -83,8 +83,6 @@ export const ui: UiStrings = {
     costNote: '我们不公布价格区间。决定价格的是下面这些因素。',
     boundaries: '边界',
     boundariesTitle: '我们不做什么。',
-    markets: '市场',
-    marketsTitle: '我们服务的地区。',
     glossary: '术语',
     glossaryTitle: '我们使用的词，都在这里说清楚。',
     ctaTitle: '告诉我们你想做什么。',

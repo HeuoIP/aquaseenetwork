@@ -86,8 +86,6 @@ export const ui: UiStrings = {
     costNote: 'Мы не публикуем ценовые диапазоны. Цену определяют вот эти факторы.',
     boundaries: 'Границы',
     boundariesTitle: 'Чего мы не делаем.',
-    markets: 'Рынки',
-    marketsTitle: 'Где мы работаем.',
     glossary: 'Словарь',
     glossaryTitle: 'Наши термины и их значения.',
     ctaTitle: 'Расскажите, что вы хотите построить.',

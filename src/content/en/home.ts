@@ -18,12 +18,12 @@ export const home: HomeContent = {
     ],
   },
   intro: {
-    eyebrow: 'Who We Are',
-    title: 'A single team spanning strategy, design and delivery.',
+    eyebrow: 'Why us',
+    title: 'One team, from the first sketch to the finished site.',
     paragraphs: [
-      'AQUASEE helps developers, design firms and project teams turn ambitious ideas into achievable projects. We connect strategic planning, creative design, product development and coordinated delivery under one roof of responsibility.',
-      'We are deliberately not a factory and we do not present ourselves as one. We work with external specialists and qualified manufacturing partners, selecting the right capability for each requirement and holding it to a single brief.',
-      'What that produces is simple: fewer handoffs, fewer gaps between the drawing and the site, and a project that keeps its intent from first sketch to final handover.',
+      'You have an idea, a site and a date. What you need is for someone to carry it from "should we do this?" to "it is built, installed and working" — without the plan breaking in three places on the way. That is one job, and we take it as one job.',
+      'We are not a factory and we will not pretend to be one. We bring in the specialist or manufacturing partner each part of your project actually needs, brief them to one specification, and stay answerable for the result.',
+      'What that buys you: fewer handovers, fewer gaps between the drawing and the site, and a project that still looks like what you asked for on the day it opens.',
     ],
     audiences: [
       'Developers & destination projects',
@@ -42,9 +42,9 @@ export const home: HomeContent = {
   },
   collaboration: {
     eyebrow: 'Collaboration',
-    title: 'How we work with clients and partners.',
+    title: 'What you can hold us to.',
     lede:
-      'AQUASEE is built around the assumption that good outcomes come from clear expectations, honest costings and a small number of accountable relationships.',
+      'Good results come from clear expectations, honest numbers and a few relationships you can hold us to. That is how we work — and the six items below are what it actually means.',
     audiencesLabel: 'We work with',
   },
   cta: {

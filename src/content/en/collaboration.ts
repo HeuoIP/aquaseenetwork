@@ -1,33 +1,33 @@
 export const collaborationModel = [
   {
-    title: 'One accountable interface',
+    title: 'One team to deal with',
     description:
-      'You work with a single AQUASEE team across strategy, design and delivery. We coordinate the specialists, so you are not managing a board of subcontractors on your own.',
+      'You brief one team, and that team stays with you across strategy, design and delivery. We coordinate the specialists, so you are not managing a board of subcontractors on your own.',
   },
   {
-    title: 'We challenge, then we commit',
+    title: 'Straight talk first, commitment second',
     description:
-      'We will tell you when an idea is over-specified or a deadline is not real. Once we agree a direction, we commit to it and stay accountable for it through to the site.',
+      'If an idea is over-specified, or a date is not real, we say so before you pay for it. Once the direction is agreed, we commit to it and stay answerable for it through to the site.',
   },
   {
-    title: 'Specialists by need',
+    title: 'The right specialist for each part',
     description:
-      'We bring in the expertise a project actually requires — landscape architects, structural and electrical engineers, fabricators, lighting and control specialists — and hold them to one brief.',
+      'We bring in the expertise your project actually requires — landscape architects, structural and electrical engineers, fabricators, lighting and control specialists — and hold all of them to one brief.',
   },
   {
-    title: 'Qualified partners, not owned factories',
+    title: 'No factory of our own — and no pretending',
     description:
-      'We work with a vetted network of specialist and manufacturing partners rather than claiming factory ownership. That means the right capability for the job, and honest accountability for the result.',
+      'We work with a vetted network of specialist and manufacturing partners rather than claiming factory ownership. That means the right capability for the job, and one party answerable for the outcome.',
   },
   {
-    title: 'Documented, not assumed',
+    title: 'Everything that matters is in writing',
     description:
-      'Specifications, samples, inspection records and change logs. Decisions that matter are written down, which is what keeps a project coherent across time zones and teams.',
+      'Specifications, samples, inspection records and change logs. The decisions that shape your project are written down, which is what keeps it coherent across time zones and teams.',
   },
   {
-    title: 'Transparent economics',
+    title: 'Numbers you can check',
     description:
-      'Cost plans with visible assumptions and contingency, comparable supplier quotes, and change orders that state what they cost. No margin hidden in a vague number.',
+      'Cost plans with visible assumptions and contingency, comparable supplier quotes, and change orders that state what they cost. No margin hidden inside a vague number.',
   },
 ] as const;
 

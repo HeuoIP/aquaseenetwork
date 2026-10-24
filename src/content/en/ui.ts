@@ -89,8 +89,6 @@ export const ui: UiStrings = {
       'We do not publish price ranges. These are the factors that decide them.',
     boundaries: 'Boundaries',
     boundariesTitle: 'What we do not do.',
-    markets: 'Markets',
-    marketsTitle: 'Where we work.',
     glossary: 'Glossary',
     glossaryTitle: 'The words we use, defined.',
     ctaTitle: 'Tell us what you are trying to build.',

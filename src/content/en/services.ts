@@ -45,10 +45,10 @@ export const serviceDetails: ServiceDetail[] = [
     title: 'Strategy & Consulting',
     lede: 'Before anything is designed, the right question has to be asked.',
     intro:
-      'Most ambitious projects do not fail on ideas. They fail on unclear scope, untested assumptions and a supply chain that was never properly structured. AQUASEE works with clients at the front of that curve — where a decision still has room to be made well.',
+      'Most projects do not fail on the idea. They fail on the part nobody checked: a scope that was never pinned down, an assumption that was never tested, a supply chain that was never properly built. That is the part we take on first — while a decision can still be made well.',
     paragraphs: [
-      'We begin by reading the brief critically: what is the client actually trying to build, who is it for, what has to be true commercially, and what constraints will decide the outcome. From there we shape a project that design, engineering and procurement can all act on.',
-      'Our consulting is deliberately hands-on. Strategy work is not handed over as a deck and left behind — it stays connected to design development and delivery, because that is where assumptions either hold or fail.',
+      'We read the brief critically: what you are really trying to build, who it is for, what has to be commercially true, and which constraints will decide the outcome. Then we shape a project that design, engineering and procurement can all act on.',
+      'The advice does not stop at a slide deck. It stays connected to design and delivery, because that is where assumptions either hold or fail.',
     ],
     capabilities: [
       {
@@ -181,10 +181,10 @@ export const serviceDetails: ServiceDetail[] = [
     title: 'Creative Design & R&D',
     lede: 'Design is only finished when it can be built, shipped and maintained.',
     intro:
-      'AQUASEE develops the creative and technical layer of a project: the concept, the spatial language, the details, the objects and the atmospheres. We work with modularity in mind — designing something that is distinctive but still manufacturable, shippable and serviceable years later.',
+      'We develop the creative and technical layer of your project: the concept, the spatial language, the details, the objects and the atmosphere. Everything is designed with maintainability in mind — something distinctive today still has to be manufacturable, shippable and serviceable in ten years.',
     paragraphs: [
-      'We combine design thinking with engineering realism. A concept is drawn, modelled, costed and challenged early, so that the expensive surprises arrive on paper rather than on site.',
-      'Where a project needs a bespoke element — a fixture, a play structure, an installation, a piece of interior — we research materials and fabrication routes with qualified partners and, where useful, build a physical prototype before committing to production.',
+      'Design thinking and engineering realism, together. A concept is drawn, modelled, costed and challenged early, so the expensive surprises happen on paper rather than on site.',
+      'When a project needs a bespoke element — a fixture, a play structure, an installation, a piece of interior — we research materials and production routes with qualified partners and, where it helps, build a physical prototype before committing to production.',
     ],
     capabilities: [
       {
@@ -318,10 +318,10 @@ export const serviceDetails: ServiceDetail[] = [
     title: 'Supply Chain & Delivery',
     lede: 'We do not manufacture. We bring the know-how that makes bespoke product buildable — and then let you decide how much of it you make yourself.',
     intro:
-      'We do not manufacture. We bring something more useful than a factory: years of taking bespoke products apart, understanding how every part is made, and reorganising that knowledge so it can be built — by us, by a partner, or by you.',
+      'We do not manufacture. What we bring instead is the knowledge that makes a bespoke product buildable: years of taking such products apart, understanding how every part is made, and reorganising that knowledge so it can be built — by us, by a partner, or by you.',
     paragraphs: [
-      'AQUASEE has spent years specifying, sourcing, dismantling and delivering bespoke product for landscape, play and hospitality projects. That work produces a specific kind of knowledge: how a complicated object breaks into modules, which modules are worth making in-house, and how the rest should be bought.',
-      'We bring that knowledge to you as an option set. A product can be delivered complete, as a kit you assemble yourself, or as semi-finished modules your own team completes. Every route is costed against one specification, and you choose.',
+      'We have spent years specifying, sourcing, dismantling and delivering bespoke product for landscape, play and hospitality projects. That work produces a specific kind of knowledge: how a complicated object breaks into modules, which modules are worth making in-house, and how the rest should be bought.',
+      'We hand you that knowledge as a set of options. A product can arrive complete, as a kit your team assembles, or as semi-finished modules your own team completes. Every route is costed against one specification, and you choose.',
     ],
     capabilities: [
       {

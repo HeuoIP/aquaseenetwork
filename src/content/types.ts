@@ -117,7 +117,6 @@ export type AboutContent = {
   };
   glossary: GlossaryTerm[];
   boundaries: string[];
-  markets: { tier: string; title: string; note: string; list: string[] }[];
   processNote: string;
 };
 
@@ -287,8 +286,6 @@ export type UiStrings = {
     costNote: string;
     boundaries: string;
     boundariesTitle: string;
-    markets: string;
-    marketsTitle: string;
     glossary: string;
     glossaryTitle: string;
     ctaTitle: string;

@@ -75,6 +75,8 @@ scripts/
 ├── geo/                           # Measurement (T2, T3) and the release gate
 └── set-mail-secrets.mjs
 docs/geo/                         # The GEO programme: memo, metrics, maps, ledger, scorecard
+docs/editorial-rules.md           # How the copy is written: buyer first, not us first
+docs/market-research.md           # Internal: where to research next (not site content)
 ```
 
 **Editing content:** you never need to touch a component to change copy. Edit the

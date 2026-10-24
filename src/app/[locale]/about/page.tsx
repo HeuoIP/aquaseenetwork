@@ -213,35 +213,6 @@ export default async function AboutPage({ params }: PageProps<'/[locale]/about'>
         </div>
       </section>
 
-      {/* ---- Markets -------------------------------------------------------- */}
-      <section className="bg-paper pb-16 sm:pb-20 lg:pb-24">
-        <div className="shell">
-          <Reveal>
-            <p className="eyebrow text-accent">{ui.about.markets}</p>
-            <h2 className="mt-5 max-w-3xl text-title">{ui.about.marketsTitle}</h2>
-          </Reveal>
-
-          <div className="mt-10 grid gap-10 lg:grid-cols-3">
-            {about.markets.map((market, i) => (
-              <Reveal key={market.title} delay={i * 80}>
-                <div className="rounded-sm border border-line bg-sand p-7">
-                  <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-accent">
-                    {market.tier}
-                  </p>
-                  <h3 className="mt-4 text-[1.0625rem] leading-snug text-ink">{market.title}</h3>
-                  <p className="mt-3 text-[0.875rem] leading-relaxed text-body">{market.note}</p>
-                  <ul className="mt-5 space-y-1.5 text-[0.8125rem] text-body">
-                    {market.list.map((country) => (
-                      <li key={country}>{country}</li>
-                    ))}
-                  </ul>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ---- Glossary ------------------------------------------------------- */}
       <section className="bg-paper pb-16 sm:pb-20 lg:pb-24">
         <div className="shell">

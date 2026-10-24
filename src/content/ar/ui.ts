@@ -82,8 +82,6 @@ export const ui: UiStrings = {
     costNote: 'لا ننشر نطاقات أسعار. والعوامل التالية هي ما يحدّدها.',
     boundaries: 'الحدود',
     boundariesTitle: 'ما لا نفعله.',
-    markets: 'الأسواق',
-    marketsTitle: 'أين نعمل.',
     glossary: 'المصطلحات',
     glossaryTitle: 'المصطلحات التي نستخدمها، مع تعريفها.',
     ctaTitle: 'أخبرنا بما تريد بناءه.',
