@@ -1,8 +1,18 @@
 import Link from 'next/link';
-import { nav, site } from '@/content/site';
+import type { SiteConfig } from '@/content/types';
+import { localePath, type Locale } from '@/lib/locale';
 
-export function Footer() {
+export function Footer({
+  locale,
+  site,
+  audiences,
+}: {
+  locale: Locale;
+  site: SiteConfig;
+  audiences: readonly string[];
+}) {
   const year = new Date().getFullYear();
+  const href = (path: string) => localePath(locale, path);
 
   return (
     <footer className="bg-ink text-on-dark">
@@ -16,8 +26,10 @@ export function Footer() {
               {site.tagline}
             </p>
             <p className="mt-4 max-w-sm text-[0.875rem] leading-relaxed text-on-dark/70">
-              Strategic consulting, creative design, product development and coordinated delivery for
-              distinctive spaces, experiences and bespoke installations.
+              {site.shortDescription}
+            </p>
+            <p className="mt-6 max-w-sm text-[0.8125rem] leading-relaxed text-on-dark/60">
+              {site.marketsLine}
             </p>
           </div>
 
@@ -26,24 +38,16 @@ export function Footer() {
               Capabilities
             </p>
             <ul className="mt-5 space-y-3">
-              {nav.map((item) => (
+              {site.nav.map((item) => (
                 <li key={item.href}>
                   <Link
-                    href={item.href}
+                    href={href(item.href)}
                     className="text-[0.9375rem] text-on-dark transition-colors duration-300 hover:text-on-dark-strong"
                   >
                     {item.label}
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link
-                  href="/projects"
-                  className="text-[0.9375rem] text-on-dark transition-colors duration-300 hover:text-on-dark-strong"
-                >
-                  Capability Studies
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -63,12 +67,21 @@ export function Footer() {
               <li className="text-on-dark/75">{site.contact.location}</li>
               <li>
                 <Link
-                  href="/contact"
+                  href={href('/contact')}
                   className="text-on-dark transition-colors duration-300 hover:text-on-dark-strong"
                 >
                   Contact page
                 </Link>
               </li>
+            </ul>
+
+            <p className="mt-8 font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-aqua">
+              We work with
+            </p>
+            <ul className="mt-4 space-y-1.5 text-[0.8125rem] text-on-dark/70">
+              {audiences.map((audience) => (
+                <li key={audience}>{audience}</li>
+              ))}
             </ul>
 
             {site.social.length > 0 ? (
@@ -102,8 +115,12 @@ export function Footer() {
           <p className="flex flex-wrap items-center gap-x-2 gap-y-1">
             <span>Imagery on this site is illustrative concept work unless stated otherwise.</span>
             <span aria-hidden="true">·</span>
-            <Link href="/contact" className="transition-colors hover:text-on-dark-strong">
-              Start a Project
+            <a href="/llms.txt" className="transition-colors hover:text-on-dark-strong">
+              Machine-readable summary
+            </a>
+            <span aria-hidden="true">·</span>
+            <Link href={href('/contact')} className="transition-colors hover:text-on-dark-strong">
+              {site.ctaLabel}
             </Link>
           </p>
         </div>
@@ -111,5 +128,3 @@ export function Footer() {
     </footer>
   );
 }
-
-

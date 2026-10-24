@@ -1,10 +1,10 @@
 import { HeroShell } from '@/components/site/HeroShell';
 import { ActionLink } from '@/components/ui/Action';
-import type { ServiceDetail } from '@/content/services';
+import type { ServiceDetail } from '@/content/types';
 
 /**
  * Capability page hero — the same visual signature as the homepage, driven by
- * the service entry in `src/content/services.ts`.
+ * the service entry in the content layer.
  */
 export function CapabilityHero({ service }: { service: ServiceDetail }) {
   return (
@@ -31,7 +31,7 @@ export function CapabilityHero({ service }: { service: ServiceDetail }) {
 
         <div className="hero-enter hero-enter-4 mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
           <ActionLink href="/contact" size="lg">
-            Start a Project
+            {service.ctaLabel ?? 'Start a Project'}
           </ActionLink>
           <ActionLink href="#activities" size="lg" variant="light" arrow={false}>
             See what this covers

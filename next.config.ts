@@ -7,6 +7,13 @@ const nextConfig: NextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
   },
+  experimental: {
+    // The root layout lives inside the [locale] segment, which is the
+    // documented way to build an internationalised App Router — but it means
+    // there is no single top-level layout to hang a global 404 on. This flag
+    // provides one (src/app/global-not-found.tsx).
+    globalNotFound: true,
+  },
   async headers() {
     return [
       {

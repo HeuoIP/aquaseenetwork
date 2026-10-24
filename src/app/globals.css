@@ -3,10 +3,25 @@
 /* --------------------------------------------------------------------------
    Type system
    -------------------------------------------------------------------------- */
+/* The stacks are exposed as variables so a language can replace them. Arabic
+   needs a family that actually carries Arabic glyphs; Chinese needs a system
+   stack, because the version of Noto Sans SC available to next/font has no
+   Chinese subset and would otherwise download nothing useful. */
+:root {
+  --stack-sans: var(--font-inter), "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --stack-display: var(--font-newsreader), "Songti SC", "SimSun", "Iowan Old Style", "Times New Roman", Georgia, serif;
+  --stack-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+
+html[lang="ar"] {
+  --stack-sans: var(--font-plex-arabic), "Segoe UI", system-ui, sans-serif;
+  --stack-display: var(--font-plex-arabic), "Segoe UI", system-ui, sans-serif;
+}
+
 @theme inline {
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-display: var(--font-newsreader), "Iowan Old Style", "Times New Roman", Georgia, serif;
-  --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --font-sans: var(--stack-sans);
+  --font-display: var(--stack-display);
+  --font-mono: var(--stack-mono);
 }
 
 /* --------------------------------------------------------------------------

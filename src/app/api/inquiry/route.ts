@@ -7,6 +7,7 @@ import {
   validateInquiry,
   type InquiryPayload,
 } from '@/lib/inquiry';
+import { classifyAttribution, type InquiryAttribution } from '@/lib/attribution';
 
 export const runtime = 'nodejs';
 
@@ -40,6 +41,20 @@ export async function POST(request: Request) {
     );
   }
 
+  // Attribution: where did this inquiry come from? The referrer and user
+  // agent are read server-side, because the client cannot be trusted to
+  // report them correctly — and it is the server that sees the actual
+  // referring page.
+  const clientAttribution: Partial<InquiryAttribution> = payload.attribution ?? {};
+  const attribution = classifyAttribution({
+    referer: request.headers.get('referer'),
+    userAgent: request.headers.get('user-agent'),
+    landingPath: clientAttribution.landingPath,
+    campaign: clientAttribution.campaign,
+    locale: clientAttribution.locale,
+  });
+  payload = { ...payload, attribution };
+
   // Honeypot: silently accept and drop submissions from bots.
   if (payload.website) {
     return NextResponse.json({ ok: true, reference: 'AQS-' + Date.now().toString(36).toUpperCase() });
@@ -63,7 +78,9 @@ export async function POST(request: Request) {
   const resendKey = process.env.RESEND_API_KEY;
   const toEmail = process.env.INQUIRY_TO_EMAIL;
   const fromEmail = process.env.INQUIRY_FROM_EMAIL ?? 'website@aquasee.art';
-  const subject = `New project inquiry — ${inquiry.company} (${reference})`;
+  const subject = `New project inquiry — ${inquiry.company} (${reference})${
+    inquiry.attribution?.source === 'ai' ? ` — via ${inquiry.attribution.engine ?? 'AI'}` : ''
+  }`;
   const text = buildMailtoBody(inquiry);
   const html = buildInquiryHtml(inquiry, reference);
 
@@ -88,6 +105,9 @@ export async function POST(request: Request) {
         `所需服务 Services: ${inquiry.services.join(', ')}`,
         inquiry.budget ? `预算 Budget: ${inquiry.budget}` : '',
         inquiry.timeline ? `周期 Timeline: ${inquiry.timeline}` : '',
+        inquiry.attribution
+          ? `来源 Source: ${inquiry.attribution.source}${inquiry.attribution.engine ? ` (${inquiry.attribution.engine})` : ''}${inquiry.attribution.referrer ? ` via ${inquiry.attribution.referrer}` : ''}`
+          : '',
         '',
         '项目描述 Description:',
         inquiry.description,

@@ -1,5 +1,9 @@
+'use client';
+
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
 import { cn } from '@/lib/cn';
+import { isLocale, localePath } from '@/lib/locale';
 
 type Variant = 'primary' | 'outline' | 'light' | 'ghost';
 type Size = 'md' | 'lg';
@@ -31,6 +35,13 @@ type ActionLinkProps = {
   arrow?: boolean;
 };
 
+/**
+ * The call-to-action link.
+ *
+ * It is a client component so it can read the active language from the route
+ * and prefix internal links automatically. That means a page never has to
+ * remember to localise its own calls to action.
+ */
 export function ActionLink({
   href,
   children,
@@ -39,7 +50,12 @@ export function ActionLink({
   className,
   arrow = true,
 }: ActionLinkProps) {
+  const params = useParams<{ locale?: string }>();
+  const locale = params?.locale && isLocale(params.locale) ? params.locale : 'en';
+
   const isExternal = /^https?:\/\//.test(href);
+  const isAnchor = href.startsWith('#') || href.startsWith('mailto:');
+  const target = isExternal || isAnchor ? href : localePath(locale, href);
   const classes = cn(base, variants[variant], sizes[size], className);
 
   const inner = (
@@ -52,17 +68,23 @@ export function ActionLink({
           viewBox="0 0 16 16"
           fill="none"
           aria-hidden="true"
-          className="transition-transform duration-300 group-hover:translate-x-1"
+          className="transition-transform duration-300 group-hover:translate-x-1 rtl:group-hover:-translate-x-1"
         >
-          <path d="M2 8h12M9 3l5 5-5 5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+          <path
+            d="M2 8h12M9 3l5 5-5 5"
+            stroke="currentColor"
+            strokeWidth="1.4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         </svg>
       ) : null}
     </>
   );
 
-  if (href.startsWith('#')) {
+  if (isAnchor) {
     return (
-      <a href={href} className={classes}>
+      <a href={target} className={classes}>
         {inner}
       </a>
     );
@@ -70,16 +92,15 @@ export function ActionLink({
 
   if (isExternal) {
     return (
-      <a href={href} className={classes} target="_blank" rel="noreferrer noopener">
+      <a href={target} className={classes} target="_blank" rel="noreferrer noopener">
         {inner}
       </a>
     );
   }
 
   return (
-    <Link href={href} className={classes}>
+    <Link href={target} className={classes}>
       {inner}
     </Link>
   );
 }
-

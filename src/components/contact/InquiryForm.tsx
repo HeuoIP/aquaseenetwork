@@ -9,7 +9,7 @@ import {
   type InquiryErrors,
   type InquiryPayload,
 } from '@/lib/inquiry';
-import { site } from '@/content/site';
+import type { Locale } from '@/lib/locale';
 import { cn } from '@/lib/cn';
 
 type Status =
@@ -34,7 +34,8 @@ const initial: InquiryPayload = {
 const fieldBase =
   'w-full rounded-sm border bg-paper px-4 py-3 text-[0.9375rem] text-ink transition-colors duration-200 placeholder:text-faint focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent';
 
-export function InquiryForm() {
+export function InquiryForm({ email, locale }: { email?: string; locale?: Locale }) {
+  const contactEmail = email ?? 'victor@aquasee.art';
   const [values, setValues] = useState<InquiryPayload>(initial);
   const [errors, setErrors] = useState<InquiryErrors>({});
   const [status, setStatus] = useState<Status>({ state: 'idle' });
@@ -63,7 +64,7 @@ export function InquiryForm() {
     if (status.state !== 'error' || !status.mailto) return '';
     const subject = encodeURIComponent(`Project inquiry — ${values.company || values.name || 'New inquiry'}`);
     const body = encodeURIComponent(status.mailto);
-    return `mailto:${site.contact.email}?subject=${subject}&body=${body}`;
+    return `mailto:${contactEmail}?subject=${subject}&body=${body}`;
   }, [status, values.company, values.name]);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -75,7 +76,17 @@ export function InquiryForm() {
       const response = await fetch('/api/inquiry', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(values),
+        body: JSON.stringify({
+        ...values,
+        attribution: {
+          landingPath: typeof window !== 'undefined' ? window.location.pathname : undefined,
+          campaign:
+            typeof window !== 'undefined'
+              ? new URLSearchParams(window.location.search).get('utm_source') ?? undefined
+              : undefined,
+          locale: locale ?? undefined,
+        },
+      }),
       });
 
       const data = await response.json().catch(() => ({}));
@@ -189,10 +200,10 @@ export function InquiryForm() {
             </a>
           ) : null}
           <a
-            href={`mailto:${site.contact.email}`}
+            href={`mailto:${contactEmail}`}
             className="mt-4 ml-1 text-[0.8125rem] text-ink underline underline-offset-4"
           >
-            {site.contact.email}
+            {contactEmail}
           </a>
         </div>
       ) : null}

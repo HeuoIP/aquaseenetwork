@@ -1,45 +1,44 @@
-import type { StudyVisualData } from '@/components/art/StudyVisual';
+import type { ServiceDetail } from '@/content/types';
 
-export type AiPoint = {
-  title: string;
-  description: string;
-};
-
-export type AiUsage = {
-  title: string;
-  points: AiPoint[];
-  note: string;
-};
-
-export type ServiceDetail = {
-  slug: string;
-  href: string;
-  index: string;
-  eyebrow: string;
-  title: string;
-  lede: string;
-  intro: string;
-  paragraphs: string[];
-  capabilities: { title: string; description: string }[];
-  deliverables: string[];
-  engagement: { phase: string; description: string }[];
-  bestFor: string[];
-  /** Dark key art used for the page hero. */
-  visual: Extract<StudyVisualData, { kind: 'image' }>;
-  visualCaption: string;
-  mobilePosition?: string;
-  /** Concrete service illustration used in the body of the page. */
-  illustration: { src: string; alt: string; caption: string };
-  /** Present only where AI genuinely assists this part of the work. */
-  aiUsage?: AiUsage;
-  /** Short label surfaced on the homepage capability card. */
-  aiTag?: string;
-  related: { href: string; label: string }[];
-};
+/**
+ * The three capabilities. This is the single source of truth: the homepage
+ * cards, the capability pages, the navigation and the machine-readable
+ * Service descriptions all read from this array, so they cannot drift apart.
+ */
 
 export const serviceDetails: ServiceDetail[] = [
   {
     slug: 'strategy',
+    definition: 'AQUASEE Strategy and Consulting is the front end of a project: it turns an ambition into a defined scope, a costed plan, a programme and a set of partners who can build it. It is advisory and hands-on work that continues into design and delivery rather than ending with a document.',
+    notIncluded: [
+      'Legal, planning or building-control approval — we prepare the technical basis, a local consultant signs it',
+      'Structural or electrical engineering certification — we engage qualified engineers and hold them to the brief',
+      'Commercial market research on end-customer demand',
+      'Funding, investment or financial modelling'
+    ],
+    costDrivers: [
+      'How much of the brief is already decided — an agreed scope costs less than an open one',
+      'Number of parties whose work must be coordinated',
+      'Site and regulatory complexity in the destination market',
+      'How much of the strategy has to be re-tested as the design develops'
+    ],
+    faq: [
+      {
+        pillar: 'strategy',
+        q: 'When is it worth paying for consulting before talking to suppliers?',
+        a: 'It is worth it whenever the scope is not yet stable. Consulting is expensive relative to a factory quote and cheap relative to building the wrong thing. The trigger is usually one of three: the brief is still an ambition rather than a specification, several suppliers have quoted against different assumptions, or the project has a site, approval or programme constraint that will invalidate quotes if it is not addressed first.'
+      },
+      {
+        pillar: 'strategy',
+        q: 'Can you review another party’s design or quotation instead of starting from scratch?',
+        a: 'Yes, and it is often the most efficient entry point. We review what exists — a design package, a tender document, a set of supplier quotations — against the objective, the standards, the site and the commercial reality, and report what is sound, what is missing and what it will cost to close. That review stands on its own, with no obligation to continue into delivery.'
+      },
+      {
+        pillar: 'strategy',
+        q: 'Do you stay involved once the design is finished?',
+        a: 'That is the point. Strategy that ends at handover of a document tends to be contradicted by what the supply chain can actually do and price. We stay connected through design development, partner selection, production and installation, because the assumptions written at the front are exactly the ones that fail at the back. If a client only wants the front end, we still deliver it as a standalone, properly evidenced piece of work.'
+      }
+    ],
     href: '/strategy',
     index: '01',
     eyebrow: 'Strategy & Consulting',
@@ -144,6 +143,38 @@ export const serviceDetails: ServiceDetail[] = [
   },
   {
     slug: 'creative-design',
+    definition: 'AQUASEE Creative Design and R&D turns an agreed idea into something that can be built, quoted and maintained: concept, design language, buildable drawings, a written technical specification, prototypes where the risk justifies them, and the engineering coordination that lets the item survive contact with a fabricator and a site.',
+    notIncluded: [
+          "Production of the designed item — that sits with our supply chain and delivery capability",
+          "Certification of the structure by a local approved inspector",
+          "Brand identity, naming or marketing campaigns",
+          "Landscape, architectural or interior design of the surrounding site"
+    ],
+    costDrivers: [
+          "How much of the design is bespoke and how much is adapted from a proven platform",
+          "Material specification and finish — coastal and marine-grade exposure change the bill materially",
+          "Tooling: each new mould, jig or fabrication method is a one-off cost",
+          "Engineering hours, including structural, electrical and control design",
+          "Prototyping and testing, and whether the use case requires load or safety testing",
+          "Number of disciplines that have to be coordinated — structure, drainage, power, controls and safety"
+    ],
+    faq: [
+          {
+                "pillar": "creative-design",
+                "q": "How do you make a concept buildable rather than just attractive?",
+                "a": "Buildability is a documentation problem, not an aesthetic one. Every element is resolved to a dimension, a material, a finish, a fixing and a tolerance, and checked against the way it will be manufactured, transported, installed and maintained. Where an element cannot be produced as drawn, we say so early and offer the alternative with its consequences, rather than discovering it in a quotation."
+          },
+          {
+                "pillar": "creative-design",
+                "q": "Do you work with our existing architect’s or landscape architect’s design?",
+                "a": "Yes. We take the design intent and make it buildable — resolving interfaces with structure, drainage, power and lighting, producing the documentation a fabricator can quote from, and testing the proposal against the operator’s real use, including cleaning, maintenance and opening hours. We also flag where the concept cannot be delivered in the proposed material or method, with the alternatives and their cost."
+          },
+          {
+                "pillar": "creative-design",
+                "q": "Which safety standards do you design to?",
+                "a": "We design to the standard that applies where the asset will operate, not to a single default. In Europe, the Gulf and much of Asia that is typically the EN 1176 series for playground equipment and ISO 13857 for entrapment and impact; in North America, ASTM F1487 and ASTM F1951. For public-space and installation work, local building, accessibility and fire requirements also apply. We state the clause references in the specification and arrange the testing."
+          }
+    ],
     href: '/creative-design',
     index: '02',
     eyebrow: 'Creative Design & R&D',
@@ -248,6 +279,39 @@ export const serviceDetails: ServiceDetail[] = [
   },
   {
     slug: 'supply-chain',
+    definition: 'AQUASEE Supply Chain and Delivery organises how a design becomes a physical asset: selecting and contracting qualified manufacturing partners, controlling quality during production, managing logistics and customs, installing on site around the reality of the venue, and handing over a documented, maintainable result with one accountable party.',
+    notIncluded: [
+          "Ownership or operation of manufacturing capacity — we are not a factory and do not pretend to be one",
+          "Unlimited revisions after handover — changes are handled as controlled changes with a stated cost",
+          "Supply of standard catalogue products at distributor pricing",
+          "Local trade labour where the client’s own site team is contracted to carry out installation"
+    ],
+    costDrivers: [
+          "Bespoke versus adapted platform, and therefore whether new tooling is needed",
+          "Material and finish specification, including marine-grade and coastal exposure",
+          "Engineering and documentation hours",
+          "Prototyping, mock-ups and testing",
+          "Freight by dimension and weight, packaging, and customs classification and duties",
+          "Site conditions — access, working hours, opening hours, and installation done out of hours",
+          "Commissioning, training, documentation and the length of the support window"
+    ],
+    faq: [
+          {
+                "pillar": "supply-chain",
+                "q": "Do you guarantee the quality of the factory you use?",
+                "a": "We guarantee the result, which is a stronger commitment than vouching for a partner. We select partners against a stated qualification, brief them against one written specification, inspect at agreed milestones, and keep the records. If something is wrong, it is our problem to solve — not an argument about who the sub-contractor was. We do not claim to guarantee anyone else’s factory; we make sure the outcome is ours."
+          },
+          {
+                "pillar": "supply-chain",
+                "q": "How do you handle quality problems found after installation?",
+                "a": "Problems found after installation are worked through the same evidence chain as everything else: the specification, the inspection records, the change log and the handover documentation. Where the defect is ours, we correct it. Where it is a misuse, a third-party contractor’s work or an operating condition outside the agreed use, we say so plainly and still help resolve it. The handover pack exists precisely so that this conversation has facts in it."
+          },
+          {
+                "pillar": "supply-chain",
+                "q": "Can you deliver if we already have our own manufacturer?",
+                "a": "Yes, and it is a reasonable arrangement when the manufacturer is already qualified and already understands the work. In that case our role is specification discipline, documentation, inspection and logistics — making sure what is being built matches what was agreed, and that the site receives a complete, documented result. We are happy to work this way; we simply do not pretend to add value where there is none."
+          }
+    ],
     href: '/supply-chain',
     index: '03',
     eyebrow: 'Supply Chain & Project Delivery',

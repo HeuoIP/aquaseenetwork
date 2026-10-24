@@ -6,23 +6,29 @@ import { DisclosureTag } from '@/components/ui/DisclosureTag';
 import { ImageDisclosure } from '@/components/ui/ImageDisclosure';
 import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeader } from '@/components/ui/SectionHeader';
-import { audiences } from '@/content/collaboration';
-import { capabilityStudies, disclosureNote } from '@/content/projects';
+import { JsonLd } from '@/components/site/JsonLd';
+import { getDictionary } from '@/lib/dictionary';
+import { itemListLd } from '@/lib/jsonld';
+import { pageMetadata } from '@/lib/metadata';
 
-export const metadata: Metadata = {
-  title: 'Projects & Capabilities',
-  description:
-    'Illustrative capability studies across resort, leisure, hospitality and installation work — showing how AQUASEE scopes, designs and delivers bespoke projects.',
-  alternates: { canonical: '/projects' },
-  openGraph: {
-    title: 'Projects & Capabilities — AQUASEE',
+export async function generateMetadata({ params }: PageProps<'/[locale]/projects'>): Promise<Metadata> {
+  const { locale } = await params;
+  const dict = await getDictionary(locale);
+  return pageMetadata({
+    locale: locale as never,
+    path: '/projects',
+    title: 'Projects & Capabilities',
     description:
-      'Illustrative capability studies across resort, leisure, hospitality and installation work.',
-    url: '/projects',
-  },
-};
+      'Illustrative capability studies across resort, leisure, hospitality and installation work — showing how AQUASEE scopes, designs and delivers bespoke projects.',
+  });
+}
 
-export default function ProjectsPage() {
+export default async function ProjectsPage({ params }: PageProps<'/[locale]/projects'>) {
+  const { locale } = await params;
+  const dict = await getDictionary(locale);
+  const capabilityStudies = dict.studies;
+  const disclosureNote = dict.about.processNote;
+  const audiences = dict.collaboration.audiences;
   return (
     <>
       {/* ---- Hero ---------------------------------------------------------- */}
@@ -211,6 +217,16 @@ export default function ProjectsPage() {
           </div>
         </div>
       </section>
+
+      <JsonLd
+        data={itemListLd(
+          capabilityStudies.map((study) => ({
+            name: study.title,
+            url: `${dict.site.url}/projects#${study.slug}`,
+          })),
+          'Capability studies',
+        )}
+      />
     </>
   );
 }

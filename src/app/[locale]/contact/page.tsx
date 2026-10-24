@@ -3,22 +3,25 @@ import { Contours } from '@/components/art/Contours';
 import { InquiryForm } from '@/components/contact/InquiryForm';
 import { ActionLink } from '@/components/ui/Action';
 import { Reveal } from '@/components/ui/Reveal';
-import { site } from '@/content/site';
+import { getDictionary } from '@/lib/dictionary';
+import { pageMetadata } from '@/lib/metadata';
 
-export const metadata: Metadata = {
-  title: 'Contact',
-  description:
-    'Talk to AQUASEE about a project brief — strategy and consulting, creative design and R&D, or supply chain and delivery. Send an enquiry or reach us directly.',
-  alternates: { canonical: '/contact' },
-  openGraph: {
-    title: 'Contact — AQUASEE',
+export async function generateMetadata({ params }: PageProps<'/[locale]/contact'>): Promise<Metadata> {
+  const { locale } = await params;
+  const dict = await getDictionary(locale);
+  return pageMetadata({
+    locale: locale as never,
+    path: '/contact',
+    title: 'Contact',
     description:
-      'Send a project brief to AQUASEE, or reach us directly for general and partnership enquiries.',
-    url: '/contact',
-  },
-};
+      'Talk to AQUASEE about a project brief — strategy and consulting, creative design and R&D, or supply chain and delivery. Send an enquiry or reach us directly.',
+  });
+}
 
-export default function ContactPage() {
+export default async function ContactPage({ params }: PageProps<'/[locale]/contact'>) {
+  const { locale } = await params;
+  const dict = await getDictionary(locale);
+  const copy = dict.contact;
   return (
     <>
       {/* ---- Hero ---------------------------------------------------------- */}
@@ -30,42 +33,38 @@ export default function ContactPage() {
             <div className="lg:col-span-7">
               <p className="hero-enter hero-enter-1 flex items-center gap-3 font-mono text-[0.6875rem] uppercase tracking-[0.2em] text-aqua">
                 <span aria-hidden="true" className="h-px w-10 bg-aqua/70" />
-                Contact
+                {copy.eyebrow}
               </p>
 
               <h1 className="hero-enter hero-enter-2 mt-7 font-display text-[length:var(--text-cap)] font-normal leading-[1.03] tracking-[-0.025em] text-on-dark-strong">
-                Let&rsquo;s talk about what you are building.
+                {copy.title}
               </h1>
 
-              <p className="hero-enter hero-enter-3 mt-7 max-w-xl text-[1.0625rem] leading-relaxed text-on-dark sm:text-lg">
-                The more concrete the brief, the more useful our reply. Tell us the stage you are at,
-                the ambition and the constraints — and we will come back with an honest read on what
-                is realistic.
-              </p>
+              <p className="hero-enter hero-enter-3 mt-7 max-w-xl text-[1.0625rem] leading-relaxed text-on-dark sm:text-lg">{copy.lede}</p>
             </div>
 
             <div className="hero-enter hero-enter-4 lg:col-span-5">
               <dl className="grid gap-px overflow-hidden rounded-sm border border-white/12 bg-white/12 sm:grid-cols-2 lg:grid-cols-1">
                 <div className="bg-ink p-5">
                   <dt className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-aqua">
-                    New projects
+                    {copy.newProjectsLabel}
                   </dt>
                   <dd className="mt-2.5 text-[0.9375rem] leading-relaxed text-on-dark">
-                    Use the brief form — it reaches the people who will actually work on it.
+                    {copy.newProjectsBody}
                   </dd>
                 </div>
                 <div className="bg-ink p-5">
                   <dt className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-aqua">
-                    Everything else
+                    {copy.otherLabel}
                   </dt>
                   <dd className="mt-2.5 text-[0.9375rem] leading-relaxed text-on-dark">
                     <a
-                      href={`mailto:${site.contact.email}`}
+                      href={`mailto:${dict.site.contact.email}`}
                       className="text-on-dark-strong underline underline-offset-4 transition-colors hover:text-aqua"
                     >
-                      {site.contact.email}
+                      {dict.site.contact.email}
                     </a>
-                    <span className="mt-1.5 block text-on-dark/70">{site.contact.location}</span>
+                    <span className="mt-1.5 block text-on-dark/70">{dict.site.contact.location}</span>
                   </dd>
                 </div>
               </dl>
@@ -80,16 +79,15 @@ export default function ContactPage() {
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
             <div className="lg:col-span-7 xl:col-span-8">
               <Reveal>
-                <p className="eyebrow text-accent">Project brief</p>
-                <h2 className="mt-5 text-title">Start a project</h2>
+                <p className="eyebrow text-accent">{copy.briefEyebrow}</p>
+                <h2 className="mt-5 text-title">{copy.briefTitle}</h2>
                 <p className="mt-4 max-w-xl text-[0.9375rem] leading-relaxed text-body">
-                  Nothing here is obligatory beyond the basics — but a little context makes the first
-                  reply far more useful.
+                  {copy.briefLede}
                 </p>
               </Reveal>
 
               <div className="mt-10">
-                <InquiryForm />
+                <InquiryForm email={dict.site.contact.email} locale={locale as never} />
               </div>
             </div>
 
@@ -100,13 +98,7 @@ export default function ContactPage() {
                     What to include
                   </p>
                   <ul className="mt-5 space-y-3">
-                    {[
-                      'The stage you are at — idea, brief, design or delivery',
-                      'The ambition, in one or two sentences',
-                      'The constraints that are already fixed',
-                      'A rough timeline',
-                      'An indicative budget range',
-                    ].map((item) => (
+                    {copy.whatToInclude.map((item) => (
                       <li key={item} className="flex gap-3 text-[0.9375rem] leading-relaxed text-ink">
                         <span aria-hidden="true" className="mt-[0.55rem] h-1 w-1 shrink-0 rounded-full bg-accent" />
                         {item}
@@ -179,23 +171,23 @@ export default function ContactPage() {
                     Email
                   </p>
                   <a
-                    href={`mailto:${site.contact.email}`}
+                    href={`mailto:${dict.site.contact.email}`}
                     className="mt-3 block text-[1.0625rem] text-ink underline underline-offset-4 transition-colors hover:text-accent"
                   >
-                    {site.contact.email}
+                    {dict.site.contact.email}
                   </a>
                 </div>
                 <div className="bg-paper p-7">
                   <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-accent">
                     Where we are
                   </p>
-                  <p className="mt-3 text-[1.0625rem] leading-snug text-ink">{site.contact.location}</p>
-                  {site.contact.phone ? (
+                  <p className="mt-3 text-[1.0625rem] leading-snug text-ink">{dict.site.contact.location}</p>
+                  {dict.site.contact.phone ? (
                     <a
-                      href={`tel:${site.contact.phone}`}
+                      href={`tel:${dict.site.contact.phone}`}
                       className="mt-2 block text-[0.9375rem] text-body underline underline-offset-4 hover:text-accent"
                     >
-                      {site.contact.phone}
+                      {dict.site.contact.phone}
                     </a>
                   ) : null}
                 </div>

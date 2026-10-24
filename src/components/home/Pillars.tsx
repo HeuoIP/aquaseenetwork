@@ -2,13 +2,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeader } from '@/components/ui/SectionHeader';
-import { serviceDetails } from '@/content/services';
+import type { ServiceDetail } from '@/content/types';
+import { localePath, type Locale } from '@/lib/locale';
 
 /**
  * The homepage's single capability section. Reads from `serviceDetails` so the
  * cards and the capability pages can never drift apart.
  */
-export function Pillars() {
+export function Pillars({ services, locale }: { services: ServiceDetail[]; locale: Locale }) {
   return (
     <section className="bg-sand py-20 sm:py-24 lg:py-32" id="capabilities">
       <div className="shell">
@@ -22,7 +23,7 @@ export function Pillars() {
           </Reveal>
           <Reveal delay={120}>
             <Link
-              href="/projects"
+              href={localePath(locale, '/projects')}
               className="group inline-flex shrink-0 items-center gap-2 text-[0.875rem] font-medium text-accent"
             >
               View capability studies
@@ -47,10 +48,10 @@ export function Pillars() {
         </div>
 
         <div className="mt-14 grid gap-8 md:grid-cols-3">
-          {serviceDetails.map((service, i) => (
+          {services.map((service, i) => (
             <Reveal key={service.href} delay={i * 110}>
               <Link
-                href={service.href}
+                href={localePath(locale, service.href)}
                 className="group flex h-full flex-col overflow-hidden rounded-sm border border-line bg-paper transition-colors duration-500 hover:bg-accent-tint"
               >
                 <div className="relative aspect-[3/2] overflow-hidden bg-ink">

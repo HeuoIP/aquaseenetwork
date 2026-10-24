@@ -3,10 +3,20 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { nav, site } from '@/content/site';
+import { LanguageSwitcher } from '@/components/site/LanguageSwitcher';
+import type { SiteConfig } from '@/content/types';
 import { cn } from '@/lib/cn';
+import { localePath, stripLocale, type Locale } from '@/lib/locale';
 
-export function Header() {
+export function Header({
+  locale,
+  nav,
+  site,
+}: {
+  locale: Locale;
+  nav: { href: string; label: string }[];
+  site: SiteConfig;
+}) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -40,7 +50,12 @@ export function Header() {
     };
   }, [open]);
 
-  const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
+  // The current path is compared in its language-neutral form so that the
+  // active state is identical whether the browser shows /strategy or the
+  // internally rewritten /en/strategy.
+  const current = stripLocale(pathname || '/');
+  const isActive = (href: string) => current === href || current.startsWith(`${href}/`);
+  const href = (path: string) => localePath(locale, path);
 
   // Every page opens on a dark hero, so the transparent header sits on the
   // dark ground and needs light ink until the page scrolls.
@@ -58,7 +73,7 @@ export function Header() {
       <div className="shell">
         <div className="flex h-[4.5rem] items-center justify-between gap-6">
           <Link
-            href="/"
+            href={href('/')}
             className="group flex items-baseline gap-2.5"
             aria-label={`${site.name} — home`}
           >
@@ -83,7 +98,7 @@ export function Header() {
             {nav.map((item) => (
               <Link
                 key={item.href}
-                href={item.href}
+                href={href(item.href)}
                 aria-current={isActive(item.href) ? 'page' : undefined}
                 className={cn(
                   'relative text-[0.875rem] transition-colors duration-300',
@@ -109,8 +124,12 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-3">
+            <div className="hidden lg:block">
+              <LanguageSwitcher />
+            </div>
+
             <Link
-              href="/contact"
+              href={href('/contact')}
               className={cn(
                 'hidden h-10 shrink-0 items-center whitespace-nowrap rounded-full px-5 text-[0.8125rem] font-medium transition-colors duration-500 sm:inline-flex',
                 solid
@@ -118,7 +137,7 @@ export function Header() {
                   : 'border border-white/25 text-on-dark-strong hover:border-white/60 hover:bg-white/5'
               )}
             >
-              Start a Project
+              {site.ctaLabel}
             </Link>
 
             <button
@@ -159,7 +178,7 @@ export function Header() {
           {nav.map((item) => (
             <Link
               key={item.href}
-              href={item.href}
+              href={href(item.href)}
               aria-current={isActive(item.href) ? 'page' : undefined}
               className={cn(
                 'border-b border-line/70 py-3.5 font-display text-2xl transition-colors',
@@ -169,18 +188,17 @@ export function Header() {
               {item.label}
             </Link>
           ))}
-          <Link
-            href="/contact"
-            className="mt-5 inline-flex h-12 items-center justify-center rounded-full bg-ink px-6 text-sm font-medium text-paper"
-          >
-            Start a Project
-          </Link>
+          <div className="mt-4 flex items-center justify-between gap-4 border-t border-line pt-5">
+            <LanguageSwitcher />
+            <Link
+              href={href('/contact')}
+              className="inline-flex h-12 items-center justify-center rounded-full bg-ink px-6 text-sm font-medium text-paper"
+            >
+              {site.ctaLabel}
+            </Link>
+          </div>
         </nav>
       </div>
     </header>
   );
 }
-
-
-
-

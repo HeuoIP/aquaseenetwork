@@ -1,19 +1,54 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { CapabilityHero } from '@/components/service/CapabilityHero';
+import { JsonLd } from '@/components/site/JsonLd';
 import { ActionLink } from '@/components/ui/Action';
+import { DefinitionList } from '@/components/ui/DefinitionList';
+import { FaqList } from '@/components/ui/FaqList';
 import { ImageDisclosure } from '@/components/ui/ImageDisclosure';
 import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeader } from '@/components/ui/SectionHeader';
-import type { ServiceDetail } from '@/content/services';
+import type { ServiceDetail } from '@/content/types';
+import { faqLd, serviceLd } from '@/lib/jsonld';
+import { localePath, type Locale } from '@/lib/locale';
 
-export function ServicePage({ service }: { service: ServiceDetail }) {
+/**
+ * The capability page template.
+ *
+ * The structure is deliberately fixed across all three capabilities, because a
+ * consistent shape is what lets a reader — and an answer engine — compare them
+ * and find the same information in the same place:
+ *
+ *   what it is → what it covers → what it does not cover → how it runs →
+ *   what drives the cost → who it suits → questions → related work
+ */
+export function ServicePage({
+  service,
+  locale,
+}: {
+  service: ServiceDetail;
+  locale: Locale;
+}) {
+  const href = (path: string) => localePath(locale, path);
+
   return (
     <>
       <CapabilityHero service={service} />
 
+      {/* ---- Definition: the answer-first paragraph ----------------------- */}
+      <section className="bg-paper pb-14 pt-16 sm:pb-16 sm:pt-20 lg:pb-20 lg:pt-24">
+        <div className="shell">
+          <Reveal>
+            <p className="eyebrow text-accent">In one paragraph</p>
+            <p className="mt-6 max-w-4xl text-[1.375rem] leading-[1.55] tracking-[-0.01em] text-ink">
+              {service.definition}
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ---- Overview ------------------------------------------------------ */}
-      <section className="bg-paper pb-12 pt-20 sm:pb-16 sm:pt-24 lg:pb-20 lg:pt-28">
+      <section className="bg-paper pb-12 pt-4 sm:pb-16 sm:pt-6 lg:pb-20 lg:pt-8">
         <div className="shell">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <Reveal className="lg:col-span-4">
@@ -123,7 +158,7 @@ export function ServicePage({ service }: { service: ServiceDetail }) {
         </div>
       </section>
 
-      {/* ---- Deliverables & engagement -------------------------------------- */}
+      {/* ---- Deliverables, boundaries, cost -------------------------------- */}
       <section className="bg-paper py-20 sm:py-24 lg:py-28">
         <div className="shell">
           <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
@@ -178,6 +213,54 @@ export function ServicePage({ service }: { service: ServiceDetail }) {
               </ol>
             </Reveal>
           </div>
+
+          {/* What this does not cover — stated plainly, so nobody has to ask. */}
+          <div className="mt-16 grid gap-10 border-t border-line pt-12 lg:grid-cols-12 lg:gap-16">
+            <Reveal className="lg:col-span-5">
+              <p className="eyebrow text-accent">Boundaries</p>
+              <h2 className="mt-5 text-title">What this does not cover.</h2>
+              <p className="mt-5 text-[0.9375rem] leading-relaxed text-body">
+                Stating the limits up front is cheaper than discovering them mid-project.
+              </p>
+            </Reveal>
+            <Reveal delay={100} className="lg:col-span-7">
+              <ul className="divide-y divide-line border-y border-line">
+                {service.notIncluded.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-3 py-4 text-[0.9375rem] leading-relaxed text-ink"
+                  >
+                    <span aria-hidden="true" className="mt-[0.55rem] h-1 w-1 shrink-0 rounded-full bg-line-2" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+          </div>
+
+          {/* What moves the cost — the question every buyer asks second. */}
+          <div className="mt-16 grid gap-10 border-t border-line pt-12 lg:grid-cols-12 lg:gap-16">
+            <Reveal className="lg:col-span-5">
+              <p className="eyebrow text-accent">Cost</p>
+              <h2 className="mt-5 text-title">What drives the cost.</h2>
+              <p className="mt-5 text-[0.9375rem] leading-relaxed text-body">
+                We do not publish price ranges, because the same description can differ by a
+                factor of several. What we can state precisely is what moves the number.
+              </p>
+            </Reveal>
+            <Reveal delay={100} className="lg:col-span-7">
+              <ol className="divide-y divide-line border-y border-line">
+                {service.costDrivers.map((driver, i) => (
+                  <li key={driver} className="flex gap-6 py-4">
+                    <span className="font-mono text-[0.75rem] tracking-[0.16em] text-accent">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <span className="text-[0.9375rem] leading-relaxed text-ink">{driver}</span>
+                  </li>
+                ))}
+              </ol>
+            </Reveal>
+          </div>
         </div>
       </section>
 
@@ -207,7 +290,7 @@ export function ServicePage({ service }: { service: ServiceDetail }) {
                 {service.related.map((r) => (
                   <Link
                     key={r.href}
-                    href={r.href}
+                    href={href(r.href)}
                     className="group flex items-center justify-between border-b border-line py-3.5 text-[1.0625rem] text-ink transition-colors hover:text-accent"
                   >
                     {r.label}
@@ -230,7 +313,7 @@ export function ServicePage({ service }: { service: ServiceDetail }) {
                   </Link>
                 ))}
                 <Link
-                  href="/projects"
+                  href={href('/projects')}
                   className="group flex items-center justify-between border-b border-line py-3.5 text-[1.0625rem] text-ink transition-colors hover:text-accent"
                 >
                   Projects &amp; Capabilities
@@ -244,11 +327,11 @@ export function ServicePage({ service }: { service: ServiceDetail }) {
                   >
                     <path
                       d="M2 8h12M9 3l5 5-5 5"
-                      stroke="currentColor"
-                      strokeWidth="1.4"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
+                    stroke="currentColor"
+                    strokeWidth="1.4"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                   </svg>
                 </Link>
               </div>
@@ -260,6 +343,26 @@ export function ServicePage({ service }: { service: ServiceDetail }) {
           </div>
         </div>
       </section>
+
+      {/* ---- Questions -------------------------------------------------------- */}
+      {service.faq.length > 0 ? (
+        <section className="bg-paper py-20 sm:py-24 lg:py-28">
+          <div className="shell">
+            <Reveal>
+              <p className="eyebrow text-accent">Questions</p>
+              <h2 className="mt-5 max-w-3xl text-title">
+                The questions buyers ask about this part of the work.
+              </h2>
+            </Reveal>
+            <div className="mt-10">
+              <FaqList items={service.faq} />
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      <JsonLd data={serviceLd(service, locale)} />
+      {service.faq.length > 0 ? <JsonLd data={faqLd(service.faq)} /> : null}
     </>
   );
 }

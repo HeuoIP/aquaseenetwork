@@ -32,6 +32,8 @@ export const timelineOptions = [
   'More than 12 months',
 ] as const;
 
+import type { InquiryAttribution } from '@/lib/attribution';
+
 export type InquiryPayload = {
   name: string;
   company: string;
@@ -44,6 +46,8 @@ export type InquiryPayload = {
   timeline?: string;
   /** Hidden field — bots fill it, humans do not. */
   website?: string;
+  /** Where the inquiry came from — direct, organic, referral, campaign or an AI answer engine. */
+  attribution?: InquiryAttribution;
 };
 
 export type InquiryErrors = Partial<Record<keyof InquiryPayload, string>>;
@@ -96,6 +100,18 @@ export function sanitiseInquiry(input: InquiryPayload): InquiryPayload {
     description: input.description.trim().slice(0, 4000),
     budget: input.budget?.trim().slice(0, 80) || undefined,
     timeline: input.timeline?.trim().slice(0, 80) || undefined,
+    ...(input.attribution
+      ? {
+          attribution: {
+            source: input.attribution.source,
+            engine: input.attribution.engine?.slice(0, 60),
+            referrer: input.attribution.referrer?.slice(0, 120),
+            landingPath: input.attribution.landingPath?.slice(0, 200),
+            campaign: input.attribution.campaign?.slice(0, 120),
+            locale: input.attribution.locale?.slice(0, 8),
+          },
+        }
+      : {}),
   };
 }
 
@@ -110,6 +126,9 @@ export function buildMailtoBody(inquiry: InquiryPayload): string {
     `Required services: ${inquiry.services.join(', ')}`,
     inquiry.budget ? `Indicative budget: ${inquiry.budget}` : null,
     inquiry.timeline ? `Expected timeline: ${inquiry.timeline}` : null,
+    inquiry.attribution
+      ? `Source: ${inquiry.attribution.source}${inquiry.attribution.engine ? ` (${inquiry.attribution.engine})` : ''}${inquiry.attribution.referrer ? ` via ${inquiry.attribution.referrer}` : ''}`
+      : null,
     '',
     'Project description:',
     inquiry.description,
@@ -152,6 +171,12 @@ export function buildInquiryHtml(inquiry: InquiryPayload, reference: string): st
 
   if (inquiry.budget) rows.push({ label: 'Indicative budget', value: inquiry.budget });
   if (inquiry.timeline) rows.push({ label: 'Expected timeline', value: inquiry.timeline });
+  if (inquiry.attribution) {
+    rows.push({
+      label: 'Source',
+      value: `${inquiry.attribution.source}${inquiry.attribution.engine ? ` (${inquiry.attribution.engine})` : ''}${inquiry.attribution.referrer ? ` via ${inquiry.attribution.referrer}` : ''}${inquiry.attribution.landingPath ? ` — ${inquiry.attribution.landingPath}` : ''}`,
+    });
+  }
 
   const rowHtml = rows
     .map(

@@ -1,22 +1,28 @@
 import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeader } from '@/components/ui/SectionHeader';
-import { processSteps } from '@/content/process';
+import type { HomeContent, ProcessStep } from '@/content/types';
 
-export function Process() {
+export function Process({
+  steps,
+  copy,
+}: {
+  steps: ProcessStep[];
+  copy: HomeContent['process'];
+}) {
   return (
     <section className="bg-ink py-20 text-on-dark sm:py-24 lg:py-32" id="process">
       <div className="shell">
         <Reveal>
           <SectionHeader
             tone="dark"
-            eyebrow="How We Work"
-            title="A clear path from brief to handover."
-            lede="Six stages, each with defined decisions and deliverables. You always know what is happening, what is being decided, and what it costs."
+            eyebrow={copy.eyebrow}
+            title={copy.title}
+            lede={copy.lede}
           />
         </Reveal>
 
         <ol className="mt-16 grid gap-px overflow-hidden rounded-sm border border-white/10 bg-white/10 md:grid-cols-2 lg:grid-cols-3">
-          {processSteps.map((step, i) => (
+          {steps.map((step, i) => (
             <Reveal key={step.index} delay={i * 80} as="li" className="bg-ink">
               <div className="group flex h-full flex-col p-8 transition-colors duration-500 hover:bg-ink-2 lg:p-9">
                 <div className="flex items-baseline justify-between gap-4">
@@ -35,8 +41,14 @@ export function Process() {
 
                 <ul className="mt-7 space-y-2 border-t border-white/10 pt-5">
                   {step.deliverables.map((d) => (
-                    <li key={d} className="flex gap-2.5 text-[0.8125rem] leading-relaxed text-on-dark/70">
-                      <span aria-hidden="true" className="mt-[0.45rem] h-1 w-1 shrink-0 rounded-full bg-aqua" />
+                    <li
+                      key={d}
+                      className="flex gap-2.5 text-[0.8125rem] leading-relaxed text-on-dark/70"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className="mt-[0.45rem] h-1 w-1 shrink-0 rounded-full bg-aqua"
+                      />
                       {d}
                     </li>
                   ))}
@@ -47,14 +59,9 @@ export function Process() {
         </ol>
 
         <Reveal>
-          <p className="mt-10 text-[0.8125rem] leading-relaxed text-on-dark/55">
-            Durations are indicative. A project that reaches us mid-stream may skip stages, and a
-            full custom programme runs considerably longer than the indicative windows shown above.
-          </p>
+          <p className="mt-10 text-[0.8125rem] leading-relaxed text-on-dark/55">{copy.note}</p>
         </Reveal>
       </div>
     </section>
   );
 }
-
-
