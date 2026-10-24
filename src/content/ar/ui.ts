@@ -65,7 +65,7 @@ export const ui: UiStrings = {
   about: {
     whatIs: 'ما هي AQUASEE',
     facts: 'حقائق',
-    factsTitle: 'النسخة المختصرة.',
+    factsTitle: 'لمحة سريعة.',
     deliveryModels: 'نماذج التسليم',
     deliveryModelsTitle: 'ثلاث طرق للتسليم، وتكلفة كل منها.',
     yourRole: 'دورك',

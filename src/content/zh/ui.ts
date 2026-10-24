@@ -66,7 +66,7 @@ export const ui: UiStrings = {
   about: {
     whatIs: 'AQUASEE 是什么',
     facts: '事实',
-    factsTitle: '一句话版本。',
+    factsTitle: '基本情况。',
     deliveryModels: '交付模式',
     deliveryModelsTitle: '三种交付方式，以及各自的代价。',
     yourRole: '你的角色',

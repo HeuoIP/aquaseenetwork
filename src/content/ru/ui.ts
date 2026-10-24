@@ -69,7 +69,7 @@ export const ui: UiStrings = {
   about: {
     whatIs: 'Кто такая AQUASEE',
     facts: 'Факты',
-    factsTitle: 'Коротко.',
+    factsTitle: 'Коротко о главном.',
     deliveryModels: 'Модели поставки',
     deliveryModelsTitle: 'Три способа получить результат — и цена каждого.',
     yourRole: 'Ваша роль',

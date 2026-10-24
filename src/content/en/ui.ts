@@ -70,7 +70,7 @@ export const ui: UiStrings = {
   about: {
     whatIs: 'What AQUASEE is',
     facts: 'Facts',
-    factsTitle: 'The short version.',
+    factsTitle: 'At a glance.',
     deliveryModels: 'Delivery models',
     deliveryModelsTitle:
       'Three ways to take delivery, and what each one costs you.',
