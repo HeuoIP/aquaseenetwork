@@ -13,11 +13,14 @@ export function Header({
   nav,
   site,
   ui,
+  availability,
 }: {
   locale: Locale;
   nav: { href: string; label: string }[];
   site: SiteConfig;
   ui: UiStrings;
+  /** Which language publishes which path, prepared on the server. */
+  availability: Record<string, string[]>;
 }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -127,7 +130,7 @@ export function Header({
 
           <div className="flex items-center gap-3">
             <div className="hidden lg:block">
-              <LanguageSwitcher ui={ui} />
+              <LanguageSwitcher ui={ui} availability={availability} />
             </div>
 
             <Link
@@ -191,7 +194,7 @@ export function Header({
             </Link>
           ))}
           <div className="mt-4 flex items-center justify-between gap-4 border-t border-line pt-5">
-            <LanguageSwitcher ui={ui} />
+            <LanguageSwitcher ui={ui} availability={availability} />
             <Link
               href={href('/contact')}
               className="inline-flex h-12 items-center justify-center rounded-full bg-ink px-6 text-sm font-medium text-paper"

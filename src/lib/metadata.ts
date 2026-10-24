@@ -12,13 +12,42 @@ export const SITE_ORIGIN = 'https://www.aquasee.art';
  * does not: a language that has not published an article yet must not have
  * its URL advertised for that article — a hreflang pointing at a page that
  * answers "not found" is worse than no hreflang at all.
+ *
+ * This is the single place where that rule is decided. The hreflang map, the
+ * sitemap and the language switcher all read it, so the three cannot disagree
+ * about which language publishes which path.
  */
 export function pathExistsIn(dict: Dictionary, path: string): boolean {
+  const articles = dict.insights ?? [];
+  if (path === '/insights') return articles.length > 0;
   if (path.startsWith('/insights/')) {
     const slug = path.slice('/insights/'.length);
-    return (dict.insights ?? []).some((article) => article.slug === slug);
+    return articles.some((article) => article.slug === slug);
   }
   return true;
+}
+
+/**
+ * The paths whose availability differs between languages, and the languages
+ * that publish them.
+ *
+ * The language switcher is a client component and cannot read the content
+ * modules, so the server prepares the map and hands it over. Every path in
+ * it is subject to the same rule as `pathExistsIn`, so a link is only ever
+ * rendered for a language that actually publishes the page it points at.
+ */
+export async function localeAvailability(): Promise<Record<string, string[]>> {
+  const out: Record<string, string[]> = {};
+  for (const locale of PUBLISHED_LOCALES) {
+    const dict = await getDictionary(locale);
+    const articles = dict.insights ?? [];
+    if (articles.length) out['/insights'] = [...(out['/insights'] ?? []), locale];
+    for (const article of articles) {
+      const key = `/insights/${article.slug}`;
+      out[key] = [...(out[key] ?? []), locale];
+    }
+  }
+  return out;
 }
 
 /**

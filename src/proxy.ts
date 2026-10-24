@@ -14,9 +14,18 @@ import { DEFAULT_LOCALE, internalPath, shouldRewrite } from '@/lib/locale';
  *     not `/en/strategy` — while the application serves it from a single
  *     locale-aware route tree. Prefixed URLs (`/zh/...`, `/ar/...`) pass
  *     through untouched.
+ *
+ *  3. `/en` and `/en/...` are the internal address of those same English
+ *     pages. They are redirected permanently to the public address, so the
+ *     two spellings of one page are never indexed as two pages.
  */
 const CANONICAL_HOST = 'www.aquasee.art';
 const ROOT_DOMAIN = 'aquasee.art';
+
+/**
+ * The English prefix, exactly: `/en` and `/en/...`, but not `/english`.
+ */
+const ENGLISH_PREFIX = /^\/en(\/|$)/;
 
 export function proxy(request: NextRequest) {
   const host = (request.headers.get('host') ?? '').split(':')[0].toLowerCase();
@@ -29,6 +38,16 @@ export function proxy(request: NextRequest) {
   }
 
   const { pathname } = request.nextUrl;
+
+  // The English pages are published at the root paths. `/en/...` reaches the
+  // same pages, so it is sent to the public address with the rest of the
+  // path — and the query string — preserved.
+  if (ENGLISH_PREFIX.test(pathname)) {
+    const url = request.nextUrl.clone();
+    url.pathname = pathname.slice('/en'.length).replace(/\/+$/, '') || '/';
+    return NextResponse.redirect(url, 308);
+  }
+
   if (shouldRewrite(pathname)) {
     const url = request.nextUrl.clone();
     url.pathname = internalPath(DEFAULT_LOCALE, pathname);

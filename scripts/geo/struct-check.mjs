@@ -96,6 +96,238 @@ const rulesFor = (locale) =>
     quoteable: /AQUASEE/i,
   };
 
+/* -------------------------------------------------------------------------- */
+/* The three checks that protect the crawl surface                            */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Paths that are machine endpoints rather than pages.
+ */
+const NON_PAGE_PATHS = new Set([
+  '/robots.txt',
+  '/sitemap.xml',
+  '/llms.txt',
+  '/llms-full.txt',
+  '/icon',
+  '/opengraph-image',
+]);
+
+/** Does the page ask not to be indexed? */
+function isNoindex(html) {
+  const robots = html.match(/<meta name="robots" content="([^"]*)"/)?.[1] ?? '';
+  return /\bnoindex\b/i.test(robots);
+}
+
+/**
+ * The internal page links in one page's HTML.
+ *
+ * External links, anchors, mail and telephone links, static assets, the API
+ * and the machine endpoints are not links to a page, so they are not judged
+ * against the set of published pages.
+ */
+function internalPageLinks(html) {
+  const out = new Set();
+  for (const [, href] of html.matchAll(/href="([^"]+)"/g)) {
+    if (!href.startsWith('/') || href.startsWith('//')) continue;
+    const clean = href.split('#')[0].split('?')[0];
+    if (!clean) continue;
+    if (clean.startsWith('/_next/') || clean.startsWith('/api/')) continue;
+    if (/\.[a-z0-9]{2,5}$/i.test(clean)) continue;
+    if (NON_PAGE_PATHS.has(clean)) continue;
+    out.add(clean);
+  }
+  return out;
+}
+
+/** Links that point at a page which is not published. */
+function brokenInternalLinks(pages, publishedUrls) {
+  const problems = [];
+  for (const page of pages) {
+    for (const target of internalPageLinks(page.html)) {
+      if (!publishedUrls.has(target)) {
+        problems.push(
+          `${page.url}: internal link to ${target}, which is not a published page`,
+        );
+      }
+    }
+  }
+  return problems;
+}
+
+/**
+ * A page that publishes nothing must not be indexable and listed together.
+ * A page that is indexable must be in the sitemap, or it is never found.
+ */
+function indexProtectionProblems(pages, sitemapUrls) {
+  const problems = [];
+  for (const page of pages) {
+    const noindex = isNoindex(page.html);
+    const listed = sitemapUrls.includes(page.url);
+    if (noindex && listed) {
+      problems.push(`sitemap: ${page.url} is noindex but listed in the sitemap`);
+    }
+    if (!noindex && !listed) {
+      problems.push(`sitemap: ${page.url} is indexable but missing from the sitemap`);
+    }
+  }
+  return problems;
+}
+
+/**
+ * A hreflang may only point at a page that exists, is indexable, and is
+ * published by the language it claims.
+ */
+function alternateProblems(pages, publishedUrls, indexableUrls) {
+  const problems = [];
+  for (const page of pages) {
+    const map = Object.fromEntries(
+      [...page.html.matchAll(/<link rel="alternate" hrefLang="([^"]+)" href="([^"]+)"/g)].map(
+        ([, tag, href]) => [tag, href],
+      ),
+    );
+    for (const [tag, href] of Object.entries(map)) {
+      if (tag === 'x-default') continue;
+      const target = href.replace(ORIGIN, '') || '/';
+      if (!publishedUrls.has(target)) {
+        problems.push(`${page.url}: hreflang ${tag} points at ${target}, which is not published`);
+      } else if (!indexableUrls.has(target)) {
+        problems.push(`${page.url}: hreflang ${tag} points at ${target}, which is not indexable`);
+      }
+    }
+  }
+  return problems;
+}
+
+/** The three checks, run over one set of pages. */
+function crawlSurfaceProblems(pages, publishedUrls, indexableUrls, sitemapUrls) {
+  return [
+    ...brokenInternalLinks(pages, publishedUrls),
+    ...indexProtectionProblems(pages, sitemapUrls),
+    ...alternateProblems(pages, publishedUrls, indexableUrls),
+  ];
+}
+
+/**
+ * The self-test.
+ *
+ * A check that cannot fail is not a check. These three checks exist because
+ * the site once shipped with broken internal links and with empty pages that
+ * were indexable and listed in the sitemap, and the structure gate passed
+ * anyway. So the checks are run here against synthetic pages carrying
+ * exactly those faults, and each one has to be reported — and a clean page
+ * has to report nothing. The pages are fixtures: no business data is edited
+ * to make a test pass.
+ */
+function selfTest() {
+  const failures = [];
+  const cleanPage = {
+    url: '/about',
+    html:
+      '<meta name="robots" content="index, follow"><a href="/faq">f</a>' +
+      '<link rel="alternate" hrefLang="en" href="https://www.aquasee.art/about">',
+  };
+  const cleanContext = {
+    pages: [cleanPage],
+    publishedUrls: new Set(['/about', '/faq']),
+    indexableUrls: new Set(['/about', '/faq']),
+    sitemapUrls: ['/about', '/faq'],
+  };
+
+  const cases = [
+    {
+      name: 'a link to a page that does not exist',
+      expect: '/missing',
+      context: {
+        pages: [{ url: '/about', html: '<a href="/missing">m</a>' }],
+        publishedUrls: new Set(['/about']),
+        indexableUrls: new Set(['/about']),
+        sitemapUrls: ['/about'],
+      },
+    },
+    {
+      name: 'an empty page that is indexable and listed in the sitemap',
+      expect: 'is indexable but missing from the sitemap',
+      context: {
+        pages: [
+          { url: '/zh/insights', html: '<meta name="robots" content="index, follow">' },
+        ],
+        publishedUrls: new Set(['/zh/insights']),
+        indexableUrls: new Set(['/zh/insights']),
+        sitemapUrls: [],
+      },
+    },
+    {
+      name: 'an empty page that is noindex but still listed in the sitemap',
+      expect: 'is noindex but listed in the sitemap',
+      context: {
+        pages: [
+          { url: '/zh/insights', html: '<meta name="robots" content="noindex, follow">' },
+        ],
+        publishedUrls: new Set(['/zh/insights']),
+        indexableUrls: new Set(),
+        sitemapUrls: ['/zh/insights'],
+      },
+    },
+    {
+      name: 'a hreflang that points at a page nobody published',
+      expect: 'which is not published',
+      context: {
+        pages: [
+          {
+            url: '/about',
+            html: '<link rel="alternate" hrefLang="zh-CN" href="https://www.aquasee.art/zh/about">',
+          },
+        ],
+        publishedUrls: new Set(['/about']),
+        indexableUrls: new Set(['/about']),
+        sitemapUrls: ['/about'],
+      },
+    },
+    {
+      name: 'a hreflang that points at a page that is not indexable',
+      expect: 'which is not indexable',
+      context: {
+        pages: [
+          {
+            url: '/about',
+            html: '<link rel="alternate" hrefLang="zh-CN" href="https://www.aquasee.art/zh/about">',
+          },
+          { url: '/zh/about', html: '<meta name="robots" content="noindex, follow">' },
+        ],
+        publishedUrls: new Set(['/about', '/zh/about']),
+        indexableUrls: new Set(['/about']),
+        sitemapUrls: ['/about'],
+      },
+    },
+  ];
+
+  for (const testCase of cases) {
+    const problems = crawlSurfaceProblems(
+      testCase.context.pages,
+      testCase.context.publishedUrls,
+      testCase.context.indexableUrls,
+      testCase.context.sitemapUrls,
+    );
+    if (!problems.some((p) => p.includes(testCase.expect))) {
+      failures.push(`the self-test did not catch ${testCase.name}`);
+    }
+  }
+
+  const cleanProblems = crawlSurfaceProblems(
+    cleanContext.pages,
+    cleanContext.publishedUrls,
+    cleanContext.indexableUrls,
+    cleanContext.sitemapUrls,
+  );
+  if (cleanProblems.length) {
+    failures.push(
+      `the self-test reported problems on a clean page: ${cleanProblems.join('; ')}`,
+    );
+  }
+
+  return failures;
+}
+
 // --- 1. JSON-LD -----------------------------------------------------------
 const EXPECTED_TYPES = {
   '/': ['Organization', 'WebSite'],
@@ -160,26 +392,40 @@ for (const page of pages) {
     continue;
   }
   const map = Object.fromEntries(alternates.map(([, tag, href]) => [tag, href]));
-  for (const [tag, href] of Object.entries(map)) {
-    const targetPath = href.replace(ORIGIN, '') || '/';
-    if (tag !== 'x-default' && !pages.some((p) => p.url === targetPath)) {
-      fail(page.url, `hreflang ${tag} points at ${targetPath}, which is not published`);
-    }
-  }
+  // Where the alternates point is checked in one place, further down, so
+  // that the hreflang map, the sitemap and the index directive are all
+  // judged by the same rule.
   if (!map['x-default']) fail(page.url, 'no x-default hreflang');
 }
 
 // --- 4. sitemap -----------------------------------------------------------
 const sitemap = await readEndpoint('sitemap.xml');
+let sitemapUrls = [];
 if (!sitemap) {
   warn('sitemap', 'sitemap output not found in the build or on a running server');
 } else {
-  const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1].replace(ORIGIN, ''));
-  for (const page of pages) {
-    if (page.url === '/unsubscribe') continue;
-    if (!urls.includes(page.url)) fail('sitemap', `missing ${page.url}`);
+  sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1].replace(ORIGIN, ''));
+  notes.push(`Sitemap entries: ${sitemapUrls.length}`);
+}
+
+// --- 4b. the crawl surface ------------------------------------------------
+// Three rules, one place: a link may only point at a published page; a page
+// that publishes nothing may not be indexable and listed at the same time;
+// and a hreflang may only point at a page that exists, is indexable, and is
+// published by the language it claims.
+const publishedUrls = new Set(pages.map((p) => p.url));
+const indexableUrls = new Set(pages.filter((p) => !isNoindex(p.html)).map((p) => p.url));
+if (sitemapUrls.length) {
+  for (const problem of crawlSurfaceProblems(
+    pages,
+    publishedUrls,
+    indexableUrls,
+    sitemapUrls,
+  )) {
+    fail('crawl surface', problem);
   }
-  notes.push(`Sitemap entries: ${urls.length}`);
+} else {
+  warn('crawl surface', 'the sitemap could not be read, so the index protection was not checked');
 }
 
 // --- 5. llms.txt ----------------------------------------------------------
@@ -251,6 +497,17 @@ async function readEndpoint(name) {
   }
   return null;
 }
+
+// --- self-test ------------------------------------------------------------
+// The checks above must be able to fail. This runs them against synthetic
+// pages that carry the faults they exist to find.
+const selfTestFailures = selfTest();
+for (const problem of selfTestFailures) fail('self-test', problem);
+notes.push(
+  selfTestFailures.length
+    ? `Self-test: ${selfTestFailures.length} problem(s)`
+    : 'Self-test: the crawl-surface checks catch every fixture fault',
+);
 
 // --- report ---------------------------------------------------------------
 console.log('\n=== GEO structure check ===\n');

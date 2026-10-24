@@ -11,13 +11,20 @@ import { pageMetadata } from '@/lib/metadata';
 export async function generateMetadata({ params }: PageProps<'/[locale]/insights'>): Promise<Metadata> {
   const { locale } = await params;
   const dict = await getDictionary(locale);
-  return pageMetadata({
+  const meta = await pageMetadata({
     locale: locale as never,
     path: '/insights',
     title: 'Insights',
     description:
       'Decision guides, specification notes and cost explainers for tourism, public-space and children’s play projects — written for the questions buyers ask before they choose a supplier.',
   });
+  // A language that has not published the library yet serves a placeholder
+  // page. It must not be indexable: an empty page in the search results is
+  // worse than no page at all, and it must not be in the sitemap either.
+  if ((dict.insights ?? []).length === 0) {
+    return { ...meta, robots: { index: false, follow: true } };
+  }
+  return meta;
 }
 
 export default async function InsightsIndexPage({ params }: PageProps<'/[locale]/insights'>) {

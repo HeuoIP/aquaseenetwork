@@ -25,6 +25,10 @@ const DATA = resolve(ROOT, 'docs/geo/data');
 
 const argv = process.argv.slice(2);
 const argOf = (flag) => {
+  // Both `--flag value` and `--flag=value` are accepted, so the usage
+  // written at the top of this file works as written.
+  const inline = argv.find((a) => a.startsWith(`${flag}=`));
+  if (inline) return inline.slice(flag.length + 1);
   const i = argv.indexOf(flag);
   return i >= 0 ? argv[i + 1] : null;
 };
@@ -73,6 +77,58 @@ async function get(path) {
   }
 }
 
+/**
+ * The internal page links in one page's HTML.
+ *
+ * External links, anchors, mail and telephone links, static assets and the
+ * API are not links to a page.
+ */
+function internalLinks(html) {
+  const out = new Set();
+  for (const [, href] of html.matchAll(/href="([^"]+)"/g)) {
+    if (!href.startsWith('/') || href.startsWith('//')) continue;
+    const clean = href.split('#')[0].split('?')[0];
+    if (!clean) continue;
+    if (clean.startsWith('/_next/') || clean.startsWith('/api/')) continue;
+    if (/\.[a-z0-9]{2,5}$/i.test(clean)) continue;
+    out.add(clean);
+  }
+  return out;
+}
+
+/**
+ * Follow a redirect chain, and report where it ends and whether it loops.
+ */
+async function follow(path, max = 5) {
+  const seen = new Set();
+  let current = path;
+  for (let i = 0; i < max; i++) {
+    if (seen.has(current)) return { path: current, status: 0, loop: true };
+    seen.add(current);
+    const res = await get(current);
+    if (res.status < 300 || res.status >= 400) {
+      return { path: current, status: res.status, loop: false };
+    }
+    if (!res.location) return { path: current, status: res.status, loop: false };
+    const location = new URL(res.location, BASE);
+    current = location.pathname + location.search;
+  }
+  return { path: current, status: 0, loop: true };
+}
+
+/**
+ * The insight articles a language publishes, as locale-neutral paths.
+ *
+ * The list is read from the sitemap the site serves, so it is the set of
+ * pages the site actually publishes — not a copy kept in the test.
+ */
+function insightPathsFor(locale, publishedUrls) {
+  const prefix = locale === 'en' ? '/insights/' : `/${locale}/insights/`;
+  return publishedUrls
+    .filter((url) => url.startsWith(prefix))
+    .map((url) => (locale === 'en' ? url : url.slice(`/${locale}`.length)));
+}
+
 /** Strip tags and collapse whitespace, so the checks read the page as text. */
 function textOf(html) {
   return html
@@ -96,10 +152,25 @@ if (health.status !== 200) {
   process.exit(2);
 }
 
+// --- 0. the pages the site itself publishes --------------------------------
+// The sitemap is the site's own statement of what it publishes, so the
+// checks below are run against that set rather than a list kept here.
+const sitemapRes = await get('/sitemap.xml');
+const publishedUrls =
+  sitemapRes.status === 200
+    ? [...sitemapRes.body.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => new URL(m[1]).pathname)
+    : [];
+if (!publishedUrls.length) {
+  fail('/sitemap.xml', `status ${sitemapRes.status}, so the published set is unknown`);
+}
+
+// Every internal link found on any page, checked once at the end.
+const collectedLinks = new Set();
+
 // --- 1. every published locale answers -----------------------------------
 const localeRoots = new Map();
 for (const locale of PUBLISHED_LOCALES ) {
-  for (const route of ROUTES) {
+  for (const route of [...ROUTES, ...insightPathsFor(locale, publishedUrls)]) {
     const path = localePath(locale, route);
     const res = await get(path);
     if (res.status !== 200) {
@@ -141,6 +212,8 @@ for (const locale of PUBLISHED_LOCALES ) {
         fail(path, `invalid JSON-LD: ${err.message}`);
       }
     }
+
+    for (const target of internalLinks(res.body)) collectedLinks.add(target);
 
     const body = textOf(res.body);
     if (!/AQUASEE/.test(body)) fail(path, 'the page does not name the entity');
@@ -188,9 +261,72 @@ for (const [locale, lead] of localeRoots) {
   }
 }
 
+// --- 5. the English prefix is the internal address of the root pages -----
+// `/en` and `/en/...` must send the reader to the public English URL:
+// permanently, without losing the rest of the path or the query string, and
+// without a loop. The other languages keep their prefix and are not moved.
+const ENGLISH_REDIRECTS = [
+  ['/en', '/'],
+  ['/en/strategy', '/strategy'],
+  ['/en/insights', '/insights'],
+  ['/en/faq', '/faq'],
+  ['/en/contact', '/contact'],
+];
+for (const [from, to] of ENGLISH_REDIRECTS) {
+  const res = await get(from);
+  if (res.status !== 308) {
+    fail(from, `expected a permanent redirect, got ${res.status}`);
+    continue;
+  }
+  if (!res.location) {
+    fail(from, 'the redirect carries no Location header');
+    continue;
+  }
+  const location = new URL(res.location, BASE);
+  if (location.pathname !== to) fail(from, `redirects to ${location.pathname}, expected ${to}`);
+  // The redirect must not be a loop: the target answers on its own.
+  const landed = await get(to);
+  if (landed.status !== 200) fail(from, `${to} answers ${landed.status} after the redirect`);
+}
+
+// The query string survives the redirect.
+const withQuery = await get('/en/strategy?ref=audit');
+if (withQuery.status !== 308) {
+  fail('/en/strategy?ref=audit', `expected a permanent redirect, got ${withQuery.status}`);
+} else if (withQuery.location) {
+  const location = new URL(withQuery.location, BASE);
+  if (location.search !== '?ref=audit') {
+    fail('/en/strategy?ref=audit', `the query string is lost (${location.search})`);
+  }
+}
+
+// The trailing slash is normalised by the site before the prefix is
+// resolved, so `/en/` takes two hops — `/en/` to `/en` to `/`. The chain
+// must still end at the public English URL, and it must not loop.
+const trailing = await follow('/en/');
+if (trailing.loop) fail('/en/', 'the redirect chain loops');
+if (trailing.path !== '/') fail('/en/', `the chain ends at ${trailing.path}, expected /`);
+if (trailing.status !== 200) fail('/en/', `the chain ends with status ${trailing.status}`);
+
+// The other languages keep their own prefix and are not redirected.
+for (const path of ['/zh', '/zh/strategy', '/ar', '/ru/insights']) {
+  const res = await get(path);
+  if (res.status !== 200) fail(path, `expected 200, got ${res.status}`);
+}
+
+// --- 6. every internal link on the site answers --------------------------
+// This is the check that the structure gate cannot make: it proves that the
+// link a reader or a crawler is offered actually resolves at runtime.
+for (const target of [...collectedLinks].sort()) {
+  const res = await get(target);
+  if (res.status !== 200) fail(target, `internal link answers ${res.status}`);
+}
+
 notes.push(`Base URL: ${BASE}`);
 notes.push(`Published locales checked: ${[...PUBLISHED_LOCALES].join(', ')}`);
 notes.push(`Routes per locale: ${ROUTES.length}`);
+notes.push(`Published URLs read from the sitemap: ${publishedUrls.length}`);
+notes.push(`Internal links resolved: ${collectedLinks.size}`);
 
 // --- report ---------------------------------------------------------------
 const stamp = new Date().toISOString().slice(0, 10);

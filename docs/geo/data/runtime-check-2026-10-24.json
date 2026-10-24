@@ -1,10 +1,12 @@
 {
-  "base": "http://127.0.0.1:8787",
+  "base": "http://127.0.0.1:8788",
   "failures": [],
   "warnings": [],
   "notes": [
-    "Base URL: http://127.0.0.1:8787",
+    "Base URL: http://127.0.0.1:8788",
     "Published locales checked: en, zh, ar, ru",
-    "Routes per locale: 9"
+    "Routes per locale: 9",
+    "Published URLs read from the sitemap: 45",
+    "Internal links resolved: 49"
   ]
 }

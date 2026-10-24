@@ -7,7 +7,7 @@ import { JsonLd } from '@/components/site/JsonLd';
 import { getDictionary } from '@/lib/dictionary';
 import { organizationLd, websiteLd } from '@/lib/jsonld';
 import { LOCALE_TAGS, PUBLISHED_LOCALES, isRtl, type Locale } from '@/lib/locale';
-import { SITE_ORIGIN } from '@/lib/metadata';
+import { SITE_ORIGIN, localeAvailability } from '@/lib/metadata';
 
 /**
  * The root layout.
@@ -113,6 +113,10 @@ export default async function LocaleLayout({
   const dict = await getDictionary(locale);
   const ui = dict.ui;
   const tag = LOCALE_TAGS[locale as Locale] ?? 'en';
+  // Which language publishes which path. The language switcher is a client
+  // component and cannot read the content modules, so the server prepares
+  // this map and hands it over.
+  const availability = await localeAvailability();
 
   return (
     <html
@@ -130,7 +134,13 @@ export default async function LocaleLayout({
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-ink focus:px-5 focus:py-2.5 focus:text-sm focus:text-paper"
         >{ui.global.skipToContent}</a>
-        <Header locale={locale as Locale} nav={dict.site.nav} site={dict.site} ui={ui} />
+        <Header
+          locale={locale as Locale}
+          nav={dict.site.nav}
+          site={dict.site}
+          ui={ui}
+          availability={availability}
+        />
         <main id="main">{children}</main>
         <Footer locale={locale as Locale} site={dict.site} audiences={dict.collaboration.audiences} ui={ui} />
         <JsonLd data={organizationLd(dict)} />

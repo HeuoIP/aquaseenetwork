@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { getDictionary } from '@/lib/dictionary';
 import { PUBLISHED_LOCALES, localePath, type Locale } from '@/lib/locale';
-import { languageAlternates } from '@/lib/metadata';
+import { languageAlternates, pathExistsIn } from '@/lib/metadata';
 
 /**
  * The sitemap.
@@ -38,6 +38,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const articles = dict.insights ?? [];
 
     for (const route of STATIC_ROUTES) {
+      // A route this language does not publish — the insight library, until
+      // it is translated — is not listed. The same rule decides the hreflang
+      // alternates and the index directive on the page itself.
+      if (!pathExistsIn(dict, route.path)) continue;
       entries.push({
         url: `${base}${localePath(locale as Locale, route.path)}`,
         lastModified: new Date(SITE_UPDATED),
