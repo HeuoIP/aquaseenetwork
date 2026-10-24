@@ -2,7 +2,7 @@
 
 import { HeroShell } from '@/components/site/HeroShell';
 import { ActionLink } from '@/components/ui/Action';
-import type { HomeContent } from '@/content/types';
+import type { HomeContent, UiStrings } from '@/content/types';
 
 /**
  * Homepage hero — "Idea → Structure → Realization".
@@ -11,11 +11,11 @@ import type { HomeContent } from '@/content/types';
  * component only supplies the homepage copy. The pointer parallax is written
  * to CSS custom properties, so React never re-renders on pointer movement.
  */
-export function Hero({ copy }: { copy: HomeContent['hero'] }) {
+export function Hero({ copy, ui }: { copy: HomeContent['hero']; ui: UiStrings }) {
   return (
     <HeroShell
       art="/images/aquasee-hero-lab-v2.webp"
-      caption="Creative concept visualization"
+      caption={ui.home.heroCaption}
       mobilePosition="64%"
       priority
     >

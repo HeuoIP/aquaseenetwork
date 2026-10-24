@@ -45,6 +45,7 @@ export default async function InsightArticlePage({ params }: PageProps<'/[locale
   const { locale, slug } = await params;
   const dict = await getDictionary(locale);
   const articles = dict.insights ?? [];
+  const ui = dict.ui;
   const article = articles.find((item) => item.slug === slug);
   if (!article) notFound();
 
@@ -71,7 +72,7 @@ export default async function InsightArticlePage({ params }: PageProps<'/[locale
                 {article.excerpt}
               </p>
               <p className="hero-enter hero-enter-4 mt-6 font-mono text-[0.6875rem] uppercase tracking-[0.16em] text-on-dark/60">
-                {article.readingMinutes} min read · updated {article.updatedAt}
+                {article.readingMinutes} {ui.insights.minRead} · {ui.insights.updated} {article.updatedAt}
               </p>
             </div>
           </div>
@@ -154,9 +155,7 @@ export default async function InsightArticlePage({ params }: PageProps<'/[locale
 
               {article.sources.length > 0 ? (
                 <section className="mt-16 border-t border-line pt-10">
-                  <h2 className="font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-accent">
-                    Sources
-                  </h2>
+                  <h2 className="font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-accent">{ui.insights.sources}</h2>
                   <ul className="mt-5 space-y-3">
                     {article.sources.map((source) => (
                       <li key={source.url} className="text-[0.875rem] leading-relaxed text-body">
@@ -168,7 +167,7 @@ export default async function InsightArticlePage({ params }: PageProps<'/[locale
                         >
                           {source.label}
                         </a>
-                        <span className="text-muted"> — consulted {source.accessed}</span>
+                        <span className="text-muted"> — {ui.insights.consulted} {source.accessed}</span>
                       </li>
                     ))}
                   </ul>
@@ -178,9 +177,7 @@ export default async function InsightArticlePage({ params }: PageProps<'/[locale
 
             <aside className="lg:col-span-4">
               <div className="lg:sticky lg:top-28">
-                <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-accent">
-                  Key points
-                </p>
+                <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-accent">{ui.insights.keyPoints}</p>
                 <ul className="mt-5 space-y-3">
                   {article.keyTakeaways.map((takeaway) => (
                     <li key={takeaway} className="flex gap-3 text-[0.9375rem] leading-relaxed text-ink">
@@ -195,9 +192,7 @@ export default async function InsightArticlePage({ params }: PageProps<'/[locale
 
                 {related.length > 0 ? (
                   <>
-                    <p className="mt-10 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-accent">
-                      Related reading
-                    </p>
+                    <p className="mt-10 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-accent">{ui.insights.related}</p>
                     <ul className="mt-4">
                       {related.map((item) => (
                         <li key={item.slug} className="border-b border-line">
@@ -213,9 +208,7 @@ export default async function InsightArticlePage({ params }: PageProps<'/[locale
                   </>
                 ) : null}
 
-                <ActionLink href="/contact" className="mt-10">
-                  Discuss your project
-                </ActionLink>
+                <ActionLink href="/contact" className="mt-10">{ui.insights.discuss}</ActionLink>
               </div>
             </aside>
           </div>

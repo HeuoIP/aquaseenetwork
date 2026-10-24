@@ -1,37 +1,3 @@
-export const projectTypes = [
-  'Resort or hotel development',
-  'Theme park, attraction or leisure project',
-  'Landscape, public realm or outdoor experience',
-  'Custom installation or interior feature',
-  'Design or engineering consultancy support',
-  'Something else',
-] as const;
-
-export const serviceOptions = [
-  'Strategy & Consulting',
-  'Creative Design & R&D',
-  'Supply Chain & Project Delivery',
-  'Full project management',
-  'Not sure yet — please advise',
-] as const;
-
-export const budgetOptions = [
-  'Not yet defined',
-  'Under US$50,000',
-  'US$50,000 – 150,000',
-  'US$150,000 – 500,000',
-  'US$500,000 – 1.5M',
-  'Over US$1.5M',
-] as const;
-
-export const timelineOptions = [
-  'Not yet defined',
-  'Under 3 months',
-  '3 – 6 months',
-  '6 – 12 months',
-  'More than 12 months',
-] as const;
-
 import type { InquiryAttribution } from '@/lib/attribution';
 
 export type InquiryPayload = {

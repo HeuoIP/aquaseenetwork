@@ -9,6 +9,7 @@ import {
   switchLocalePath,
   type Locale,
 } from '@/lib/locale';
+import type { UiStrings } from '@/content/types';
 
 /**
  * Language switcher.
@@ -17,14 +18,14 @@ import {
  * switching never lands on the homepage. Written for the client because the
  * current pathname is only known in the browser.
  */
-export function LanguageSwitcher({ current }: { current?: string } = {}) {
+export function LanguageSwitcher({ current, ui }: { current?: string; ui: UiStrings }) {
   const pathname = usePathname() || '/';
   const active = localeFromPath(pathname) ?? current ?? 'en';
 
   if (PUBLISHED_LOCALES.length < 2) return null;
 
   return (
-    <div className="flex items-center gap-1" role="group" aria-label="Language">
+    <div className="flex items-center gap-1" role="group" aria-label={ui.global.language}>
       {PUBLISHED_LOCALES.map((locale: Locale) => {
         const isActive = locale === active;
         return (

@@ -2,32 +2,30 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeader } from '@/components/ui/SectionHeader';
-import type { ServiceDetail } from '@/content/types';
+import type { ServiceDetail, UiStrings } from '@/content/types';
 import { localePath, type Locale } from '@/lib/locale';
 
 /**
  * The homepage's single capability section. Reads from `serviceDetails` so the
  * cards and the capability pages can never drift apart.
  */
-export function Pillars({ services, locale }: { services: ServiceDetail[]; locale: Locale }) {
+export function Pillars({ services, locale, ui }: { services: ServiceDetail[]; locale: Locale; ui: UiStrings }) {
   return (
     <section className="bg-sand py-20 sm:py-24 lg:py-32" id="capabilities">
       <div className="shell">
         <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <Reveal>
             <SectionHeader
-              eyebrow="Capabilities"
-              title="Three pillars, one continuous process."
-              lede="Most projects need all three. Separating them is what creates cost, delay and loss of intent — so we hold them together."
+              eyebrow={ui.home.pillarsEyebrow}
+              title={ui.home.pillarsTitle}
+              lede={ui.home.pillarsLede}
             />
           </Reveal>
           <Reveal delay={120}>
             <Link
               href={localePath(locale, '/projects')}
               className="group inline-flex shrink-0 items-center gap-2 text-[0.875rem] font-medium text-accent"
-            >
-              View capability studies
-              <svg
+            >{ui.home.viewStudies}<svg
                 width="15"
                 height="15"
                 viewBox="0 0 16 16"
@@ -83,7 +81,7 @@ export function Pillars({ services, locale }: { services: ServiceDetail[]; local
                   <p className="mt-3 text-[0.9375rem] leading-relaxed text-body">{service.lede}</p>
 
                   <span className="mt-auto inline-flex items-center gap-2 pt-7 text-[0.8125rem] font-medium text-accent">
-                    Explore {service.title}
+                    {ui.global.explore} {service.title}
                     <svg
                       width="15"
                       height="15"

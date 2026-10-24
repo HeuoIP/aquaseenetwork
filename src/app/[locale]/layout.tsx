@@ -111,6 +111,7 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
   const dict = await getDictionary(locale);
+  const ui = dict.ui;
   const tag = LOCALE_TAGS[locale as Locale] ?? 'en';
 
   return (
@@ -128,12 +129,10 @@ export default async function LocaleLayout({
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-ink focus:px-5 focus:py-2.5 focus:text-sm focus:text-paper"
-        >
-          Skip to content
-        </a>
-        <Header locale={locale as Locale} nav={dict.site.nav} site={dict.site} />
+        >{ui.global.skipToContent}</a>
+        <Header locale={locale as Locale} nav={dict.site.nav} site={dict.site} ui={ui} />
         <main id="main">{children}</main>
-        <Footer locale={locale as Locale} site={dict.site} audiences={dict.collaboration.audiences} />
+        <Footer locale={locale as Locale} site={dict.site} audiences={dict.collaboration.audiences} ui={ui} />
         <JsonLd data={organizationLd(dict)} />
         <JsonLd data={websiteLd(dict)} />
       </body>

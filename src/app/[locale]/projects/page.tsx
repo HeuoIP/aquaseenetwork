@@ -29,36 +29,27 @@ export default async function ProjectsPage({ params }: PageProps<'/[locale]/proj
   const capabilityStudies = dict.studies;
   const disclosureNote = dict.about.processNote;
   const audiences = dict.collaboration.audiences;
+  const ui = dict.ui;
   return (
     <>
       {/* ---- Hero ---------------------------------------------------------- */}
       <HeroShell
         art="/images/aquasee-key-projects.webp"
-        artAlt="Generated concept artwork: a landscape plate, a bespoke fixture element and an equipment module mounted on one shared structural armature."
-        caption="Creative concept visualization"
+        artAlt={ui.projects.artAlt}
+        caption={ui.home.heroCaption}
         mobilePosition="72%"
         priority
       >
         <div className="order-1 px-[clamp(1.25rem,4vw,3.5rem)] pb-10 pt-[4.5rem] lg:col-span-6 lg:col-start-1 lg:row-start-1 lg:px-0 lg:pb-0 lg:pt-0">
           <p className="hero-enter hero-enter-1 flex items-center gap-3 font-mono text-[0.6875rem] uppercase tracking-[0.2em] text-aqua">
-            <span aria-hidden="true" className="h-px w-10 bg-aqua/70" />
-            Projects &amp; Capabilities
-          </p>
+            <span aria-hidden="true" className="h-px w-10 bg-aqua/70" />{ui.projects.eyebrow}</p>
 
-          <h1 className="hero-enter hero-enter-2 mt-7 font-display text-[length:var(--text-cap)] font-normal leading-[1.03] tracking-[-0.025em] text-on-dark-strong">
-            What we are set up to do.
-          </h1>
+          <h1 className="hero-enter hero-enter-2 mt-7 font-display text-[length:var(--text-cap)] font-normal leading-[1.03] tracking-[-0.025em] text-on-dark-strong">{ui.projects.title}</h1>
 
-          <p className="hero-enter hero-enter-3 mt-7 max-w-xl text-[1.0625rem] leading-relaxed text-on-dark sm:text-lg">
-            A set of illustrative studies describing the scope, method and outcome of typical AQUASEE
-            engagements — for developers, hospitality groups, design practices and leisure
-            developers.
-          </p>
+          <p className="hero-enter hero-enter-3 mt-7 max-w-xl text-[1.0625rem] leading-relaxed text-on-dark sm:text-lg">{ui.projects.lede}</p>
 
           <div className="hero-enter hero-enter-4 mt-9">
-            <ActionLink href="/contact" size="lg">
-              Start a Project
-            </ActionLink>
+            <ActionLink href="/contact" size="lg">{ui.global.startProject}</ActionLink>
           </div>
         </div>
       </HeroShell>
@@ -75,7 +66,7 @@ export default async function ProjectsPage({ params }: PageProps<'/[locale]/proj
                 i
               </span>
               <div>
-                <p className="text-[0.9375rem] font-medium text-ink">About the visuals on this page</p>
+                <p className="text-[0.9375rem] font-medium text-ink">{ui.projects.aboutVisuals}</p>
                 <p className="mt-2 max-w-4xl text-[0.9375rem] leading-relaxed text-body">
                   {disclosureNote}
                 </p>
@@ -197,9 +188,7 @@ export default async function ProjectsPage({ params }: PageProps<'/[locale]/proj
                 title="Who we work with."
                 lede="We are set up for international projects where integrated creative, technical and manufacturing support is genuinely useful."
               />
-              <ActionLink href="/contact" className="mt-9">
-                Start a Project
-              </ActionLink>
+              <ActionLink href="/contact" className="mt-9">{ui.global.startProject}</ActionLink>
             </Reveal>
 
             <Reveal delay={120} className="lg:col-span-7">

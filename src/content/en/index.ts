@@ -9,11 +9,13 @@ import { processSteps } from './process';
 import { capabilityStudies, disclosureNote } from './projects';
 import { serviceDetails } from './services';
 import { site } from './site';
+import { ui } from './ui';
 
 export const disclosure = disclosureNote;
 
 export const dictionary: Dictionary = {
   locale: 'en',
+  ui,
   site,
   home,
   contact,

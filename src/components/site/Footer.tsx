@@ -1,15 +1,17 @@
 import Link from 'next/link';
-import type { SiteConfig } from '@/content/types';
+import type { SiteConfig, UiStrings } from '@/content/types';
 import { localePath, type Locale } from '@/lib/locale';
 
 export function Footer({
   locale,
   site,
   audiences,
+  ui,
 }: {
   locale: Locale;
   site: SiteConfig;
   audiences: readonly string[];
+  ui: UiStrings;
 }) {
   const year = new Date().getFullYear();
   const href = (path: string) => localePath(locale, path);
@@ -34,9 +36,7 @@ export function Footer({
           </div>
 
           <div className="md:col-span-3 md:col-start-7">
-            <p className="font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-aqua">
-              Capabilities
-            </p>
+            <p className="font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-aqua">{ui.global.capabilities}</p>
             <ul className="mt-5 space-y-3">
               {site.nav.map((item) => (
                 <li key={item.href}>
@@ -52,9 +52,7 @@ export function Footer({
           </div>
 
           <div className="md:col-span-3">
-            <p className="font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-aqua">
-              Contact
-            </p>
+            <p className="font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-aqua">{ui.global.contact}</p>
             <ul className="mt-5 space-y-3 text-[0.9375rem]">
               <li>
                 <a
@@ -69,15 +67,11 @@ export function Footer({
                 <Link
                   href={href('/contact')}
                   className="text-on-dark transition-colors duration-300 hover:text-on-dark-strong"
-                >
-                  Contact page
-                </Link>
+                >{ui.global.contactPage}</Link>
               </li>
             </ul>
 
-            <p className="mt-8 font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-aqua">
-              We work with
-            </p>
+            <p className="mt-8 font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-aqua">{ui.global.weWorkWith}</p>
             <ul className="mt-4 space-y-1.5 text-[0.8125rem] text-on-dark/70">
               {audiences.map((audience) => (
                 <li key={audience}>{audience}</li>
@@ -86,9 +80,7 @@ export function Footer({
 
             {site.social.length > 0 ? (
               <>
-                <p className="mt-8 font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-aqua">
-                  Elsewhere
-                </p>
+                <p className="mt-8 font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-aqua">{ui.global.elsewhere}</p>
                 <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
                   {site.social.map((item) => (
                     <li key={item.href}>
@@ -110,14 +102,12 @@ export function Footer({
 
         <div className="flex flex-col gap-4 py-8 text-[0.75rem] text-on-dark/60 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {year} {site.legalName}. All rights reserved.
+            © {year} {site.legalName}. {ui.global.rights}
           </p>
           <p className="flex flex-wrap items-center gap-x-2 gap-y-1">
-            <span>Imagery on this site is illustrative concept work unless stated otherwise.</span>
+            <span>{ui.global.imageryNote}</span>
             <span aria-hidden="true">·</span>
-            <a href="/llms.txt" className="transition-colors hover:text-on-dark-strong">
-              Machine-readable summary
-            </a>
+            <a href="/llms.txt" className="transition-colors hover:text-on-dark-strong">{ui.global.machineSummary}</a>
             <span aria-hidden="true">·</span>
             <Link href={href('/contact')} className="transition-colors hover:text-on-dark-strong">
               {site.ctaLabel}

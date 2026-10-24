@@ -25,9 +25,9 @@ export default async function HomePage({ params }: PageProps<'/[locale]'>) {
 
   return (
     <>
-      <Hero copy={dict.home.hero} />
+      <Hero copy={dict.home.hero} ui={dict.ui} />
       <Intro copy={dict.home.intro} />
-      <Pillars services={dict.services} locale={locale as never} />
+      <Pillars services={dict.services} locale={locale as never} ui={dict.ui} />
       <Process steps={dict.process} copy={dict.home.process} />
       <Collaboration
         model={dict.collaboration.model}

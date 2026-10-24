@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { LanguageSwitcher } from '@/components/site/LanguageSwitcher';
-import type { SiteConfig } from '@/content/types';
+import type { SiteConfig, UiStrings } from '@/content/types';
 import { cn } from '@/lib/cn';
 import { localePath, stripLocale, type Locale } from '@/lib/locale';
 
@@ -12,10 +12,12 @@ export function Header({
   locale,
   nav,
   site,
+  ui,
 }: {
   locale: Locale;
   nav: { href: string; label: string }[];
   site: SiteConfig;
+  ui: UiStrings;
 }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -94,7 +96,7 @@ export function Header({
             />
           </Link>
 
-          <nav aria-label="Primary" className="hidden items-center gap-8 xl:flex">
+          <nav aria-label={ui.global.primaryNav} className="hidden items-center gap-8 xl:flex">
             {nav.map((item) => (
               <Link
                 key={item.href}
@@ -125,7 +127,7 @@ export function Header({
 
           <div className="flex items-center gap-3">
             <div className="hidden lg:block">
-              <LanguageSwitcher />
+              <LanguageSwitcher ui={ui} />
             </div>
 
             <Link
@@ -145,7 +147,7 @@ export function Header({
               onClick={() => setOpen((v) => !v)}
               aria-expanded={open}
               aria-controls="mobile-nav"
-              aria-label={open ? 'Close menu' : 'Open menu'}
+              aria-label={open ? ui.global.closeMenu : ui.global.openMenu}
               className={cn(
                 'inline-flex h-10 w-10 items-center justify-center rounded-full border transition-colors duration-500 xl:hidden',
                 solid
@@ -153,7 +155,7 @@ export function Header({
                   : 'border-white/25 text-on-dark-strong hover:border-white/60'
               )}
             >
-              <span className="sr-only">Menu</span>
+              <span className="sr-only">{ui.global.menu}</span>
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
                 {open ? (
                   <path d="M4 4l10 10M14 4L4 14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -174,7 +176,7 @@ export function Header({
           open ? 'max-h-[80vh] opacity-100' : 'max-h-0 opacity-0'
         )}
       >
-        <nav aria-label="Mobile" className="shell flex flex-col gap-1 py-6">
+        <nav aria-label={ui.global.mobileNav} className="shell flex flex-col gap-1 py-6">
           {nav.map((item) => (
             <Link
               key={item.href}
@@ -189,7 +191,7 @@ export function Header({
             </Link>
           ))}
           <div className="mt-4 flex items-center justify-between gap-4 border-t border-line pt-5">
-            <LanguageSwitcher />
+            <LanguageSwitcher ui={ui} />
             <Link
               href={href('/contact')}
               className="inline-flex h-12 items-center justify-center rounded-full bg-ink px-6 text-sm font-medium text-paper"

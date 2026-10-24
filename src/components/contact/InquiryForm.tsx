@@ -2,14 +2,11 @@
 
 import { useMemo, useRef, useState } from 'react';
 import {
-  budgetOptions,
-  projectTypes,
-  serviceOptions,
-  timelineOptions,
   type InquiryErrors,
   type InquiryPayload,
 } from '@/lib/inquiry';
 import type { Locale } from '@/lib/locale';
+import type { UiStrings } from '@/content/types';
 import { cn } from '@/lib/cn';
 
 type Status =
@@ -34,7 +31,15 @@ const initial: InquiryPayload = {
 const fieldBase =
   'w-full rounded-sm border bg-paper px-4 py-3 text-[0.9375rem] text-ink transition-colors duration-200 placeholder:text-faint focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent';
 
-export function InquiryForm({ email, locale }: { email?: string; locale?: Locale }) {
+export function InquiryForm({
+  email,
+  locale,
+  ui,
+}: {
+  email?: string;
+  locale?: Locale;
+  ui: UiStrings;
+}) {
   const contactEmail = email ?? 'victor@aquasee.art';
   const [values, setValues] = useState<InquiryPayload>(initial);
   const [errors, setErrors] = useState<InquiryErrors>({});
@@ -105,15 +110,14 @@ export function InquiryForm({ email, locale }: { email?: string; locale?: Locale
 
       setStatus({
         state: 'error',
-        message: data.message ?? 'Something went wrong while sending your inquiry.',
+        message: data.message ?? ui.form.genericError,
         code: data.code ?? 'unknown_error',
         mailto: data.mailto,
       });
     } catch {
       setStatus({
         state: 'error',
-        message:
-          'We could not reach the server. Please check your connection, or email us directly.',
+        message: ui.form.networkError,
         code: 'network_error',
       });
     }
@@ -136,28 +140,21 @@ export function InquiryForm({ email, locale }: { email?: string; locale?: Locale
             />
           </svg>
         </span>
-        <h2 className="mt-6 text-[1.5rem]">Thank you — your brief is with us.</h2>
-        <p className="mt-4 max-w-xl text-[0.9375rem] leading-relaxed text-body">
-          We have received your inquiry and will come back to you with an initial read on the
-          project, the questions worth answering first, and a suggested way forward.
-        </p>
+        <h2 className="mt-6 text-[1.5rem]">{ui.form.successTitle}</h2>
+        <p className="mt-4 max-w-xl text-[0.9375rem] leading-relaxed text-body">{ui.form.successBody}</p>
         <dl className="mt-8 grid gap-6 border-t border-line pt-6 sm:grid-cols-2">
           <div>
-            <dt className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted">
-              Reference
-            </dt>
+            <dt className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted">{ui.form.reference}</dt>
             <dd className="mt-2 font-mono text-[0.9375rem] text-ink">{status.reference}</dd>
           </div>
           <div>
-            <dt className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted">
-              Delivery
-            </dt>
+            <dt className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted">{ui.form.delivery}</dt>
             <dd className="mt-2 text-[0.9375rem] text-ink">
               {status.channel === 'email'
-                ? 'Delivered by email'
+                ? ui.form.deliveredEmail
                 : status.channel === 'webhook'
-                  ? 'Delivered to our intake system'
-                  : 'Received'}
+                  ? ui.form.deliveredIntake
+                  : ui.form.received}
             </dd>
           </div>
         </dl>
@@ -168,9 +165,7 @@ export function InquiryForm({ email, locale }: { email?: string; locale?: Locale
             setStatus({ state: 'idle' });
           }}
           className="mt-8 text-[0.875rem] font-medium text-accent underline underline-offset-4"
-        >
-          Send another inquiry
-        </button>
+        >{ui.form.sendAnother}</button>
       </div>
     );
   }
@@ -189,15 +184,13 @@ export function InquiryForm({ email, locale }: { email?: string; locale?: Locale
           role="alert"
           className="mb-8 rounded-sm border border-[#e2c4bf] bg-[#fbf1ef] p-5"
         >
-          <p className="text-[0.9375rem] font-medium text-[#8f3a30]">Your inquiry was not sent.</p>
+          <p className="text-[0.9375rem] font-medium text-[#8f3a30]">{ui.form.notSent}</p>
           <p className="mt-2 text-[0.875rem] leading-relaxed text-body">{status.message}</p>
           {mailtoHref ? (
             <a
               href={mailtoHref}
               className="mt-4 inline-flex h-10 items-center rounded-full bg-ink px-5 text-[0.8125rem] font-medium text-paper transition-colors hover:bg-accent"
-            >
-              Open in email client
-            </a>
+            >{ui.form.openMail}</a>
           ) : null}
           <a
             href={`mailto:${contactEmail}`}
@@ -214,13 +207,12 @@ export function InquiryForm({ email, locale }: { email?: string; locale?: Locale
         className="sr-only"
         aria-live="polite"
       >
-        {status.state === 'submitting' ? 'Sending your inquiry.' : ''}
+        {status.state === 'submitting' ? ui.form.sending : ''}
       </div>
 
       <div className="grid gap-6 sm:grid-cols-2">
         <div>
-          <label htmlFor="name" className="block text-[0.8125rem] font-medium text-ink">
-            Name <span className="text-accent">*</span>
+          <label htmlFor="name" className="block text-[0.8125rem] font-medium text-ink">{ui.form.name} <span className="text-accent">*</span>
           </label>
           <input
             id="name"
@@ -239,7 +231,7 @@ export function InquiryForm({ email, locale }: { email?: string; locale?: Locale
 
         <div>
           <label htmlFor="company" className="block text-[0.8125rem] font-medium text-ink">
-            Company <span className="text-accent">*</span>
+            {ui.form.company} <span className="text-accent">*</span>
           </label>
           <input
             id="company"
@@ -258,7 +250,7 @@ export function InquiryForm({ email, locale }: { email?: string; locale?: Locale
 
         <div>
           <label htmlFor="email" className="block text-[0.8125rem] font-medium text-ink">
-            Business email <span className="text-accent">*</span>
+            {ui.form.email} <span className="text-accent">*</span>
           </label>
           <input
             id="email"
@@ -276,8 +268,7 @@ export function InquiryForm({ email, locale }: { email?: string; locale?: Locale
         </div>
 
         <div>
-          <label htmlFor="country" className="block text-[0.8125rem] font-medium text-ink">
-            Country / region <span className="text-accent">*</span>
+          <label htmlFor="country" className="block text-[0.8125rem] font-medium text-ink">{ui.form.country} <span className="text-accent">*</span>
           </label>
           <input
             id="country"
@@ -295,8 +286,7 @@ export function InquiryForm({ email, locale }: { email?: string; locale?: Locale
         </div>
 
         <div className="sm:col-span-2">
-          <label htmlFor="projectType" className="block text-[0.8125rem] font-medium text-ink">
-            Project type <span className="text-accent">*</span>
+          <label htmlFor="projectType" className="block text-[0.8125rem] font-medium text-ink">{ui.form.projectType} <span className="text-accent">*</span>
           </label>
           <select
             id="projectType"
@@ -312,8 +302,8 @@ export function InquiryForm({ email, locale }: { email?: string; locale?: Locale
               errors.projectType ? 'border-[#c99a92]' : 'border-line'
             )}
           >
-            <option value="">Select a project type…</option>
-            {projectTypes.map((option) => (
+            <option value="">{ui.form.selectProjectType}</option>
+            {ui.form.projectTypes.map((option) => (
               <option key={option} value={option}>
                 {option}
               </option>
@@ -324,10 +314,10 @@ export function InquiryForm({ email, locale }: { email?: string; locale?: Locale
 
         <fieldset className="sm:col-span-2">
           <legend className="text-[0.8125rem] font-medium text-ink">
-            Required services <span className="text-accent">*</span>
+            {ui.form.services} <span className="text-accent">*</span>
           </legend>
           <div className="mt-3 grid gap-2.5 sm:grid-cols-2">
-            {serviceOptions.map((option) => {
+            {ui.form.serviceOptions.map((option) => {
               const checked = values.services.includes(option);
               return (
                 <label
@@ -356,8 +346,7 @@ export function InquiryForm({ email, locale }: { email?: string; locale?: Locale
         </fieldset>
 
         <div className="sm:col-span-2">
-          <label htmlFor="description" className="block text-[0.8125rem] font-medium text-ink">
-            Project description <span className="text-accent">*</span>
+          <label htmlFor="description" className="block text-[0.8125rem] font-medium text-ink">{ui.form.description} <span className="text-accent">*</span>
           </label>
           <textarea
             id="description"
@@ -368,7 +357,7 @@ export function InquiryForm({ email, locale }: { email?: string; locale?: Locale
             onChange={(e) => setField('description', e.target.value)}
             aria-invalid={Boolean(errors.description)}
             aria-describedby={errors.description ? 'description-error' : 'description-hint'}
-            placeholder="What are you trying to build, where is it, and what stage are you at? Include the ambitions, the constraints and the timeline if you know it."
+            placeholder={ui.form.descriptionPlaceholder}
             className={cn(
               fieldBase,
               'mt-2 resize-y leading-relaxed',
@@ -383,7 +372,7 @@ export function InquiryForm({ email, locale }: { email?: string; locale?: Locale
 
         <div>
           <label htmlFor="budget" className="block text-[0.8125rem] font-medium text-ink">
-            Estimated budget <span className="text-muted">(optional)</span>
+            {ui.form.budget} <span className="text-muted">({ui.form.optional})</span>
           </label>
           <select
             id="budget"
@@ -395,8 +384,8 @@ export function InquiryForm({ email, locale }: { email?: string; locale?: Locale
               'mt-2 appearance-none bg-[url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2712%27 height=%278%27 viewBox=%270 0 12 8%27 fill=%27none%27%3E%3Cpath d=%27M1 1.5L6 6.5L11 1.5%27 stroke=%27%237c858d%27 stroke-width=%271.4%27 stroke-linecap=%27round%27/%3E%3C/svg%3E")] bg-[length:12px_8px] bg-[right_1rem_center] bg-no-repeat pr-10 border-line'
             )}
           >
-            <option value="">Prefer not to say</option>
-            {budgetOptions.map((option) => (
+            <option value="">{ui.form.preferNotToSay}</option>
+            {ui.form.budgetOptions.map((option) => (
               <option key={option} value={option}>
                 {option}
               </option>
@@ -405,8 +394,7 @@ export function InquiryForm({ email, locale }: { email?: string; locale?: Locale
         </div>
 
         <div>
-          <label htmlFor="timeline" className="block text-[0.8125rem] font-medium text-ink">
-            Expected timeline <span className="text-muted">(optional)</span>
+          <label htmlFor="timeline" className="block text-[0.8125rem] font-medium text-ink">{ui.form.timeline} <span className="text-muted">({ui.form.optional})</span>
           </label>
           <select
             id="timeline"
@@ -418,8 +406,8 @@ export function InquiryForm({ email, locale }: { email?: string; locale?: Locale
               'mt-2 appearance-none bg-[url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2712%27 height=%278%27 viewBox=%270 0 12 8%27 fill=%27none%27%3E%3Cpath d=%27M1 1.5L6 6.5L11 1.5%27 stroke=%27%237c858d%27 stroke-width=%271.4%27 stroke-linecap=%27round%27/%3E%3C/svg%3E")] bg-[length:12px_8px] bg-[right_1rem_center] bg-no-repeat pr-10 border-line'
             )}
           >
-            <option value="">Prefer not to say</option>
-            {timelineOptions.map((option) => (
+            <option value="">{ui.form.preferNotToSay}</option>
+            {ui.form.timelineOptions.map((option) => (
               <option key={option} value={option}>
                 {option}
               </option>
@@ -443,9 +431,7 @@ export function InquiryForm({ email, locale }: { email?: string; locale?: Locale
       </div>
 
       <div className="mt-9 flex flex-col gap-5 border-t border-line pt-7 sm:flex-row sm:items-center sm:justify-between">
-        <p className="max-w-sm text-[0.8125rem] leading-relaxed text-muted">
-          We use your details only to respond to this inquiry. See our privacy note below.
-        </p>
+        <p className="max-w-sm text-[0.8125rem] leading-relaxed text-muted">{ui.form.privacyNote}</p>
         <button
           type="submit"
           disabled={status.state === 'submitting'}

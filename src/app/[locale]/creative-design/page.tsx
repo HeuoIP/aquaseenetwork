@@ -21,5 +21,5 @@ export default async function CapabilityRoute({ params }: PageProps<'/[locale]/c
   const { locale } = await params;
   const dict = await getDictionary(locale);
   const service = dict.services.find((s) => s.slug === SLUG) ?? dict.services[0];
-  return <ServicePage service={service} locale={locale as never} />;
+  return <ServicePage service={service} locale={locale as never} ui={dict.ui} />;
 }

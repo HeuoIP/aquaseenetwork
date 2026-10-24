@@ -22,6 +22,7 @@ export default async function ContactPage({ params }: PageProps<'/[locale]/conta
   const { locale } = await params;
   const dict = await getDictionary(locale);
   const copy = dict.contact;
+  const ui = dict.ui;
   return (
     <>
       {/* ---- Hero ---------------------------------------------------------- */}
@@ -87,16 +88,14 @@ export default async function ContactPage({ params }: PageProps<'/[locale]/conta
               </Reveal>
 
               <div className="mt-10">
-                <InquiryForm email={dict.site.contact.email} locale={locale as never} />
+                <InquiryForm email={dict.site.contact.email} locale={locale as never} ui={ui} />
               </div>
             </div>
 
             <aside className="lg:col-span-5 xl:col-span-4">
               <Reveal delay={120}>
                 <div className="rounded-sm border border-line bg-sand p-7">
-                  <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-accent">
-                    What to include
-                  </p>
+                  <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-accent">{ui.contact.whatToInclude}</p>
                   <ul className="mt-5 space-y-3">
                     {copy.whatToInclude.map((item) => (
                       <li key={item} className="flex gap-3 text-[0.9375rem] leading-relaxed text-ink">
@@ -105,23 +104,15 @@ export default async function ContactPage({ params }: PageProps<'/[locale]/conta
                       </li>
                     ))}
                   </ul>
-                  <p className="mt-6 border-t border-line pt-5 text-[0.8125rem] leading-relaxed text-muted">
-                    Skip anything you do not know yet. An unknown budget is a normal place to start.
-                  </p>
+                  <p className="mt-6 border-t border-line pt-5 text-[0.8125rem] leading-relaxed text-muted">{ui.contact.skipUnknown}</p>
                 </div>
               </Reveal>
 
               <Reveal delay={180}>
                 <div className="mt-6 rounded-sm border border-line bg-paper p-7">
-                  <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-accent">
-                    What happens next
-                  </p>
+                  <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-accent">{ui.contact.whatNext}</p>
                   <ol className="mt-5 space-y-4">
-                    {[
-                      'We read the brief and check it against the work we are set up to take on.',
-                      'If it is a fit, one of our leads replies with questions, a first read and a proposed next step.',
-                      'If it is not a fit, we say so plainly and, where we can, point you somewhere better.',
-                    ].map((item, i) => (
+                    {ui.contact.nextSteps.map((item, i) => (
                       <li key={item} className="flex gap-3.5 text-[0.9375rem] leading-relaxed text-body">
                         <span className="mt-0.5 font-mono text-[0.625rem] tracking-[0.16em] text-accent">
                           {String(i + 1).padStart(2, '0')}
@@ -135,14 +126,8 @@ export default async function ContactPage({ params }: PageProps<'/[locale]/conta
 
               <Reveal delay={240}>
                 <div className="mt-6 rounded-sm border border-line bg-paper p-7">
-                  <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-accent">
-                    Privacy
-                  </p>
-                  <p className="mt-4 text-[0.875rem] leading-relaxed text-body">
-                    The details you submit are used only to respond to your enquiry. We do not sell or
-                    share contact details, and we do not add you to a marketing list. If you ask us to
-                    delete your details, we will.
-                  </p>
+                  <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-accent">{ui.contact.privacy}</p>
+                  <p className="mt-4 text-[0.875rem] leading-relaxed text-body">{ui.contact.privacyBody}</p>
                 </div>
               </Reveal>
             </aside>
@@ -155,21 +140,15 @@ export default async function ContactPage({ params }: PageProps<'/[locale]/conta
         <div className="shell">
           <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
             <Reveal className="lg:col-span-5">
-              <p className="eyebrow text-accent">Other enquiries</p>
-              <h2 className="mt-5 text-title">Not a project brief?</h2>
-              <p className="mt-4 text-[0.9375rem] leading-relaxed text-body">
-                Partnership proposals, supplier introductions, press, careers and general questions
-                all reach the same inbox. Say what it is in the first line and it will reach the
-                right person faster.
-              </p>
+              <p className="eyebrow text-accent">{ui.contact.otherEnquiries}</p>
+              <h2 className="mt-5 text-title">{ui.contact.otherTitle}</h2>
+              <p className="mt-4 text-[0.9375rem] leading-relaxed text-body">{ui.contact.otherBody}</p>
             </Reveal>
 
             <Reveal delay={120} className="lg:col-span-7">
               <div className="grid gap-px overflow-hidden rounded-sm border border-line bg-line sm:grid-cols-2">
                 <div className="bg-paper p-7">
-                  <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-accent">
-                    Email
-                  </p>
+                  <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-accent">{ui.contact.email}</p>
                   <a
                     href={`mailto:${dict.site.contact.email}`}
                     className="mt-3 block text-[1.0625rem] text-ink underline underline-offset-4 transition-colors hover:text-accent"
@@ -178,9 +157,7 @@ export default async function ContactPage({ params }: PageProps<'/[locale]/conta
                   </a>
                 </div>
                 <div className="bg-paper p-7">
-                  <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-accent">
-                    Where we are
-                  </p>
+                  <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-accent">{ui.contact.whereWeAre}</p>
                   <p className="mt-3 text-[1.0625rem] leading-snug text-ink">{dict.site.contact.location}</p>
                   {dict.site.contact.phone ? (
                     <a
@@ -192,17 +169,9 @@ export default async function ContactPage({ params }: PageProps<'/[locale]/conta
                   ) : null}
                 </div>
                 <div className="bg-paper p-7 sm:col-span-2">
-                  <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-accent">
-                    How we work
-                  </p>
-                  <p className="mt-3 max-w-2xl text-[0.9375rem] leading-relaxed text-body">
-                    We are set up for international projects where integrated creative, technical and
-                    manufacturing support is genuinely useful — and we say so plainly when a brief is
-                    not a fit for us.
-                  </p>
-                  <ActionLink href="/projects" className="mt-6">
-                    See capability studies
-                  </ActionLink>
+                  <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-accent">{ui.contact.howWeWork}</p>
+                  <p className="mt-3 max-w-2xl text-[0.9375rem] leading-relaxed text-body">{ui.contact.howWeWorkBody}</p>
+                  <ActionLink href="/projects" className="mt-6">{ui.contact.seeStudies}</ActionLink>
                 </div>
               </div>
             </Reveal>

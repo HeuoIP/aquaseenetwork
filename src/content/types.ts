@@ -204,8 +204,197 @@ export type ContactContent = {
   newProjectsBody: string;
   otherLabel: string;
 };
+/**
+ * The chrome.
+ *
+ * Everything a page says that is not part of the content model — section
+ * headings, buttons, form labels, table headers — lives here, one object per
+ * language. When a language is published, its chrome is published with it:
+ * a page that mixes a translated argument with English buttons is not a
+ * translated page.
+ */
+export type UiStrings = {
+  global: {
+    skipToContent: string;
+    menu: string;
+    openMenu: string;
+    closeMenu: string;
+    primaryNav: string;
+    mobileNav: string;
+    language: string;
+    capabilities: string;
+    contact: string;
+    contactPage: string;
+    weWorkWith: string;
+    elsewhere: string;
+    rights: string;
+    imageryNote: string;
+    machineSummary: string;
+    startProject: string;
+    explore: string;
+    capability: string;
+  };
+  home: {
+    heroCaption: string;
+    pillarsEyebrow: string;
+    pillarsTitle: string;
+    pillarsLede: string;
+    viewStudies: string;
+  };
+  service: {
+    inOneParagraph: string;
+    overview: string;
+    activitiesEyebrow: string;
+    activitiesTitle: string;
+    activitiesLede: string;
+    deliverablesEyebrow: string;
+    deliverablesTitle: string;
+    engagementEyebrow: string;
+    engagementTitle: string;
+    boundariesEyebrow: string;
+    boundariesTitle: string;
+    boundariesNote: string;
+    costEyebrow: string;
+    costTitle: string;
+    costNote: string;
+    goodFitEyebrow: string;
+    continueEyebrow: string;
+    projectsLink: string;
+    discuss: string;
+    questionsEyebrow: string;
+    questionsTitle: string;
+    seeCoverage: string;
+    aiTitle: string;
+    aiNote: string;
+  };
+  about: {
+    whatIs: string;
+    facts: string;
+    factsTitle: string;
+    deliveryModels: string;
+    deliveryModelsTitle: string;
+    yourRole: string;
+    bestFor: string;
+    tradeOff: string;
+    comparison: string;
+    comparisonTitle: string;
+    dimension: string;
+    designStudio: string;
+    tradingPlatform: string;
+    factory: string;
+    cost: string;
+    costTitle: string;
+    costNote: string;
+    boundaries: string;
+    boundariesTitle: string;
+    markets: string;
+    marketsTitle: string;
+    glossary: string;
+    glossaryTitle: string;
+    ctaTitle: string;
+  };
+  faq: {
+    eyebrow: string;
+    title: string;
+    lede: string;
+    stillUnanswered: string;
+    askBody: string;
+    askCta: string;
+    pillars: { strategy: string; 'creative-design': string; 'supply-chain': string };
+  };
+  projects: {
+    eyebrow: string;
+    title: string;
+    lede: string;
+    aboutVisuals: string;
+    artAlt: string;
+  };
+  insights: {
+    eyebrow: string;
+    title: string;
+    lede: string;
+    empty: string;
+    readFaq: string;
+    keyPoints: string;
+    sources: string;
+    consulted: string;
+    related: string;
+    discuss: string;
+    minRead: string;
+    updated: string;
+  };
+  contact: {
+    whatToInclude: string;
+    skipUnknown: string;
+    whatNext: string;
+    nextSteps: string[];
+    privacy: string;
+    privacyBody: string;
+    otherEnquiries: string;
+    otherTitle: string;
+    otherBody: string;
+    email: string;
+    whereWeAre: string;
+    howWeWork: string;
+    howWeWorkBody: string;
+    seeStudies: string;
+  };
+  form: {
+    name: string;
+    company: string;
+    email: string;
+    country: string;
+    projectType: string;
+    services: string;
+    description: string;
+    budget: string;
+    timeline: string;
+    optional: string;
+    selectProjectType: string;
+    preferNotToSay: string;
+    descriptionPlaceholder: string;
+    sending: string;
+    successTitle: string;
+    successBody: string;
+    reference: string;
+    delivery: string;
+    deliveredEmail: string;
+    deliveredIntake: string;
+    received: string;
+    sendAnother: string;
+    notSent: string;
+    openMail: string;
+    genericError: string;
+    networkError: string;
+    privacyNote: string;
+    projectTypes: string[];
+    serviceOptions: string[];
+    budgetOptions: string[];
+    timelineOptions: string[];
+  };
+  unsubscribe: {
+    eyebrow: string;
+    title: string;
+    lede: string;
+    requestEyebrow: string;
+    requestTitle: string;
+    requestLede: string;
+    otherWaysEyebrow: string;
+    otherWays: string;
+    notAffectEyebrow: string;
+    notAffect: string;
+    emailAddress: string;
+    submit: string;
+    submitting: string;
+    confirmed: string;
+    fallback: string;
+    networkError: string;
+    replyNote: string;
+  };
+};
 export type Dictionary = {
   locale: Locale;
+  ui: UiStrings;
   site: SiteConfig;
   home: HomeContent;
   contact: ContactContent;

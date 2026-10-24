@@ -8,7 +8,7 @@ import { FaqList } from '@/components/ui/FaqList';
 import { ImageDisclosure } from '@/components/ui/ImageDisclosure';
 import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeader } from '@/components/ui/SectionHeader';
-import type { ServiceDetail } from '@/content/types';
+import type { ServiceDetail, UiStrings } from '@/content/types';
 import { faqLd, serviceLd } from '@/lib/jsonld';
 import { localePath, type Locale } from '@/lib/locale';
 
@@ -25,21 +25,23 @@ import { localePath, type Locale } from '@/lib/locale';
 export function ServicePage({
   service,
   locale,
+  ui,
 }: {
   service: ServiceDetail;
   locale: Locale;
+  ui: UiStrings;
 }) {
   const href = (path: string) => localePath(locale, path);
 
   return (
     <>
-      <CapabilityHero service={service} />
+      <CapabilityHero service={service} ui={ui} />
 
       {/* ---- Definition: the answer-first paragraph ----------------------- */}
       <section className="bg-paper pb-14 pt-16 sm:pb-16 sm:pt-20 lg:pb-20 lg:pt-24">
         <div className="shell">
           <Reveal>
-            <p className="eyebrow text-accent">In one paragraph</p>
+            <p className="eyebrow text-accent">{ui.service.inOneParagraph}</p>
             <p className="mt-6 max-w-4xl text-[1.375rem] leading-[1.55] tracking-[-0.01em] text-ink">
               {service.definition}
             </p>
@@ -52,7 +54,7 @@ export function ServicePage({
         <div className="shell">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <Reveal className="lg:col-span-4">
-              <p className="eyebrow text-accent">Overview</p>
+              <p className="eyebrow text-accent">{ui.service.overview}</p>
               <p className="mt-6 text-[0.9375rem] leading-relaxed text-muted">{service.intro}</p>
             </Reveal>
             <Reveal delay={100} className="lg:col-span-8">
@@ -94,9 +96,7 @@ export function ServicePage({
               <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-aqua">
                 {service.aiUsage.title}
               </p>
-              <h2 className="mt-5 max-w-3xl text-title text-on-dark-strong">
-                Where AI earns its place in this work.
-              </h2>
+              <h2 className="mt-5 max-w-3xl text-title text-on-dark-strong">{ui.service.aiTitle}</h2>
             </Reveal>
 
             <div className="mt-12 grid gap-px overflow-hidden rounded-sm border border-white/10 bg-white/10 md:grid-cols-3">
@@ -133,9 +133,9 @@ export function ServicePage({
           <Reveal>
             <SectionHeader
               tone="dark"
-              eyebrow="What We Do"
-              title="The specific activities that make up this part of the engagement."
-              lede="Each one is a defined piece of work with a named output — not a phase of vague effort."
+              eyebrow={ui.service.activitiesEyebrow}
+              title={ui.service.activitiesTitle}
+              lede={ui.service.activitiesLede}
             />
           </Reveal>
 
@@ -163,8 +163,8 @@ export function ServicePage({
         <div className="shell">
           <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
             <Reveal className="lg:col-span-5">
-              <p className="eyebrow text-accent">Deliverables</p>
-              <h2 className="mt-5 text-title">What you receive.</h2>
+              <p className="eyebrow text-accent">{ui.service.deliverablesEyebrow}</p>
+              <h2 className="mt-5 text-title">{ui.service.deliverablesTitle}</h2>
               <ul className="mt-8 divide-y divide-line border-y border-line">
                 {service.deliverables.map((d) => (
                   <li
@@ -194,8 +194,8 @@ export function ServicePage({
             </Reveal>
 
             <Reveal delay={120} className="lg:col-span-7">
-              <p className="eyebrow text-accent">Engagement</p>
-              <h2 className="mt-5 text-title">How the work runs.</h2>
+              <p className="eyebrow text-accent">{ui.service.engagementEyebrow}</p>
+              <h2 className="mt-5 text-title">{ui.service.engagementTitle}</h2>
               <ol className="mt-8 divide-y divide-line border-y border-line">
                 {service.engagement.map((phase, i) => (
                   <li key={phase.phase} className="flex gap-6 py-5">
@@ -217,11 +217,9 @@ export function ServicePage({
           {/* What this does not cover — stated plainly, so nobody has to ask. */}
           <div className="mt-16 grid gap-10 border-t border-line pt-12 lg:grid-cols-12 lg:gap-16">
             <Reveal className="lg:col-span-5">
-              <p className="eyebrow text-accent">Boundaries</p>
-              <h2 className="mt-5 text-title">What this does not cover.</h2>
-              <p className="mt-5 text-[0.9375rem] leading-relaxed text-body">
-                Stating the limits up front is cheaper than discovering them mid-project.
-              </p>
+              <p className="eyebrow text-accent">{ui.service.boundariesEyebrow}</p>
+              <h2 className="mt-5 text-title">{ui.service.boundariesTitle}</h2>
+              <p className="mt-5 text-[0.9375rem] leading-relaxed text-body">{ui.service.boundariesNote}</p>
             </Reveal>
             <Reveal delay={100} className="lg:col-span-7">
               <ul className="divide-y divide-line border-y border-line">
@@ -241,12 +239,9 @@ export function ServicePage({
           {/* What moves the cost — the question every buyer asks second. */}
           <div className="mt-16 grid gap-10 border-t border-line pt-12 lg:grid-cols-12 lg:gap-16">
             <Reveal className="lg:col-span-5">
-              <p className="eyebrow text-accent">Cost</p>
-              <h2 className="mt-5 text-title">What drives the cost.</h2>
-              <p className="mt-5 text-[0.9375rem] leading-relaxed text-body">
-                We do not publish price ranges, because the same description can differ by a
-                factor of several. What we can state precisely is what moves the number.
-              </p>
+              <p className="eyebrow text-accent">{ui.service.costEyebrow}</p>
+              <h2 className="mt-5 text-title">{ui.service.costTitle}</h2>
+              <p className="mt-5 text-[0.9375rem] leading-relaxed text-body">{ui.service.costNote}</p>
             </Reveal>
             <Reveal delay={100} className="lg:col-span-7">
               <ol className="divide-y divide-line border-y border-line">
@@ -269,9 +264,7 @@ export function ServicePage({
         <div className="shell">
           <div className="grid gap-px overflow-hidden rounded-sm border border-line bg-line md:grid-cols-2">
             <Reveal className="bg-ink p-8 text-on-dark lg:p-10">
-              <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-aqua">
-                This is a good fit if
-              </p>
+              <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-aqua">{ui.service.goodFitEyebrow}</p>
               <ul className="mt-7 space-y-3">
                 {service.bestFor.map((b) => (
                   <li key={b} className="flex gap-3 text-[0.9375rem] leading-relaxed text-on-dark">
@@ -283,9 +276,7 @@ export function ServicePage({
             </Reveal>
 
             <Reveal delay={120} className="bg-paper p-8 lg:p-10">
-              <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-accent">
-                Continue
-              </p>
+              <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-accent">{ui.service.continueEyebrow}</p>
               <div className="mt-6 flex flex-col">
                 {service.related.map((r) => (
                   <Link
@@ -315,9 +306,7 @@ export function ServicePage({
                 <Link
                   href={href('/projects')}
                   className="group flex items-center justify-between border-b border-line py-3.5 text-[1.0625rem] text-ink transition-colors hover:text-accent"
-                >
-                  Projects &amp; Capabilities
-                  <svg
+                >{ui.service.projectsLink}<svg
                     width="16"
                     height="16"
                     viewBox="0 0 16 16"
@@ -336,9 +325,7 @@ export function ServicePage({
                 </Link>
               </div>
 
-              <ActionLink href="/contact" className="mt-9">
-                Discuss your project
-              </ActionLink>
+              <ActionLink href="/contact" className="mt-9">{ui.service.discuss}</ActionLink>
             </Reveal>
           </div>
         </div>
@@ -349,10 +336,8 @@ export function ServicePage({
         <section className="bg-paper py-20 sm:py-24 lg:py-28">
           <div className="shell">
             <Reveal>
-              <p className="eyebrow text-accent">Questions</p>
-              <h2 className="mt-5 max-w-3xl text-title">
-                The questions buyers ask about this part of the work.
-              </h2>
+              <p className="eyebrow text-accent">{ui.service.questionsEyebrow}</p>
+              <h2 className="mt-5 max-w-3xl text-title">{ui.service.questionsTitle}</h2>
             </Reveal>
             <div className="mt-10">
               <FaqList items={service.faq} />

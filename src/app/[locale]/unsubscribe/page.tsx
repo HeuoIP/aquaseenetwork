@@ -28,6 +28,7 @@ export default async function UnsubscribePage({ params, searchParams }: PageProp
   const query = await searchParams;
   const dict = await getDictionary(locale);
   const email = typeof query.email === 'string' ? query.email : '';
+  const ui = dict.ui;
 
   return (
     <>
@@ -39,18 +40,11 @@ export default async function UnsubscribePage({ params, searchParams }: PageProp
           <div className="grid gap-10 py-16 sm:py-20 lg:grid-cols-12 lg:items-end lg:py-24">
             <div className="lg:col-span-7">
               <p className="hero-enter hero-enter-1 flex items-center gap-3 font-mono text-[0.6875rem] uppercase tracking-[0.2em] text-aqua">
-                <span aria-hidden="true" className="h-px w-10 bg-aqua/70" />
-                Unsubscribe
-              </p>
+                <span aria-hidden="true" className="h-px w-10 bg-aqua/70" />{ui.unsubscribe.eyebrow}</p>
 
-              <h1 className="hero-enter hero-enter-2 mt-7 font-display text-[length:var(--text-cap)] font-normal leading-[1.03] tracking-[-0.025em] text-on-dark-strong">
-                Stop receiving our email.
-              </h1>
+              <h1 className="hero-enter hero-enter-2 mt-7 font-display text-[length:var(--text-cap)] font-normal leading-[1.03] tracking-[-0.025em] text-on-dark-strong">{ui.unsubscribe.title}</h1>
 
-              <p className="hero-enter hero-enter-3 mt-7 max-w-xl text-[1.0625rem] leading-relaxed text-on-dark sm:text-lg">
-                One click records the request and removes your address from our outreach list. No
-                further email will be sent to it.
-              </p>
+              <p className="hero-enter hero-enter-3 mt-7 max-w-xl text-[1.0625rem] leading-relaxed text-on-dark sm:text-lg">{ui.unsubscribe.lede}</p>
             </div>
           </div>
         </div>
@@ -61,28 +55,19 @@ export default async function UnsubscribePage({ params, searchParams }: PageProp
         <div className="shell">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
             <div className="lg:col-span-7 xl:col-span-8">
-              <p className="eyebrow text-accent">Your request</p>
-              <h2 className="mt-5 text-title">Confirm the address</h2>
-              <p className="mt-4 max-w-xl text-[0.9375rem] leading-relaxed text-body">
-                If you reached this page from one of our emails, the address is already filled in.
-                If you came here directly, enter the address you would like removed.
-              </p>
+              <p className="eyebrow text-accent">{ui.unsubscribe.requestEyebrow}</p>
+              <h2 className="mt-5 text-title">{ui.unsubscribe.requestTitle}</h2>
+              <p className="mt-4 max-w-xl text-[0.9375rem] leading-relaxed text-body">{ui.unsubscribe.requestLede}</p>
 
               <div className="mt-10">
-                <UnsubscribeForm initialEmail={email} />
+                <UnsubscribeForm initialEmail={email} ui={ui} />
               </div>
             </div>
 
             <aside className="lg:col-span-5 xl:col-span-4">
               <div className="rounded-sm border border-line bg-sand p-7">
-                <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-accent">
-                  Other ways
-                </p>
-                <p className="mt-4 text-[0.9375rem] leading-relaxed text-body">
-                  You can also reply to any email from us with the word
-                  &quot;REMOVE&quot;, and we will action it within 7 business days. For data access or
-                  deletion requests under GDPR, CASL or similar regulations, write to us directly.
-                </p>
+                <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-accent">{ui.unsubscribe.otherWaysEyebrow}</p>
+                <p className="mt-4 text-[0.9375rem] leading-relaxed text-body">{ui.unsubscribe.otherWays}</p>
                 <p className="mt-5 border-t border-line pt-5 text-[0.8125rem] leading-relaxed text-muted">
                   <a
                     href={`mailto:${dict.site.contact.email}`}
@@ -94,14 +79,8 @@ export default async function UnsubscribePage({ params, searchParams }: PageProp
               </div>
 
               <div className="mt-6 rounded-sm border border-line bg-paper p-7">
-                <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-accent">
-                  What this does not affect
-                </p>
-                <p className="mt-4 text-[0.875rem] leading-relaxed text-body">
-                  Unsubscribing stops marketing email. It does not affect any project correspondence
-                  between us &mdash; if we are working on a brief together, we will keep replying on
-                  that separately.
-                </p>
+                <p className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-accent">{ui.unsubscribe.notAffectEyebrow}</p>
+                <p className="mt-4 text-[0.875rem] leading-relaxed text-body">{ui.unsubscribe.notAffect}</p>
               </div>
             </aside>
           </div>

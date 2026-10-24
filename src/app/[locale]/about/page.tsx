@@ -22,6 +22,7 @@ export default async function AboutPage({ params }: PageProps<'/[locale]/about'>
   const { locale } = await params;
   const dict = await getDictionary(locale);
   const { about } = dict;
+  const ui = dict.ui;
 
   return (
     <>
@@ -53,7 +54,7 @@ export default async function AboutPage({ params }: PageProps<'/[locale]/about'>
       <section className="bg-paper py-16 sm:py-20 lg:py-24">
         <div className="shell">
           <Reveal>
-            <p className="eyebrow text-accent">What AQUASEE is</p>
+            <p className="eyebrow text-accent">{ui.about.whatIs}</p>
             <p className="mt-6 max-w-4xl text-[1.375rem] leading-[1.55] tracking-[-0.01em] text-ink">
               {about.definition}
             </p>
@@ -65,8 +66,8 @@ export default async function AboutPage({ params }: PageProps<'/[locale]/about'>
       <section className="bg-paper pb-16 sm:pb-20 lg:pb-24">
         <div className="shell">
           <Reveal>
-            <p className="eyebrow text-accent">Facts</p>
-            <h2 className="mt-5 text-title">The short version.</h2>
+            <p className="eyebrow text-accent">{ui.about.facts}</p>
+            <h2 className="mt-5 text-title">{ui.about.factsTitle}</h2>
           </Reveal>
           <div className="mt-10">
             <DefinitionList
@@ -80,10 +81,8 @@ export default async function AboutPage({ params }: PageProps<'/[locale]/about'>
       <section className="bg-sand py-16 sm:py-20 lg:py-24">
         <div className="shell">
           <Reveal>
-            <p className="eyebrow text-accent">Delivery models</p>
-            <h2 className="mt-5 max-w-3xl text-title">
-              Three ways to take delivery, and what each one costs you.
-            </h2>
+            <p className="eyebrow text-accent">{ui.about.deliveryModels}</p>
+            <h2 className="mt-5 max-w-3xl text-title">{ui.about.deliveryModelsTitle}</h2>
           </Reveal>
 
           <div className="mt-12 grid gap-px overflow-hidden rounded-sm border border-line bg-line lg:grid-cols-3">
@@ -97,21 +96,15 @@ export default async function AboutPage({ params }: PageProps<'/[locale]/about'>
 
                 <dl className="mt-7 space-y-5 border-t border-line pt-6">
                   <div>
-                    <dt className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted">
-                      Your role
-                    </dt>
+                    <dt className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted">{ui.about.yourRole}</dt>
                     <dd className="mt-2 text-[0.875rem] leading-relaxed text-ink">{model.clientRole}</dd>
                   </div>
                   <div>
-                    <dt className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted">
-                      Best for
-                    </dt>
+                    <dt className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted">{ui.about.bestFor}</dt>
                     <dd className="mt-2 text-[0.875rem] leading-relaxed text-ink">{model.bestFor}</dd>
                   </div>
                   <div>
-                    <dt className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted">
-                      Trade-off
-                    </dt>
+                    <dt className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted">{ui.about.tradeOff}</dt>
                     <dd className="mt-2 text-[0.875rem] leading-relaxed text-ink">{model.tradeOff}</dd>
                   </div>
                 </dl>
@@ -125,8 +118,8 @@ export default async function AboutPage({ params }: PageProps<'/[locale]/about'>
       <section className="bg-paper py-16 sm:py-20 lg:py-24">
         <div className="shell">
           <Reveal>
-            <p className="eyebrow text-accent">Comparison</p>
-            <h2 className="mt-5 max-w-3xl text-title">Who does what.</h2>
+            <p className="eyebrow text-accent">{ui.about.comparison}</p>
+            <h2 className="mt-5 max-w-3xl text-title">{ui.about.comparisonTitle}</h2>
             <p className="mt-5 max-w-3xl text-[0.9375rem] leading-relaxed text-body">
               {about.comparison.intro}
             </p>
@@ -137,21 +130,13 @@ export default async function AboutPage({ params }: PageProps<'/[locale]/about'>
               <caption className="sr-only">{about.comparison.intro}</caption>
               <thead>
                 <tr className="border-y border-line">
-                  <th scope="col" className="py-4 pr-6 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted">
-                    Dimension
-                  </th>
+                  <th scope="col" className="py-4 pr-6 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted">{ui.about.dimension}</th>
                   <th scope="col" className="py-4 pr-6 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-accent">
                     AQUASEE
                   </th>
-                  <th scope="col" className="py-4 pr-6 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted">
-                    Design studio
-                  </th>
-                  <th scope="col" className="py-4 pr-6 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted">
-                    Trading platform
-                  </th>
-                  <th scope="col" className="py-4 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted">
-                    Factory
-                  </th>
+                  <th scope="col" className="py-4 pr-6 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted">{ui.about.designStudio}</th>
+                  <th scope="col" className="py-4 pr-6 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted">{ui.about.tradingPlatform}</th>
+                  <th scope="col" className="py-4 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted">{ui.about.factory}</th>
                 </tr>
               </thead>
               <tbody>
@@ -183,11 +168,9 @@ export default async function AboutPage({ params }: PageProps<'/[locale]/about'>
         <div className="shell">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <Reveal className="lg:col-span-5">
-              <p className="eyebrow text-accent">Cost</p>
-              <h2 className="mt-5 text-title">What moves the number.</h2>
-              <p className="mt-5 text-[0.9375rem] leading-relaxed text-body">
-                We do not publish price ranges. These are the factors that decide them.
-              </p>
+              <p className="eyebrow text-accent">{ui.about.cost}</p>
+              <h2 className="mt-5 text-title">{ui.about.costTitle}</h2>
+              <p className="mt-5 text-[0.9375rem] leading-relaxed text-body">{ui.about.costNote}</p>
             </Reveal>
             <Reveal delay={100} className="lg:col-span-7">
               <ol className="divide-y divide-line border-y border-line">
@@ -210,8 +193,8 @@ export default async function AboutPage({ params }: PageProps<'/[locale]/about'>
         <div className="shell">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <Reveal className="lg:col-span-5">
-              <p className="eyebrow text-accent">Boundaries</p>
-              <h2 className="mt-5 text-title">What we do not do.</h2>
+              <p className="eyebrow text-accent">{ui.about.boundaries}</p>
+              <h2 className="mt-5 text-title">{ui.about.boundariesTitle}</h2>
             </Reveal>
             <Reveal delay={100} className="lg:col-span-7">
               <ul className="divide-y divide-line border-y border-line">
@@ -234,8 +217,8 @@ export default async function AboutPage({ params }: PageProps<'/[locale]/about'>
       <section className="bg-paper pb-16 sm:pb-20 lg:pb-24">
         <div className="shell">
           <Reveal>
-            <p className="eyebrow text-accent">Markets</p>
-            <h2 className="mt-5 max-w-3xl text-title">Where we work.</h2>
+            <p className="eyebrow text-accent">{ui.about.markets}</p>
+            <h2 className="mt-5 max-w-3xl text-title">{ui.about.marketsTitle}</h2>
           </Reveal>
 
           <div className="mt-10 grid gap-10 lg:grid-cols-3">
@@ -263,8 +246,8 @@ export default async function AboutPage({ params }: PageProps<'/[locale]/about'>
       <section className="bg-paper pb-16 sm:pb-20 lg:pb-24">
         <div className="shell">
           <Reveal>
-            <p className="eyebrow text-accent">Glossary</p>
-            <h2 className="mt-5 max-w-3xl text-title">The words we use, defined.</h2>
+            <p className="eyebrow text-accent">{ui.about.glossary}</p>
+            <h2 className="mt-5 max-w-3xl text-title">{ui.about.glossaryTitle}</h2>
           </Reveal>
           <div className="mt-10">
             <DefinitionList items={about.glossary} />
@@ -277,14 +260,12 @@ export default async function AboutPage({ params }: PageProps<'/[locale]/about'>
         <div className="shell">
           <div className="flex flex-col items-start gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div>
-              <h2 className="text-display">Tell us what you are trying to build.</h2>
+              <h2 className="text-display">{ui.about.ctaTitle}</h2>
               <p className="mt-5 max-w-xl text-lede leading-relaxed text-body">
                 {about.processNote}
               </p>
             </div>
-            <ActionLink href="/contact" size="lg">
-              Start a Project
-            </ActionLink>
+            <ActionLink href="/contact" size="lg">{ui.global.startProject}</ActionLink>
           </div>
         </div>
       </section>
