@@ -36,6 +36,23 @@ for (const q of questions) {
 
 const lines = [];
 lines.push('# Demand map — the questions buyers actually ask');
+
+if (!questions.length) {
+  lines.push('');
+  lines.push('> **No capture on disk yet.**');
+  lines.push('>');
+  lines.push('> The question bank is captured from real search autocomplete. The capture');
+  lines.push('> is blocked when the search endpoints refuse scripted traffic, so it runs');
+  lines.push('> in the background and resumes where it stopped.');
+  lines.push('>');
+  lines.push('> \`npm run research:demand -- --no-serp --pace=7000\`');
+  lines.push('');
+  lines.push('See `methodology-memo.md` for why the instruments are separate and');
+  lines.push('why the capture merges with what is already on disk.');
+  writeFileSync(OUT, lines.join('\n'));
+  console.log('Wrote ' + OUT + ' — no capture on disk.');
+  process.exit(0);
+}
 lines.push('');
 lines.push(`Generated from the captured question bank (${questions.length} unique phrasings from ${bank.seedCount} seeds, captured ${bank.generatedAt.slice(0, 10)}).`);
 lines.push('');

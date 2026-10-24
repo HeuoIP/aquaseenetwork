@@ -92,6 +92,16 @@ export async function autocompleteBing(query) {
  * Both endpoints are public suggestion services; neither needs a key.
  */
 let preferredSource;
+/**
+ * Sources that failed are put on a cooldown rather than dropped.
+ *
+ * A timed-out request leaves the local proxy in a state where the next one
+ * fails as well, and the recovery takes tens of seconds. Dropping the source
+ * would lose a perfectly good instrument for the rest of the session, so it
+ * is paused and retried once the proxy has had time to recover.
+ */
+const cooldownUntil = new Map();
+const COOLDOWN_MS = 45000;
 
 /**
  * Real buyer phrasing from whichever source is answering.
@@ -110,18 +120,35 @@ export async function autocompleteAny(query) {
     ? [...sources.filter(([n]) => n === preferredSource), ...sources.filter(([n]) => n !== preferredSource)]
     : sources;
 
+  const now = Date.now();
   let lastError;
+
   for (const [name, fn] of ordered) {
+    const until = cooldownUntil.get(name) ?? 0;
+    if (until > now) continue;
     try {
       const out = await fn(query);
       if (out.length) {
         preferredSource = name;
+        cooldownUntil.delete(name);
         return { phrases: out, source: name };
       }
+      cooldownUntil.set(name, Date.now() + COOLDOWN_MS);
     } catch (err) {
       lastError = err;
+      cooldownUntil.set(name, Date.now() + COOLDOWN_MS);
     }
   }
+
+  // Everything is cooling down: wait for the first one to come back.
+  const waits = [...cooldownUntil.values()].filter((v) => v > Date.now());
+  if (waits.length) {
+    const wait = Math.min(...waits) - Date.now();
+    console.warn(`[demand] all sources cooling down — waiting ${Math.round(wait / 1000)}s`);
+    await sleep(wait + 500);
+    return autocompleteAny(query);
+  }
+
   throw lastError || new Error('no suggestion source available');
 }
 

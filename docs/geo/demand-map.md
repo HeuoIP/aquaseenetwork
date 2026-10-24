@@ -1,6 +1,6 @@
 # Demand mining — R2
 
-Generated: 2026-10-24T01:34:11.588Z
+Generated: 2026-10-24T01:44:16.791Z
 Seeds: 44 | unique buyer phrasings collected: 3
 
 ## Page shapes that win the decision & specification queries
@@ -25,9 +25,9 @@ Seeds: 44 | unique buyer phrasings collected: 3
 
 ## Failures (network / rate limiting)
 
-- how to write a brief for a design and build supplier → Client network socket disconnected before secure TLS connection was established
-- choosing between a design agency and a manufacturing partner → Client network socket disconnected before secure TLS connection was established
-- how much does a custom playground installation cost → Client network socket disconnected before secure TLS connection was established
-- who to hire to develop a themed attraction → Client network socket disconnected before secure TLS connection was established
-- how to evaluate playground equipment suppliers → Client network socket disconnected before secure TLS connection was established
-- tender documentation for a custom public space installation → Client network socket disconnected before secure TLS connection was established
+- how to write a brief for a design and build supplier → no suggestion source available
+- choosing between a design agency and a manufacturing partner → no suggestion source available
+- how much does a custom playground installation cost → no suggestion source available
+- who to hire to develop a themed attraction → no suggestion source available
+- how to evaluate playground equipment suppliers → no suggestion source available
+- tender documentation for a custom public space installation → no suggestion source available

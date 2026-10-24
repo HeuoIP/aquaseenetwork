@@ -134,16 +134,9 @@ for (const page of pages) {
 }
 
 // --- 4. sitemap -----------------------------------------------------------
-const sitemapPath = '.next/server/app/sitemap.xml.body';
-let sitemap = '';
-if (existsSync(sitemapPath)) {
-  sitemap = readFileSync(sitemapPath, 'utf8');
-} else {
-  const candidate = readdirSync(join('.next', 'server', 'app')).find((f) => f.startsWith('sitemap.xml'));
-  if (candidate) sitemap = readFileSync(join('.next', 'server', 'app', candidate), 'utf8');
-}
+const sitemap = await readEndpoint('sitemap.xml');
 if (!sitemap) {
-  warn('sitemap', 'sitemap output not found in the build');
+  warn('sitemap', 'sitemap output not found in the build or on a running server');
 } else {
   const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1].replace(ORIGIN, ''));
   for (const page of pages) {
@@ -154,15 +147,15 @@ if (!sitemap) {
 }
 
 // --- 5. llms.txt ----------------------------------------------------------
-for (const file of ['.next/server/app/llms.txt.body', '.next/server/app/llms-full.txt.body']) {
-  if (!existsSync(file)) {
-    warn('llms', `${file} not found in the build`);
+for (const name of ['llms.txt', 'llms-full.txt']) {
+  const body = await readEndpoint(name);
+  if (!body) {
+    warn('llms', `${name} not found in the build or on a running server`);
     continue;
   }
-  const body = readFileSync(file, 'utf8');
-  if (!/AQUASEE/.test(body)) fail('llms', `${file} does not mention AQUASEE`);
+  if (!/AQUASEE/.test(body)) fail('llms', `${name} does not mention AQUASEE`);
   if (!/not an equipment manufacturer|does not own factories|not a manufacturer/i.test(body)) {
-    fail('llms', `${file} does not state the service-business positioning`);
+    fail('llms', `${name} does not state the service-business positioning`);
   }
 }
 
@@ -192,6 +185,41 @@ for (const page of pages) {
     /our production facility/i,
   ].filter((re) => re.test(text));
   if (bad.length) fail(page.url, `framing risk: ${bad.map((r) => r.source).join(', ')}`);
+}
+
+
+/**
+ * Machine-readable endpoints are route handlers: depending on the build they
+ * are either prerendered to a .body file or served at request time. Read
+ * them from the build when they are there, and from a running server
+ * otherwise, so the gate works in both situations.
+ */
+async function readEndpoint(name) {
+  const candidates = [
+    `.next/server/app/${name}.body`,
+    `.next/server/app/${name}`,
+  ];
+  for (const candidate of candidates) {
+    try {
+      const body = readFileSync(candidate, 'utf8');
+      if (body.trim()) return body;
+    } catch {
+      /* not prerendered */
+    }
+  }
+  const bases = [process.env.BASE_URL, 'http://localhost:3111', 'http://localhost:3000'].filter(Boolean);
+  for (const base of bases) {
+    try {
+      const res = await fetch(`${base}/${name}`, { signal: AbortSignal.timeout(5000) });
+      if (res.ok) {
+        const body = await res.text();
+        if (body.trim()) return body;
+      }
+    } catch {
+      /* no server running */
+    }
+  }
+  return null;
 }
 
 // --- report ---------------------------------------------------------------
