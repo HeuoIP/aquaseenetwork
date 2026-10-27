@@ -30,6 +30,7 @@ export const ui: UiStrings = {
     capability: 'Capability',
   },
   home: {
+    galleryNote: 'Studio material and concept illustrations — not photographs of delivered client projects.',
     heroCaption: 'Creative concept visualization',
     pillarsEyebrow: 'Capabilities',
     pillarsTitle: 'Three pillars, one continuous process.',

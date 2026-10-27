@@ -32,6 +32,12 @@ export const home: HomeContent = {
       'مكاتب تنسيق المواقع والتصميم',
       'المشاريع الترفيهية والتركيبات المخصّصة',
     ],
+    strip: [
+      { src: '/images/gallery/strategy-stages.webp', kind: 'illustration', alt: 'جدار في الاستوديو مغطّى بأوراق المفاهيم: مخطط فقاعي للمناطق، ومخطط تخصيص، وتصيير ملوّن لحديقة موضوعية.' },
+      { src: '/images/gallery/design-capybara.webp', kind: 'work', alt: 'رسم توضيحي لملعب بطيء الشكل مع شريط ألوان وصور للمعدات النهائية مركّبة في حديقة.' },
+      { src: '/images/gallery/supply-laser.webp', kind: 'illustration', alt: 'رأس ليزر يقطع ملفًا منحنيًا في صفيحة فولاذية، مع شرارات على خط القطع.' },
+      { src: '/images/gallery/strategy-concept.webp', kind: 'illustration', alt: 'تصيير جوي مفاهيمي لوجهة ترفيه عائلية على ضفاف نهر، مع منطقة لعب مائي ومقاعد مظللة ومسارات متعرجة وزراعة.' },
+    ],
   },
   process: {
     eyebrow: 'كيف نعمل',

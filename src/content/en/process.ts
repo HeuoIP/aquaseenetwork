@@ -1,14 +1,9 @@
-export type ProcessStep = {
-  index: string;
-  title: string;
-  duration: string;
-  description: string;
-  deliverables: string[];
-};
+import type { ProcessStep } from '@/content/types';
 
 export const processSteps: ProcessStep[] = [
   {
     index: '01',
+    image: { src: '/images/gallery/strategy-site.webp', kind: 'illustration', alt: 'An open riverside site at golden hour: grassland, a line of trees and a worn track, with a survey plan in the foreground.' },
     title: 'Brief',
     duration: 'Typically 1–2 weeks',
     description:
@@ -17,6 +12,7 @@ export const processSteps: ProcessStep[] = [
   },
   {
     index: '02',
+    image: { src: '/images/gallery/strategy-planning.webp', kind: 'illustration', alt: 'A planning table with a large printed site plan, a scale model and a laptop showing a three-dimensional massing model.' },
     title: 'Strategy',
     duration: '2–4 weeks',
     description:
@@ -25,6 +21,7 @@ export const processSteps: ProcessStep[] = [
   },
   {
     index: '03',
+    image: { src: '/images/gallery/design-sketch.webp', kind: 'work', alt: 'A hand-drawn presentation sketch of a play structure with slides and climbing frames, drawn with people for scale.' },
     title: 'Design & development',
     duration: '4–10 weeks',
     description:
@@ -33,6 +30,7 @@ export const processSteps: ProcessStep[] = [
   },
   {
     index: '04',
+    image: { src: '/images/gallery/supply-assembly.webp', kind: 'illustration', alt: 'Two workers assembling curved timber and steel playground components in a workshop.' },
     title: 'Sourcing & contracting',
     duration: '3–6 weeks',
     description:
@@ -41,6 +39,7 @@ export const processSteps: ProcessStep[] = [
   },
   {
     index: '05',
+    image: { src: '/images/gallery/supply-welding.webp', kind: 'illustration', alt: 'A welder in a protective helmet joining a steel joint on a large custom playground frame, arc light and sparks.' },
     title: 'Production & control',
     duration: 'Varies by scope',
     description:
@@ -49,6 +48,7 @@ export const processSteps: ProcessStep[] = [
   },
   {
     index: '06',
+    image: { src: '/images/gallery/supply-transport.webp', kind: 'illustration', alt: 'A long flatbed truck carrying large wrapped steel and timber components of a playground structure on a highway at dawn.' },
     title: 'Delivery & handover',
     duration: '2–8 weeks',
     description:

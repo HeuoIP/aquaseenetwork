@@ -3,6 +3,7 @@ import type { ProcessStep } from '@/content/types';
 export const processSteps: ProcessStep[] = [
   {
     index: '01',
+    image: { src: '/images/gallery/strategy-site.webp', kind: 'illustration', alt: 'موقع مفتوح على ضفاف نهر في الساعة الذهبية: مرج، صف من الأشجار ومسار متآكل، مع مخطط مسح في المقدمة.' },
     title: 'الموجز',
     duration: 'عادة من أسبوع إلى أسبوعين',
     description:
@@ -11,6 +12,7 @@ export const processSteps: ProcessStep[] = [
   },
   {
     index: '02',
+    image: { src: '/images/gallery/strategy-planning.webp', kind: 'illustration', alt: 'طاولة تخطيط عليها مخطط موقع مطبوع كبير، ونموذج مصغّر، وحاسوب محمول يعرض نموذج كتلة ثلاثي الأبعاد.' },
     title: 'الاستراتيجية',
     duration: 'من أسبوعين إلى أربعة',
     description:
@@ -19,6 +21,7 @@ export const processSteps: ProcessStep[] = [
   },
   {
     index: '03',
+    image: { src: '/images/gallery/design-sketch.webp', kind: 'work', alt: 'رسمة عرض مرسومة باليد لمنشأة لعب فيها زحلقية وهياكل تسلّق، ورُسم أشخاص لتوضيح المقياس.' },
     title: 'التصميم والتطوير',
     duration: 'من أربعة إلى عشرة أسابيع',
     description:
@@ -27,6 +30,7 @@ export const processSteps: ProcessStep[] = [
   },
   {
     index: '04',
+    image: { src: '/images/gallery/supply-assembly.webp', kind: 'illustration', alt: 'عاملان يجمّعان مكوّنات لعب منحنية من الخشب والصلب في ورشة.' },
     title: 'اختيار الموردين والتعاقد',
     duration: 'من ثلاثة إلى ستة أسابيع',
     description:
@@ -35,6 +39,7 @@ export const processSteps: ProcessStep[] = [
   },
   {
     index: '05',
+    image: { src: '/images/gallery/supply-welding.webp', kind: 'illustration', alt: 'لحام يرتدي خوذة وقاية يجمع وصلة فولاذية في هيكل لعب مخصص كبير، مع ضوء القوس والشرارات.' },
     title: 'الإنتاج وضبط الجودة',
     duration: 'يتغيّر حسب النطاق',
     description:
@@ -43,6 +48,7 @@ export const processSteps: ProcessStep[] = [
   },
   {
     index: '06',
+    image: { src: '/images/gallery/supply-transport.webp', kind: 'illustration', alt: 'شاحنة مسطحة طويلة تحمل مكوّنات كبيرة مغلّفة من الفولاذ والخشب لملعب، على طريق عند الفجر.' },
     title: 'التسليم والإسناد',
     duration: 'من أسبوعين إلى ثمانية',
     description:

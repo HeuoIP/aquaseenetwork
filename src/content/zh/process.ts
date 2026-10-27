@@ -3,6 +3,7 @@ import type { ProcessStep } from '@/content/types';
 export const processSteps: ProcessStep[] = [
   {
     index: '01',
+    image: { src: '/images/gallery/strategy-site.webp', kind: 'illustration', alt: '黄昏时分的河畔空地：草地、一排行道树与一条被踩出来的小路，前景里拿着一份测绘图。' },
     title: '任务书',
     duration: '通常 1–2 周',
     description:
@@ -11,6 +12,7 @@ export const processSteps: ProcessStep[] = [
   },
   {
     index: '02',
+    image: { src: '/images/gallery/strategy-planning.webp', kind: 'illustration', alt: '规划桌上的大幅总平面打印图、实体模型，以及显示体块模型的笔记本电脑。' },
     title: '策略',
     duration: '2–4 周',
     description:
@@ -19,6 +21,7 @@ export const processSteps: ProcessStep[] = [
   },
   {
     index: '03',
+    image: { src: '/images/gallery/design-sketch.webp', kind: 'work', alt: '一件游乐结构的手绘汇报稿，带滑梯与攀爬架，并画了人作为尺度参照。' },
     title: '设计与研发',
     duration: '4–10 周',
     description:
@@ -27,6 +30,7 @@ export const processSteps: ProcessStep[] = [
   },
   {
     index: '04',
+    image: { src: '/images/gallery/supply-assembly.webp', kind: 'illustration', alt: '两名工人在车间里组装弧形的木质与钢制游乐构件。' },
     title: '寻源与签约',
     duration: '3–6 周',
     description:
@@ -35,6 +39,7 @@ export const processSteps: ProcessStep[] = [
   },
   {
     index: '05',
+    image: { src: '/images/gallery/supply-welding.webp', kind: 'illustration', alt: '戴防护面罩的焊工在大型定制游乐架上焊接钢制节点，火花与弧光四起。' },
     title: '生产与管控',
     duration: '视范围而定',
     description:
@@ -43,6 +48,7 @@ export const processSteps: ProcessStep[] = [
   },
   {
     index: '06',
+    image: { src: '/images/gallery/supply-transport.webp', kind: 'illustration', alt: '黎明时分，长平板车载着包裹好的大型钢制与木质游乐构件行驶在公路上。' },
     title: '交付与移交',
     duration: '2–8 周',
     description:

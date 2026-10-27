@@ -29,6 +29,7 @@ export const ui: UiStrings = {
     capability: '能力',
   },
   home: {
+    galleryNote: '工作室素材与概念图——不是已交付客户项目的照片。',
     heroCaption: '创意概念可视化',
     pillarsEyebrow: '三项能力',
     pillarsTitle: '三根支柱，一套连续流程。',

@@ -32,6 +32,12 @@ export const home: HomeContent = {
       '景观与设计机构',
       '主题休闲与定制装置',
     ],
+    strip: [
+      { src: '/images/gallery/strategy-stages.webp', kind: 'illustration', alt: '工作室墙上的概念图纸：一张分区气泡图、一张分区平面和一张主题乐园的效果图。' },
+      { src: '/images/gallery/design-capybara.webp', kind: 'work', alt: '水豚主题游乐场的插画，配一条色板与公园中已建成设备的实拍照片。' },
+      { src: '/images/gallery/supply-laser.webp', kind: 'illustration', alt: '激光切割头在钢板上一条弧形轮廓，切口处火花四溅。' },
+      { src: '/images/gallery/strategy-concept.webp', kind: 'illustration', alt: '亲子文旅目的地的俯视概念效果图，河边有戏水区、遮荫座椅、曲折步道与种植。' },
+    ],
   },
   process: {
     eyebrow: '我们如何工作',

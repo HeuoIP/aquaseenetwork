@@ -101,6 +101,14 @@ export type ProcessStep = {
   duration: string;
   description: string;
   deliverables: string[];
+  /**
+   * The work this step looks like, when there is a picture of it.
+   *
+   * 'work' is our own material; 'illustration' is a rendering or a generated
+   * scene. A picture that is passed off as more than it is costs the whole
+   * site its credibility, so the kind travels with the image.
+   */
+  image?: { src: string; alt: string; kind: 'work' | 'illustration' };
 };
 
 export type CollaborationItem = {
@@ -227,6 +235,10 @@ export type HomeContent = {
     title: string;
     paragraphs: string[];
     audiences: string[];
+    /**
+     * A short sequence of pictures of the work, in the order it happens.
+     */
+    strip?: { src: string; alt: string; kind: 'work' | 'illustration' }[];
   };
   process: { eyebrow: string; title: string; lede: string; note: string };
   collaboration: { eyebrow: string; title: string; lede: string; audiencesLabel: string };
@@ -278,6 +290,14 @@ export type UiStrings = {
   };
   home: {
     heroCaption: string;
+    /**
+     * The line that says what the pictures on the page are.
+     *
+     * A rendering is never allowed to pass for a photograph of a delivered
+     * project, so the groups of pictures on the home page carry their own
+     * disclosure, in the language they are read in.
+     */
+    galleryNote: string;
     pillarsEyebrow: string;
     pillarsTitle: string;
     pillarsLede: string;

@@ -82,8 +82,15 @@ export function HeroShell({
       ref={rootRef}
       className="relative isolate flex flex-col overflow-hidden bg-ink text-paper lg:grid lg:min-h-[100svh] lg:grid-cols-12 lg:content-center lg:gap-x-0 lg:gap-y-10 lg:px-[clamp(1.25rem,4vw,3.5rem)] lg:pb-[3rem] lg:pt-[5.5rem]"
     >
-      {/* ---- Key art ------------------------------------------------------- */}
-      <div className="relative order-2 h-[42svh] w-full shrink-0 lg:absolute lg:inset-0 lg:order-none lg:z-0 lg:h-auto">
+      {/* ---- Key art -------------------------------------------------------
+          The art sits at a negative z-index on purpose. The copy is an
+          in-flow grid item, and an in-flow item paints *under* a positioned
+          one - so the headline used to be hidden behind the artwork. It only
+          showed because the entry animation gave it a transform, and a
+          visitor who asks for reduced motion has that animation switched off.
+          Putting the art behind the content makes the order explicit instead
+          of accidental. */}
+      <div className="relative order-2 h-[42svh] w-full shrink-0 lg:absolute lg:inset-0 lg:order-none lg:-z-10 lg:h-auto">
         <div className="relative h-full w-full">
           <Image
             src={art}

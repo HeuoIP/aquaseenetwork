@@ -32,6 +32,12 @@ export const home: HomeContent = {
       'Landscape & design practices',
       'Themed leisure & installations',
     ],
+    strip: [
+      { src: '/images/gallery/strategy-stages.webp', kind: 'illustration', alt: 'A studio wall of pinned concept sheets: a bubble diagram of zones, a zoning plan and a colour rendering of a themed park.' },
+      { src: '/images/gallery/design-capybara.webp', kind: 'work', alt: 'An illustration of a capybara-themed playground with a colour strip and photographs of the finished equipment installed in a park.' },
+      { src: '/images/gallery/supply-laser.webp', kind: 'illustration', alt: 'A laser cutting head tracing a curved profile into a steel plate, sparks along the cut line.' },
+      { src: '/images/gallery/strategy-concept.webp', kind: 'illustration', alt: 'Aerial concept render of a parent-child leisure destination beside a river, with a water-play area, shaded seating, winding paths and planting.' },
+    ],
   },
   process: {
     eyebrow: 'How We Work',

@@ -417,7 +417,7 @@ export const serviceDetails: ServiceDetail[] = [
         after: 'activities',
         src: '/images/gallery/supply-drilling.webp',
         kind: 'illustration',
-        alt: 'آلة حفر تثقب صفًا من الثقوب في ك brackets فولاذي منحني، حوله برادة معدنية ملتفة.',
+        alt: 'آلة حفر تثقب صفًا من الثقوب في حامل فولاذي منحني، حوله برادة معدنية ملتفة.',
       },
       {
         after: 'activities',

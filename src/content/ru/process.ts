@@ -3,6 +3,7 @@ import type { ProcessStep } from '@/content/types';
 export const processSteps: ProcessStep[] = [
   {
     index: '01',
+    image: { src: '/images/gallery/strategy-site.webp', kind: 'illustration', alt: 'Открытый участок на берегу реки в золотом свете: луг, ряд деревьев и протоптанная тропа, на переднем плане план участка.' },
     title: 'Задание',
     duration: 'Обычно 1–2 недели',
     description:
@@ -11,6 +12,7 @@ export const processSteps: ProcessStep[] = [
   },
   {
     index: '02',
+    image: { src: '/images/gallery/strategy-planning.webp', kind: 'illustration', alt: 'Стол для планирования: большой распечатанный генплан, масштабная модель и ноутбук с объёмной моделью.' },
     title: 'Стратегия',
     duration: '2–4 недели',
     description:
@@ -19,6 +21,7 @@ export const processSteps: ProcessStep[] = [
   },
   {
     index: '03',
+    image: { src: '/images/gallery/design-sketch.webp', kind: 'work', alt: 'Нарисованный от руки эскиз для презентации: игровая конструкция с горкой и каркасами для лазания, люди показаны для масштаба.' },
     title: 'Проектирование и разработка',
     duration: '4–10 недель',
     description:
@@ -27,6 +30,7 @@ export const processSteps: ProcessStep[] = [
   },
   {
     index: '04',
+    image: { src: '/images/gallery/supply-assembly.webp', kind: 'illustration', alt: 'Двое рабочих собирают криволинейные деревянные и стальные элементы площадки в цеху.' },
     title: 'Поиск поставщиков и договоры',
     duration: '3–6 недели',
     description:
@@ -35,6 +39,7 @@ export const processSteps: ProcessStep[] = [
   },
   {
     index: '05',
+    image: { src: '/images/gallery/supply-welding.webp', kind: 'illustration', alt: 'Сварщик в защитной маске ведёт стык стальной конструкции большого каркаса, свет дуги и искры.' },
     title: 'Производство и контроль',
     duration: 'Зависит от объёма',
     description:
@@ -43,6 +48,7 @@ export const processSteps: ProcessStep[] = [
   },
   {
     index: '06',
+    image: { src: '/images/gallery/supply-transport.webp', kind: 'illustration', alt: 'Длинный тралл с крупными упакованными стальными и деревянными элементами площадки едет по шоссе на рассвете.' },
     title: 'Поставка и сдача',
     duration: '2–8 недель',
     description:

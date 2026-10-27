@@ -28,6 +28,7 @@ export const ui: UiStrings = {
     capability: 'القدرة',
   },
   home: {
+    galleryNote: 'مواد من الاستوديو ورسوم تصورية — وليست صورًا لمشاريع عملاء مُسلَّمة.',
     heroCaption: 'تصوّر مفاهيمي إبداعي',
     pillarsEyebrow: 'القدرات الثلاث',
     pillarsTitle: 'ثلاث ركائز، وعملية واحدة متصلة.',
