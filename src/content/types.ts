@@ -206,6 +206,14 @@ export type SiteConfig = {
 export type HomeContent = {
   hero: {
     eyebrow: string;
+    /**
+     * Description of the hero key art.
+     *
+     * The key art is the first thing a reader and a crawler meet on the
+     * page, so it carries a sentence rather than an empty alt. Written per
+     * language because the page is published in four.
+     */
+    artAlt: string;
     titleTop: string;
     titleBottom: string;
     titleAccent: string;

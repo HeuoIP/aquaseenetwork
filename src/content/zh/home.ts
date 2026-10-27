@@ -3,6 +3,7 @@ import type { HomeContent } from '@/content/types';
 export const home: HomeContent = {
   hero: {
     eyebrow: '策划 · 设计 · 落地',
+    artAlt: '度假村到达步道的概念可视化：黄昏下的木格栅游乐-休憩构筑物，配半透青绿面板、弧形坐凳、低矮种植与浅水景。',
     titleTop: '让雄心的构想',
     titleBottom: '变成能落地的',
     titleAccent: '项目。',

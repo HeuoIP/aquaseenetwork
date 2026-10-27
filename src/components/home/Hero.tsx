@@ -14,9 +14,10 @@ import type { HomeContent, UiStrings } from '@/content/types';
 export function Hero({ copy, ui }: { copy: HomeContent['hero']; ui: UiStrings }) {
   return (
     <HeroShell
-      art="/images/aquasee-hero-lab-v2.webp"
+      art="/images/aquasee-hero-arrival-v1.webp"
+      artAlt={copy.artAlt}
       caption={ui.home.heroCaption}
-      mobilePosition="64%"
+      mobilePosition="70%"
       priority
     >
       <div className="order-1 px-[clamp(1.25rem,4vw,3.5rem)] pb-10 pt-[4.5rem] lg:col-span-6 lg:col-start-1 lg:row-start-1 lg:px-0 lg:pb-0 lg:pt-0">

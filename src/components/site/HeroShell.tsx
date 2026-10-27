@@ -96,10 +96,14 @@ export function HeroShell({
           />
 
           {/* Scrim: vertical on mobile (art in a band below the copy),
-              horizontal from lg (art behind the right half). */}
+              horizontal from lg (art behind the right half).
+
+              The horizontal gradient is mirrored in RTL: the copy sits on the
+              right in a right-to-left language, and it has to land on the
+              dark end of the scrim, not the light one. */}
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-[linear-gradient(180deg,#0c1013_0%,rgba(12,16,19,0.45)_24%,rgba(12,16,19,0.16)_100%)] lg:bg-[linear-gradient(90deg,rgba(12,16,19,0.95)_0%,rgba(12,16,19,0.86)_34%,rgba(12,16,19,0.42)_62%,rgba(12,16,19,0.14)_100%)]"
+            className="absolute inset-0 bg-[linear-gradient(180deg,#0c1013_0%,rgba(12,16,19,0.45)_24%,rgba(12,16,19,0.16)_100%)] lg:bg-[linear-gradient(90deg,rgba(12,16,19,0.95)_0%,rgba(12,16,19,0.86)_34%,rgba(12,16,19,0.42)_62%,rgba(12,16,19,0.14)_100%)] rtl:lg:bg-[linear-gradient(270deg,rgba(12,16,19,0.95)_0%,rgba(12,16,19,0.86)_34%,rgba(12,16,19,0.42)_62%,rgba(12,16,19,0.14)_100%)]"
           />
           <div aria-hidden="true" className="hero-atmosphere absolute inset-0" />
         </div>

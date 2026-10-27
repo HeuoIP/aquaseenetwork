@@ -3,6 +3,7 @@ import type { HomeContent } from '@/content/types';
 export const home: HomeContent = {
   hero: {
     eyebrow: 'استراتيجية · تصميم · تنفيذ',
+    artAlt: 'تصوّر تصوري لممرّ وصول منتجع عند الغروب: منشأة لعب واستراحة من الخشب بشرائح منحنية، بألواح شفافة فيروزية، ومقاعد مدمجة، وأشجار منخفضة، وحافة ماء ضحلة.',
     titleTop: 'من الأفكار الطموحة',
     titleBottom: 'إلى مشاريع',
     titleAccent: 'قابلة للتنفيذ.',

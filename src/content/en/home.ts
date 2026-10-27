@@ -3,6 +3,7 @@ import type { HomeContent } from '@/content/types';
 export const home: HomeContent = {
   hero: {
     eyebrow: 'Strategy · Design · Realization',
+    artAlt: 'Concept visualisation of a resort arrival promenade at dusk: a curved timber-slat play-and-rest structure with translucent teal panels, integrated curved seating, low planting and a shallow water edge.',
     titleTop: 'From Ambitious Ideas',
     titleBottom: 'to Real-World',
     titleAccent: 'Projects.',
