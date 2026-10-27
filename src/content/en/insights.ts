@@ -13,6 +13,204 @@ import type { InsightArticle } from '@/content/types';
 
 export const insights: InsightArticle[] = [
 {
+    slug: 'how-to-turn-a-creative-play-concept-into-a-buildable-product',
+    title: 'How to turn a creative play concept into a buildable product',
+    excerpt:
+      'A creative concept and a product are different things, and the distance between them is made of six specific steps: define the experience, break the idea into a system, test materials against the supply chain you actually have, check safety and feasibility, price the risks, and prepare for handover. Skip any one of them and the gap is paid for on site.',
+    pillar: 'creative-design',
+    vertical: 'children',
+    readingMinutes: 10,
+    updatedAt: '2026-10-27',
+    sections: [
+      {
+        id: 'the-gap',
+        heading: 'The gap between an attractive idea and a product that exists',
+        body: [
+          'An idea has to survive a long journey before anyone can use it. A sketch becomes a specification; a specification becomes a quotation from a factory; a quotation becomes something delivered, installed and safe to use. Projects rarely fail because the idea was weak. They fail because the middle of that journey was never scheduled, staffed or priced, and every party assumed somebody else was covering it.',
+          'The creative side of the industry is good at the first two steps. The manufacturing side is good at the last two. What sits between them decides whether a concept survives contact with production: which of the two hundred forms in the sketch is the one that gets built, and whether it can be built at all without being redesigned.',
+        ],
+        callout:
+          'The risk in a play or interactive-landscape project is rarely in the idea. It is in the unowned middle.',
+      },
+      {
+        id: 'the-six-steps',
+        heading: 'The six steps, and what each one has to produce',
+        body: [
+          'Each step has three jobs: decide what is done, name the failure that usually happens there, and state what you are entitled to hold in your hand when the step is finished. If you cannot say what comes out of a step, the step was never scheduled, and unscheduled work does not happen.',
+        ],
+        table: {
+          caption:
+            'The six steps between a concept and a product that can be built, and what each one produces.',
+          headers: ['Step', 'What you do', 'What usually goes wrong', 'What you should end up with'],
+          rows: [
+            [
+              '1. Define the experience',
+              'Write down what a visitor does, and how the place should feel, before anything is drawn',
+              'The brief arrives as a list of objects, so each one is justified separately and the reason for the whole thing is lost',
+              'A one-page experience brief that everything afterwards is checked against',
+            ],
+            [
+              '2. Translate it into a system',
+              'Break the concept into modules, movement, structure and circulation',
+              'Modularity is decided at the factory gate, so the form is either welded as one piece or broken in ways nobody approved',
+              'A component breakdown with the interfaces defined and the repeatable parts identified',
+            ],
+            [
+              '3. Match materials to manufacturing',
+              'Check each material and process against suppliers who can deliver it, to that finish, at that volume',
+              'Finishes are chosen from a render rather than from a process, and the first quotation lands well above the estimate',
+              'A shortlist of feasible material-and-process pairs, with indicative lead times',
+            ],
+            [
+              '4. Review safety and feasibility',
+              'Have the safety case, the structure and the environment checked by qualified reviewers',
+              'The check happens after the drawings are approved, so the findings arrive as changes to a priced design',
+              'A reviewed concept with the open items listed rather than smoothed over',
+            ],
+            [
+              '5. Cost the risk, not just the parts',
+              'Cost material, processing, freight, installation and maintenance together',
+              'Only the material is priced, so everything else arrives later as variations, when there is no leverage left',
+              'A cost range with the assumptions written down and the exclusions named',
+            ],
+            [
+              '6. Prepare for implementation',
+              'Agree the deliverables, the manufacturer inputs, the inspection points and the handover',
+              'Documentation is treated as paperwork, so the manufacturer reinterprets the drawings and the site absorbs the difference',
+              'A handover package both sides can be held to, including the inspection regime',
+            ],
+          ],
+        },
+      },
+      {
+        id: 'define-the-experience',
+        heading: 'Step one — define the experience before you draw anything',
+        body: [
+          'The first step is not a design step. It is a decision about what a visitor should be able to do here that they cannot do anywhere else in the programme, and about how the place should feel while they do it. Play equipment is chosen because of what it makes possible — climbing, balancing, hiding, watching, competing — and the object is only one way of delivering that.',
+          'Briefs usually arrive as a list: a slide, a climbing frame, a water feature, and a request to make them look like the render. The list carries no hierarchy, so everything in it gets built, and the experience that made the project worth doing is nowhere in the document. It gets decided later, by whoever is left holding the budget.',
+          'What you should end up with is one page: the intended behaviour, the age range and the dwell time, and the conditions the place has to meet for that behaviour to work. Everything after this step is checked against it. When a supplier proposes a cheaper part in week nine, you can say what it costs in experience, because you wrote that down in week one.',
+        ],
+        list: [
+          'What is the visitor supposed to be able to do here that they cannot do anywhere else in the programme?',
+          'How long should one visit to this element last, and how many people can be on it at once?',
+          'What has to be true of the place — surface, drainage, shade, supervision, distance from other attractions — for that behaviour to work?',
+        ],
+      },
+      {
+        id: 'translate-into-a-system',
+        heading: 'Step two — translate the idea into a system',
+        body: [
+          'A creative concept is usually one continuous form. Manufacturing needs the opposite: a set of parts, each with a material, a process, a tolerance, a joint and a price. The translation between those two states is the step that makes a concept buildable, and it is the step most often skipped — because in a presentation it looks like an administrative detail.',
+          'Three translations have to happen at once. What moves, and how. What carries the load, and where the load goes. And how a person travels through the piece, because a play structure is a route and not only an object.',
+          'The HAGS Zingo steel play range is a clear example of that translation being made deliberately. According to the design agency Designworks, the distinctive blob element was carried from the earliest brainstorm sketches, through scale models, into design engineering, and on into playgrounds across Europe. The form survived because every stage was drawn with the next one in view.',
+          'What usually goes wrong is that modularity is decided at the factory gate. The manufacturer is then given one continuous form and has two bad options: quote it as a single welded assembly, which is expensive to ship and impossible to repair, or break it into parts in ways the designer never intended and cannot vouch for.',
+          'What you should end up with is a component breakdown: the modules and how they join, the parts that repeat, the parts that are specific to this site, and the parts that will be replaced first. Repeatable modules are where cost comes down; site-specific parts are where it goes up. Which is which has to be known before the drawings are finished, not after.',
+        ],
+      },
+      {
+        id: 'materials-and-manufacturing',
+        heading: 'Step three — match the material to the process and the supplier',
+        body: [
+          'A material choice is not a design decision on its own. It is a decision about who can process it, to what tolerance, with what finish, at what volume, and how far it has to travel. Those questions belong to manufacturing, and they are asked far too late.',
+          'The practical test is short: can you name three suppliers who could make this part, to this drawing, in this finish, within the lead time the programme needs? If you cannot name three, you do not have a material decision — you have a hope.',
+          'Finishes are where this usually breaks. A powder coat, a hot-dip galvanised finish, a stainless grade, a timber treatment and a rotationally moulded surface all age differently, wear differently, cost differently to apply and cost differently to deliver. A finish chosen because it looks right in a render is a finish the factory has not been asked about.',
+          'What you should end up with is a shortlist of feasible material-and-process pairs, each with an indicative lead time and a sentence explaining why it was chosen. This is also the moment to find out whether the concept depends on a process that exists in only one place in the world, because that is a programme risk and not a technical curiosity.',
+        ],
+        list: [
+          'Can you make this part, from this drawing, in this finish?',
+          'What tolerance do you work to, and what do you need from us to hold it?',
+          'What is the minimum order, and the realistic lead time from drawing to delivery?',
+          'What do you need from us, and by when, before you can start?',
+        ],
+      },
+      {
+        id: 'safety-and-feasibility',
+        heading: 'Step four — review safety and technical feasibility while it is still a drawing',
+        body: [
+          'Safety is checked, not designed in, and the check has a timing. Too early and it constrains an idea before anyone knows what the idea is. Too late and it produces a list of changes to a drawing that is already approved and priced.',
+          'This is the step that belongs to people with the right qualification: structural engineers, playground safety assessors, and the certification body or local authority for the market the equipment will actually operate in. The applicable standard follows the market of operation, not the market of purchase — EN 1176 for playground equipment in Europe, the Gulf and much of Asia, the ASTM series in North America, and the relevant local building, accessibility, fire and electrical rules everywhere else.',
+          'What usually goes wrong is that the two hardest categories of problem — falls and entrapment on one side, foundations and interfaces on the other — are treated as separate from the equipment. They are not. A compliant product on the wrong surfacing, with the wrong anchoring, or in a layout that puts a high element next to a hard edge is not a compliant installation. The surfacing, the anchoring and the layout are part of the safety case and part of the cost.',
+          'What you should end up with is a concept that has been reviewed, with the open items listed rather than smoothed over, and a note of which standards apply where it will be used. Where a conclusion depends on a qualified professional, that professional signs it — the rest of the team carries it out, it does not replace it.',
+        ],
+        callout:
+          'Compliance belongs to the installed asset, not to the product in the box.',
+      },
+      {
+        id: 'cost-and-delivery-risk',
+        heading: 'Step five — cost the risk, not just the parts',
+        body: [
+          'A quotation is a set of assumptions wearing a number. The useful question is not what it costs but what it assumes, and then whether you believe the assumptions.',
+          'Only the material is usually priced at the start. The fixings, the coatings, the packaging, the freight, the crane, the foundations, the installation crew and the access for maintenance are not — so they arrive later, as variations, at the moment when there is no leverage left and the programme cannot move.',
+          'What you should end up with is a range rather than a number, with the assumptions listed beside it: quantities, finish, tolerance, packaging, freight terms, site access, installation method, and what is explicitly excluded. An assumption you can see is an assumption you can challenge. An assumption buried inside a single figure is not, and it will be charged to you at the most expensive moment.',
+        ],
+        list: [
+          'Material and processing, by quantity',
+          'Fixings, coatings and anything site-specific',
+          'Packaging and freight, to the actual port and the actual site',
+          'Foundations, installation and the equipment needed to install it',
+          'Commissioning, testing, and the inspection regime after handover',
+          'Maintenance access, spares and what the first year of upkeep requires',
+        ],
+      },
+      {
+        id: 'implementation-readiness',
+        heading: 'Step six — prepare for implementation and handover',
+        body: [
+          'The last step decides whether the thing that was designed is the thing that gets built. It has three parts: what the factory needs from you, what you need from the factory, and what happens on site.',
+          'What usually goes wrong is that documentation is treated as paperwork to be produced at the end. The manufacturer receives a set of drawings without the specification, without the finish reference and without the parts list, and reinterprets them — reasonably, because they have to. The difference between the intention and the interpretation is then absorbed on site, in the least forgiving place there is.',
+          'What you should end up with is a handover package both sides can be held to: the production package itself, the sample or mock-up that was approved, the inspection record at each production stage, the installation record, and the maintenance and inspection schedule that keeps the asset compliant after it opens.',
+        ],
+        list: [
+          'To the manufacturer — production drawings, the specification, the finish reference, the parts list, and the approved sample',
+          'From the manufacturer — the schedule, the stage inspection points, the deviation notice process, and the packing list',
+          'On site — delivery, installation, snouting and handover, the as-built record, and the inspection regime that follows',
+        ],
+      },
+      {
+        id: 'where-the-work-sits',
+        heading: 'Where the work sits, and why that is the decision',
+        body: [
+          'The six steps do not belong to the same party, and that is the whole problem. The creative studio does the first two. The manufacturer does the third and the fourth, in the way they were asked to. The client is left holding the gap, which is where most of the risk sits and where most of the disputes are settled.',
+          'Closing the gap does not require owning a factory. It requires someone to own the translation: to hold the intention, write it down, carry it through the quotations, check it at the production stages, and take delivery of something that matches what was intended. That is the work AQUASEE does. The task list is issued by us, the checkpoints are ours, the delivery is ours; production itself is carried out by qualified manufacturing partners.',
+          'A test you can apply to any project: if it cannot be built by a factory you have never met, from a package a stranger can read, then the idea is not wrong — it is early. And an idea that is early can still be worth a great deal, provided somebody is paid to move it forward.',
+        ],
+        callout:
+          'If a project cannot be built by a factory you have never met, from a package a stranger can read, the idea is not wrong. It is early.',
+      },
+    ],
+    keyTakeaways: [
+      'The risk in a concept project is rarely the idea; it is the unowned middle between the design and the factory',
+      'Write the experience down first — every later decision, including cheaper substitutions, is checked against it',
+      'Ask a supplier to prove they can make the part, not that they are capable in general',
+      'Compliance belongs to the installed asset, not to the product in the box',
+      'A cost range with its assumptions written down is worth more than a single number',
+    ],
+    sources: [
+      {
+        label: 'Designworks — HAGS Steel play: concept development carried through to production',
+        url: 'https://www.designworks.studio/hags',
+        accessed: '2026-10-27',
+      },
+      {
+        label: 'EN 1176 — playground safety standards',
+        url: 'https://en.wikipedia.org/wiki/EN_1176',
+        accessed: '2026-10-27',
+      },
+      {
+        label: 'ISO 13857 — entrapment and impact safety in play areas',
+        url: 'https://en.wikipedia.org/wiki/ISO_13857',
+        accessed: '2026-10-27',
+      },
+    ],
+    related: [
+      'what-a-design-package-must-contain',
+      'choosing-agency-factory-or-delivery-partner',
+      'safety-standards-for-play-and-public-equipment',
+      'briefing-a-contract-manufacturer',
+      'when-prototyping-is-worth-it',
+    ],
+  },
+{
     slug: 'what-a-design-package-must-contain',
     title: 'What a complete design package contains — and what it does not',
     excerpt:
