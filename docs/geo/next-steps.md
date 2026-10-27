@@ -75,6 +75,27 @@ China-region results, which is not the market the buyers are in, so the
 measurement should be taken from an overseas vantage point and labelled as
 such.
 
+### What the first two rounds found
+
+| Round | Questions | Measured | Mentioned | Citations | AQUASEE in the retrieved set |
+| --- | --- | --- | --- | --- | --- |
+| Gemini, English set, no web search | 26 | 26 | 0 | not a measurement | not a measurement |
+| Zhipu search-then-answer, English set | 26 | 26 | 0 | 34 | 0 |
+| Zhipu search-then-answer, Chinese set | 4 | 4 | 0 | 40 | 0 |
+
+The third row is the one that matters for the Chinese market, and it says
+something narrower and more useful than "we are not mentioned". The engine
+retrieved forty pages for the four Chinese buyer questions and not one of
+them was ours. Asking it for the brand directly returns nothing at all —
+`AQUASEE 游乐设备` and `aquasee.art` both come back empty.
+
+So the constraint in the Chinese market is **L1, retrievability**, not L2 or
+L3. There is no reputation to defend yet because there is no presence to be
+found. The Chinese retrieval set for these questions is made of supplier
+directories, factory sites and B2B forums, and a submitted sitemap to
+Google and Bing does not put a site into it — the Chinese engines have their
+own submission, and that is where the work is.
+
 ## 4. Known limits of what is built
 
 - The insight library exists in English only. A buyer who lands on the Arabic

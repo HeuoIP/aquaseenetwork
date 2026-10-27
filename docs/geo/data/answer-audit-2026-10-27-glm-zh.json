@@ -1,0 +1,92 @@
+{
+  "generatedAt": "2026-10-27T15:10:11.552Z",
+  "prompts": 4,
+  "results": [
+    {
+      "engine": "glm",
+      "prompt": "度假区 景观 顾问 公司",
+      "at": "2026-10-27T15:09:30.966Z",
+      "answer": "关于度假区景观顾问公司，以下是一些推荐的公司：\n\n1. **北京仁聚文化旅游发展有限公司**：成立于2023年，专注于文旅实战落地服务平台，由资深景区操盘手韩吉飞先生创立。该公司提供实战导师服务，覆盖山岳、主题公园、夜游等全业态，提供课程—方案—陪跑”闭环服务 [1]。\n\n2. **苏州贝伊萨景观设计有限公司**：成立于2014年，主要经营苏州度假区景观设计、苏州山庄景观设计、园林设计等。公司提供全方位的服务，包括设计、施工等 [2]。\n\n3. **上海墨刻景观工程有限公司**：集设计与施工为一体的全程化景观服务咨询公司，致力于探索中国当代景观设计，强调创意与地域特征的结合 [3]。\n\n4. **浙江恒合智业集团**：提供顾问咨询、项目策划、旅游规划、景观设计等服务。旗下有浙江恒合景观规划设计有限公司，提供全程式的服务支持 [4]。\n\n5. **绿维创景**：致力于旅游地产开发运营顾问、旅游与城市规划设计，拥有丰富的实践经验，已完成各类项目1000余个 [5]。\n\n6. **上海诺狮景观规划设计有限公司**：提供旅游策划、旅游景区规划、旅游地产策划等服务，足迹遍布全国80%以上地区 [6]。\n\n7. **北京博雅方略旅游景观规划设计院有限责任公司**：拥有国家旅游规划设计甲级资质，提供旅游策划、区域或景区旅游规划、景观设计等服务 [7]。\n\n8. **北京大地风景旅游景观规划设计有限公司**：提供规划设计咨询、目的地投资管理、文化传播等服务，已完成1000多个规划项目 [8]。\n\n以上公司均提供度假区景观设计及咨询服务，您可以根据具体需求选择合适的公司。",
+      "citations": [
+        "https://www.cnblogs.com/xypt-xw/p/19163375",
+        "https://m.b2b168.org/wvs110158661.html",
+        "https://jg.zzuit.edu.cn/info/1049/6418.htm",
+        "http://www.ccea.zju.edu.cn/2012/1019/c6010a425395/page.htm",
+        "https://house.hexun.com/2014/linfeng2013/",
+        "https://www.11467.com/qiye/43157554.htm",
+        "https://art.wh.sdu.edu.cn/info/1147/3295.htm",
+        "https://career.nankai.edu.cn/company/index/id/6515.html",
+        "https://aodesi2009.cn.b2b168.com/shop/supply/80855095.html",
+        "https://wenku.baidu.com/view/60aa471ce209581b6bd97f19227916888586b9b5.html"
+      ],
+      "retrieved": [
+        "https://www.cnblogs.com/xypt-xw/p/19163375",
+        "https://m.b2b168.org/wvs110158661.html",
+        "https://jg.zzuit.edu.cn/info/1049/6418.htm",
+        "http://www.ccea.zju.edu.cn/2012/1019/c6010a425395/page.htm",
+        "https://house.hexun.com/2014/linfeng2013/",
+        "https://www.11467.com/qiye/43157554.htm",
+        "https://art.wh.sdu.edu.cn/info/1147/3295.htm",
+        "https://career.nankai.edu.cn/company/index/id/6515.html",
+        "https://aodesi2009.cn.b2b168.com/shop/supply/80855095.html",
+        "https://wenku.baidu.com/view/60aa471ce209581b6bd97f19227916888586b9b5.html"
+      ],
+      "judgement": {
+        "mentioned": false,
+        "framingCorrect": false,
+        "serviceHits": [],
+        "manufacturerHits": [],
+        "misframed": false
+      }
+    },
+    {
+      "engine": "glm",
+      "prompt": "游乐设备 出海 认证 标准",
+      "at": "2026-10-27T15:09:50.686Z",
+      "answer": "关于游乐设备出海认证标准，以下是一些关键信息：\n\n1. **飞友科技**：作为中国首批获得欧盟CE、德国GS认证的无动力游乐设备龙头，飞友科技拥有尖端工艺标准和国际权威认证。他们的产品符合美标ASTMF1487、欧标EN1176等全球严苛安全规范 [1]。\n\n2. **绳网游乐设备合规标准**：国内小型户外游乐设施统一执行GB 34272-2025最新强制国标，绳网游乐设备、组合攀爬设备都在规范范围内。新规对绳网密度、绳索抗拉强度、节点固定方式、整体框架荷载、安全防护距离都有明确量化要求 [2]。\n\n3. **EN 1176系列标准**：这是欧洲最具代表性的游乐设备标准，包括游乐设施与场地的通用安全要求与测试方法，以及针对秋千、滑梯、滑索等特定设备的附加安全要求与测试方法 [4][5]。\n\n4. **ASTM F1487标准**：这是世界上应用最普遍的游乐设施安全标准之一，适用于美国市场 [6]。\n\n5. **CPC认证与ASTM F1487-21标准**：CPC认证是美国针对12岁及以下儿童使用产品的强制性认证，ASTM F1487-21标准则是游乐设施的具体安全要求 [7]。\n\n6. **杭州贝测科技有限公司**：提供产品检测、清关认证服务代理，与多家国际机构有良好合作关系，可提供标准咨询、申请文件制作、产品测试、工厂审核及获取认证证书等一站式服务 [8]。\n\n综上所述，游乐设备出海需要符合多种国际和国内标准，包括CE认证、EN 1176系列标准、ASTM F1487标准、CPC认证等，同时还需要通过相关机构的检测和认证。",
+      "citations": [
+        "https://www.bilibili.com/opus/1078998026472652808",
+        "https://www.sohu.com/a/1051889889_122508650",
+        "https://www.sohu.com/a/1076320616_122546290",
+        "https://www.bilibili.com/opus/1020377362169069572",
+        "https://cn.trustexporter.com/cp-rongyida20/o12443526.htm",
+        "https://zhuanlan.zhihu.com/p/374307566",
+        "https://www.sohu.com/a/963628881_122187733",
+        "https://300231405.b2b.11467.com/about.asp",
+        "http://mp.weixin.qq.com/s?__biz=MzU0ODAwOTEwNA==&mid=2247497536&idx=2&sn=632849180d0f6c36e4729e165664e4c8&scene=0#wechat_redirect",
+        "https://www.sohu.com/a/869631616_122024622"
+      ],
+      "retrieved": [
+        "https://www.bilibili.com/opus/1078998026472652808",
+        "https://www.sohu.com/a/1051889889_122508650",
+        "https://www.sohu.com/a/1076320616_122546290",
+        "https://www.bilibili.com/opus/1020377362169069572",
+        "https://cn.trustexporter.com/cp-rongyida20/o12443526.htm",
+        "https://zhuanlan.zhihu.com/p/374307566",
+        "https://www.sohu.com/a/963628881_122187733",
+        "https://300231405.b2b.11467.com/about.asp",
+        "http://mp.weixin.qq.com/s?__biz=MzU0ODAwOTEwNA==&mid=2247497536&idx=2&sn=632849180d0f6c36e4729e165664e4c8&scene=0#wechat_redirect",
+        "https://www.sohu.com/a/869631616_122024622"
+      ],
+      "judgement": {
+        "mentioned": false,
+        "framingCorrect": false,
+        "serviceHits": [],
+        "manufacturerHits": [],
+        "misframed": false
+      }
+    }
+  ],
+  "skipped": [
+    {
+      "engine": "glm",
+      "prompt": "水育乐园 设备 供应商 怎么选",
+      "reason": "fetch failed"
+    },
+    {
+      "engine": "glm",
+      "prompt": "儿童乐园 设计 招标 要求",
+      "reason": "fetch failed"
+    }
+  ]
+}

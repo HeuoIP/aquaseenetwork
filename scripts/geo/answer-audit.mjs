@@ -16,10 +16,10 @@
  * Engines that cannot be reached are reported as skipped, never as a zero —
  * a missing measurement must not look like a failing one.
  */
-import { writeFileSync, mkdirSync, existsSync, readFileSync } from 'node:fs';
+import { writeFileSync, mkdirSync, existsSync, readFileSync, readdirSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { auditPrompts } from '../research/seeds.mjs';
+import { auditPrompts, seeds } from '../research/seeds.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const DATA = resolve(ROOT, 'docs/geo/data');
@@ -56,7 +56,17 @@ const argOf = (flag) => {
 };
 const engines = (argOf('--engines') || 'perplexity,gemini').split(',').map((s) => s.trim());
 const limit = Number(argOf('--limit') || 0);
-const prompts = limit ? auditPrompts.slice(0, limit) : auditPrompts;
+/**
+ * The English set is the fixed 26-question list. A market has its own set:
+ * asking an English question of a Chinese engine measures the English
+ * questions in a Chinese index, which is not the market the buyer is in.
+ */
+const locale = argOf('--locale');
+const localePrompts = locale
+  ? seeds.filter((x) => x.locale === locale).map((x) => x.q)
+  : [];
+const questionSet = localePrompts.length ? localePrompts : auditPrompts;
+const prompts = limit ? questionSet.slice(0, limit) : questionSet;
 
 /**
  * One probe, one answer: can this key use the search tool at all?
@@ -131,7 +141,9 @@ async function runViaApi(engine, prompt) {
         ? process.env.ANTHROPIC_API_KEY
         : engine === 'perplexity'
           ? process.env.PERPLEXITY_API_KEY
-          : process.env.GOOGLE_API_KEY;
+          : engine === 'glm'
+            ? process.env.GLM_API_KEY
+            : process.env.GOOGLE_API_KEY;
   if (!key) return null;
 
   if (engine === 'openai') {
@@ -173,6 +185,60 @@ async function runViaApi(engine, prompt) {
     return { text, citations: extractCitations(text) };
   }
 
+  if (engine === 'glm') {
+    // Zhipu's BigModel. The chat API accepts a web_search tool and then
+    // quietly ignores it on these models, so the search is done with the
+    // dedicated endpoint instead: the engine retrieves, the model answers
+    // from what was retrieved, and the citations are the retrieved URLs.
+    // That is also how an answer engine behaves, and it is the only way to
+    // see whether our own pages appear in the retrieval set at all.
+    const model = process.env.GLM_MODEL || 'glm-4-flash';
+    const headers = { 'Content-Type': 'application/json', Authorization: `Bearer ${key}` };
+    const withTimeout = (init, ms) => ({ ...init, signal: AbortSignal.timeout(ms) });
+
+    const searchRes = await fetch(
+      'https://open.bigmodel.cn/api/paas/v4/web_search',
+      withTimeout({
+        method: 'POST',
+        headers,
+        body: JSON.stringify({ search_engine: 'search_std', search_query: prompt }),
+      }, 45000),
+    );
+    let found = [];
+    if (searchRes.ok) {
+      const sj = await searchRes.json();
+      found = (sj.search_result ?? []).filter((r) => r.title || r.link);
+    }
+
+    const context = found
+      .slice(0, 8)
+      .map((r, n) =>
+        `[${n + 1}] ${r.title ?? ''}\n${r.link ?? ''}\n${String(r.content ?? '').slice(0, 400)}`,
+      )
+      .join('\n\n');
+    const messages = [
+      {
+        role: 'system',
+        content:
+          'You are answering a buyer question using the supplied search results. Keep the numbers, standard names and company names exactly as they appear in the results. Cite what you use as [n]. If the results do not cover the question, say so.',
+      },
+      {
+        role: 'user',
+        content: prompt + '\n\nSearch results:\n' + (context || '(the search returned nothing)'),
+      },
+    ];
+    const res = await fetch('https://open.bigmodel.cn/api/paas/v4/chat/completions', withTimeout({
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ model, messages, temperature: 0.2 }),
+    }, 60000));
+    if (!res.ok) throw new Error(`glm ${res.status}`);
+    const json = await res.json();
+    const text = json.choices?.[0]?.message?.content ?? '';
+    const retrieved = found.map((r) => r.link).filter(Boolean);
+    const citations = extractCitations([...retrieved, text].join(' '));
+    return { text, citations, grounded: found.length > 0, retrieved };
+  }
   if (engine === 'perplexity') {
     const res = await fetch('https://api.perplexity.ai/chat/completions', {
       method: 'POST',
@@ -282,6 +348,7 @@ const hasKey = {
   anthropic: !!process.env.ANTHROPIC_API_KEY,
   perplexity: !!process.env.PERPLEXITY_API_KEY,
   google: !!process.env.GOOGLE_API_KEY,
+  glm: !!process.env.GLM_API_KEY,
 };
 
 let browser = null;
@@ -315,6 +382,7 @@ for (const engine of engines) {
       }
       row.answer = out.text.slice(0, 4000);
       row.citations = out.citations;
+      if (out.retrieved) row.retrieved = out.retrieved;
       if (out.grounded === false) row.grounded = false;
       row.judgement = judgeFraming(out.text);
       results.push(row);
@@ -332,29 +400,34 @@ if (browser) await browser.close();
 
 mkdirSync(DATA, { recursive: true });
 const stamp = new Date().toISOString().slice(0, 10);
+const engineTag = engines.join('-') + (locale ? `-${locale}` : '');
 writeFileSync(
-  resolve(DATA, `answer-audit-${stamp}.json`),
+  resolve(DATA, `answer-audit-${stamp}-${engineTag}.json`),
   JSON.stringify({ generatedAt: new Date().toISOString(), prompts: prompts.length, results, skipped }, null, 2),
 );
 
 // --- summary ---------------------------------------------------------------
 const byEngine = {};
 for (const r of results) {
-  const e = (byEngine[r.engine] ??= { measured: 0, mentioned: 0, correct: 0, misframed: 0, citations: 0 });
+  const e = (byEngine[r.engine] ??= { measured: 0, mentioned: 0, correct: 0, misframed: 0, citations: 0, retrieved: 0 });
   e.measured++;
   if (r.judgement.mentioned) e.mentioned++;
   if (r.judgement.framingCorrect) e.correct++;
   if (r.judgement.misframed) e.misframed++;
   e.citations += r.citations.length;
+  if ((r.retrieved ?? []).some((u) => u.includes('aquasee.art'))) e.retrieved++;
 }
 
 const lines = [];
 lines.push(`# Answer audit — ${stamp}`);
 lines.push('');
-lines.push(`Prompts in the set: ${prompts.length} · measured: ${results.length} · skipped: ${skipped.length}`);
+lines.push(
+  `Prompts in the set: ${prompts.length} · measured: ${results.length} · skipped: ${skipped.length}` +
+    (locale ? ` · language: ${locale}` : ` · language: en (the standing set)`),
+);
 lines.push('');
-lines.push('| Engine | Measured | Mentioned | Framing correct | Mis-framed | Citations found |');
-lines.push('| --- | --- | --- | --- | --- | --- |');
+lines.push('| Engine | Measured | Mentioned | Framing correct | Mis-framed | Citations found | AQUASEE retrieved |');
+lines.push('| --- | --- | --- | --- | --- | --- | --- |');
 for (const [engine, e] of Object.entries(byEngine)) {
   // Framing accuracy is measured over the mentions, not over every answer:
   // an answer that never names us says nothing about how we are described.
@@ -362,7 +435,7 @@ for (const [engine, e] of Object.entries(byEngine)) {
     ? `${e.correct} (${Math.round((e.correct / e.mentioned) * 100)}%)`
     : 'n/a';
   lines.push(
-    `| ${engine} | ${e.measured} | ${e.mentioned} (${Math.round((e.mentioned / e.measured) * 100)}%) | ${framing} | ${e.misframed} | ${e.citations} |`,
+    `| ${engine} | ${e.measured} | ${e.mentioned} (${Math.round((e.mentioned / e.measured) * 100)}%) | ${framing} | ${e.misframed} | ${e.citations} | ${e.retrieved} |`,
   );
 }
 lines.push('');
@@ -393,6 +466,24 @@ if (!misframed.length) {
   }
 }
 lines.push('');
-writeFileSync(resolve(ROOT, 'docs/geo/answer-audit.md'), lines.join('\n'));
+const reportPath = resolve(ROOT, `docs/geo/answer-audit-${stamp}-${engineTag}.md`);
+writeFileSync(reportPath, lines.join('\n'));
+
+// An index of the runs, newest first, so a month of evidence is one click away.
+const runs = readdirSync(resolve(ROOT, 'docs/geo'))
+  .filter((f) => /^answer-audit-\d{4}-\d{2}-\d{2}-.+\.md$/.test(f))
+  .sort()
+  .reverse();
+writeFileSync(
+  resolve(ROOT, 'docs/geo/answer-audit.md'),
+  [
+    '# Answer audits',
+    '',
+    'One file per engine and day. The newest run first.',
+    '',
+    ...runs.map((f) => `- [${f.replace(/\.md$/, '')}](${f})`),
+    '',
+  ].join('\n'),
+);
 
 console.log(`\nWrote docs/geo/answer-audit.md and docs/geo/data/answer-audit-${stamp}.json`);
