@@ -19,21 +19,20 @@ export const site: SiteConfig = {
   contact: {
     email: 'victor@aquasee.art',
     location: 'Based in China — working with clients worldwide',
-    phone: '',
+    phone: '+8615913150818',
   },
   /**
    * The channels we are reachable on.
    *
-   * PLACEHOLDER URLS: each link below is the shape the platform uses, with
-   * the brand name as the handle. Replace them with the real accounts - a
-   * link that lands on somebody else's profile is worse than no link.
+   * Instagram and LinkedIn are not here yet: the accounts do not exist, and
+   * a link to a page that is not there is worse than no link at all. The
+   * marks for both are already drawn - add the entry here when the account
+   * is registered.
    */
   social: [
-    { label: '小红书', icon: 'xiaohongshu', href: 'https://www.xiaohongshu.com/user/profile/aquasee' },
-    { label: 'LinkedIn', icon: 'linkedin', href: 'https://www.linkedin.com/company/aquasee-art' },
-    { label: 'YouTube', icon: 'youtube', href: 'https://www.youtube.com/@aquasee.art' },
-    { label: 'WhatsApp', icon: 'whatsapp', href: 'https://wa.me/15550000000' },
-    { label: 'Instagram', icon: 'instagram', href: 'https://www.instagram.com/aquasee.art' },
+    { label: '小红书', icon: 'xiaohongshu', href: 'https://www.xiaohongshu.com/user/profile/5fafc21f000000000101cc5b' },
+    { label: 'YouTube', icon: 'youtube', href: 'https://www.youtube.com/@louiselau' },
+    { label: 'WhatsApp', icon: 'whatsapp', href: 'https://wa.me/8615913150818' },
   ],
   nav: [
     { href: '/strategy', label: 'Strategy & Consulting' },
