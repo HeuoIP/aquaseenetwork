@@ -67,6 +67,14 @@ export function Footer({
                   {site.contact.email}
                 </a>
               </li>
+              <li>
+                <a
+                  href={`tel:${site.contact.phone.replace(/\s/g, '')}`}
+                  className="text-on-dark transition-colors duration-300 hover:text-on-dark-strong"
+                >
+                  TEL: {site.contact.phone}
+                </a>
+              </li>
               <li className="text-on-dark/75">{site.contact.location}</li>
               <li>
                 <Link

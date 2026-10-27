@@ -1,17 +1,12 @@
-import { SocialIcon } from '@/components/site/SocialIcon';
 import { ActionLink } from '@/components/ui/Action';
 import type { HomeContent } from '@/content/types';
-import type { SocialLink } from '@/content/types';
 
 export function CtaBand({
   copy,
   email,
-  social,
 }: {
   copy: HomeContent['cta'];
   email: string;
-  /** The channels we are reachable on. */
-  social: SocialLink[];
 }) {
   return (
     <section className="bg-accent-tint py-20 sm:py-24" id="contact-cta">
@@ -33,24 +28,6 @@ export function CtaBand({
           </div>
         </div>
 
-        {social.length ? (
-          <ul className="mt-10 flex flex-wrap items-center justify-end gap-2.5 lg:mt-12">
-            {social.map((item) => (
-              <li key={item.href}>
-                <a
-                  href={item.href}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  title={item.label}
-                  className="flex h-11 w-11 items-center justify-center rounded-full transition-transform duration-300 hover:scale-110"
-                >
-                  <SocialIcon name={item.icon} className="h-9 w-9" />
-                  <span className="sr-only">{item.label}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        ) : null}
       </div>
     </section>
   );

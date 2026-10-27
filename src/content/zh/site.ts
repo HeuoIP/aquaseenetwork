@@ -18,7 +18,7 @@ export const site: SiteConfig = {
   contact: {
     email: 'victor@aquasee.art',
     location: '总部位于中国，与全球客户合作',
-    phone: '+8615913150818',
+    phone: '+86 15913150818',
   },
   /**
    * The channels we are reachable on.

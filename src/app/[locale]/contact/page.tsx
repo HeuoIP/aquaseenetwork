@@ -161,7 +161,7 @@ export default async function ContactPage({ params }: PageProps<'/[locale]/conta
                   <p className="mt-3 text-[1.0625rem] leading-snug text-ink">{dict.site.contact.location}</p>
                   {dict.site.contact.phone ? (
                     <a
-                      href={`tel:${dict.site.contact.phone}`}
+                      href={`tel:${dict.site.contact.phone.replace(/\s/g, '')}`}
                       className="mt-2 block text-[0.9375rem] text-body underline underline-offset-4 hover:text-accent"
                     >
                       {dict.site.contact.phone}

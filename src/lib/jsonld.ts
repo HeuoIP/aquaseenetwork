@@ -74,7 +74,7 @@ export function organizationLd(dict: Dictionary): Json {
       availableLanguage: ['English', 'Chinese', 'Arabic', 'Russian'],
       areaServed: 'Worldwide',
     },
-    ...(site.contact.phone ? { telephone: site.contact.phone } : {}),
+    ...(site.contact.phone ? { telephone: site.contact.phone.replace(/\s/g, '') } : {}),
     ...(site.social.length ? { sameAs: site.social.map((s) => s.href) } : {}),
   };
 }
