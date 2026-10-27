@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { BrandMark } from '@/components/site/BrandMark';
 import { SocialIcon } from '@/components/site/SocialIcon';
 import type { SiteConfig, UiStrings } from '@/content/types';
 import { localePath, type Locale } from '@/lib/locale';
@@ -22,9 +23,12 @@ export function Footer({
       <div className="shell">
         <div className="grid gap-12 border-b border-white/10 py-16 md:grid-cols-12 md:py-20">
           <div className="md:col-span-5">
-            <p className="font-display text-[1.5rem] leading-none tracking-[0.14em] text-on-dark-strong">
-              {site.name}
-            </p>
+            <div className="flex items-center gap-3.5">
+              <BrandMark className="h-8 w-8 shrink-0 text-aqua" />
+              <p className="font-display text-[1.5rem] leading-none tracking-[0.14em] text-on-dark-strong">
+                {site.name}
+              </p>
+            </div>
             <p className="mt-5 max-w-sm text-[0.9375rem] leading-relaxed text-on-dark">
               {site.tagline}
             </p>
@@ -81,9 +85,9 @@ export function Footer({
                       target="_blank"
                       rel="noreferrer noopener"
                       title={item.label}
-                      className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-on-dark transition-colors duration-300 hover:border-aqua/60 hover:text-on-dark-strong"
+                      className="flex h-11 w-11 items-center justify-center rounded-full transition-transform duration-300 hover:scale-110"
                     >
-                      <SocialIcon name={item.icon} className="h-5 w-5" />
+                      <SocialIcon name={item.icon} className="h-8 w-8" />
                       <span className="sr-only">{item.label}</span>
                     </a>
                   </li>

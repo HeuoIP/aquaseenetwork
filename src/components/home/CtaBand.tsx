@@ -42,9 +42,9 @@ export function CtaBand({
                   target="_blank"
                   rel="noreferrer noopener"
                   title={item.label}
-                  className="flex h-11 w-11 items-center justify-center rounded-full border border-line-2 text-ink transition-colors duration-300 hover:border-accent hover:text-accent"
+                  className="flex h-11 w-11 items-center justify-center rounded-full transition-transform duration-300 hover:scale-110"
                 >
-                  <SocialIcon name={item.icon} className="h-[1.375rem] w-[1.375rem]" />
+                  <SocialIcon name={item.icon} className="h-9 w-9" />
                   <span className="sr-only">{item.label}</span>
                 </a>
               </li>

@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { BrandMark } from '@/components/site/BrandMark';
 import { LanguageSwitcher } from '@/components/site/LanguageSwitcher';
 import type { SiteConfig, UiStrings } from '@/content/types';
 import { cn } from '@/lib/cn';
@@ -79,9 +80,15 @@ export function Header({
         <div className="flex h-[4.5rem] items-center justify-between gap-6">
           <Link
             href={href('/')}
-            className="group flex items-baseline gap-2.5"
+            className="group flex items-center gap-3"
             aria-label={`${site.name} — home`}
           >
+            <BrandMark
+              className={cn(
+                'h-[1.625rem] w-[1.625rem] shrink-0 transition-colors duration-500',
+                solid ? 'text-accent' : 'text-aqua'
+              )}
+            />
             <span
               className={cn(
                 'font-display text-[1.375rem] leading-none tracking-[0.14em] transition-colors duration-500',

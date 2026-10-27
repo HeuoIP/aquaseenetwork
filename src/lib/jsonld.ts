@@ -30,6 +30,12 @@ export function organizationLd(dict: Dictionary): Json {
     url: SITE_ORIGIN,
     description: site.shortDescription,
     slogan: site.tagline,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${SITE_ORIGIN}/brand/aquasee-mark-512.png`,
+      width: 512,
+      height: 512,
+    },
     email: site.contact.email,
     areaServed: [
       'United Arab Emirates',
