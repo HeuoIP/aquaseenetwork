@@ -37,6 +37,7 @@ export const site: SiteConfig = {
     { href: '/strategy', label: 'الاستشارات الاستراتيجية' },
     { href: '/creative-design', label: 'التصميم الإبداعي والتطوير' },
     { href: '/supply-chain', label: 'سلسلة التوريد والتسليم' },
+    { href: '/insights', label: 'رؤى' },
     { href: '/projects', label: 'المشاريع والقدرات' },
     { href: '/about', label: 'من نحن' },
     { href: '/faq', label: 'الأسئلة الشائعة' },

@@ -37,6 +37,7 @@ export const site: SiteConfig = {
     { href: '/strategy', label: 'Стратегия' },
     { href: '/creative-design', label: 'Дизайн и НИОКР' },
     { href: '/supply-chain', label: 'Цепочка поставок' },
+    { href: '/insights', label: 'Разборы' },
     { href: '/projects', label: 'Проекты' },
     { href: '/about', label: 'О компании' },
     { href: '/faq', label: 'Вопросы' },

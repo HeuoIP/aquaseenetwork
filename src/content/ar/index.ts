@@ -4,6 +4,7 @@ import { collaborationModel, audiences } from './collaboration';
 import { contact } from './contact';
 import { faq } from './faq';
 import { home } from './home';
+import { insights } from './insights';
 import { processSteps } from './process';
 import { capabilityStudies, disclosureNote, materials } from './projects';
 import { serviceDetails } from './services';
@@ -15,9 +16,8 @@ export const disclosure = disclosureNote;
 /**
  * المحتوى العربي.
  *
- * لا توجد مكتبة الرؤى بالعربية بعد، فتكون `insights` فارغة ولا يظهر مدخل
- * "رؤى" في التنقل. والرؤى تُنشر بلغتها فقط، ف نشر نموذج قبل ترجمته يعني
- * نشر صفحة لا يمكن قراءتها.
+ * تُنشر مكتبة الرؤى بالعربية كاملة، لا جزئيًا: المقالات المتاحة اليوم
+ * واحدة، وعليها وحدها تتبّع مفاتيح اللغة ومخطط الموقع وسمات hreflang.
  */
 export const dictionary: Dictionary = {
   locale: 'ar',
@@ -32,5 +32,5 @@ export const dictionary: Dictionary = {
   collaboration: { model: collaborationModel, audiences },
   about,
   faq,
-  insights: null,
+  insights,
 };

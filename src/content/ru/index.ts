@@ -4,6 +4,7 @@ import { collaborationModel, audiences } from './collaboration';
 import { contact } from './contact';
 import { faq } from './faq';
 import { home } from './home';
+import { insights } from './insights';
 import { processSteps } from './process';
 import { capabilityStudies, disclosureNote, materials } from './projects';
 import { serviceDetails } from './services';
@@ -15,8 +16,9 @@ export const disclosure = disclosureNote;
 /**
  * Русский контент.
  *
- * Библиотеки разборов на русском пока нет, поэтому `insights` равна null,
- * а в навигации нет пункта «Разборы»: язык публикуется только целиком.
+ * Библиотека разборов выходит на русском целиком, а не частями: на сегодня
+ * опубликована одна статья, и за ней следуют переключатель языка, карта
+ * сайта и hreflang.
  */
 export const dictionary: Dictionary = {
   locale: 'ru',
@@ -31,5 +33,5 @@ export const dictionary: Dictionary = {
   collaboration: { model: collaborationModel, audiences },
   about,
   faq,
-  insights: null,
+  insights,
 };

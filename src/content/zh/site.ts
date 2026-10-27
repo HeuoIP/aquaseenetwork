@@ -37,6 +37,7 @@ export const site: SiteConfig = {
     { href: '/strategy', label: '前期策划咨询' },
     { href: '/creative-design', label: '创意设计与研发' },
     { href: '/supply-chain', label: '供应链与交付' },
+    { href: '/insights', label: '洞察' },
     { href: '/projects', label: '项目与能力' },
     { href: '/about', label: '关于我们' },
     { href: '/faq', label: '常见问题' },

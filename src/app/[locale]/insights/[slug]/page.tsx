@@ -54,6 +54,17 @@ export default async function InsightArticlePage({ params }: PageProps<'/[locale
     .map((relatedSlug) => articles.find((item) => item.slug === relatedSlug))
     .filter((item): item is (typeof articles)[number] => Boolean(item))
     .map((item) => ({ slug: item.slug, title: item.title }));
+  /**
+   * A language that has published this guide but not the ones it points at
+   * would otherwise carry no internal links at all. The pages this guide
+   * depends on are the capability pages and the question set, so they are
+   * offered under the same heading, in the reading of that language.
+   */
+  const fallbackRelated = related.length
+    ? []
+    : dict.site.nav
+        .filter((item) => ['/strategy', '/creative-design', '/supply-chain', '/faq'].includes(item.href))
+        .map((item) => ({ slug: item.href, title: item.label }));
 
   return (
     <>
@@ -190,14 +201,14 @@ export default async function InsightArticlePage({ params }: PageProps<'/[locale
                   ))}
                 </ul>
 
-                {related.length > 0 ? (
+                {related.length > 0 || fallbackRelated.length > 0 ? (
                   <>
                     <p className="mt-10 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-accent">{ui.insights.related}</p>
                     <ul className="mt-4">
-                      {related.map((item) => (
+                      {(related.length ? related : fallbackRelated).map((item) => (
                         <li key={item.slug} className="border-b border-line">
                           <Link
-                            href={href(`/insights/${item.slug}`)}
+                            href={href(related.length ? `/insights/${item.slug}` : item.slug)}
                             className="block py-3.5 text-[0.9375rem] leading-snug text-ink transition-colors hover:text-accent"
                           >
                             {item.title}
