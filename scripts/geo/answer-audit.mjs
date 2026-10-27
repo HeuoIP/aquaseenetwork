@@ -16,7 +16,7 @@
  * Engines that cannot be reached are reported as skipped, never as a zero —
  * a missing measurement must not look like a failing one.
  */
-import { writeFileSync, mkdirSync, existsSync } from 'node:fs';
+import { writeFileSync, mkdirSync, existsSync, readFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { auditPrompts } from '../research/seeds.mjs';
@@ -24,14 +24,62 @@ import { auditPrompts } from '../research/seeds.mjs';
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const DATA = resolve(ROOT, 'docs/geo/data');
 
+/**
+ * The key can come from the environment or from the repository's .env.local,
+ * which is gitignored. Reading it here means the audit runs the same way for
+ * everybody, without exporting a variable by hand.
+ */
+for (const file of ['.env.local', '.env']) {
+  const path = resolve(ROOT, file);
+  if (!existsSync(path)) continue;
+  for (const line of readFileSync(path, 'utf8').split(/\r?\n/)) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith('#')) continue;
+    const eq = trimmed.indexOf('=');
+    if (eq < 1) continue;
+    const name = trimmed.slice(0, eq).trim();
+    const value = trimmed.slice(eq + 1).trim().replace(/^["']|["']$/g, '');
+    if (!process.env[name]) process.env[name] = value;
+  }
+}
+
 const argv = process.argv.slice(2);
+/**
+ * Flags are written both ways in this repository's own documentation, so both
+ * are accepted: `--engines gemini` and `--engines=gemini`.
+ */
 const argOf = (flag) => {
   const i = argv.indexOf(flag);
-  return i >= 0 ? argv[i + 1] : null;
+  if (i >= 0) return argv[i + 1];
+  const inline = argv.find((a) => a.startsWith(flag + "="));
+  return inline ? inline.slice(flag.length + 1) : null;
 };
 const engines = (argOf('--engines') || 'perplexity,gemini').split(',').map((s) => s.trim());
 const limit = Number(argOf('--limit') || 0);
 const prompts = limit ? auditPrompts.slice(0, limit) : auditPrompts;
+
+/**
+ * One probe, one answer: can this key use the search tool at all?
+ *
+ * Whether a key may search is a property of the key, not of the question, so
+ * it is established once instead of once per prompt. A tier without the search
+ * tool answers every grounded request with 429, and finding that out 26 times
+ * would waste the run.
+ */
+const searchAvailable = (() => {
+  let cached = null;
+  return async (url, post) => {
+    if (cached !== null) return cached;
+    try {
+      const res = await fetch(url, { ...post(true), signal: AbortSignal.timeout(45000) });
+      cached = res.status !== 429;
+      await res.text();
+    } catch {
+      cached = false;
+    }
+    return cached;
+  };
+})();
 
 /** What a correct description of AQUASEE has to contain. */
 const SERVICE_MARKERS = [
@@ -141,17 +189,53 @@ async function runViaApi(engine, prompt) {
   }
 
   // google
-  const res = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`,
-    {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-        tools: [{ google_search: {} }],
-      }),
-    },
-  );
+  //
+  // The model matters: gemini-2.0-flash was retired, and the API answers a
+  // request for it with a 404 that reads like a missing key. The model is
+  // configurable so the next retirement is a one-line change.
+  const model = process.env.GEMINI_MODEL || 'gemini-3.5-flash-lite';
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`;
+  const post = (withSearch) => ({
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      contents: [{ parts: [{ text: prompt }] }],
+      ...(withSearch ? { tools: [{ google_search: {} }] } : {}),
+    }),
+  });
+  // Every request carries a deadline. A connection that stalls must not be
+  // able to hold the whole run open.
+  const withTimeout = (init, ms = 45000) => ({ ...init, signal: AbortSignal.timeout(ms) });
+  const withRetry = async (init, tries = 4) => {
+    let last = null;
+    for (let i = 1; i <= tries; i++) {
+      try {
+        const r = await fetch(url, withTimeout(init));
+        if (r.status === 429 || r.status === 503) {
+          last = new Error(`google ${r.status}`);
+          await new Promise((s) => setTimeout(s, 3000 * i));
+          continue;
+        }
+        return r;
+      } catch (err) {
+        last = err;
+        await new Promise((s) => setTimeout(s, 2500 * i));
+      }
+    }
+    throw last ?? new Error('google unreachable');
+  };
+
+  let grounded = true;
+  let res = null;
+  if (await searchAvailable(url, post)) {
+    res = await withRetry(post(true));
+  } else {
+    // The run still measures what the model says, but it did not search, so
+    // it is marked as ungrounded rather than reported as an answer with no
+    // citations.
+    grounded = false;
+    res = await withRetry(post(false));
+  }
   if (!res.ok) throw new Error(`google ${res.status}`);
   const json = await res.json();
   const text = (json.candidates ?? [])
@@ -162,7 +246,7 @@ async function runViaApi(engine, prompt) {
     ?.map((c) => c.web?.uri)
     .filter(Boolean)
     .join(' ') ?? '');
-  return { text, citations };
+  return { text, citations, grounded };
 }
 
 // ----------------------------------------------------------- browser mode
@@ -231,6 +315,7 @@ for (const engine of engines) {
       }
       row.answer = out.text.slice(0, 4000);
       row.citations = out.citations;
+      if (out.grounded === false) row.grounded = false;
       row.judgement = judgeFraming(out.text);
       results.push(row);
       console.log(
@@ -271,11 +356,23 @@ lines.push('');
 lines.push('| Engine | Measured | Mentioned | Framing correct | Mis-framed | Citations found |');
 lines.push('| --- | --- | --- | --- | --- | --- |');
 for (const [engine, e] of Object.entries(byEngine)) {
+  // Framing accuracy is measured over the mentions, not over every answer:
+  // an answer that never names us says nothing about how we are described.
+  const framing = e.mentioned
+    ? `${e.correct} (${Math.round((e.correct / e.mentioned) * 100)}%)`
+    : 'n/a';
   lines.push(
-    `| ${engine} | ${e.measured} | ${e.mentioned} (${Math.round((e.mentioned / e.measured) * 100)}%) | ${e.correct} (${Math.round((e.correct / e.measured) * 100)}%) | ${e.misframed} | ${e.citations} |`,
+    `| ${engine} | ${e.measured} | ${e.mentioned} (${Math.round((e.mentioned / e.measured) * 100)}%) | ${framing} | ${e.misframed} | ${e.citations} |`,
   );
 }
 lines.push('');
+const ungrounded = results.filter((r) => r.grounded === false).length;
+if (ungrounded) {
+  lines.push(
+    `**${ungrounded} of ${results.length} answers were produced without web search.** The search tool was not available to the key used for that run, so these answers come from the model's own knowledge and the citation count for them measures nothing. Treat them as a framing check only.`,
+  );
+  lines.push('');
+}
 if (skipped.length) {
   lines.push('## Skipped');
   lines.push('');

@@ -37,9 +37,15 @@ Nothing has been pushed and nothing has been deployed.
    the claims — the facts page, the three capability definitions, and the
    questions. This has not happened. It is the one gate that cannot be
    automated, and it is the one that protects the entity.
-4. **Push, deploy, submit the sitemap, wait, then measure.** The full
-   procedure is in `docs/geo/baseline.md`. Until it happens, L1–L4 have no
-   numbers, and every target is still unset.
+4. ~~Push, deploy, submit the sitemap.~~ Done — deployed, the sitemap is
+   submitted in Google Search Console, and the first measurement round has
+   been run. The full procedure is in `docs/geo/baseline.md`.
+5. **Measure again, with search.** The first round (2026-10-27) ran the 26
+   buyer questions against Gemini and measured a **mention rate of 0%**:
+   AQUASEE was named in none of the 26 answers. That number is honest but
+   weak, because the free key in use could not call the search tool, so the
+   answers came from the model's own knowledge and carried no citations. The
+   citation layer — L2 and L3 — still has no instrument. See the note below.
 
 ## 3. Needs a decision or an input from the client
 
@@ -50,6 +56,24 @@ Nothing has been pushed and nothing has been deployed.
 | A native Arabic reviewer | The Arabic edition is machine-drafted with the termbase locked | The Arabic pages stay live but unreviewed, and that is recorded here |
 | Any engine API key | Upgrades the answer audit from browser-driven to fully automatic | The audit runs keyless through the local Chrome; ChatGPT and Claude still need the manual sheet |
 | The three untranslated case photographs in `网站案例图片/` | Real work is stronger than illustrative work, and the disclosure text cannot be removed until real work is published | Nothing changes; the capability studies stay labelled as concept work |
+
+## 3a. The measurement instruments, and what each one can and cannot say
+
+| Instrument | Reachable from this machine | Cost | What it measures | What it cannot measure |
+| --- | --- | --- | --- | --- |
+| Gemini API, free tier | yes, intermittently | free | mention rate and framing from the model's own knowledge | citations — the search tool answers 429 on a free key |
+| Perplexity web, anonymous | yes | free | a rough mention check | citations — an anonymous answer is truncated and lists no sources |
+| Perplexity API | yes | needs a card we cannot pay for | citations | — |
+| Chinese engines (GLM, Doubao, Kimi, DeepSeek, Baidu) | yes | free tiers, paid with a local wallet | citations, if the engine is asked to search | — |
+| GitHub Actions runner | yes | free for a public repository | a stable, overseas vantage point | — |
+
+Two things follow from this table. First, the international citation layer
+needs either a Chinese engine asked to search, or an engine run from an
+overseas runner — the local free tier cannot pay for search. Second, the
+geography of the answer matters: an engine queried from inside China returns
+China-region results, which is not the market the buyers are in, so the
+measurement should be taken from an overseas vantage point and labelled as
+such.
 
 ## 4. Known limits of what is built
 
