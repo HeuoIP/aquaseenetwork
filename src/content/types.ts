@@ -193,6 +193,16 @@ export type InsightArticle = {
   related: string[];
 };
 
+/**
+ * The five channels, and the mark that stands for each of them.
+ */
+export type SocialLink = {
+  /** The name of the channel, in the language the page is read in. */
+  label: string;
+  href: string;
+  icon: 'xiaohongshu' | 'linkedin' | 'youtube' | 'whatsapp' | 'instagram';
+};
+
 export type SiteConfig = {
   name: string;
   legalName: string;
@@ -202,7 +212,7 @@ export type SiteConfig = {
   tagline: string;
   shortDescription: string;
   contact: { email: string; location: string; phone: string };
-  social: { label: string; href: string }[];
+  social: SocialLink[];
   /** Primary navigation. Languages without published insights omit that entry. */
   nav: { href: string; label: string }[];
   ctaLabel: string;

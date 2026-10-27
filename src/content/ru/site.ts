@@ -20,7 +20,20 @@ export const site: SiteConfig = {
     location: 'Мы в Китае — и работаем с клиентами по всему миру',
     phone: '',
   },
-  social: [],
+  /**
+   * The channels we are reachable on.
+   *
+   * PLACEHOLDER URLS: each link below is the shape the platform uses, with
+   * the brand name as the handle. Replace them with the real accounts - a
+   * link that lands on somebody else's profile is worse than no link.
+   */
+  social: [
+    { label: '小红书', icon: 'xiaohongshu', href: 'https://www.xiaohongshu.com/user/profile/aquasee' },
+    { label: 'LinkedIn', icon: 'linkedin', href: 'https://www.linkedin.com/company/aquasee-art' },
+    { label: 'YouTube', icon: 'youtube', href: 'https://www.youtube.com/@aquasee.art' },
+    { label: 'WhatsApp', icon: 'whatsapp', href: 'https://wa.me/15550000000' },
+    { label: 'Instagram', icon: 'instagram', href: 'https://www.instagram.com/aquasee.art' },
+  ],
   nav: [
     { href: '/strategy', label: 'Стратегия' },
     { href: '/creative-design', label: 'Дизайн и НИОКР' },

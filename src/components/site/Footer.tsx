@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { SocialIcon } from '@/components/site/SocialIcon';
 import type { SiteConfig, UiStrings } from '@/content/types';
 import { localePath, type Locale } from '@/lib/locale';
 
@@ -81,16 +82,18 @@ export function Footer({
             {site.social.length > 0 ? (
               <>
                 <p className="mt-8 font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-aqua">{ui.global.elsewhere}</p>
-                <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
+                <ul className="mt-4 flex flex-wrap items-center gap-3">
                   {site.social.map((item) => (
                     <li key={item.href}>
                       <a
                         href={item.href}
                         target="_blank"
                         rel="noreferrer noopener"
-                        className="text-[0.9375rem] text-on-dark transition-colors duration-300 hover:text-on-dark-strong"
+                        title={item.label}
+                        className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-on-dark transition-colors duration-300 hover:border-aqua/60 hover:text-on-dark-strong"
                       >
-                        {item.label}
+                        <SocialIcon name={item.icon} className="h-[1.05rem] w-[1.05rem]" />
+                        <span className="sr-only">{item.label}</span>
                       </a>
                     </li>
                   ))}
