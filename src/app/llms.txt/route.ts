@@ -1,5 +1,5 @@
 import { getDictionary } from '@/lib/dictionary';
-import { PUBLISHED_LOCALES } from '@/lib/locale';
+import { localePath, PUBLISHED_LOCALES, type Locale } from '@/lib/locale';
 
 /**
  * /llms.txt — the machine-readable summary.
@@ -71,8 +71,29 @@ export async function GET() {
   if (insights && insights.length) {
     lines.push('## Insights');
     lines.push('');
+    /**
+     * The library is published per language, so a guide that exists in
+     * another language has to be pointed at in that language: a machine
+     * reading this file for an Arabic or Russian query needs the URL of the
+     * page that answers it there, not the English one.
+     */
+    const translated = new Map<string, { locale: Locale; title: string }[]>();
+    for (const locale of PUBLISHED_LOCALES) {
+      if (locale === 'en') continue;
+      const other = await getDictionary(locale);
+      for (const article of other.insights ?? []) {
+        const list = translated.get(article.slug) ?? [];
+        list.push({ locale, title: article.title });
+        translated.set(article.slug, list);
+      }
+    }
     for (const article of insights) {
       lines.push(`- [${article.title}](${site.url}/insights/${article.slug}) — ${article.excerpt}`);
+      for (const alt of translated.get(article.slug) ?? []) {
+        lines.push(
+          `  - ${alt.locale}: [${alt.title}](${site.url}${localePath(alt.locale, `/insights/${article.slug}`)})`,
+        );
+      }
     }
     lines.push('');
   }
