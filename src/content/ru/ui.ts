@@ -19,9 +19,7 @@ export const ui: UiStrings = {
     capabilities: 'Компетенции',
     contact: 'Контакты',
     contactPage: 'Страница контактов',
-    weWorkWith: 'Мы работаем с',
-    elsewhere: 'Ещё здесь',
-    rights: 'Все права защищены.',
+    weWorkWith: 'Мы работаем с',    rights: 'Все права защищены.',
     imageryNote:
       'Все изображения на сайте — иллюстративные концептуальные работы, если не указано иное.',
     machineSummary: 'Машиночитаемое резюме',

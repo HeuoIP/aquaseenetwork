@@ -19,9 +19,7 @@ export const ui: UiStrings = {
     capabilities: 'Capabilities',
     contact: 'Contact',
     contactPage: 'Contact page',
-    weWorkWith: 'We work with',
-    elsewhere: 'Elsewhere',
-    rights: 'All rights reserved.',
+    weWorkWith: 'We work with',    rights: 'All rights reserved.',
     imageryNote:
       'Imagery on this site is illustrative concept work unless stated otherwise.',
     machineSummary: 'Machine-readable summary',

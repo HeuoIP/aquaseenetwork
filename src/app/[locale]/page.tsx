@@ -47,7 +47,6 @@ export default async function HomePage({ params }: PageProps<'/[locale]'>) {
         copy={dict.home.cta}
         email={dict.site.contact.email}
         social={dict.site.social}
-        label={dict.ui.global.elsewhere}
       />
     </>
   );

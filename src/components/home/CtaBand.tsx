@@ -7,14 +7,11 @@ export function CtaBand({
   copy,
   email,
   social,
-  label,
 }: {
   copy: HomeContent['cta'];
   email: string;
   /** The channels we are reachable on. */
   social: SocialLink[];
-  /** What the row of channels is called. */
-  label: string;
 }) {
   return (
     <section className="bg-accent-tint py-20 sm:py-24" id="contact-cta">
@@ -37,27 +34,22 @@ export function CtaBand({
         </div>
 
         {social.length ? (
-          <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-5 border-t border-line pt-8">
-            <p className="font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-muted">
-              {label}
-            </p>
-            <ul className="flex flex-wrap items-center gap-3">
-              {social.map((item) => (
-                <li key={item.href}>
-                  <a
-                    href={item.href}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    title={item.label}
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-line-2 text-ink transition-colors duration-300 hover:border-accent hover:text-accent"
-                  >
-                    <SocialIcon name={item.icon} className="h-5 w-5" />
-                    <span className="sr-only">{item.label}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ul className="mt-10 flex flex-wrap items-center justify-end gap-2.5 lg:mt-12">
+            {social.map((item) => (
+              <li key={item.href}>
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  title={item.label}
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-line-2 text-ink transition-colors duration-300 hover:border-accent hover:text-accent"
+                >
+                  <SocialIcon name={item.icon} className="h-[1.375rem] w-[1.375rem]" />
+                  <span className="sr-only">{item.label}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
         ) : null}
       </div>
     </section>

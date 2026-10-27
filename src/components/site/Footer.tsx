@@ -72,34 +72,31 @@ export function Footer({
               </li>
             </ul>
 
+            {site.social.length > 0 ? (
+              <ul className="mt-5 flex flex-wrap items-center gap-2.5">
+                {site.social.map((item) => (
+                  <li key={item.href}>
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      title={item.label}
+                      className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-on-dark transition-colors duration-300 hover:border-aqua/60 hover:text-on-dark-strong"
+                    >
+                      <SocialIcon name={item.icon} className="h-5 w-5" />
+                      <span className="sr-only">{item.label}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+
             <p className="mt-8 font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-aqua">{ui.global.weWorkWith}</p>
             <ul className="mt-4 space-y-1.5 text-[0.8125rem] text-on-dark/70">
               {audiences.map((audience) => (
                 <li key={audience}>{audience}</li>
               ))}
             </ul>
-
-            {site.social.length > 0 ? (
-              <>
-                <p className="mt-8 font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-aqua">{ui.global.elsewhere}</p>
-                <ul className="mt-4 flex flex-wrap items-center gap-3">
-                  {site.social.map((item) => (
-                    <li key={item.href}>
-                      <a
-                        href={item.href}
-                        target="_blank"
-                        rel="noreferrer noopener"
-                        title={item.label}
-                        className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-on-dark transition-colors duration-300 hover:border-aqua/60 hover:text-on-dark-strong"
-                      >
-                        <SocialIcon name={item.icon} className="h-[1.05rem] w-[1.05rem]" />
-                        <span className="sr-only">{item.label}</span>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </>
-            ) : null}
           </div>
         </div>
 

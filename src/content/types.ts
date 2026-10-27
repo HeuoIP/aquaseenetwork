@@ -289,9 +289,7 @@ export type UiStrings = {
     capabilities: string;
     contact: string;
     contactPage: string;
-    weWorkWith: string;
-    elsewhere: string;
-    rights: string;
+    weWorkWith: string;    rights: string;
     imageryNote: string;
     machineSummary: string;
     startProject: string;
