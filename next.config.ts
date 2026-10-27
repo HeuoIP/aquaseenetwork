@@ -5,7 +5,15 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   compress: true,
   images: {
-    formats: ['image/avif', 'image/webp'],
+    // The runtime optimiser was measured in production and found to be a
+    // pass-through: every file came back byte for byte identical to the
+    // source, at every requested width. So it cost a Worker invocation per
+    // image and delivered nothing - and the `srcset` it advertised was a
+    // fiction, because a browser asking for a 640px candidate was handed
+    // the full-size file. The images in `public/images` are already WebP at
+    // the size they are meant to be served, so they go out as they are -
+    // the same bytes, served straight from the edge instead of the Worker.
+    unoptimized: true,
   },
   experimental: {
     // The root layout lives inside the [locale] segment, which is the

@@ -19,6 +19,12 @@
   "observability": {
     "enabled": true
   },
+  // Every page request is rendered inside the Worker, and a crawl that
+  // arrives in parallel could push it past the default 128 MB and answer
+  // with a 503. Four times the room removes that.
+  "limits": {
+    "memory_mb": 512
+  },
   "workers_dev": true,
   "routes": [
     { "pattern": "www.aquasee.art", "custom_domain": true },
