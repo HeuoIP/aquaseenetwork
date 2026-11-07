@@ -1163,5 +1163,90 @@ export const insights: InsightArticle[] = [
       'what-a-design-package-must-contain',
     ],
   },
-
+  {
+    slug: 'how-ai-supports-strategy-design-and-sourcing-for-spatial-projects',
+    title: 'How AI supports strategy, design and sourcing for spatial projects',
+    excerpt:
+      'AI is most useful in a spatial project when it shortens research, comparison and iteration without taking ownership of the decision. The practical model is simple: use AI to organise evidence and explore options, then have experienced people test the brief, check feasibility and remain accountable for the specification and delivery.',
+    pillar: 'strategy',
+    vertical: 'general',
+    readingMinutes: 8,
+    updatedAt: '2026-11-07',
+    sections: [
+      {
+        id: 'where-ai-helps',
+        heading: 'Where AI creates useful speed',
+        body: [
+          'AI can search, classify and compare a large reference set faster than a project team working manually. In an early brief, that means grouping visitor needs, extracting constraints from site notes, comparing precedent projects and making unanswered questions visible before the team commits to a concept.',
+          'The output is a better starting point, not an automatic recommendation. A project still needs a person who can tell the difference between a plausible reference and a suitable one for this site, audience, climate and budget.',
+        ],
+        list: [
+          'Research: organise precedents, standards, materials and supplier information',
+          'Comparison: place concept directions, quotations and delivery routes against the same criteria',
+          'Iteration: generate early visual or written alternatives before detailed work begins',
+        ],
+      },
+      {
+        id: 'strategy',
+        heading: 'AI in strategy and consulting',
+        body: [
+          'The strategic use of AI is to make the brief testable. A team can use it to turn interviews and site notes into a structured question set, map different audiences to activities, and compare possible programme directions. The consultant then checks the evidence, resolves contradictions and records which assumptions still need a site or commercial test.',
+        ],
+        callout:
+          'AI can reveal the questions a brief has not answered. It cannot decide which unanswered question matters most to the client.',
+      },
+      {
+        id: 'design',
+        heading: 'AI in concept and experience design',
+        body: [
+          'In design development, AI is useful for breadth. It can help a team explore atmosphere, activity combinations, material references and early form directions before investing in a resolved model. Those images are working material: they do not prove structure, safety, cost, maintainability or buildability.',
+          'The design team selects a direction, redraws it with accurate dimensions and interfaces, and tests it against the real production and operating conditions. The value is more informed iteration, not a shortcut around design resolution.',
+        ],
+      },
+      {
+        id: 'sourcing',
+        heading: 'AI in sourcing and delivery',
+        body: [
+          'A sourcing team can use AI to normalise supplier information, compare quotations with different wording and flag gaps in scope, lead time, finish and warranty. It can also help break a bespoke product into modules and model make, buy and assemble routes against one specification.',
+          'The final supplier decision still requires qualification, reference checks, sample review and production inspection. A clean comparison table is useful only when the underlying information has been checked.',
+        ],
+      },
+      {
+        id: 'controls',
+        heading: 'The controls that keep the work credible',
+        body: [
+          'An AI-assisted workflow needs the same discipline as any other professional workflow: identify the source of a claim, record the date, separate an illustration from evidence, and keep a person responsible for the decision. Sensitive client information should not be placed into a public model without an agreed data policy.',
+        ],
+        list: [
+          'Keep the original brief, source links and decision record alongside AI-assisted outputs',
+          'Label generated images and drafts so they are not mistaken for completed work',
+          'Have qualified people review safety, engineering, accessibility and regulatory claims',
+          'Use one written specification as the reference for quotations, inspection and handover',
+        ],
+      },
+    ],
+    keyTakeaways: [
+      'AI is strongest at research, comparison and early iteration',
+      'Professional judgment remains responsible for feasibility, safety and delivery',
+      'Generated visuals are exploration material, not proof of a buildable project',
+      'A written specification and source record keep AI-assisted work accountable',
+    ],
+    sources: [
+      {
+        label: 'NIST AI Risk Management Framework 1.0',
+        url: 'https://www.nist.gov/itl/ai-risk-management-framework',
+        accessed: '2026-11-07',
+      },
+      {
+        label: 'NIST Generative AI Profile',
+        url: 'https://www.nist.gov/itl/ai-risk-management-framework/ai-rmf-generative-ai-profile',
+        accessed: '2026-11-07',
+      },
+    ],
+    related: [
+      'what-a-design-package-must-contain',
+      'how-to-turn-a-creative-play-concept-into-a-buildable-product',
+      'quality-control-across-the-production-chain',
+    ],
+  },
 ];
