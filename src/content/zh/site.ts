@@ -12,9 +12,9 @@ export const site: SiteConfig = {
   domain: 'aquasee.art',
   canonicalHost: 'www.aquasee.art',
   url: 'https://www.aquasee.art',
-  tagline: '前期策划 · 创意设计 · 项目落地',
+  tagline: 'AI 驱动的策划、设计与供应链',
   shortDescription:
-    '一家总部位于中国、服务于海外项目服务型企业——为文旅、公共空间与儿童游乐项目提供前期策划咨询、创意设计与研发，以及结构化的供应链与交付。',
+    '一家来自中国的 AI 驱动策划、设计与供应链合作伙伴，服务于文旅目的地、儿童空间与户外产品项目。',
   contact: {
     email: 'victor@aquasee.art',
     location: '总部位于中国，与全球客户合作',

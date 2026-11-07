@@ -51,6 +51,11 @@ export function ServicePage({
             <p className="mt-6 max-w-4xl text-[1.375rem] leading-[1.55] tracking-[-0.01em] text-ink">
               {service.definition}
             </p>
+            {service.aiLabel ? (
+              <p className="mt-6 inline-flex rounded-full bg-accent-tint px-4 py-2 font-mono text-[0.625rem] uppercase tracking-[0.12em] text-accent">
+                {service.aiLabel}
+              </p>
+            ) : null}
           </Reveal>
         </div>
       </section>

@@ -2,13 +2,13 @@ import type { HomeContent } from '@/content/types';
 
 export const home: HomeContent = {
   hero: {
-    eyebrow: 'Strategy · Design · Realization',
+    eyebrow: 'AI · Strategy · Design · Realization',
     artAlt: 'Concept visualisation of a resort arrival promenade at dusk: a curved timber-slat play-and-rest structure with translucent teal panels, integrated curved seating, low planting and a shallow water edge.',
     titleTop: 'From Ambitious Ideas',
     titleBottom: 'to Real-World',
     titleAccent: 'Projects.',
     lede:
-      'A China-based service company for tourism, public space and children’s play projects — early-stage consulting, creative design and R&D, and organised supply chain through to delivery.',
+      'A China-based AI-powered strategy, design and sourcing partner for tourism destinations, children’s spaces and outdoor products.',
     ctaPrimary: 'Start a Project',
     ctaSecondary: 'Explore Our Capabilities',
     summary: [
@@ -20,10 +20,10 @@ export const home: HomeContent = {
   },
   intro: {
     eyebrow: 'Why us',
-    title: 'One team, from the first sketch to the finished site.',
+    title: 'One partner, from the first question to the finished site.',
     paragraphs: [
       'You have an idea, a site and a date. What you need is for someone to carry it from "should we do this?" to "it is built, installed and working" — without the plan breaking in three places on the way. That is one job, and we take it as one job.',
-      'Every part of your project is made by the partner best suited to it — under one written specification, with inspection at agreed milestones. What comes back to you is one result, and the space in between is our responsibility.',
+      'We use AI to accelerate research, comparison and iteration, while experienced people hold the brief, test the assumptions and make the decisions. Every part of your project is made by the partner best suited to it — under one written specification, with inspection at agreed milestones.',
       'What that buys you: fewer handovers, fewer gaps between the drawing and the site, and a project that still looks like what you asked for on the day it opens.',
     ],
     audiences: [

@@ -1,6 +1,6 @@
 # What is left
 
-**Date:** 2026-10-24
+**Date:** 2026-11-07
 **State:** everything below is on the local branch `codex/geo-update-2026-10`.
 Nothing has been pushed and nothing has been deployed.
 
@@ -46,6 +46,13 @@ Nothing has been pushed and nothing has been deployed.
    weak, because the free key in use could not call the search tool, so the
    answers came from the model's own knowledge and carried no citations. The
    citation layer — L2 and L3 — still has no instrument. See the note below.
+
+## 2a. Latest cloud decision (2026-11-07)
+
+The first GEO implementation package is approved in principle. Before writing
+or deploying it, recheck homepage Worker stability and verify inquiry email
+delivery end to end. The detailed cloud sync and the historical Cloudflare
+facts are recorded in `docs/geo/cloud-sync-2026-11-07.md`.
 
 ## 3. Needs a decision or an input from the client
 

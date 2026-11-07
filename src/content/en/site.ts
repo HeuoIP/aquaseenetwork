@@ -13,9 +13,9 @@ export const site: SiteConfig = {
   domain: 'aquasee.art',
   canonicalHost: 'www.aquasee.art',
   url: 'https://www.aquasee.art',
-  tagline: 'Strategy. Creative Design. Project Realization.',
+  tagline: 'AI-Powered Strategy, Design & Sourcing',
   shortDescription:
-    'A China-based service company for tourism, public space and children’s play projects — early-stage consulting, creative design and R&D, and organised supply chain through to delivery.',
+    'A China-based AI-powered strategy, design and sourcing partner for tourism destinations, children’s spaces and outdoor products.',
   contact: {
     email: 'victor@aquasee.art',
     location: 'Based in China — working with clients worldwide',
@@ -35,9 +35,9 @@ export const site: SiteConfig = {
     { label: 'WhatsApp', icon: 'whatsapp', href: 'https://wa.me/8615913150818' },
   ],
   nav: [
-    { href: '/strategy', label: 'Strategy & Consulting' },
-    { href: '/creative-design', label: 'Creative Design & R&D' },
-    { href: '/supply-chain', label: 'Supply Chain & Delivery' },
+    { href: '/strategy', label: 'AI-Powered Strategy' },
+    { href: '/creative-design', label: 'Concept & Experience Design' },
+    { href: '/supply-chain', label: 'Sourcing & Delivery' },
     { href: '/projects', label: 'Projects & Capabilities' },
     { href: '/insights', label: 'Insights' },
     { href: '/about', label: 'About' },

@@ -43,11 +43,12 @@ export const serviceDetails: ServiceDetail[] = [
     index: '01',
     eyebrow: 'Strategy & Consulting',
     title: 'Strategy & Consulting',
+    aiLabel: 'AI-assisted research & decision framing',
     lede: 'Before anything is designed, the right question has to be asked.',
     intro:
       'Most projects do not fail on the idea. They fail on the part nobody checked: a scope that was never pinned down, an assumption that was never tested, a supply chain that was never properly built. That is the part we take on first — while a decision can still be made well.',
     paragraphs: [
-      'We read the brief critically: what you are really trying to build, who it is for, what has to be commercially true, and which constraints will decide the outcome. Then we shape a project that design, engineering and procurement can all act on.',
+      'We read the brief critically: what you are really trying to build, who it is for, what has to be commercially true, and which constraints will decide the outcome. AI-assisted research and comparison help us surface patterns and options quickly; our team validates the evidence and shapes a project that design, engineering and procurement can all act on.',
       'The advice does not stop at a slide deck. It stays connected to design and delivery, because that is where assumptions either hold or fail.',
     ],
     capabilities: [
@@ -55,6 +56,11 @@ export const serviceDetails: ServiceDetail[] = [
         title: 'Brief & project definition',
         description:
           'Transcribing a vision into a structured brief with clear objectives, audiences, constraints and decision points.',
+      },
+      {
+        title: 'AI-assisted research & comparison',
+        description:
+          'Using AI to organise references, compare directions and expose unanswered questions before the project commits to a path.',
       },
       {
         title: 'Feasibility & site readiness',
@@ -185,12 +191,13 @@ export const serviceDetails: ServiceDetail[] = [
     href: '/creative-design',
     index: '02',
     eyebrow: 'Creative Design & R&D',
-    title: 'Creative Design & R&D',
+    title: 'Concept & Experience Design',
+    aiLabel: 'AI-assisted concept exploration',
     lede: 'Design is only finished when it can be built, shipped and maintained.',
     intro:
       'We develop the creative and technical layer of your project: the concept, the spatial language, the details, the objects and the atmosphere. Everything is designed with maintainability in mind — something distinctive today still has to be manufacturable, shippable and serviceable in ten years.',
     paragraphs: [
-      'Design thinking and engineering realism, together. A concept is drawn, modelled, costed and challenged early, so the expensive surprises happen on paper rather than on site.',
+      'Design thinking and engineering realism, together. AI-assisted visual exploration and material research help us test more directions early, while designers and engineers decide what is credible, buildable and worth developing.',
       'When a project needs a bespoke element — a fixture, a play structure, an installation, a piece of interior — we research materials and production routes with qualified partners and, where it helps, build a physical prototype before committing to production.',
     ],
     capabilities: [
@@ -198,6 +205,11 @@ export const serviceDetails: ServiceDetail[] = [
         title: 'Concept & spatial design',
         description:
           'Developing the spatial concept, circulation, atmosphere and experience rhythm from the agreed strategy.',
+      },
+      {
+        title: 'AI-assisted concept exploration',
+        description:
+          'Generating and comparing early visual directions as working material, then refining the selected idea through human design judgment and technical checks.',
       },
       {
         title: 'Custom product & fixture design',
@@ -340,12 +352,13 @@ export const serviceDetails: ServiceDetail[] = [
     href: '/supply-chain',
     index: '03',
     eyebrow: 'Supply Chain & Delivery',
-    title: 'Supply Chain & Delivery',
+    title: 'Sourcing & Delivery',
+    aiLabel: 'AI-assisted sourcing analysis',
     lede: 'The making is one part of the job; landing it on your site is another. We bring the know-how that makes bespoke product buildable — and then let you decide how much of it you make yourself.',
     intro:
       'A factory quote covers the manufacture. What we bring is everything around it: years of taking bespoke products apart, understanding how every part is made, and reorganising that knowledge so it can be built — by us, by a partner, or by you.',
     paragraphs: [
-      'We have spent years specifying, sourcing, dismantling and delivering bespoke product for landscape, play and hospitality projects. That work produces a specific kind of knowledge: how a complicated object breaks into modules, which modules are worth making in-house, and how the rest should be bought.',
+      'We have spent years specifying, sourcing, dismantling and delivering bespoke product for landscape, play and hospitality projects. AI-assisted supplier research, specification comparison and option modelling help us work through more routes; experienced people still qualify partners, inspect production and own the delivery decision.',
       'We hand you that knowledge as a set of options. A product can arrive complete, as a kit your team assembles, or as semi-finished modules your own team completes. Every route is costed against one specification, and you choose.',
     ],
     capabilities: [
@@ -363,6 +376,11 @@ export const serviceDetails: ServiceDetail[] = [
         title: 'Supplier qualification & comparison',
         description:
           'Identifying, assessing and shortlisting partners against technical, capacity and commercial criteria.',
+      },
+      {
+        title: 'AI-assisted sourcing analysis',
+        description:
+          'Structuring supplier information, comparing quotations and identifying gaps in scope, lead time and specification before a partner is selected.',
       },
       {
         title: 'Production management & progress control',

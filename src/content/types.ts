@@ -35,6 +35,8 @@ export type ServiceDetail = {
   index: string;
   eyebrow: string;
   title: string;
+  /** Short description of how AI supports this capability. */
+  aiLabel?: string;
   lede: string;
   /**
    * One or two sentences that answer "what is this" on their own, without any

@@ -73,6 +73,11 @@ export function Pillars({ services, locale, ui }: { services: ServiceDetail[]; l
                   </div>
 
                   <h3 className="mt-4 text-[1.25rem] leading-snug">{service.title}</h3>
+                  {service.aiLabel ? (
+                    <p className="mt-3 inline-flex w-fit rounded-full bg-accent-tint px-3 py-1 font-mono text-[0.625rem] uppercase tracking-[0.12em] text-accent">
+                      {service.aiLabel}
+                    </p>
+                  ) : null}
                   <p className="mt-3 text-[0.9375rem] leading-relaxed text-body">{service.lede}</p>
 
                   <span className="mt-auto inline-flex items-center gap-2 pt-7 text-[0.8125rem] font-medium text-accent">
