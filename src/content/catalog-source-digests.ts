@@ -102,7 +102,7 @@ export const catalogSourceDigests: Readonly<Record<string, string>> = {
   "src/app/[locale]/strategy/page.tsx": "0588d1e119cc4db9d6721b3c6cff08690ac12bfefc18c2b06ee6d838fc7fc96f",
   "src/app/[locale]/supply-chain/page.tsx": "e5cce4c110421d4dfd672fae145621efaaae0ab04795003247b063911a74590b",
   "src/app/[locale]/unsubscribe/page.tsx": "caf778556daed4e81192fd4a3ee31280be047fba59e99317f62038d282adf001",
-  "src/app/api/inquiry/route.ts": "820000e122023e7a6eb9cbedbf954085607fd4208e9dfcba477c49a1ed8ab9df",
+  "src/app/api/inquiry/route.ts": "e7e045582b0d39bb8b6cfee134164be9c4a35ad27389c7ee5b419e927cddc595",
   "src/app/api/unsubscribe/route.ts": "da29b94eca86b49422fa9c1d1fa4eb4cbdb45f03f984f6fd3e4fff62da5238d3",
   "src/app/global-not-found.tsx": "7686a1760cd5f91a3f40ac000465afc8db97a1a5a29e53f004054002ce980d97",
   "src/app/globals.css": "2f6fdbf51ce44fec46c83fac63caa4f9cc9d31f9c40caa4a0f1e418b7041fe41",
