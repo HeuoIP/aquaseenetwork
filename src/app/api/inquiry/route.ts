@@ -217,7 +217,19 @@ export async function POST(request: Request) {
       });
 
       return NextResponse.json({ ok: true, reference, channel: 'email' });
-    } catch {
+    } catch (error) {
+      const smtpError = error as {
+        name?: string;
+        code?: string;
+        command?: string;
+        responseCode?: number;
+      };
+      console.error('Inquiry SMTP delivery failed', {
+        name: smtpError?.name,
+        code: smtpError?.code,
+        command: smtpError?.command,
+        responseCode: smtpError?.responseCode,
+      });
       return NextResponse.json(
         {
           ok: false,
