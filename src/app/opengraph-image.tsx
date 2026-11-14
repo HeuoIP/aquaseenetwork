@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og';
 
-export const alt = 'AQUASEE — Strategy. Creative Design. Project Realization.';
+export const alt = 'AQUASEE — design-led water products for pools and leisure spaces.';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -64,10 +64,10 @@ export default function OpengraphImage() {
               maxWidth: 960,
             }}
           >
-            From Ambitious Ideas to Real-World Projects.
+            Water products with a point of view.
           </div>
           <div style={{ fontSize: 27, color: '#a7b0b6', fontFamily: 'sans-serif' }}>
-            Strategy · Creative Design · Project Realization
+            Pool Slides · Outdoor Shade · Water Play
           </div>
         </div>
       </div>

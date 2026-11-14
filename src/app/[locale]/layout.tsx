@@ -59,7 +59,10 @@ export async function generateMetadata({ params }: LayoutProps<'/[locale]'>): Pr
     description: dict.site.shortDescription,
     applicationName: dict.site.name,
     authors: [{ name: dict.site.name }],
-    keywords: [
+    keywords: locale === 'en' ? [
+      'pool slides', 'pool shade', 'sail shade for pools', 'compact water parks',
+      'splash play facilities', 'water play products',
+    ] : [
       'consulting',
       'creative design',
       'product development',
@@ -81,7 +84,7 @@ export async function generateMetadata({ params }: LayoutProps<'/[locale]'>): Pr
       locale: tag.replace('-', '_'),
       images: [
         {
-          url: '/opengraph-image',
+          url: `${SITE_ORIGIN}/opengraph-image`,
           width: 1200,
           height: 630,
           alt: `${dict.site.name} — ${dict.site.tagline}`,
@@ -143,8 +146,8 @@ export default async function LocaleLayout({
         />
         <main id="main">{children}</main>
         <Footer locale={locale as Locale} site={dict.site} audiences={dict.collaboration.audiences} ui={ui} />
-        <JsonLd data={organizationLd(dict)} />
-        <JsonLd data={websiteLd(dict)} />
+        {locale === 'en' && <JsonLd data={organizationLd(dict)} />}
+        {locale === 'en' && <JsonLd data={websiteLd(dict)} />}
       </body>
     </html>
   );

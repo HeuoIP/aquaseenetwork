@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import { LOCALE_TAGS, PUBLISHED_LOCALES, DEFAULT_LOCALE, localePath, type Locale } from '@/lib/locale';
 import { getDictionary } from '@/lib/dictionary';
 import type { Dictionary } from '@/content/types';
+import { catalogUi, productCatalog, productTranslation, productsByCategory, productsByScene, publishedProducts, publishedCategories, publishedScenes } from '@/content/products';
+import type { ProductCategory, ProductSceneSlug } from '@/content/types';
+import { canIndexProductCatalog } from '@/content/catalog-index';
 /** Canonical origin. Identical for every language. */
 export const SITE_ORIGIN = 'https://www.aquasee.art';
 
@@ -18,6 +21,25 @@ export const SITE_ORIGIN = 'https://www.aquasee.art';
  * about which language publishes which path.
  */
 export function pathExistsIn(dict: Dictionary, path: string): boolean {
+  if (path.startsWith('/collections/') || path === '/concept-collection'
+    || path.startsWith('/inquiry/') || path === '/dealer-program'
+    || path === '/installation-partners') return dict.locale === 'en';
+  // The first product catalogue is English-first. Until a localized catalogue
+  // is published, no other language may advertise or resolve this route.
+  if (path === '/products') return !!dict.products && !!catalogUi(dict.locale);
+  if (path === '/products/by-space') return !!dict.products && !!catalogUi(dict.locale) && publishedScenes(dict.locale).length > 0;
+  if (path.startsWith('/products/by-space/')) {
+    const scene = productCatalog.scenes.find((item) => item.slug === path.slice('/products/by-space/'.length));
+    return !!dict.products && !!catalogUi(dict.locale) && !!scene && productsByScene(scene.slug as ProductSceneSlug, dict.locale).length > 0;
+  }
+  if (path.startsWith('/products/')) {
+    if (!dict.products || !catalogUi(dict.locale)) return false;
+    const slug = path.slice('/products/'.length);
+    const category = productCatalog.categories.find((item) => item.slug === slug);
+    if (category) return productsByCategory(category.slug as ProductCategory, dict.locale).length > 0;
+    const product = publishedProducts(productCatalog, dict.locale).find((item) => item.slug === slug);
+    return !!product && !!productTranslation(product, dict.locale);
+  }
   const articles = dict.insights ?? [];
   if (path === '/insights') return articles.length > 0;
   if (path.startsWith('/insights/')) {
@@ -38,6 +60,24 @@ export function pathExistsIn(dict: Dictionary, path: string): boolean {
  */
 export async function localeAvailability(): Promise<Record<string, string[]>> {
   const out: Record<string, string[]> = {};
+  for (const path of [
+    '/', '/about', '/contact', '/concept-collection', '/inquiry/business', '/inquiry/personal',
+    '/dealer-program', '/installation-partners',
+    '/collections/pool-slides', '/collections/pool-shade',
+    '/collections/compact-water-parks', '/collections/splash-play-facilities',
+  ]) out[path] = ['en'];
+  for (const locale of PUBLISHED_LOCALES) {
+    const dict = await getDictionary(locale);
+    if (!dict.products || !catalogUi(locale)) continue;
+    const paths = [
+      '/products',
+      ...(publishedScenes(locale).length ? ['/products/by-space'] : []),
+      ...publishedCategories(locale).map((category) => `/products/${category.slug}`),
+      ...publishedScenes(locale).map((scene) => `/products/by-space/${scene.slug}`),
+      ...publishedProducts(productCatalog, locale).map((product) => `/products/${product.slug}`),
+    ];
+    for (const path of paths) out[path] = [...(out[path] ?? []), locale];
+  }
   for (const locale of PUBLISHED_LOCALES) {
     const dict = await getDictionary(locale);
     const articles = dict.insights ?? [];
@@ -57,14 +97,15 @@ export async function localeAvailability(): Promise<Record<string, string[]>> {
  * `x-default` fallback always points at the English URL.
  */
 export async function languageAlternates(path: string): Promise<Record<string, string>> {
-  const out: Record<string, string> = {};
-  for (const locale of PUBLISHED_LOCALES) {
-    const dict = await getDictionary(locale);
-    if (!pathExistsIn(dict, path)) continue;
-    out[LOCALE_TAGS[locale]] = localePath(locale, path);
+  // An accessible but noindex pre-release catalogue must not be advertised
+  // through hreflang as an indexable search landing page.
+  if ((path === '/products' || path.startsWith('/products/'))
+    && !canIndexProductCatalog()) return {};
+  if (path === '/' || path === '/about' || path === '/contact' || path.startsWith('/collections/') || path === '/concept-collection'
+    || path.startsWith('/inquiry/') || path === '/dealer-program' || path === '/installation-partners') {
+    return { en: path, 'x-default': path };
   }
-  out['x-default'] = localePath(DEFAULT_LOCALE, path);
-  return out;
+  return {};
 }
 
 /**
@@ -87,14 +128,20 @@ export async function pageMetadata({
   type?: 'website' | 'article';
 }): Promise<Metadata> {
   const canonical = `${SITE_ORIGIN}${localePath(locale, path)}`;
+  const commercialPath = path === '/' || path === '/about' || path === '/contact' || path.startsWith('/collections/')
+    || path === '/concept-collection' || path.startsWith('/inquiry/')
+    || path === '/dealer-program' || path === '/installation-partners';
+  const historical = locale !== 'en' || !commercialPath;
   const languages: Record<string, string> = {};
   for (const [tag, href] of Object.entries(await languageAlternates(path))) {
     languages[tag] = `${SITE_ORIGIN}${href}`;
   }
 
   return {
+    metadataBase: new URL(SITE_ORIGIN),
     title,
     description,
+    robots: { index: !historical && (path === '/products' || path.startsWith('/products/') ? canIndexProductCatalog() : true), follow: true },
     alternates: { canonical, languages },
     openGraph: {
       type,
@@ -105,10 +152,10 @@ export async function pageMetadata({
       locale: LOCALE_TAGS[locale].replace('-', '_'),
       images: [
         {
-          url: '/opengraph-image',
+          url: `${SITE_ORIGIN}/opengraph-image`,
           width: 1200,
           height: 630,
-          alt: 'AQUASEE — Strategy. Creative Design. Project Realization.',
+          alt: 'AQUASEE — design-led water products for pools and leisure spaces.',
         },
       ],
     },

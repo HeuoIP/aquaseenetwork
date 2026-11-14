@@ -1,6 +1,7 @@
-import type { Dictionary, FaqItem, InsightArticle, ProcessStep, ServiceDetail } from '@/content/types';
+import type { Dictionary, FaqItem, InsightArticle, ProcessStep, ProductRecord, ServiceDetail } from '@/content/types';
 import { localePath, type Locale } from '@/lib/locale';
 import { SITE_ORIGIN } from '@/lib/metadata';
+import { productTranslation } from '@/content/products';
 
 /**
  * Structured data.
@@ -58,14 +59,10 @@ export function organizationLd(dict: Dictionary): Json {
       'Central Asia',
       'South Africa',
     ],
-    knowsAbout: [
-      'Tourism and resort development consulting',
-      'Creative design and R&D for custom installations',
-      'Supply chain management and project delivery',
-      'Play equipment specification and safety standards',
-      'Public space installation',
-      'Children’s learning and play space design',
-    ],
+    knowsAbout: dict.locale === 'en' ? [
+      'Compact pool slides', 'Sail-shaped pool shade', 'Compact water parks',
+      'Splash play facilities', 'Pool product selection',
+    ] : [],
     knowsLanguage: ['en', 'zh', 'ar', 'ru'],
     contactPoint: {
       '@type': 'ContactPoint',
@@ -194,6 +191,36 @@ export function breadcrumbLd(items: { name: string; url: string }[]): Json {
       name: item.name,
       url: item.url,
     })),
+  };
+}
+
+export function productLd(product: ProductRecord, locale: Locale): Json {
+  const copy = productTranslation(product, locale);
+  if (!copy) throw new Error(`Product JSON-LD requested without current approval: ${product.id}/${locale}`);
+  const url = `${SITE_ORIGIN}${localePath(locale, `/products/${product.slug}`)}`;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    '@id': `${url}#product`,
+    name: copy.name,
+    description: copy.description,
+    image: `${SITE_ORIGIN}${product.image!.src}`,
+    ...(product.sku ? { sku: product.sku } : {}),
+    url,
+    inLanguage: locale,
+    // Price, inventory, rating and Offer require separate verified facts.
+  };
+}
+
+export function collectionPageLd(name: string, description: string, locale: Locale, path: string): Json {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': `${SITE_ORIGIN}${localePath(locale, path)}#collection`,
+    name,
+    description,
+    url: `${SITE_ORIGIN}${localePath(locale, path)}`,
+    inLanguage: locale,
   };
 }
 

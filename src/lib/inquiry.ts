@@ -1,5 +1,14 @@
 import type { InquiryAttribution } from '@/lib/attribution';
 
+export const commercialLeadTypes = ['b2b_project', 'b2c_product', 'dealer_application', 'installation_partner_application'] as const;
+export type CommercialLeadType = (typeof commercialLeadTypes)[number];
+export const commercialFields: Record<CommercialLeadType, readonly string[]> = {
+  b2b_project: ['siteStage', 'productInterest', 'timeline', 'materialsAvailable'],
+  b2c_product: ['poolStatus', 'poolDimensions', 'productInterest'],
+  dealer_application: ['serviceMarkets', 'productLines', 'customerTypes', 'salesCapacity', 'trainingNeeds'],
+  installation_partner_application: ['serviceArea', 'qualifications', 'insurance', 'experience', 'installationTypes', 'teamCapacity'],
+};
+
 export type InquiryPayload = {
   name: string;
   company: string;
@@ -10,6 +19,9 @@ export type InquiryPayload = {
   description: string;
   budget?: string;
   timeline?: string;
+  leadType?: CommercialLeadType;
+  details?: Record<string, string>;
+  productId?: string;
   /** Hidden field — bots fill it, humans do not. */
   website?: string;
   /** Where the inquiry came from — direct, organic, referral, campaign or an AI answer engine. */
@@ -19,33 +31,44 @@ export type InquiryPayload = {
 export type InquiryErrors = Partial<Record<keyof InquiryPayload, string>>;
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const textValue = (value: unknown) => typeof value === 'string' ? value.trim() : '';
 
 export function validateInquiry(input: Partial<InquiryPayload>): InquiryErrors {
   const errors: InquiryErrors = {};
 
-  const name = (input.name ?? '').trim();
+  const name = textValue(input.name);
   if (name.length < 2) errors.name = 'Please enter your name.';
 
-  const company = (input.company ?? '').trim();
-  if (company.length < 2) errors.company = 'Please enter your company or organisation.';
+  const company = textValue(input.company);
+  if (input.leadType && !commercialLeadTypes.includes(input.leadType)) errors.leadType = 'Invalid inquiry type.';
+  if (input.leadType !== 'b2c_product' && company.length < 2) errors.company = 'Please enter your company or organisation.';
 
-  const email = (input.email ?? '').trim();
+  const email = textValue(input.email);
   if (!email) {
-    errors.email = 'Please enter a business email address.';
+    errors.email = 'Please enter your email address.';
   } else if (!EMAIL_RE.test(email)) {
     errors.email = 'Please enter a valid email address.';
   }
 
-  const country = (input.country ?? '').trim();
+  const country = textValue(input.country);
   if (country.length < 2) errors.country = 'Please enter your country or region.';
 
-  const projectType = (input.projectType ?? '').trim();
-  if (!projectType) errors.projectType = 'Please select a project type.';
+  const projectType = textValue(input.projectType);
+  if (!projectType && !input.leadType) errors.projectType = 'Please select a project type.';
 
-  const services = Array.isArray(input.services) ? input.services.filter(Boolean) : [];
-  if (services.length === 0) errors.services = 'Please select at least one required service.';
+  const services = Array.isArray(input.services) ? input.services.filter((item) => typeof item === 'string' && item.trim()) : [];
+  if (services.length === 0 && !input.leadType) errors.services = 'Please select at least one required service.';
 
-  const description = (input.description ?? '').trim();
+  if (input.leadType && commercialLeadTypes.includes(input.leadType)) {
+    for (const key of commercialFields[input.leadType]) {
+      const value = input.details?.[key];
+      if (typeof value !== 'string' || !value.trim() || value.length > 500) {
+        errors.details = 'Please complete the route-specific details (500 characters maximum each).';
+      }
+    }
+  }
+
+  const description = textValue(input.description);
   if (description.length < 20) {
     errors.description = 'Please describe the project in a little more detail (at least 20 characters).';
   } else if (description.length > 4000) {
@@ -66,6 +89,11 @@ export function sanitiseInquiry(input: InquiryPayload): InquiryPayload {
     description: input.description.trim().slice(0, 4000),
     budget: input.budget?.trim().slice(0, 80) || undefined,
     timeline: input.timeline?.trim().slice(0, 80) || undefined,
+    leadType: input.leadType && commercialLeadTypes.includes(input.leadType) ? input.leadType : undefined,
+    details: input.leadType && commercialLeadTypes.includes(input.leadType)
+      ? Object.fromEntries(commercialFields[input.leadType].map((key) => [key, String(input.details?.[key] ?? '').trim().slice(0, 500)]))
+      : undefined,
+    productId: input.productId?.trim().slice(0, 80) || undefined,
     ...(input.attribution
       ? {
           attribution: {
@@ -90,6 +118,9 @@ export function buildMailtoBody(inquiry: InquiryPayload): string {
     `Country / region: ${inquiry.country}`,
     `Project type: ${inquiry.projectType}`,
     `Required services: ${inquiry.services.join(', ')}`,
+    inquiry.leadType ? `Lead type: ${inquiry.leadType}` : null,
+    inquiry.productId ? `Approved product ID: ${inquiry.productId}` : null,
+    ...Object.entries(inquiry.details ?? {}).map(([key, value]) => `${key}: ${value}`),
     inquiry.budget ? `Indicative budget: ${inquiry.budget}` : null,
     inquiry.timeline ? `Expected timeline: ${inquiry.timeline}` : null,
     inquiry.attribution
@@ -134,6 +165,9 @@ export function buildInquiryHtml(inquiry: InquiryPayload, reference: string): st
     { label: 'Project type', value: inquiry.projectType },
     { label: 'Required services', value: inquiry.services.join(', ') },
   ];
+  if (inquiry.leadType) rows.unshift({ label: 'Lead type', value: inquiry.leadType });
+  if (inquiry.productId) rows.push({ label: 'Approved product ID', value: inquiry.productId });
+  for (const [key, value] of Object.entries(inquiry.details ?? {})) rows.push({ label: key, value });
 
   if (inquiry.budget) rows.push({ label: 'Indicative budget', value: inquiry.budget });
   if (inquiry.timeline) rows.push({ label: 'Expected timeline', value: inquiry.timeline });

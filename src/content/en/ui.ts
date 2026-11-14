@@ -23,12 +23,12 @@ export const ui: UiStrings = {
     imageryNote:
       'Imagery on this site is illustrative concept work unless stated otherwise.',
     machineSummary: 'Machine-readable summary',
-    startProject: 'Start a Project',
+    startProject: 'Start an Enquiry',
     explore: 'Explore',
     capability: 'Capability',
   },
   home: {
-    galleryNote: 'Studio material and concept illustrations — not photographs of delivered client projects.',
+    galleryNote: 'AI concept visualisations of product directions — not photographs of delivered client projects or available models.',
     heroCaption: 'Creative concept visualization',
     pillarsEyebrow: 'Capabilities',
     pillarsTitle: 'Three pillars, one continuous process.',

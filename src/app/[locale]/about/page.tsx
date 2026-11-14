@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { Contours } from '@/components/art/Contours';
 import { JsonLd } from '@/components/site/JsonLd';
 import { ActionLink } from '@/components/ui/Action';
@@ -10,6 +11,10 @@ import { pageMetadata } from '@/lib/metadata';
 export async function generateMetadata({ params }: PageProps<'/[locale]/about'>): Promise<Metadata> {
   const { locale } = await params;
   const dict = await getDictionary(locale);
+  if (locale === 'en') return pageMetadata({
+    locale: 'en', path: '/about', title: 'About AQUASEE',
+    description: 'AQUASEE is developing a focused range of design-led pool slides, sail-shaped pool shade and compact water-play products for international buyers.',
+  });
   return pageMetadata({
     locale: locale as never,
     path: '/about',
@@ -21,6 +26,7 @@ export async function generateMetadata({ params }: PageProps<'/[locale]/about'>)
 export default async function AboutPage({ params }: PageProps<'/[locale]/about'>) {
   const { locale } = await params;
   const dict = await getDictionary(locale);
+  if (locale === 'en') return <><section className="bg-ink pt-[4.5rem] text-paper"><div className="shell py-16 lg:py-24"><p className="eyebrow text-aqua">About AQUASEE</p><h1 className="mt-5 max-w-4xl font-display text-[clamp(3rem,6vw,5rem)] leading-tight text-on-dark-strong">A focused view of water play.</h1><p className="mt-6 max-w-2xl text-lg leading-relaxed text-on-dark">AQUASEE is building a considered range of water products for private pools, boutique hospitality and compact leisure spaces.</p></div></section><section className="bg-paper py-16 lg:py-24"><div className="shell grid gap-12 lg:grid-cols-2"><div><p className="eyebrow text-accent">What we focus on</p><h2 className="mt-5 text-title">The right product for the place.</h2><p className="mt-6 text-lg leading-relaxed text-body">Pool Slides and sail-shaped Outdoor Shade are the first collection focus. Compact Water Parks and Splash Play Facilities are developing areas. We look at scale, use, installation conditions and ongoing care before suggesting a direction.</p></div><div className="border-l-2 border-accent bg-sand p-8"><h2 className="font-display text-3xl">Clear about the stage of the work.</h2><p className="mt-5 leading-relaxed text-body">Our visual studies show ideas, not proven products. Individual models, dimensions, certifications, supply and prices will be published only when verified. We do not present a concept as something ready to order.</p><Link href="/concept-collection" className="mt-6 inline-block text-accent underline underline-offset-4">Explore the concepts →</Link></div></div></section><section className="bg-sand py-16"><div className="shell"><h2 className="text-title">Tell us about your pool or project.</h2><div className="mt-7 flex flex-wrap gap-4"><Link className="bg-accent px-6 py-3 text-paper" href="/inquiry/business">Commercial project →</Link><Link className="border border-accent px-6 py-3 text-accent" href="/inquiry/personal">Private pool →</Link></div></div></section></>;
   const { about } = dict;
   const ui = dict.ui;
 

@@ -1,11 +1,8 @@
-# AQUASEE.ART — Overseas Business Website (V1)
+# AQUASEE.ART — AQUASEE 2.0
 
-Production website for **AQUASEE** — *Strategy. Creative Design. Project Realization.*
+Production source for AQUASEE's design-led pool and compact water-play website. Deployment is manual through the protected `production` GitHub Actions environment.
 
-An English-first, business-development oriented corporate site for international clients:
-property and destination developers, resorts and tourism operators, landscape and design
-practices, theme-park and leisure developers, engineering / project-management firms, and
-organisations seeking custom interactive installations.
+Four category guides and a disclosed Concept Collection are separate from the gated, noindex `/products` catalogue. There are no approved individual SKU pages. Business, personal, dealer and installation partner inquiries have separate forms. The sections below retain V1 implementation history and may describe the former service positioning.
 
 Built with **Next.js 16 (App Router) + React 19 + TypeScript + Tailwind CSS v4**.
 Static-first, no database, no CMS lock-in.

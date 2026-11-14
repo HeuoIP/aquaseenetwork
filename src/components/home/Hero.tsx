@@ -3,6 +3,7 @@
 import { HeroShell } from '@/components/site/HeroShell';
 import { ActionLink } from '@/components/ui/Action';
 import type { HomeContent, UiStrings } from '@/content/types';
+import type { Locale } from '@/lib/locale';
 
 /**
  * Homepage hero — "Idea → Structure → Realization".
@@ -11,12 +12,12 @@ import type { HomeContent, UiStrings } from '@/content/types';
  * component only supplies the homepage copy. The pointer parallax is written
  * to CSS custom properties, so React never re-renders on pointer movement.
  */
-export function Hero({ copy, ui }: { copy: HomeContent['hero']; ui: UiStrings }) {
+export function Hero({ copy, ui, locale }: { copy: HomeContent['hero']; ui: UiStrings; locale: Locale }) {
   return (
     <HeroShell
-      art="/images/aquasee-hero-arrival-v1.webp"
+      art={locale === 'en' ? '/images/concepts/home-water-play-banner-v3.webp' : '/images/aquasee-hero-arrival-v1.webp'}
       artAlt={copy.artAlt}
-      caption={ui.home.heroCaption}
+      caption={locale === 'en' ? 'AI-assisted concept visualisation — not a built project or product' : ui.home.heroCaption}
       mobilePosition="70%"
       priority
     >
@@ -38,10 +39,10 @@ export function Hero({ copy, ui }: { copy: HomeContent['hero']; ui: UiStrings })
           </p>
 
           <div className="hero-enter hero-enter-4 mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <ActionLink href="/contact" size="lg">
+            <ActionLink href={locale === 'en' ? '/collections/pool-slides' : '/contact'} size="lg">
               {copy.ctaPrimary}
             </ActionLink>
-            <ActionLink href="/strategy" size="lg" variant="light" arrow={false}>
+            <ActionLink href={locale === 'en' ? '/collections/pool-shade' : '/contact'} size="lg" variant="light" arrow={false}>
               {copy.ctaSecondary}
             </ActionLink>
           </div>

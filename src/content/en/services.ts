@@ -9,7 +9,7 @@ import type { ServiceDetail } from '@/content/types';
 export const serviceDetails: ServiceDetail[] = [
   {
     slug: 'strategy',
-    definition: 'AQUASEE Strategy and Consulting is the front end of a project: it turns an ambition into a defined scope, a costed plan, a programme and a set of partners who can build it. It is advisory and hands-on work that continues into design and delivery rather than ending with a document.',
+    definition: 'AQUASEE Water Park Planning turns a site, audience and budget into a right-sized water-play programme: zones, attractions, circulation, shade, operations and a practical route to design and supply.',
     notIncluded: [
       'Legal, planning or building-control approval — we prepare the technical basis, a local consultant signs it',
       'Structural or electrical engineering certification — we engage qualified engineers and hold them to the brief',
@@ -42,11 +42,11 @@ export const serviceDetails: ServiceDetail[] = [
     href: '/strategy',
     index: '01',
     eyebrow: 'Strategy & Consulting',
-    title: 'Strategy & Consulting',
+    title: 'Water Park Planning',
     aiLabel: 'AI-assisted research & decision framing',
-    lede: 'Before anything is designed, the right question has to be asked.',
+    lede: 'Plan a water-play experience that fits the site, audience and operating budget.',
     intro:
-      'Most projects do not fail on the idea. They fail on the part nobody checked: a scope that was never pinned down, an assumption that was never tested, a supply chain that was never properly built. That is the part we take on first — while a decision can still be made well.',
+      'A small or mid-sized water park succeeds when its attractions fit the site and the way the venue will operate. We help owners decide what to include, what to leave out and what needs to be resolved before a supplier is approached.',
     paragraphs: [
       'We read the brief critically: what you are really trying to build, who it is for, what has to be commercially true, and which constraints will decide the outcome. AI-assisted research and comparison help us surface patterns and options quickly; our team validates the evidence and shapes a project that design, engineering and procurement can all act on.',
       'The advice does not stop at a slide deck. It stays connected to design and delivery, because that is where assumptions either hold or fail.',
@@ -156,7 +156,7 @@ export const serviceDetails: ServiceDetail[] = [
   },
   {
     slug: 'creative-design',
-    definition: 'AQUASEE Creative Design and R&D turns an agreed idea into something that can be built, quoted and maintained: concept, design language, buildable drawings, a written technical specification, prototypes where the risk justifies them, and the engineering coordination that lets the item survive contact with a fabricator and a site.',
+    definition: 'AQUASEE Slides, Shade & Feature Design develops pool slides, shade structures and landscape features into buildable, quotable and maintainable products with clear materials, dimensions, interfaces and installation requirements.',
     notIncluded: [
           "Production of the designed item — that sits with our supply chain and delivery capability",
           "Certification of the structure by a local approved inspector",
@@ -191,11 +191,11 @@ export const serviceDetails: ServiceDetail[] = [
     href: '/creative-design',
     index: '02',
     eyebrow: 'Creative Design & R&D',
-    title: 'Concept & Experience Design',
+    title: 'Slides, Shade & Feature Design',
     aiLabel: 'AI-assisted concept exploration',
-    lede: 'Design is only finished when it can be built, shipped and maintained.',
+    lede: 'Pool slides, shade structures and landscape features designed for real use.',
     intro:
-      'We develop the creative and technical layer of your project: the concept, the spatial language, the details, the objects and the atmosphere. Everything is designed with maintainability in mind — something distinctive today still has to be manufacturable, shippable and serviceable in ten years.',
+      'A family pool slide, a shaded water-play deck or a sculptural landscape feature has to look right and work hard. We develop the form and the technical package together, with attention to users, climate, cleaning, access and replacement.',
     paragraphs: [
       'Design thinking and engineering realism, together. AI-assisted visual exploration and material research help us test more directions early, while designers and engineers decide what is credible, buildable and worth developing.',
       'When a project needs a bespoke element — a fixture, a play structure, an installation, a piece of interior — we research materials and production routes with qualified partners and, where it helps, build a physical prototype before committing to production.',
@@ -316,7 +316,7 @@ export const serviceDetails: ServiceDetail[] = [
   },
   {
     slug: 'supply-chain',
-    definition: 'AQUASEE Supply Chain and Delivery organises how a design becomes a physical asset: selecting and contracting qualified manufacturing partners, controlling quality during production, managing logistics and customs, installing on site around the reality of the venue, and handing over a documented, maintainable result with one accountable party.',
+    definition: 'AQUASEE Sourcing & Delivery organises how water-play equipment, pool slides, shade structures and landscape features are made, inspected, shipped and installed through qualified partners under one clear specification.',
     notIncluded: [
           'Ownership or operation of manufacturing capacity — production is run by qualified partners under our brief and our inspection',
           "Unlimited revisions after handover — changes are handled as controlled changes with a stated cost",
@@ -356,7 +356,7 @@ export const serviceDetails: ServiceDetail[] = [
     aiLabel: 'AI-assisted sourcing analysis',
     lede: 'The making is one part of the job; landing it on your site is another. We bring the know-how that makes bespoke product buildable — and then let you decide how much of it you make yourself.',
     intro:
-      'A factory quote covers the manufacture. What we bring is everything around it: years of taking bespoke products apart, understanding how every part is made, and reorganising that knowledge so it can be built — by us, by a partner, or by you.',
+      'The right supplier depends on the product, finish, climate, quantity and installation route. We compare qualified partners, close gaps in quotations and coordinate production so the delivered result matches the design intent.',
     paragraphs: [
       'We have spent years specifying, sourcing, dismantling and delivering bespoke product for landscape, play and hospitality projects. AI-assisted supplier research, specification comparison and option modelling help us work through more routes; experienced people still qualify partners, inspect production and own the delivery decision.',
       'We hand you that knowledge as a set of options. A product can arrive complete, as a kit your team assembles, or as semi-finished modules your own team completes. Every route is costed against one specification, and you choose.',

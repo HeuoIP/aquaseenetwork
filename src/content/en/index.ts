@@ -10,6 +10,7 @@ import { capabilityStudies, disclosureNote, materials } from './projects';
 import { serviceDetails } from './services';
 import { site } from './site';
 import { ui } from './ui';
+import { productCatalog } from '@/content/products';
 
 export const disclosure = disclosureNote;
 
@@ -27,4 +28,5 @@ export const dictionary: Dictionary = {
   about,
   faq,
   insights,
+  products: productCatalog,
 };

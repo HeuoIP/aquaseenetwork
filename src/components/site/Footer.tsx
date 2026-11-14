@@ -35,9 +35,6 @@ export function Footer({
             <p className="mt-4 max-w-sm text-[0.875rem] leading-relaxed text-on-dark/70">
               {site.shortDescription}
             </p>
-            <p className="mt-6 max-w-sm text-[0.8125rem] leading-relaxed text-on-dark/60">
-              {site.marketsLine}
-            </p>
           </div>
 
           <div className="md:col-span-3 md:col-start-7">
@@ -59,6 +56,12 @@ export function Footer({
           <div className="md:col-span-3">
             <p className="font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-aqua">{ui.global.contact}</p>
             <ul className="mt-5 space-y-3 text-[0.9375rem]">
+              {locale === 'en' && <>
+                <li><Link href="/inquiry/business" className="hover:text-on-dark-strong">Commercial project inquiry</Link></li>
+                <li><Link href="/inquiry/personal" className="hover:text-on-dark-strong">Private pool inquiry</Link></li>
+                <li><Link href="/dealer-program" className="hover:text-on-dark-strong">Dealer application</Link></li>
+                <li><Link href="/installation-partners" className="hover:text-on-dark-strong">Installation partner application</Link></li>
+              </>}
               <li>
                 <a
                   href={`mailto:${site.contact.email}`}

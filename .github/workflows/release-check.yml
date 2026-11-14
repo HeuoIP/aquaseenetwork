@@ -1,0 +1,48 @@
+name: AQUASEE 2.0 release checks
+
+on:
+  push:
+    branches: [codex/aquasee-2.0-public-release]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate release candidate
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npm run typecheck
+
+      - name: Build for Cloudflare
+        run: npm run build:opennext
+
+      - name: Validate Worker package without deployment
+        run: npx wrangler deploy --dry-run
+
+      - name: Check GEO
+        run: npm run geo
+
+      - name: Check product release gate
+        run: npm run products
+
+      - name: Check patch formatting
+        run: git diff --check

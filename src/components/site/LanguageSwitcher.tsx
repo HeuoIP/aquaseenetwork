@@ -30,7 +30,15 @@ export function localesForPath(
   active: string,
   availability: Record<string, string[]>,
 ): Locale[] {
-  if (!path.startsWith('/insights')) return [...PUBLISHED_LOCALES];
+  // Any path present in the availability map is intentionally published by a
+  // subset of languages (currently the English-first product catalogue and
+  // the localized insight library). Standing pages remain available in all
+  // published locales.
+  if (!(path in availability)) {
+    // A product path absent from the server map is unpublished, never a
+    // standing page with four language editions.
+    return path.startsWith('/products/') ? [] : [...PUBLISHED_LOCALES];
+  }
   const published = availability[path] ?? [];
   const list = published.includes(active) ? published : [active, ...published];
   return list.filter((locale): locale is Locale =>

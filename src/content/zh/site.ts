@@ -12,9 +12,9 @@ export const site: SiteConfig = {
   domain: 'aquasee.art',
   canonicalHost: 'www.aquasee.art',
   url: 'https://www.aquasee.art',
-  tagline: 'AI 驱动的策划、设计与供应链',
+  tagline: '水上乐园、泳池滑梯与 Outdoor Shade',
   shortDescription:
-    '一家来自中国的 AI 驱动策划、设计与供应链合作伙伴，服务于文旅目的地、儿童空间与户外产品项目。',
+    'AQUASEE 专注于中小型水上乐园、家庭泳池滑梯与 Outdoor Shade 的策划、设计和供应链落地。',
   contact: {
     email: 'victor@aquasee.art',
     location: '总部位于中国，与全球客户合作',
@@ -44,5 +44,4 @@ export const site: SiteConfig = {
     { href: '/contact', label: '联系我们' },
   ],
   ctaLabel: '启动一个项目',
-  marketsLine: '总部在中国，与亚洲、海湾、欧洲和非洲的客户合作。',
 };

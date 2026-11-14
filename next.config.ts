@@ -1,4 +1,6 @@
 import type { NextConfig } from 'next';
+import { PHASE_PRODUCTION_BUILD } from 'next/constants';
+import { execFileSync } from 'node:child_process';
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -36,4 +38,11 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default function config(phase: string): NextConfig {
+  // OpenNext's direct build path also loads this config; it cannot skip the gate.
+  if (phase === PHASE_PRODUCTION_BUILD) {
+    execFileSync(process.execPath, ['scripts/catalog-source-coverage.mjs'], { cwd: process.cwd(), stdio: 'inherit' });
+    execFileSync(process.execPath, ['scripts/product-catalog-check.mjs'], { cwd: process.cwd(), stdio: 'inherit' });
+  }
+  return nextConfig;
+}
