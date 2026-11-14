@@ -223,6 +223,8 @@ export async function POST(request: Request) {
         code?: string;
         command?: string;
         responseCode?: number;
+        originalCode?: string;
+        timeoutType?: string;
         message?: string;
         cause?: { code?: string };
       };
@@ -239,6 +241,8 @@ export async function POST(request: Request) {
         code: smtpError?.code,
         command: smtpError?.command,
         responseCode: smtpError?.responseCode,
+        originalCode: smtpError?.originalCode,
+        timeoutType: smtpError?.timeoutType,
         causeCode: smtpError?.cause?.code,
         reason,
       });
