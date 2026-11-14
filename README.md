@@ -1,6 +1,6 @@
 # AQUASEE.ART — AQUASEE 2.0
 
-Production source for AQUASEE's design-led pool and compact water-play website. Deployment is manual through the protected `production` GitHub Actions environment.
+Production source for AQUASEE's design-led pool and compact water-play website. Deployment is triggered manually from `main` in GitHub Actions after pull request review.
 
 Four category guides and a disclosed Concept Collection are separate from the gated, noindex `/products` catalogue. There are no approved individual SKU pages. Business, personal, dealer and installation partner inquiries have separate forms. The sections below retain V1 implementation history and may describe the former service positioning.
 
