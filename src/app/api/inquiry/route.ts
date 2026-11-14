@@ -223,12 +223,24 @@ export async function POST(request: Request) {
         code?: string;
         command?: string;
         responseCode?: number;
+        message?: string;
+        cause?: { code?: string };
       };
+      const reason = String(smtpError?.message ?? '')
+        .replaceAll(smtpPass, '[redacted-secret]')
+        .replaceAll(smtpUser, '[redacted-user]')
+        .replaceAll(toEmail, '[redacted-email]')
+        .replaceAll(fromEmail, '[redacted-email]')
+        .replaceAll(inquiry.email, '[redacted-email]')
+        .replace(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi, '[redacted-email]')
+        .slice(0, 240);
       console.error('Inquiry SMTP delivery failed', {
         name: smtpError?.name,
         code: smtpError?.code,
         command: smtpError?.command,
         responseCode: smtpError?.responseCode,
+        causeCode: smtpError?.cause?.code,
+        reason,
       });
       return NextResponse.json(
         {
