@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import { connect as connectNet, isIP } from 'node:net';
+import { connect as connectTls } from 'node:tls';
 import {
   buildInquiryHtml,
   buildMailtoBody,
@@ -199,6 +201,32 @@ export async function POST(request: Request) {
         port,
         secure,
         auth: { user: smtpUser, pass: smtpPass },
+        // Nodemailer resolves the hostname and dials the resulting IP itself.
+        // Workers can dial this SMTP hostname, but reject the resolved IPs.
+        // Hand Nodemailer an already connected socket so it keeps its SMTP
+        // authentication, message handling, and STARTTLS behavior.
+        getSocket(_options, callback) {
+          const socket = secure
+            ? connectTls({ host: smtpHost, port, servername: isIP(smtpHost) ? undefined : smtpHost })
+            : connectNet({ host: smtpHost, port });
+          let settled = false;
+          const fail = (error: Error) => {
+            if (settled) return;
+            settled = true;
+            clearTimeout(timer);
+            socket.destroy();
+            callback(error, false);
+          };
+          const timer = setTimeout(() => fail(new Error('SMTP socket connection timed out')), 10_000);
+          socket.once('error', fail);
+          socket.once(secure ? 'secureConnect' : 'connect', () => {
+            if (settled) return;
+            settled = true;
+            clearTimeout(timer);
+            socket.off('error', fail);
+            callback(null, { connection: socket, secured: secure });
+          });
+        },
         // Fail fast. A blocked or unroutable SMTP endpoint must not leave a
         // customer staring at a spinner for two minutes — the mailto fallback
         // is far better than a long silence.

@@ -185,8 +185,11 @@ never leave a section permanently invisible.
 | C | Direct email via Resend | `RESEND_API_KEY` + `INQUIRY_TO_EMAIL` (optional `INQUIRY_FROM_EMAIL`) |
 | — | **Nothing configured** | returns `503 delivery_not_configured` |
 
-Delivery target in production: **Feishu Mail** (`smtp.feishu.cn`) delivering to
+Delivery target: **Feishu Mail** (`smtp.feishu.cn`) delivering to
 `victor@aquasee.art` using a client-specific password from 飞书邮箱 → 设置.
+In Workers, Nodemailer must connect to the SMTP hostname rather than to its
+resolved IP address. The production release still requires four real inquiries
+to arrive in the destination inbox before launch acceptance.
 
 **The site never claims an inquiry was sent when it was not.** With no channel configured the
 form shows an explicit "Your inquiry was not sent" state plus a *mailto* link with the message
@@ -240,10 +243,11 @@ npm run deploy:cloudflare:dry   # build + validate the upload without publishing
 is named `aquasee-website`, runs with the `nodejs_compat` flag and serves the built assets
 through the `ASSETS` binding. Observability is enabled.
 
-### 5.2 Automatic deployment (GitHub Actions)
+### 5.2 Reviewed manual deployment (GitHub Actions)
 
-`.github/workflows/deploy.yml` builds and deploys on every push to `main`, and can also be run
-manually from the Actions tab. Two repository secrets are required:
+Review and merge a PR into `main`, then manually run `.github/workflows/deploy.yml`
+from the Actions tab. A push to `main` alone does not deploy. Two repository
+secrets are required:
 
 | Secret | Value |
 | --- | --- |
