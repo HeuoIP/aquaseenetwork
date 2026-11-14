@@ -8,6 +8,7 @@ import {
   type InquiryPayload,
 } from '@/lib/inquiry';
 import { classifyAttribution, type InquiryAttribution } from '@/lib/attribution';
+import { productCatalog, publishedProducts } from '@/content/products';
 
 export const runtime = 'nodejs';
 
@@ -68,6 +69,12 @@ export async function POST(request: Request) {
     );
   }
 
+  // A query parameter cannot make an unapproved product into a quoted SKU.
+  if (payload.productId && !publishedProducts(productCatalog, 'en').some((product) =>
+    product.id === payload.productId || product.slug === payload.productId)) {
+    payload.productId = undefined;
+  }
+
   const inquiry = sanitiseInquiry(payload as InquiryPayload);
   const reference = `AQS-${new Date().toISOString().slice(2, 10).replace(/-/g, '')}-${Math.random()
     .toString(36)
@@ -78,7 +85,7 @@ export async function POST(request: Request) {
   const resendKey = process.env.RESEND_API_KEY;
   const toEmail = process.env.INQUIRY_TO_EMAIL;
   const fromEmail = process.env.INQUIRY_FROM_EMAIL ?? 'website@aquasee.art';
-  const subject = `New project inquiry — ${inquiry.company} (${reference})${
+  const subject = `${inquiry.leadType ?? 'New project inquiry'} — ${inquiry.company || inquiry.name} (${reference})${
     inquiry.attribution?.source === 'ai' ? ` — via ${inquiry.attribution.engine ?? 'AI'}` : ''
   }`;
   const text = buildMailtoBody(inquiry);
@@ -102,6 +109,8 @@ export async function POST(request: Request) {
         `邮箱 Email: ${inquiry.email}`,
         `国家/地区 Country: ${inquiry.country}`,
         `项目类型 Project type: ${inquiry.projectType}`,
+        inquiry.leadType ? `线索类型 Lead type: ${inquiry.leadType}` : '',
+        ...Object.entries(inquiry.details ?? {}).map(([key, value]) => `${key}: ${value}`),
         `所需服务 Services: ${inquiry.services.join(', ')}`,
         inquiry.budget ? `预算 Budget: ${inquiry.budget}` : '',
         inquiry.timeline ? `周期 Timeline: ${inquiry.timeline}` : '',

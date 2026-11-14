@@ -13,7 +13,7 @@ import { join, relative } from 'node:path';
  *   4. the sitemap covers exactly the set of built pages
  *   5. /llms.txt and /llms-full.txt agree with the pages
  *   6. every page opens with a paragraph that can be quoted on its own
- *   7. no page describes AQUASEE as a manufacturer or a factory
+ *   7. no page claims AQUASEE owns a factory
  *
  * The gate is language-aware: a page in another language is checked with the
  * rules of that language, not with the English ones.
@@ -73,7 +73,7 @@ notes.push(`Languages checked: ${[...new Set(pages.map((p) => p.locale))].join('
 /** The rules that are written in words, per language. */
 const LANGUAGE_RULES = {
   en: {
-    serviceMarkers: /consult|design|supply chain|delivery|service|advisory/i,
+    commercialMarkers: /pool|water.play|shade|slide/i,
     manufacturerMarkers: [
       /we manufacture/i,
       /our factory/i,
@@ -84,14 +84,14 @@ const LANGUAGE_RULES = {
     quoteable: /AQUASEE is a|AQUASEE provides|AQUASEE is an|is a China-based|we are a service/i,
   },
   zh: {
-    serviceMarkers: /咨询|设计|供应链|服务|交付/,
+    commercialMarkers: /泳池|戏水|遮阳|滑梯/,
     manufacturerMarkers: [/我们是[^。]{0,6}制造商/, /我们的自有工厂/, /自有生产工厂/],
     quoteable: /AQUASEE\s*是一家|AQUASEE\s*是/,
   },
 };
 const rulesFor = (locale) =>
   LANGUAGE_RULES[locale] ?? {
-    serviceMarkers: /consult|design|supply chain|service/i,
+    commercialMarkers: /pool|water|shade|slide/i,
     manufacturerMarkers: [/we manufacture/i, /our factory/i],
     quoteable: /AQUASEE/i,
   };
@@ -329,22 +329,11 @@ function selfTest() {
 }
 
 // --- 1. JSON-LD -----------------------------------------------------------
-const EXPECTED_TYPES = {
-  '/': ['Organization', 'WebSite'],
-  '/about': ['Organization', 'WebSite', 'AboutPage'],
-  '/faq': ['Organization', 'WebSite', 'FAQPage'],
-  '/projects': ['Organization', 'WebSite', 'ItemList'],
-  '/insights': ['Organization', 'WebSite', 'ItemList'],
-  '/strategy': ['Organization', 'WebSite', 'Service', 'FAQPage'],
-  '/creative-design': ['Organization', 'WebSite', 'Service', 'FAQPage'],
-  '/supply-chain': ['Organization', 'WebSite', 'Service', 'FAQPage'],
-};
-
 for (const page of pages) {
   const rules = rulesFor(page.locale);
   const blocks = [...page.html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
   if (!blocks.length) {
-    fail(page.url, 'no JSON-LD found');
+    if (!isNoindex(page.html)) fail(page.url, 'no JSON-LD found');
     continue;
   }
   const types = [];
@@ -354,8 +343,8 @@ for (const page of pages) {
       types.push(parsed['@type']);
       if (!parsed['@context']) fail(page.url, 'JSON-LD block without @context');
       if (parsed['@type'] === 'Organization') {
-        if (!rules.serviceMarkers.test(JSON.stringify(parsed))) {
-          fail(page.url, 'Organization description does not describe the service business');
+        if (!rules.commercialMarkers.test(JSON.stringify(parsed))) {
+          fail(page.url, 'Organization description does not describe the pool product business');
         }
         if (rules.manufacturerMarkers.some((re) => re.test(JSON.stringify(parsed)))) {
           fail(page.url, 'Organization mentions manufacturing as its own business');
@@ -365,15 +354,13 @@ for (const page of pages) {
       fail(page.url, `invalid JSON-LD: ${err.message}`);
     }
   }
-  const hasLibrary = pages.some((p) => p.locale === page.locale && p.sub.startsWith('/insights/'))
-  const expected = EXPECTED_TYPES[page.sub]?.filter((type) => type !== 'ItemList' || hasLibrary);
-  if (expected) {
-    for (const type of expected) {
+  if (!isNoindex(page.html)) {
+    for (const type of ['Organization', 'WebSite']) {
       if (!types.includes(type)) fail(page.url, `missing ${type} JSON-LD (found: ${types.join(', ')})`);
     }
-  }
-  if (page.sub.startsWith('/insights/') && !types.includes('Article')) {
-    fail(page.url, 'insight article without Article JSON-LD');
+    if (page.sub.startsWith('/collections/') && !types.includes('CollectionPage')) {
+      fail(page.url, 'category guide without CollectionPage JSON-LD');
+    }
   }
 }
 
@@ -388,7 +375,10 @@ for (const page of pages) {
 
   const alternates = [...page.html.matchAll(/<link rel="alternate" hrefLang="([^"]+)" href="([^"]+)"/g)];
   if (!alternates.length) {
-    fail(page.url, 'no hreflang alternates');
+    // A reachable pre-release page can deliberately be noindex and absent
+    // from the sitemap; advertising it as an hreflang target would conflict
+    // with that decision.
+    if (!isNoindex(page.html)) fail(page.url, 'no hreflang alternates');
     continue;
   }
   const map = Object.fromEntries(alternates.map(([, tag, href]) => [tag, href]));
@@ -436,8 +426,8 @@ for (const name of ['llms.txt', 'llms-full.txt']) {
     continue;
   }
   if (!/AQUASEE/.test(body)) fail('llms', `${name} does not mention AQUASEE`);
-  if (!/not an equipment manufacturer|does not own factories|not a manufacturer/i.test(body)) {
-    fail('llms', `${name} does not state the service-business positioning`);
+  if (!/pool slides|pool shade|water.play/i.test(body) || !/no individual|no published|no individual model|no confirmed/i.test(body)) {
+    fail('llms', `${name} does not state the commercial categories and release boundary`);
   }
 }
 

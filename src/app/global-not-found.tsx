@@ -1,4 +1,12 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
+import './globals.css';
+
+export const metadata: Metadata = {
+  metadataBase: new URL('https://www.aquasee.art'),
+  title: 'Page not found — AQUASEE',
+  description: 'The requested AQUASEE page could not be found.',
+};
 
 /**
  * The global 404.
@@ -17,8 +25,8 @@ export default function GlobalNotFound() {
             That page is not here.
           </h1>
           <p className="mt-6 max-w-xl text-lede leading-relaxed text-body">
-            The address may have changed, or the page may never have existed. The homepage and the
-            three capability pages are the quickest way back.
+            The address may have changed, or the page may never have existed. Start with the homepage
+            or explore the pool product categories.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
@@ -28,22 +36,28 @@ export default function GlobalNotFound() {
               Homepage
             </Link>
             <Link
-              href="/strategy"
+              href="/collections/pool-slides"
               className="inline-flex h-11 items-center rounded-full border border-line-2 px-6 text-[0.9375rem] font-medium text-ink"
             >
-              Strategy &amp; Consulting
+              Pool Slides
             </Link>
             <Link
-              href="/projects"
+              href="/collections/pool-shade"
               className="inline-flex h-11 items-center rounded-full border border-line-2 px-6 text-[0.9375rem] font-medium text-ink"
             >
-              Projects
+              Outdoor Shade
             </Link>
             <Link
-              href="/contact"
+              href="/concept-collection"
               className="inline-flex h-11 items-center rounded-full border border-line-2 px-6 text-[0.9375rem] font-medium text-ink"
             >
-              Contact
+              Concepts
+            </Link>
+            <Link
+              href="/inquiry/business"
+              className="inline-flex h-11 items-center rounded-full border border-line-2 px-6 text-[0.9375rem] font-medium text-ink"
+            >
+              Enquire
             </Link>
           </div>
         </main>

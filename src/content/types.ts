@@ -66,6 +66,153 @@ export type ServiceDetail = {
   related: { href: string; label: string }[];
 };
 
+/**
+ * Product taxonomy and publication state.
+ *
+ * Research and candidate records may live in the shared catalogue, but only
+ * `publicationStatus: 'published'` records can appear in public product
+ * listings. This prevents market examples from becoming AQUASEE SKUs by
+ * accident.
+ */
+export type ProductCategory =
+  | 'pool-slides'
+  | 'pool-shade'
+  | 'compact-water-parks'
+  | 'splash-play-facilities';
+
+export type ProductAvailability = 'market-reference' | 'candidate' | 'confirmed' | 'future';
+export type ProductPublicationStatus = 'internal' | 'published';
+export type ProductPriceStatus = 'not-published' | 'reference' | 'enquiry';
+export type ProductSceneSlug =
+  | 'private-pool-villa'
+  | 'boutique-hotel-resort'
+  | 'club-wellness'
+  | 'family-leisure-venue'
+  | 'compact-water-park-projects';
+
+export type ProductCategoryDefinition = {
+  slug: ProductCategory;
+  name: string;
+  shortName: string;
+  summary: string;
+  role: 'first-release' | 'second-layer';
+  scopeNote: string;
+  image: { src: string; alt: string; kind: 'illustration' | 'work' };
+  translations?: Partial<Record<Locale, { status: 'draft' | 'approved'; name: string; summary: string; scopeNote: string }>>;
+};
+
+export type ProductScene = {
+  slug: ProductSceneSlug;
+  name: string;
+  summary: string;
+  translations?: Partial<Record<Locale, { status: 'draft' | 'approved'; name: string; summary: string }>>;
+};
+
+export type ProductSpec = {
+  label: string;
+  status: 'confirmed' | 'to-confirm' | 'not-applicable';
+  value?: string;
+  /** Immutable evidence receipt ID for every public fact. */
+  evidenceId?: string;
+  translations?: Partial<Record<Locale, { status: 'draft' | 'approved'; label: string; value: string }>>;
+};
+
+export type ProductTranslation = {
+  status: 'draft' | 'approved';
+  name: string;
+  summary: string;
+  description: string;
+  /** Required for non-English publication when the product image is shown. */
+  imageAlt?: string;
+};
+
+export type ProductRecord = {
+  /** Stable internal identity; never inferred from the display name. */
+  id: string;
+  /** Increment for every editorial, factual, image or translation change. */
+  version: string;
+  /** Public SKU, only when independently confirmed. */
+  sku?: string;
+  slug: string;
+  category: ProductCategory;
+  subtypes: string[];
+  scenes: ProductSceneSlug[];
+  availability: ProductAvailability;
+  publicationStatus: ProductPublicationStatus;
+  priceStatus: ProductPriceStatus;
+  updatedAt?: string;
+  source?: string;
+  translations: Partial<Record<Locale, ProductTranslation>>;
+  specs: ProductSpec[];
+  image?: { src: string; alt: string; kind: 'illustration' | 'work'; approved: boolean; sha256: string; rightsEvidenceId: string };
+};
+
+export type SignedApproval = { keyId: string; signature: string };
+export type ProductEvidenceReceipt = {
+  id: string;
+  kind: 'supply' | 'technical' | 'image-rights' | 'language';
+  versionId: string;
+  sha256: string;
+  issuedAt: string;
+  expiresAt?: string;
+  signed: SignedApproval;
+};
+
+export type ProductReview = {
+  reviewedBy: string;
+  reviewedAt: string;
+  evidenceRef: string;
+  signed: SignedApproval;
+};
+
+/** Kept separately from the product: a product cannot approve itself. */
+export type ProductApproval = {
+  productId: string;
+  productVersion: string;
+  /** SHA-256 of the complete current product record. */
+  contentDigest: string;
+  evidenceDigest: string;
+  evidence: ProductEvidenceReceipt[];
+  supply: ProductReview;
+  facts: ProductReview;
+  imageRights: ProductReview;
+  languages: Partial<Record<Locale, ProductReview>>;
+  release: { approvedBy: string; approvedAt: string; decisionRef: string; signed: SignedApproval };
+};
+
+export type ProductCatalog = {
+  categories: ProductCategoryDefinition[];
+  scenes: ProductScene[];
+  products: ProductRecord[];
+  ui: Partial<Record<Locale, {
+    status: 'draft' | 'approved';
+    products: string;
+    bySpace: string;
+    aboutProduct: string;
+    suitableSpaces: string;
+    confirmedSpecifications: string;
+    suitabilityNote: string;
+    startEnquiry: string;
+    relatedProducts: string;
+    viewProduct: string;
+    conceptVisualisation: string;
+    browseBySpaceDescription: string;
+    landingTitle: string;
+    landingIntro: string;
+    byType: string;
+    categoryStructure: string;
+    publicationNote: string;
+    startWithSpace: string;
+    publishedProducts: string;
+    viewPublishedProducts: string;
+    releaseStatus: string;
+    releaseStatusTitle: string;
+    releaseStatusBody: string;
+    firstReleaseFocus: string;
+    secondLayer: string;
+  }>>;
+};
+
 export type ProjectStudy = {
   slug: string;
   title: string;
@@ -218,7 +365,6 @@ export type SiteConfig = {
   /** Primary navigation. Languages without published insights omit that entry. */
   nav: { href: string; label: string }[];
   ctaLabel: string;
-  marketsLine: string;
 };
 
 
@@ -485,4 +631,6 @@ export type Dictionary = {
   faq: FaqItem[];
   /** Null when this language has not published the insight library yet. */
   insights: InsightArticle[] | null;
+  /** English-first product catalogue; other locales opt in when localized. */
+  products?: ProductCatalog;
 };

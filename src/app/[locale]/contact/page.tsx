@@ -5,10 +5,15 @@ import { ActionLink } from '@/components/ui/Action';
 import { Reveal } from '@/components/ui/Reveal';
 import { getDictionary } from '@/lib/dictionary';
 import { pageMetadata } from '@/lib/metadata';
+import Link from 'next/link';
 
 export async function generateMetadata({ params }: PageProps<'/[locale]/contact'>): Promise<Metadata> {
   const { locale } = await params;
   const dict = await getDictionary(locale);
+  if (locale === 'en') return pageMetadata({
+    locale: 'en', path: '/contact', title: 'Contact AQUASEE',
+    description: 'Choose the right AQUASEE inquiry route: commercial project, private pool, dealer or installation partner.',
+  });
   return pageMetadata({
     locale: locale as never,
     path: '/contact',
@@ -21,6 +26,12 @@ export async function generateMetadata({ params }: PageProps<'/[locale]/contact'
 export default async function ContactPage({ params }: PageProps<'/[locale]/contact'>) {
   const { locale } = await params;
   const dict = await getDictionary(locale);
+  if (locale === 'en') return <><section className="bg-ink pt-[4.5rem] text-paper"><div className="shell py-16 lg:py-24"><p className="eyebrow text-aqua">AQUASEE / Contact</p><h1 className="mt-5 font-display text-[clamp(3rem,6vw,5rem)] text-on-dark-strong">Start in the right place.</h1><p className="mt-5 max-w-2xl text-lg text-on-dark">Choose the route that fits your question. You can also email us directly at <a className="underline" href="mailto:victor@aquasee.art">victor@aquasee.art</a>.</p></div></section><section className="bg-paper py-16 lg:py-24"><div className="shell grid gap-5 sm:grid-cols-2">{[
+    { href: '/inquiry/business', title: 'Commercial project', body: 'Hotels, venues, pool designers and operators.' },
+    { href: '/inquiry/personal', title: 'Private pool', body: 'Homeowners and villa pool projects.' },
+    { href: '/dealer-program', title: 'Dealer application', body: 'Sales partners and market representation.' },
+    { href: '/installation-partners', title: 'Installation partner', body: 'Local installation capability and qualifications.' },
+  ].map((item) => <Link key={item.href} href={item.href} className="border border-line bg-sand p-8 transition-colors hover:bg-accent-tint"><h2 className="font-display text-3xl">{item.title}</h2><p className="mt-3 text-body">{item.body}</p><span className="mt-6 block text-accent">Continue →</span></Link>)}</div></section></>;
   const copy = dict.contact;
   const ui = dict.ui;
   return (

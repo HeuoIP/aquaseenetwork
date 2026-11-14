@@ -12,9 +12,9 @@ export const site: SiteConfig = {
   domain: 'aquasee.art',
   canonicalHost: 'www.aquasee.art',
   url: 'https://www.aquasee.art',
-  tagline: 'استراتيجية وتصميم وتوريد مدعوم بالذكاء الاصطناعي',
+  tagline: 'ألعاب مائية ومنزلقات مسابح وهياكل تظليل',
   shortDescription:
-    'شريك صيني مدعوم بالذكاء الاصطناعي في الاستراتيجية والتصميم والتوريد لوجهات السياحة وفضاءات الأطفال والمنتجات الخارجية.',
+    'تتخصص AQUASEE في تخطيط وتصميم وتوريد الحدائق المائية الصغيرة والمتوسطة والعناصر الفنية والمنزلقات المنزلية وهياكل التظليل.',
   contact: {
     email: 'victor@aquasee.art',
     location: 'مقرّنا في الصين — ونعمل مع عملاء حول العالم',
@@ -44,5 +44,4 @@ export const site: SiteConfig = {
     { href: '/contact', label: 'تواصل معنا' },
   ],
   ctaLabel: 'ابدأ مشروعًا',
-  marketsLine: 'مقرّنا في الصين، ونعمل مع عملاء في آسيا والخليج وأوروبا وأفريقيا.',
 };

@@ -1,9 +1,10 @@
 name: Deploy to Cloudflare
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 concurrency:
   group: deploy-production
@@ -12,6 +13,7 @@ concurrency:
 jobs:
   deploy:
     name: Build and deploy
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
@@ -33,6 +35,15 @@ jobs:
 
       - name: Build for Cloudflare
         run: npm run build:opennext
+
+      - name: Validate Worker package without deployment
+        run: npx wrangler deploy --dry-run
+
+      - name: Check GEO
+        run: npm run geo
+
+      - name: Check product release gate
+        run: npm run products
 
       - name: Check deployment secrets
         env:
