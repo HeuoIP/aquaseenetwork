@@ -5,6 +5,7 @@ import type { Dictionary } from '@/content/types';
 import { catalogUi, productCatalog, productTranslation, productsByCategory, productsByScene, publishedProducts, publishedCategories, publishedScenes } from '@/content/products';
 import type { ProductCategory, ProductSceneSlug } from '@/content/types';
 import { canIndexProductCatalog } from '@/content/catalog-index';
+import { buyingGuides, guideBySlug, isBuyingGuidePublished } from '@/content/seo/buying-guides';
 /** Canonical origin. Identical for every language. */
 export const SITE_ORIGIN = 'https://www.aquasee.art';
 
@@ -21,6 +22,11 @@ export const SITE_ORIGIN = 'https://www.aquasee.art';
  * about which language publishes which path.
  */
 export function pathExistsIn(dict: Dictionary, path: string): boolean {
+  if (path === '/buying-guides') return dict.locale === 'en' && buyingGuides.some(isBuyingGuidePublished);
+  if (path.startsWith('/buying-guides/')) {
+    const article = guideBySlug(path.slice('/buying-guides/'.length));
+    return dict.locale === 'en' && !!article && isBuyingGuidePublished(article);
+  }
   if (path.startsWith('/collections/') || path === '/concept-collection'
     || path.startsWith('/inquiry/') || path === '/dealer-program'
     || path === '/installation-partners') return dict.locale === 'en';
@@ -66,6 +72,10 @@ export async function localeAvailability(): Promise<Record<string, string[]>> {
     '/collections/pool-slides', '/collections/pool-shade',
     '/collections/compact-water-parks', '/collections/splash-play-facilities',
   ]) out[path] = ['en'];
+  // Preview routes also exist in English. Keep the switcher away from missing
+  // translations while robots and sitemap still wait for publication approval.
+  out['/buying-guides'] = ['en'];
+  for (const article of buyingGuides) out[article.guide.path] = ['en'];
   for (const locale of PUBLISHED_LOCALES) {
     const dict = await getDictionary(locale);
     if (!dict.products || !catalogUi(locale)) continue;
@@ -97,6 +107,11 @@ export async function localeAvailability(): Promise<Record<string, string[]>> {
  * `x-default` fallback always points at the English URL.
  */
 export async function languageAlternates(path: string): Promise<Record<string, string>> {
+  if (path === '/buying-guides' || path.startsWith('/buying-guides/')) {
+    const article = path === '/buying-guides' ? null : guideBySlug(path.slice('/buying-guides/'.length));
+    return (path === '/buying-guides' ? buyingGuides.some(isBuyingGuidePublished) : !!article && isBuyingGuidePublished(article))
+      ? { en: path, 'x-default': path } : {};
+  }
   // An accessible but noindex pre-release catalogue must not be advertised
   // through hreflang as an indexable search landing page.
   if ((path === '/products' || path.startsWith('/products/'))

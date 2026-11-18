@@ -37,7 +37,7 @@ export function localesForPath(
   if (!(path in availability)) {
     // A product path absent from the server map is unpublished, never a
     // standing page with four language editions.
-    return path.startsWith('/products/') ? [] : [...PUBLISHED_LOCALES];
+    return path.startsWith('/products/') || path.startsWith('/buying-guides') ? [] : [...PUBLISHED_LOCALES];
   }
   const published = availability[path] ?? [];
   const list = published.includes(active) ? published : [active, ...published];

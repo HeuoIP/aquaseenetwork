@@ -1,0 +1,17 @@
+{
+  "asset": "material",
+  "service": "APIMart Midjourney",
+  "task_id": "task_01M7MQ2AAZDR6BH4KKS36R3DJM",
+  "generated_at_utc": "2026-11-17T12:19:23.257720+00:00",
+  "request": {
+    "prompt": "A premium industrial design product photograph of a recognizable residential swimming pool slide made of satin brushed silver-colored metal. Show a medium-wide three-quarter view of a substantial continuous curved slide flume, with its clearly visible U-shaped channel, both raised side walls, rounded edges and smooth sliding surface. The slide must remain recognizable as a pool slide, not an abstract metal object. Include a visible section of its curved descent and a small part of its believable support structure. Show realistic fine directional brushed-metal texture, subtle natural reflections and refined fabrication details. Neutral architectural studio setting with soft limestone background, controlled natural light, high-end industrial design editorial photography, balanced composition, moderate camera distance, 4:3 composition. Conceptual material study only, no claims about actual alloy or manufactured product.",
+    "negative_prompt": "extreme macro photography, abstract metal surface, isolated rounded metal edge, flat metal sheet, white plastic, glossy chrome, gold metal, rust, damaged surface, broken flume, twisted channel, missing side walls, disconnected sections, impossible supports, floating components, distorted geometry, people, text, labels, logos, watermark, certification symbols.",
+    "size": "4:3",
+    "stylize": 80,
+    "version": "8.2",
+    "raw": true,
+    "speed": "fast"
+  },
+  "source_file": "choose-a-pool-slide-material-mj-task_01M7MQ2AAZDR6BH4KKS36R3DJM-source.png",
+  "source_url": "https://getapib.org/image/9998205082037762-bba5227a-d84e-41fe-a510-6ee8f22101eb-image_task_01M7MQ2AAZDR6BH4KKS36R3DJM_0.png"
+}

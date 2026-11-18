@@ -1,0 +1,17 @@
+{
+  "asset": "hero",
+  "service": "APIMart Midjourney",
+  "task_id": "task_01M7MQ746NXXK4P5EK62E2RBV2",
+  "generated_at_utc": "2026-11-17T12:21:50.719439+00:00",
+  "request": {
+    "prompt": "Architectural editorial photograph, eye-level three-quarter view of ONE compact freestanding residential pool slide beside a modern private villa swimming pool. The complete slide is large in the foreground, on the LEFT side of the frame, occupying 45 percent of the picture. A short independent three-step stair on the dry stone deck leads to the upper entrance. One continuous satin silver U-shaped slide channel curves gently down and the lower lip projects clearly OVER THE BLUE POOL WATER on the RIGHT. Both the upper stair and the lower water exit are visible together. The slide has its own supports and is separate from the house. The villa is small and softly focused in the background across the pool. Calm luxurious limestone terrace, olive trees, natural warm daylight, realistic architectural magazine photography, believable human scale, no people, no text, unbranded concept visualization.",
+    "negative_prompt": "rooftop, balcony, house-connected slide, slide emerging from wall, long giant waterpark slide, distant tiny slide, floating slide, slide ending on deck, dry exit, disconnected or duplicated channel, missing stairs, impossible support, people, children, swimmers, logo, watermark, text, certification",
+    "size": "16:9",
+    "stylize": 50,
+    "version": "8.2",
+    "raw": true,
+    "speed": "fast"
+  },
+  "source_file": "choose-a-pool-slide-hero-mj-task_01M7MQ746NXXK4P5EK62E2RBV2-source.png",
+  "source_url": "https://getapib.org/image/9998205081894406-736fd63d-b932-4322-9c7c-1c44b5409e0d-image_task_01M7MQ746NXXK4P5EK62E2RBV2_0.png"
+}

@@ -1,0 +1,17 @@
+{
+  "asset": "zones",
+  "service": "APIMart Midjourney",
+  "task_id": "task_01M7MQ746MTNE6RP5EQXD9Z45V",
+  "generated_at_utc": "2026-11-17T12:21:50.691786+00:00",
+  "request": {
+    "prompt": "Top-down architectural editorial illustration of a single rectangular private residential swimming pool and its surrounding limestone terrace. A clear compact freestanding pool slide with three access steps sits on the LEFT edge and points into the pool. The ENTIRE pool and slide are visible from directly overhead. Five distinct surrounding areas are easy to recognize by subtle different tonal surface patches: the slide footprint, the walking approach to its steps, the open pool water where the slide ends, the dry deck support base, and the service corner beyond the deck. A refined landscape architect presentation image, flat bird's-eye plan view, warm ivory stone, muted sage planting, pale aqua water, fine dark outlines, generous clear margins, elegant restrained graphics. No buildings, no transparent structures, no labels, no dimensions, no people. Educational concept only, not a construction drawing.",
+    "negative_prompt": "isometric building model, axonometric cutaway, glass walls, glass enclosures, transparent architecture, exploded model, abstract blocks, floating slide, slide ending outside water, tiny slide symbol, multiple pools, dimensions, arrows, text, numbers, labels, logo, watermark, certification",
+    "size": "4:3",
+    "stylize": 50,
+    "version": "8.2",
+    "raw": true,
+    "speed": "fast"
+  },
+  "source_file": "choose-a-pool-slide-zones-mj-task_01M7MQ746MTNE6RP5EQXD9Z45V-source.png",
+  "source_url": "https://getapib.org/image/9998205081896514-d9da0f54-1c3e-4171-be4f-06d97e2af30b-image_task_01M7MQ746MTNE6RP5EQXD9Z45V_0.png"
+}
