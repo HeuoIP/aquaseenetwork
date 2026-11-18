@@ -8,6 +8,7 @@ import { getDictionary } from '@/lib/dictionary';
 import { organizationLd, websiteLd } from '@/lib/jsonld';
 import { LOCALE_TAGS, PUBLISHED_LOCALES, isRtl, type Locale } from '@/lib/locale';
 import { SITE_ORIGIN, localeAvailability } from '@/lib/metadata';
+import { buyingGuides, isBuyingGuidePublished } from '@/content/seo/buying-guides';
 
 /**
  * The root layout.
@@ -139,7 +140,9 @@ export default async function LocaleLayout({
         >{ui.global.skipToContent}</a>
         <Header
           locale={locale as Locale}
-          nav={dict.site.nav}
+          nav={locale === 'en' && buyingGuides.some(isBuyingGuidePublished)
+            ? [...dict.site.nav.slice(0, 4), { href: '/buying-guides', label: 'Guides' }, ...dict.site.nav.slice(4)]
+            : dict.site.nav}
           site={dict.site}
           ui={ui}
           availability={availability}

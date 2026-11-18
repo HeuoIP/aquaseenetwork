@@ -1,0 +1,11 @@
+# WP-SEO-02 publication decision — 2026-11-18
+
+The site owner selected the attached silver slide detail image, confirmed that they had manually reviewed the images, and explicitly directed publication of this article on 2026-11-18 (Asia/Shanghai). Earlier in this conversation the owner confirmed the V2 Markdown as the final English text. The remaining cover and selection-area images and the V2 body are unchanged in this release.
+
+The three illustrations were generated as text-to-image APIMart Midjourney tasks, with original PNGs and non-secret API task receipts retained in `docs/previews/wp-seo-02/mj-source/`. The selected material PNG is byte-identical to the owner's attachment (SHA-256 `07f54563d770405ee75fe6f3c4a83a3dbd1e3dd9ba875cff3a66f889b82da8c7`). The served WebP is SHA-256 `4fac64f540d7e75ffa2301271e78089d47df380d6ac8670d128067cfc57b0f`. The complete current image manifest is `a840da77a91d92f3e6a00daa6ca53d094d23057a229d8ff3c2db5d7c95641ca8`; the V2 body digest is `44e760edb41a356c07157a7fe928bea5e66e118cde266e23c64e3b26e29278fa`.
+
+Image review evidence is the owner's manual selection and publication direction in the AQUASEE WP-SEO-02 conversation. APIMart task receipts establish provenance, not a legal opinion about license terms, exclusivity or third-party similarity; those were not independently verified. The page visibly labels every illustration as an AI concept and does not assert that the depicted slide is manufactured, certified, engineered or available for sale.
+
+The content review completed before this decision verified V2 fidelity, six source URLs and the qualified wording of the standards discussion. It did not constitute jurisdiction-specific legal advice. The text itself directs site and regulatory conclusions to the exact model, local jurisdiction and qualified professionals. The site owner chose to proceed with this informational guide on that basis; this record does not claim an external legal review.
+
+The release is limited to the English buying guide, its selected images, and required navigation/SEO publication state. `datePublished` is assigned to the actual production release date when the deployment is initiated and must be checked against the live page afterward.
