@@ -196,7 +196,7 @@ export const catalogSourceDigests: Readonly<Record<string, string>> = {
   "src/content/ru/services.ts": "45d0a6431273352891d0f00dcb1ef9877cdd531fab5c5494358908f05416e4f6",
   "src/content/ru/site.ts": "a90335cc1ba8d538b394b224ad5967df6ff4252f695926032b25d0b78bf0611d",
   "src/content/ru/ui.ts": "cafa3b34fb90f750d4066a1b2529ae962a50a1b9eb5cd68bb996a3ccd195ebf7",
-  "src/content/seo/buying-guides.ts": "177ec26168156ef90268a9668e153f92fdcf09671d3f994a60e34a4f96f6c232",
+  "src/content/seo/buying-guides.ts": "7516f7eaa6c79cba4c07abc7104c75bd0874d45233c235477fbe71abacafbe28",
   "src/content/seo/guide-image-manifest.generated.ts": "b652235aaf450a5944c0b2f895dea72f4e1e9ed666313f5013dc18fdeb3923e3",
   "src/content/termbase.ts": "1328673e466d91ab69e1e23d071c8d19e9d39b59496b13a48309e41295d39ddb",
   "src/content/types.ts": "a676e70c5657bc8603ecfbb12396e5d1f2331c5692c0d87ff98294e61e3aaecb",

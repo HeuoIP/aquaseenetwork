@@ -50,7 +50,7 @@ export const buyingGuideRelease: {
   sourceSha256: '44e760edb41a356c07157a7fe928bea5e66e118cde266e23c64e3b26e29278fa',
   imageManifestSha256: 'a840da77a91d92f3e6a00daa6ca53d094d23057a229d8ff3c2db5d7c95641ca8',
   imageRightsReviewRef: 'docs/seo/wp-seo-02-release-decision.md',
-  imageRightsEvidenceSha256: '8392e4fe51e035a5c5ffb8e8b96912d89189f5c600cfafa866254eb293900e13',
+  imageRightsEvidenceSha256: '6c85294aa056bf5ba461695628280f046f386343854bef9262d32556d9687ccf',
   imageVisualReviewRef: 'Site-owner image selection and manual review, AQUASEE WP-SEO-02 conversation, 2026-11-18',
   approvedBy: 'AQUASEE site owner',
   approvedAt: '2026-11-18T00:16:00Z',
