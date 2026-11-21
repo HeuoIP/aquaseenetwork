@@ -1,0 +1,28 @@
+{
+  "service": "APIMart Midjourney",
+  "version": "8.2",
+  "selectionDate": "2026-11-21",
+  "review": "Site owner viewed and approved all five article images before publication in the AQUASEE SEO-02 conversation.",
+  "images": [
+    {
+      "role": "hero",
+      "taskId": "task_01M7Z4C1GQK8WTCBFE12SFJS2W",
+      "prompt": "Premium architectural editorial photograph of a contemporary private villa pool and garden in bright late-morning sunlight. PRIMARY VISUAL SUBJECT: a complete freestanding compact curved sculptural metal-looking swimming pool slide beside the pool in the near foreground, clearly recognizable with visible access steps, curved slide channel and lower exit above the pool water; slide occupies about 40 percent of the frame. The villa facade, stone terrace and planting surround and visually integrate the slide. Wide composition showing entire pool setting, refined restrained luxury, plausible human scale, crisp details, no people, original unbranded concept only.",
+      "negativePrompt": "logo, watermark, labels, dimensions, certification badge, children riding, exit on deck, exit on terrace, slide out of frame, sofa",
+      "source": "hero-source.png",
+      "sourceSha256": "3e51eca8d9c8c11dc266ee10d520e0aafe8df177c93fbfeff1c641f215b5e846",
+      "published": "public/images/guides/pool-slide-cost-hero.webp",
+      "publishedSha256": "63f0f3a70618d8763b9beb4040fff68c942c66b03a04984d6d8ad5533aaf1794"
+    },
+    {
+      "role": "material_detail",
+      "taskId": "task_01M7Z3XAG5VZHHBF2RDAP1EF15",
+      "prompt": "Editorial close-up concept image of a generic elegant residential swimming pool slide at a private villa pool, clearly identifiable smooth curved slide channel with brushed silver metal appearance, camera close enough to see reflective surface and a visually plausible support connection without showing technical construction details, calm daylight, premium architectural material photography, pool water in soft background, no people, no logos, no text, no material grade stamp, no certification symbols",
+      "negativePrompt": "sharp edges, impossible support, detached slide, corroded metal, product logo, text, measurements, construction diagram",
+      "source": "material-source.png",
+      "sourceSha256": "635845e98b1fda61612a7286a2953a2e3afad5b8f912aab7a2a54fab9e1612db",
+      "published": "public/images/guides/pool-slide-cost-material-detail.webp",
+      "publishedSha256": "5aac42cf54eaa368aec89a4e124ec9ec001e7a344daac2b5aa569cefb25fd3af"
+    }
+  ]
+}

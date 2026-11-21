@@ -1,5 +1,6 @@
 import { productCategories } from '@/content/products';
 import { collectionFor } from '@/content/commercial-collections';
+import { costGuide, isCostGuidePublished } from '@/content/seo/cost-guide';
 
 export const dynamic = 'force-static';
 export async function GET() {
@@ -19,6 +20,10 @@ export async function GET() {
       `Suitable settings: ${detail.suitableFor.join('; ')}.`,
       `Selection considerations: ${detail.considerations.join('; ')}.`, '');
   }
+  if (isCostGuidePublished()) lines.push('## Buying guide: residential pool slide cost', '',
+    `URL: ${root}${costGuide.path}`, '',
+    'A public slide price is not a complete project price. The guide compares dated third-party examples in France, the US and the UK, noting differences in stock, VAT, freight and installation scope. The three suppliers are illustrative examples, not standard market tiers or AQUASEE products.', '',
+    'A project budget also needs quotes for delivery, taxes, foundation and deck work, anchors, water connection, installation labor, pool changes and maintenance. No global average, standard installation fee or AQUASEE product price is claimed.', '');
   lines.push('## Concept Collection', '',
     `URL: ${root}/concept-collection`, '',
     'The visuals are AI-assisted concept studies. They are not photographs of completed products or client installations. They have not been manufactured or engineering verified; safety, dimensions, materials, compliance, supply and installation are unconfirmed. They cannot be ordered.', '',

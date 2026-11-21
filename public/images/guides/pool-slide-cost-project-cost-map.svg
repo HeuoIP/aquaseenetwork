@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="880" viewBox="0 0 1500 880" role="img" aria-labelledby="title desc">
+  <title id="title">Residential pool slide project cost map</title>
+  <desc id="desc">Six cost areas: product and accessories, freight and tax, foundations and anchors, water connection, installation labor, and pool alterations and maintenance. Unknown amounts require quotes.</desc>
+  <rect width="1500" height="880" fill="#f1eee7"/>
+  <rect x="0" y="0" width="1500" height="178" fill="#0c1013"/>
+  <text x="66" y="72" fill="#8ad9cf" font-family="Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="3">AQUASEE / BUYING GUIDE</text>
+  <text x="66" y="123" fill="#fbfaf8" font-family="Arial,sans-serif" font-size="39" font-weight="700">The slide price is not the project price.</text>
+  <text x="66" y="157" fill="#a7b0b6" font-family="Arial,sans-serif" font-size="18">Use each supplier quote to fill the six parts below. No amount is assumed.</text>
+  <g font-family="Arial,sans-serif">
+    <g transform="translate(66 222)">
+      <rect width="420" height="165" rx="12" fill="#fbfaf8" stroke="#d2cec5"/>
+      <circle cx="46" cy="46" r="22" fill="#0e5a54"/><text x="40" y="53" fill="white" font-size="19" font-weight="700">1</text>
+      <text x="82" y="50" fill="#0c1013" font-size="24" font-weight="700">Product &amp; accessories</text>
+      <text x="28" y="96" fill="#48525a" font-size="17">Model, components, documents</text>
+      <text x="28" y="133" fill="#0e5a54" font-size="18" font-weight="700">Supplier: confirm included items</text>
+    </g>
+    <g transform="translate(540 222)">
+      <rect width="420" height="165" rx="12" fill="#fbfaf8" stroke="#d2cec5"/>
+      <circle cx="46" cy="46" r="22" fill="#0e5a54"/><text x="40" y="53" fill="white" font-size="19" font-weight="700">2</text>
+      <text x="82" y="50" fill="#0c1013" font-size="24" font-weight="700">Freight &amp; taxes</text>
+      <text x="28" y="96" fill="#48525a" font-size="17">Destination, delivery, import costs</text>
+      <text x="28" y="133" fill="#0e5a54" font-size="18" font-weight="700">Confirm for your postcode</text>
+    </g>
+    <g transform="translate(1014 222)">
+      <rect width="420" height="165" rx="12" fill="#fbfaf8" stroke="#d2cec5"/>
+      <circle cx="46" cy="46" r="22" fill="#0e5a54"/><text x="40" y="53" fill="white" font-size="19" font-weight="700">3</text>
+      <text x="82" y="50" fill="#0c1013" font-size="23" font-weight="700">Foundation &amp; anchors</text>
+      <text x="28" y="96" fill="#48525a" font-size="17">Deck, support, site connection</text>
+      <text x="28" y="133" fill="#0e5a54" font-size="18" font-weight="700">Local team: Quote required</text>
+    </g>
+    <g transform="translate(66 420)">
+      <rect width="420" height="165" rx="12" fill="#fbfaf8" stroke="#d2cec5"/>
+      <circle cx="46" cy="46" r="22" fill="#0e5a54"/><text x="40" y="53" fill="white" font-size="19" font-weight="700">4</text>
+      <text x="82" y="50" fill="#0c1013" font-size="24" font-weight="700">Water connection</text>
+      <text x="28" y="96" fill="#48525a" font-size="17">Flow, plumbing, equipment</text>
+      <text x="28" y="133" fill="#0e5a54" font-size="18" font-weight="700">Check the exact model</text>
+    </g>
+    <g transform="translate(540 420)">
+      <rect width="420" height="165" rx="12" fill="#fbfaf8" stroke="#d2cec5"/>
+      <circle cx="46" cy="46" r="22" fill="#0e5a54"/><text x="40" y="53" fill="white" font-size="19" font-weight="700">5</text>
+      <text x="82" y="50" fill="#0c1013" font-size="24" font-weight="700">Installation labor</text>
+      <text x="28" y="96" fill="#48525a" font-size="17">Assembly, lifting, local work</text>
+      <text x="28" y="133" fill="#0e5a54" font-size="18" font-weight="700">Confirm who is responsible</text>
+    </g>
+    <g transform="translate(1014 420)">
+      <rect width="420" height="165" rx="12" fill="#fbfaf8" stroke="#d2cec5"/>
+      <circle cx="46" cy="46" r="22" fill="#0e5a54"/><text x="40" y="53" fill="white" font-size="19" font-weight="700">6</text>
+      <text x="82" y="50" fill="#0c1013" font-size="23" font-weight="700">Changes &amp; upkeep</text>
+      <text x="28" y="96" fill="#48525a" font-size="17">Pool alteration, care, parts</text>
+      <text x="28" y="133" fill="#0e5a54" font-size="18" font-weight="700">Ask for written scope</text>
+    </g>
+  </g>
+  <rect x="66" y="629" width="1368" height="145" rx="14" fill="#0e5a54"/>
+  <text x="100" y="689" fill="#fbfaf8" font-family="Arial,sans-serif" font-size="28" font-weight="700">Complete project total</text>
+  <text x="100" y="730" fill="#d7eeea" font-family="Arial,sans-serif" font-size="20">Quote required until the product and site scopes are written down.</text>
+  <text x="66" y="826" fill="#7c858d" font-family="Arial,sans-serif" font-size="17">Editorial budgeting diagram · No price estimate, cost proportions or installation specification</text>
+</svg>
