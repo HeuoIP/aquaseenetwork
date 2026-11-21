@@ -5,6 +5,7 @@ import { languageAlternates, pathExistsIn } from '@/lib/metadata';
 import { catalogUi, productCatalog, productsByCategory, productsByScene, publishedCategories, publishedProducts, publishedScenes } from '@/content/products';
 import { canIndexProductCatalog } from '@/content/catalog-index';
 import { buyingGuides, guidePublishedAt, isBuyingGuidePublished } from '@/content/seo/buying-guides';
+import { costGuide, costGuidePublishedAt, isCostGuidePublished } from '@/content/seo/cost-guide';
 
 /**
  * The sitemap.
@@ -59,13 +60,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
 
     const publishedGuides = buyingGuides.filter(isBuyingGuidePublished);
-    if (publishedGuides.length) {
-      const newest = publishedGuides.map((article) => guidePublishedAt(article)!).sort().at(-1)!;
+    if (publishedGuides.length || isCostGuidePublished()) {
+      const newest = [...publishedGuides.map((article) => guidePublishedAt(article)!), ...(isCostGuidePublished() ? [costGuidePublishedAt()!] : [])].sort().at(-1)!;
       entries.push({ url: `${base}/buying-guides`, lastModified: new Date(newest), changeFrequency: 'monthly', priority: 0.7,
         alternates: { languages: toAbsolute(await languageAlternates('/buying-guides')) } });
       for (const article of publishedGuides) entries.push({
         url: `${base}${article.guide.path}`, lastModified: new Date(guidePublishedAt(article)!), changeFrequency: 'monthly', priority: 0.8,
         alternates: { languages: toAbsolute(await languageAlternates(article.guide.path)) },
+      });
+      if (isCostGuidePublished()) entries.push({
+        url: `${base}${costGuide.path}`, lastModified: new Date(costGuidePublishedAt()!), changeFrequency: 'monthly', priority: 0.8,
+        alternates: { languages: toAbsolute(await languageAlternates(costGuide.path)) },
       });
     }
 

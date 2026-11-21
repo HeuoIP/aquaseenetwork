@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="850" viewBox="0 0 1500 850" role="img" aria-labelledby="title desc">
+  <title id="title">Pool slide site questions before a cost quote</title>
+  <desc id="desc">Conceptual top-down pool diagram with callouts for deck and foundation, anchors, water connection, landing area, and contractor access. Not an installation drawing.</desc>
+  <rect width="1500" height="850" fill="#f1eee7"/>
+  <text x="65" y="76" fill="#0c1013" font-family="Arial,sans-serif" font-size="38" font-weight="700">Before pricing the installation, review the site.</text>
+  <text x="65" y="117" fill="#48525a" font-family="Arial,sans-serif" font-size="19">The exact slide manual and a local professional determine which work is needed.</text>
+  <rect x="375" y="180" width="720" height="490" rx="18" fill="#d7d0c4"/>
+  <rect x="482" y="242" width="555" height="375" rx="13" fill="#81b8ba" stroke="#447f84" stroke-width="4"/>
+  <path d="M498 268 Q620 312 674 285 T850 284 T1020 287" fill="none" stroke="#b8dedc" stroke-width="9" opacity=".75"/>
+  <path d="M491 414 Q630 465 744 437 T1024 447" fill="none" stroke="#b8dedc" stroke-width="8" opacity=".65"/>
+  <path d="M508 545 Q646 580 760 551 T1019 555" fill="none" stroke="#b8dedc" stroke-width="9" opacity=".75"/>
+  <path d="M378 315 H509 Q548 315 567 349 L611 418" fill="none" stroke="#697f87" stroke-width="55" stroke-linecap="round"/>
+  <path d="M378 315 H509 Q548 315 567 349 L611 418" fill="none" stroke="#e3e9e8" stroke-width="42" stroke-linecap="round"/>
+  <path d="M392 292 V230 M410 292 V230 M392 230 H410" fill="none" stroke="#697f87" stroke-width="10"/>
+  <g font-family="Arial,sans-serif" font-size="20" fill="#0c1013" stroke="#0e5a54" stroke-width="3">
+    <path d="M331 251 H398"/><path d="M354 490 H438"/><path d="M745 177 V245"/><path d="M1000 382 H1118"/><path d="M1055 616 H1108"/>
+  </g>
+  <g font-family="Arial,sans-serif" fill="#0c1013">
+    <text x="65" y="226" font-size="22" font-weight="700">01 Deck &amp; foundation</text>
+    <text x="65" y="256" font-size="17" fill="#48525a">Can the site support the model?</text>
+    <text x="65" y="470" font-size="22" font-weight="700">02 Anchors</text>
+    <text x="65" y="499" font-size="17" fill="#48525a">What is supplied or designed locally?</text>
+    <text x="680" y="165" font-size="22" font-weight="700">03 Water route</text>
+    <text x="1140" y="344" font-size="22" font-weight="700">04 Landing</text>
+    <text x="1140" y="374" font-size="17" fill="#48525a">Review for exact model.</text>
+    <text x="1130" y="593" font-size="22" font-weight="700">05 Site access</text>
+    <text x="1130" y="624" font-size="17" fill="#48525a">Can materials and crew reach it?</text>
+    <text x="65" y="773" font-size="18" fill="#7c858d">Selection and budgeting diagram only · Not to scale · No dimensions, water depths or construction instructions</text>
+  </g>
+</svg>
