@@ -1,0 +1,119 @@
+# Interactive Splash Pad Features for Small Resorts and Holiday Parks: What to Plan Before You Buy
+
+A splash pad can give families a reason to stay and play at a small resort or holiday park. Yet buying a few attractive spray pieces is not the same as planning a useful water-play area. Guests need a legible place to explore; operators need a water system, drainage, access and maintenance plan that work together. **A successful splash pad is a coordinated water-play experience, not simply a collection of water features.**
+
+For a first supplier conversation, define who will use the area, what they should be able to do there, and what the site can support. Then compare features and their interfaces.
+
+## What are splash pad features?
+
+A **splash pad** is the overall, usually zero-depth play area: its play elements, surface, water management, drainage, controls and surrounding space. A **splash pad feature** is one element within it, such as a ground jet, spray arch or sculptural sprayer. **Water play** is broader and can include other aquatic experiences. A **decorative water feature** may look similar but is not thereby designed for children to touch, operate or play under.
+
+Even within a splash pad, “interactive” needs a precise meaning. Rain Drop Products describes its [Aqua Hoop](https://www.rain-drop.com/products/aqua-hoop) as **“Interactive: No”**: a shaped spray element can be playful without a user-operated control. A touch activator, by contrast, changes when water runs but is not itself a complete spray feature. Ask suppliers what the visitor can actually change, and what additional components make that action work.
+
+## Choose for users and activities before choosing shapes
+
+For a mixed-age family venue, begin with activities rather than an assumed age rating. Younger or less confident visitors may benefit from a legible, lower-intensity area where a carer can see the whole route. More confident children may seek movement between jets, choices and group activities. These are planning questions, **not universal age specifications**. Suitability, supervision, accessible circulation, spray intensity and any product age limits require the selected manufacturer's documentation and local review.
+
+Draw the likely route: where families enter, pause, supervise, move between play points and leave for dry space. Check whether a tall element blocks the view across a small area. A visually impressive centrepiece can still be a poor choice if it crowds circulation or directs spray into a waiting zone.
+
+Manufacturer project pages illustrate different contexts, not guaranteed outcomes. [Vortex's Odetah Camping Resort account](https://www.vortex-intl.com/projects/odetah-camping-resort/) describes a separate children's water-play area at a campground opened in 2017. Its [Camping Verébleu account](https://www.vortex-intl.com/projects/camping-verebleu/) shows a 2019 campground arrangement with younger-child splash play alongside larger facilities. Neither account establishes a universal layout, capacity or revenue result.
+
+## Static spray and interactive water play
+
+| Interaction level | What the guest does | What to confirm |
+|---|---|---|
+| Static spray | Moves around a continuous or scheduled spray | Spray pattern, start/stop method, water demand and visibility |
+| User-operated | Turns or redirects a component | Reach, moving parts, durability and maintenance access |
+| Trigger-based | Touches a sensor or activator | Compatible controller, valves, power, operating sequence and fault response |
+| Electronically sequenced | Responds to programmed groups or timing | Controls scope, commissioning, seasonal operation and who maintains it |
+
+These levels can coexist. [Water Odyssey's Turn-a-Round](https://www.waterodyssey.com/products/turn-a-round) demonstrates a user-directed water-play component. Its [wired Touch N' Go Bollard](https://www.waterodyssey.com/products/touch-go-bollard-wired) is an activator that the manufacturer says must work with its controller; it is not a complete stand-alone water-play system. The manufacturer's [Oakfield Lakes project account](https://www.waterodyssey.com/featured-projects/oakfield-lakes-water-play-area) describes touch activation and steerable water effects beside a community pool. Those examples show interaction choices; they do not establish AQUASEE equipment specifications or a partnership with either company.
+
+## Combine elements into a coherent experience
+
+A compact scheme might place a low-level themed sprayer near its entrance, use an arch or wave-shaped spray to frame movement, and give children a choice between a directional water element and a triggered effect. Several smaller nodes may support more exploration than one oversized object. The right combination depends on sightlines, available area, water capacity and operational staffing.
+
+Sculptural steel-tube forms are an **AQUASEE design exploration**, especially where an arch, wave or thematic form can make water play part of the landscape. Their material, structure, spray pattern, touch safety, controls and manufacturability would need separate product development and project review. No illustration in this guide represents an approved AQUASEE model or installed project.
+
+If you are shaping a new venue, [contact AQUASEE](/inquiry/business) with a site plan, intended users and preferred kinds of interaction. That allows an initial discussion of design direction and information gaps; equipment availability and delivery scope require confirmation.
+
+## Plan the water system as carefully as the features
+
+A sprayer, nozzle, pipe, valve, pump, filter, storage tank and controller do different jobs. A feature catalogue image rarely shows which are included. Request a component schedule and a diagram showing the boundary between supplier equipment and the site contractor's work.
+
+Projects may use a dedicated recirculating system, a connection to existing pool infrastructure, or a fresh-water supply and disposal arrangement. These are **different project designs**, not interchangeable plug-in options. A proposed pool connection needs a qualified hydraulic and public-health assessment of capacity, treatment, separation and local rules. Fresh water also needs an agreed supply, drainage and operating plan. Some [Rain Deck kit configurations](https://www.raindeck.com/products/product-category/splash-pad-kits/) list different included equipment by system type; that manufacturer's package descriptions cannot be generalized to another model or site.
+
+Ask who sizes the flows and pressure, supplies the pump and filtration, defines treatment, provides power, programs controls, makes connections, commissions the system and documents maintenance. A quote for the visible features alone does not settle these interfaces.
+
+## Drainage, surfaces and the site
+
+Mark the play footprint, dry circulation, supervision points, plant location and maintenance route on the site plan. Then have the project team review spray reach, slopes, collection points, drainage capacity, slip resistance, foundations, anchors and any buried services. A flat-looking rendering does not establish that a real surface will drain correctly or remain suitable when wet.
+
+Confirm whether a supplier offers feature bodies only, a system package, design information or installation support. Confirm separately what the local designer, civil contractor, pool contractor and operator must provide. No generic feature count or minimum area can answer “how much space?” without the selected equipment's clearances, water effects and local site requirements.
+
+## Operation and maintenance belong in the brief
+
+Plan for cleaning, nozzle inspection, blockage response, water-quality management, controls checks, seasonal shutdown and access to replace parts. Establish who receives operating instructions and who will carry out inspections. Frequency depends on the system, manufacturer's documentation, usage and local public-health requirements; there is no universal maintenance interval or service-life promise in this guide.
+
+## Safety standards and local requirements
+
+The BSI summary of [BS EN 17232:2020](https://knowledge.bsigroup.com/products/water-play-equipment-and-features-safety-requirements-test-methods-and-operational-requirements) describes safety, testing and operation requirements for fixed public water-play equipment and spray parks. Its scope excludes, among other categories, decorative fountains, water slides covered elsewhere, playground equipment covered elsewhere, and equipment inside private domestic pools. The standard's applicability to a specific project and edition status should be checked with the responsible local professional and the full standard. This guide does not claim AQUASEE certification.
+
+For a US public venue, the CDC [Model Aquatic Health Code](https://www.cdc.gov/model-aquatic-health-code/php/about/index.html) offers model guidance on preventing illness and injury at public aquatic facilities. It is not itself a blanket local permit or proof that a particular state or county has adopted every provision. The operator and local authorities must establish the rules that apply to the site's water treatment, electrical work, surfaces, accessibility and supervision.
+
+## What to send with a supplier enquiry
+
+Bring these facts to the first conversation:
+
+1. Project country, location and venue type.
+2. Intended users, likely supervision and desired play behaviours.
+3. Available area and a plan showing entrances, dry circulation and nearby pools.
+4. Existing or planned water supply, treatment plant, power and drainage.
+5. Preferred interaction types, visual direction and any concept references.
+6. Indicative budget and project timeline, if established.
+7. Who designs the site, builds foundations, installs equipment and operates it.
+8. The expected delivery scope: feature bodies, nozzles, controls, pump/filtration, drawings, commissioning and maintenance documents.
+
+Mark unknown items clearly. A supplier can then identify what needs local engineering rather than filling the gaps with a misleading all-in figure.
+
+## Make the experience work as a whole
+
+A good splash pad starts with a well-planned experience, not simply a list of products. Set the visitor journey, water-system concept and site responsibilities first; choose the features that serve them. [Explore AQUASEE's Splash Play Facilities](/collections/splash-play-facilities) for the category direction, or [enquire about your project](/inquiry/business) with the information above. AQUASEE's design exploration is separate from any confirmed product specification, quote or local installation commitment.
+
+## Frequently asked questions
+
+### What are the most common splash pad features?
+
+Common forms include ground sprays, overhead or side sprayers, arches, themed elements and user-operated or triggered effects. The mix for one site depends on users, circulation and water-system design.
+
+### What is the difference between a splash pad and a splash pad feature?
+
+The pad is the whole play area and its supporting site systems. A feature is one component within it.
+
+### What makes a water-play feature interactive?
+
+It allows a user action or programmed response to change the effect, for example turning a stream or activating a timed spray. A sculptural shape alone does not prove interactivity.
+
+### Can different water-play features share one water system?
+
+Possibly, if a qualified designer verifies combined flow, pressure, treatment, controls and local requirements. Visual similarity does not prove hydraulic compatibility.
+
+### What should a small resort consider before installing a splash pad?
+
+Define users, site area, visibility, water source, drainage, surfaces, maintenance capability, local approvals and who is responsible for each part of the project.
+
+### How much space does a small splash pad need?
+
+There is no reliable universal minimum in this guide. Layout depends on selected effects, safe circulation, supervision, spray reach, plant and access; request a site-specific plan.
+
+### What maintenance does a splash pad require?
+
+The operator needs a documented programme for cleaning, water management, nozzles, controls, drains and seasonal tasks. The selected system and local rules determine the schedule.
+
+### What information should I provide when requesting a quote?
+
+Send your location, intended users, site plan and area, water and drainage conditions, preferred interactions, budget/timing if known, and the expected equipment versus local-work scope.
+
+## Source notes
+
+The named product and project pages above are third-party manufacturer descriptions, consulted through the MI-SEO-03 research dated 22 November 2026; they are examples of forms and system relationships, not independent certification, AQUASEE partnerships or market rankings. BSI describes the published standard's scope; CDC provides model guidance, not a local legal opinion. Site and product facts require fresh checking before procurement or future content updates.

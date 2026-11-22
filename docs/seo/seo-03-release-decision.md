@@ -1,0 +1,9 @@
+# SEO-03 publication decision and scope
+
+**Decision:** The site owner said “可以了，发布吧” on 22 November 2026 after receiving the five SEO-03 content deliverables. This authorizes publication of the English article at `/buying-guides/splash-pad-features-small-resorts`. The publication source is the approved English draft, with its editorial status line removed and its closing “before publication” note changed to “before procurement or future content updates.” No factual claim was added.
+
+**Source binding:** The public article source SHA-256 is `1cd08e9e78656519df3ed5588bcf7cc9340406fc3bca8b34471547f00c2008b3`; the generated content is checked at build time. Publication date: 22 November 2026. The reused cover is the existing site AI concept asset `public/images/concepts/splash-play-facilities-v3.webp`, SHA-256 `ed1823d2f108f2131fcf71bd418285ed609b0de2b172b3938190f71b657277db`. It is disclosed on the page as concept visualization, not a project photo or available product. The four other figures in the image plan remain future editorial proposals and are not represented as published assets.
+
+**Evidence boundaries:** No market average, AQUASEE SKU, certification, installed project, local installation capacity or Product/Offer structured data is published. The article cites named third-party manufacturer examples and official BSI/CDC scope information; applicability remains project-specific. Five source URLs were reachable on 22 November 2026. Search volume, SERP ranking and AI citations were not obtained.
+
+**Deployment:** Use the production repository's manual Cloudflare workflow after merging the reviewed source. Verify the live 200 response, canonical, index directive, Article/BreadcrumbList, sitemap, Buying Guides card, concept image, FAQ, links and absence of Product/Offer. Record the run and live result in the completion report.

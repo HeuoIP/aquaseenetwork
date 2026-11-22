@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { buyingGuides, guidePublishedAt, isBuyingGuidePublished } from '@/content/seo/buying-guides';
 import { costGuide, costGuideAssets, costGuidePublishedAt, isCostGuidePublished } from '@/content/seo/cost-guide';
+import { splashGuide, splashGuideCover, splashGuideRelease, isSplashGuidePublished } from '@/content/seo/splash-guide';
 import { ImageDisclosure } from '@/components/ui/ImageDisclosure';
 import { SITE_ORIGIN } from '@/lib/metadata';
 
@@ -19,7 +20,7 @@ export async function generateMetadata({ params }: PageProps<'/[locale]/buying-g
   return {
     metadataBase: new URL(SITE_ORIGIN),
     title: { absolute: 'Buying Guides | AQUASEE' },
-    description: 'Practical AQUASEE buying guides for choosing a residential pool slide and understanding its complete project cost.',
+    description: 'Practical AQUASEE buying guides for residential pool slides and compact water-play planning.',
     alternates: { canonical: url, languages: published ? { en: url, 'x-default': url } : {} },
     robots: { index: published, follow: true },
     openGraph: { type: 'website', url, title: 'Buying Guides | AQUASEE', description: 'Practical guides for design-led pool and water-play decisions.', images: [{ url: `${SITE_ORIGIN}${buyingGuides[0].cover.src}`, width: 1672, height: 941, alt: buyingGuides[0].cover.alt }] },
@@ -33,6 +34,7 @@ export default async function BuyingGuidesPage({ params }: PageProps<'/[locale]/
   const visibleGuides = [
     ...(anyPublished ? buyingGuides.filter(isBuyingGuidePublished) : buyingGuides),
     ...(isCostGuidePublished() ? [{ id: 'pool-slide-cost-v21', topic: 'Pool Slides', kind: 'Buying Guide', guide: costGuide, cover: costGuideAssets.cover }] as const : []),
+    ...(isSplashGuidePublished() ? [{ id: 'splash-guide', topic: 'Splash Play', kind: 'Buying Guide', guide: splashGuide, cover: splashGuideCover }] as const : []),
   ];
   const topics = [...new Set(visibleGuides.map((article) => article.topic))];
   return <>
@@ -49,7 +51,7 @@ export default async function BuyingGuidesPage({ params }: PageProps<'/[locale]/
       </div>
       <div className="grid max-w-4xl gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
         {visibleGuides.filter((article) => article.topic === topic).map((article) => {
-          const publishedAt = article.id === 'pool-slide-cost-v21' ? costGuidePublishedAt() : guidePublishedAt(article);
+          const publishedAt = article.id === 'pool-slide-cost-v21' ? costGuidePublishedAt() : article.id === 'splash-guide' ? splashGuideRelease.publishedAt : guidePublishedAt(article);
           return <article key={article.id} className="group overflow-hidden border border-line bg-paper">
             <Link href={article.guide.path} className="block focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
               <div className="relative aspect-[16/9] overflow-hidden bg-sand"><Image src={article.cover.src} alt={article.cover.alt} width={1672} height={941} sizes="(min-width: 768px) 50vw, 100vw" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" /><ImageDisclosure className="absolute bottom-3 left-3">AI concept visualization</ImageDisclosure></div>

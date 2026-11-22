@@ -1,5 +1,6 @@
 import { productCategories } from '@/content/products';
 import { costGuide, isCostGuidePublished } from '@/content/seo/cost-guide';
+import { splashGuide, isSplashGuidePublished } from '@/content/seo/splash-guide';
 
 export const dynamic = 'force-static';
 export async function GET() {
@@ -19,6 +20,7 @@ export async function GET() {
     '',
     ...productCategories.map((item) => `- [${item.name}](${root}/collections/${item.slug}) — ${item.summary}`),
     ...(isCostGuidePublished() ? ['', '## Buying guides', '', `- [${costGuide.title}](${root}${costGuide.path}) — Dated third-party price examples and a checklist of project costs. No AQUASEE price or project total is claimed.`] : []),
+    ...(isSplashGuidePublished() ? ['', `- [${splashGuide.title}](${root}${splashGuide.path}) — How small venues can plan water-play interactions, systems and site responsibilities. No AQUASEE SKU or completed project is claimed.`] : []),
     '',
     '## Concept Collection',
     '',
