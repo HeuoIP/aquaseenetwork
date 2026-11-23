@@ -1,0 +1,39 @@
+{
+  "task": "AQ03-G4-CONTENT-20261123",
+  "version": "V1.2",
+  "sourceSha256": "e693f31a80860bb5bb32277bb8d4505d95f7c6fef1a0042e7d916d7b7694ca4a",
+  "assets": {
+    "cover": {
+      "width": 1600,
+      "height": 900,
+      "alt": "AI concept of a triangular fabric shade sail on three independent posts beside an empty pool and loungers.",
+      "caption": "AI-generated concept illustration of a poolside shade sail. This is not an AQUASEE installation or a specified product; supports, connections and shade coverage require project-specific review.",
+      "disclosure": "AI concept visualization",
+      "src": "/images/guides/g4/g4-pool-shade-hero-v1.webp",
+      "sha256": "5b1001ae981a955b17bad3da3a4239c381881a9bff44099e32c945e495bb6f4b"
+    },
+    "zones": {
+      "width": 1600,
+      "height": 1000,
+      "alt": "Concept plan distinguishing a water shade target from a poolside seating target, with circulation retained and use periods to be recorded.",
+      "caption": "Editorial planning diagram: the marked water and seating areas express buyer priorities, not calculated shadows or guaranteed coverage. Ask the designer to assess the relevant dates, hours and operating season.",
+      "disclosure": "Editorial concept diagram",
+      "src": "/images/guides/g4/g4-shade-objectives-v1.webp",
+      "sha256": "abdda7d30827acbd923df8f455e9c3d880a1f9ba7e403f9ac919f0983439c6be"
+    },
+    "inputs": {
+      "width": 1600,
+      "height": 1000,
+      "alt": "Editorial site-input diagram showing a pool, existing building and unconfirmed support positions, with photos, records and review responsibilities to collect.",
+      "caption": "Editorial planning diagram, not to scale. Question marks identify potential positions for review, not approved anchors. Provide site records and assign responsibility for confirming supports, connections and final geometry.",
+      "disclosure": "Editorial concept diagram",
+      "src": "/images/guides/g4/g4-site-inputs-v1.webp",
+      "sha256": "6102c31f5b866a33629dfbb2be746bf2aac1923f072316f356126f96c9c76d62"
+    }
+  },
+  "assetsSha256": "044afec511d692224e0c1f25596593669c6e7de9faa42432ff7733f6eafa0889",
+  "approvedBy": "Victor, AQUASEE site owner",
+  "decisionRef": "docs/seo/g4-release-decision.md",
+  "publishedAt": "2026-11-23T09:37:53+00:00",
+  "sourceVisualPackage": "E:\\04_共享专业能力中心\\SP02_Aria_视觉设计与效果图\\OUTPUTS\\AQ03-G4-20261123"
+}

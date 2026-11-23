@@ -7,6 +7,8 @@ import { pageMetadata, SITE_ORIGIN } from '@/lib/metadata';
 import { ImageDisclosure } from '@/components/ui/ImageDisclosure';
 import { buyingGuides, isBuyingGuidePublished } from '@/content/seo/buying-guides';
 
+import { shadeGuide, isShadeGuidePublished } from '@/content/seo/shade-guide';
+
 type Props = PageProps<'/[locale]/collections/[slug]'>;
 export function generateStaticParams() {
   return collectionSlugs.map((slug) => ({ locale: 'en', slug }));
@@ -79,6 +81,7 @@ export default async function CollectionPage({ params }: Props) {
       <p className="mt-4 max-w-2xl text-body">Visual directions illustrate possible experiences. They are not engineered, approved or available to order.</p>
       <Link className="mt-7 inline-block font-medium text-accent underline underline-offset-4" href="/concept-collection">View concepts →</Link>
     </div></section>
+    {slug === 'pool-shade' && isShadeGuidePublished() ? <section className="bg-paper py-16"><div className="shell"><p className="eyebrow text-accent">Buying Guide</p><h2 className="mt-4 text-title">Plan pool shade before you order.</h2><p className="mt-4 max-w-2xl text-body">Prepare your site brief, review support conditions and compare quotation scope.</p><Link className="mt-7 inline-block font-medium text-accent underline underline-offset-4" href={shadeGuide.path}>Read the pool shade installation guide →</Link></div></section> : null}
     {slug === 'pool-slides' && buyingGuides.some(isBuyingGuidePublished) ? <section className="bg-paper py-16"><div className="shell"><p className="eyebrow text-accent">Buying Guide</p><h2 className="mt-4 text-title">How to choose a residential pool slide.</h2><p className="mt-4 max-w-2xl text-body">Compare site conditions, model documentation and the design questions that matter before choosing a slide.</p><Link className="mt-7 inline-block font-medium text-accent underline underline-offset-4" href="/buying-guides/choose-a-pool-slide">Read the residential pool slide guide →</Link></div></section> : null}
   </>;
 }

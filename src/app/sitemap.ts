@@ -8,6 +8,8 @@ import { buyingGuides, guidePublishedAt, isBuyingGuidePublished } from '@/conten
 import { costGuide, costGuidePublishedAt, isCostGuidePublished } from '@/content/seo/cost-guide';
 import { splashGuide, splashGuideRelease, isSplashGuidePublished } from '@/content/seo/splash-guide';
 
+import { shadeGuide, shadeGuideRelease, isShadeGuidePublished } from '@/content/seo/shade-guide';
+
 /**
  * The sitemap.
  *
@@ -61,8 +63,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
 
     const publishedGuides = buyingGuides.filter(isBuyingGuidePublished);
-    if (publishedGuides.length || isCostGuidePublished() || isSplashGuidePublished()) {
-      const newest = [...publishedGuides.map((article) => guidePublishedAt(article)!), ...(isCostGuidePublished() ? [costGuidePublishedAt()!] : []), ...(isSplashGuidePublished() ? [splashGuideRelease.publishedAt] : [])].sort().at(-1)!;
+    if (publishedGuides.length || isCostGuidePublished() || isSplashGuidePublished() || isShadeGuidePublished()) {
+      const newest = [...publishedGuides.map((article) => guidePublishedAt(article)!), ...(isCostGuidePublished() ? [costGuidePublishedAt()!] : []), ...(isSplashGuidePublished() ? [splashGuideRelease.publishedAt] : []), ...(isShadeGuidePublished() ? [shadeGuideRelease.publishedAt] : [])].sort().at(-1)!;
       entries.push({ url: `${base}/buying-guides`, lastModified: new Date(newest), changeFrequency: 'monthly', priority: 0.7,
         alternates: { languages: toAbsolute(await languageAlternates('/buying-guides')) } });
       for (const article of publishedGuides) entries.push({
@@ -72,6 +74,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       if (isCostGuidePublished()) entries.push({
         url: `${base}${costGuide.path}`, lastModified: new Date(costGuidePublishedAt()!), changeFrequency: 'monthly', priority: 0.8,
         alternates: { languages: toAbsolute(await languageAlternates(costGuide.path)) },
+      });
+      if (isShadeGuidePublished()) entries.push({
+        url: `${base}${shadeGuide.path}`, lastModified: new Date(shadeGuideRelease.publishedAt), changeFrequency: 'monthly', priority: 0.8,
+        alternates: { languages: toAbsolute(await languageAlternates(shadeGuide.path)) },
       });
       if (isSplashGuidePublished()) entries.push({
         url: `${base}${splashGuide.path}`, lastModified: new Date(splashGuideRelease.publishedAt), changeFrequency: 'monthly', priority: 0.8,

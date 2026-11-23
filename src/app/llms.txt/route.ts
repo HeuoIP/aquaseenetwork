@@ -2,6 +2,8 @@ import { productCategories } from '@/content/products';
 import { costGuide, isCostGuidePublished } from '@/content/seo/cost-guide';
 import { splashGuide, isSplashGuidePublished } from '@/content/seo/splash-guide';
 
+import { shadeGuide, isShadeGuidePublished } from '@/content/seo/shade-guide';
+
 export const dynamic = 'force-static';
 export async function GET() {
   const root = 'https://www.aquasee.art';
@@ -22,6 +24,7 @@ export async function GET() {
     ...(isCostGuidePublished() ? ['', '## Buying guides', '', `- [${costGuide.title}](${root}${costGuide.path}) — Dated third-party price examples and a checklist of project costs. No AQUASEE price or project total is claimed.`] : []),
     ...(isSplashGuidePublished() ? ['', `- [${splashGuide.title}](${root}${splashGuide.path}) — How small venues can plan water-play interactions, systems and site responsibilities. No AQUASEE SKU or completed project is claimed.`] : []),
     '',
+    ...(isShadeGuidePublished() ? [`- [${shadeGuide.title}](${root}${shadeGuide.path}) — Pool shade site planning, support review and quotation checklist.`, ''] : []),
     '## Concept Collection',
     '',
     `- [Concept Collection](${root}/concept-collection) — AI-assisted visual studies. Not manufactured, engineering verified, approved for safety, confirmed for supply or available to order.`,
