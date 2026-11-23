@@ -1,0 +1,66 @@
+{
+  "version": "1.0",
+  "date_local": "2026-11-23",
+  "images": [
+    {
+      "file": "g4-pool-shade-hero-v1.jpg",
+      "width": 1600,
+      "height": 900,
+      "bytes": 663861,
+      "decode": "pass"
+    },
+    {
+      "file": "g4-pool-shade-hero-v1.webp",
+      "width": 1600,
+      "height": 900,
+      "bytes": 349420,
+      "decode": "pass"
+    },
+    {
+      "file": "g4-shade-objectives-v1.png",
+      "width": 1600,
+      "height": 1000,
+      "bytes": 147552,
+      "decode": "pass"
+    },
+    {
+      "file": "g4-shade-objectives-v1.webp",
+      "width": 1600,
+      "height": 1000,
+      "bytes": 131014,
+      "decode": "pass"
+    },
+    {
+      "file": "g4-site-inputs-v1.png",
+      "width": 1600,
+      "height": 1000,
+      "bytes": 131147,
+      "decode": "pass"
+    },
+    {
+      "file": "g4-site-inputs-v1.webp",
+      "width": 1600,
+      "height": 1000,
+      "bytes": 119058,
+      "decode": "pass"
+    }
+  ],
+  "svg": [
+    {
+      "file": "g4-shade-objectives-v1.svg",
+      "xml": "pass",
+      "external_resources": false,
+      "scripts": false,
+      "text_bounds": "pass",
+      "text_elements": 24
+    },
+    {
+      "file": "g4-site-inputs-v1.svg",
+      "xml": "pass",
+      "external_resources": false,
+      "scripts": false,
+      "text_bounds": "pass",
+      "text_elements": 27
+    }
+  ]
+}

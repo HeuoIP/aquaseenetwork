@@ -8,6 +8,7 @@ import { canIndexProductCatalog } from '@/content/catalog-index';
 import { buyingGuides, guideBySlug, isBuyingGuidePublished } from '@/content/seo/buying-guides';
 import { costGuide, isCostGuidePublished } from '@/content/seo/cost-guide';
 import { splashGuide, isSplashGuidePublished } from '@/content/seo/splash-guide';
+import { shadeGuide, isShadeGuidePublished } from '@/content/seo/shade-guide';
 /** Canonical origin. Identical for every language. */
 export const SITE_ORIGIN = 'https://www.aquasee.art';
 
@@ -24,8 +25,9 @@ export const SITE_ORIGIN = 'https://www.aquasee.art';
  * about which language publishes which path.
  */
 export function pathExistsIn(dict: Dictionary, path: string): boolean {
-  if (path === '/buying-guides') return dict.locale === 'en' && (buyingGuides.some(isBuyingGuidePublished) || isCostGuidePublished() || isSplashGuidePublished());
+  if (path === '/buying-guides') return dict.locale === 'en' && (buyingGuides.some(isBuyingGuidePublished) || isCostGuidePublished() || isSplashGuidePublished() || isShadeGuidePublished());
   if (path === costGuide.path) return dict.locale === 'en' && isCostGuidePublished();
+  if (path === shadeGuide.path) return dict.locale === 'en' && isShadeGuidePublished();
   if (path === splashGuide.path) return dict.locale === 'en' && isSplashGuidePublished();
   if (path.startsWith('/buying-guides/')) {
     const article = guideBySlug(path.slice('/buying-guides/'.length));
@@ -82,6 +84,7 @@ export async function localeAvailability(): Promise<Record<string, string[]>> {
   for (const article of buyingGuides) out[article.guide.path] = ['en'];
   out[costGuide.path] = ['en'];
   out[splashGuide.path] = ['en'];
+  out[shadeGuide.path] = ['en'];
   for (const locale of PUBLISHED_LOCALES) {
     const dict = await getDictionary(locale);
     if (!dict.products || !catalogUi(locale)) continue;
@@ -115,9 +118,10 @@ export async function localeAvailability(): Promise<Record<string, string[]>> {
 export async function languageAlternates(path: string): Promise<Record<string, string>> {
   if (path === '/buying-guides' || path.startsWith('/buying-guides/')) {
     if (path === costGuide.path) return isCostGuidePublished() ? { en: path, 'x-default': path } : {};
+    if (path === shadeGuide.path) return isShadeGuidePublished() ? { en: path, 'x-default': path } : {};
     if (path === splashGuide.path) return isSplashGuidePublished() ? { en: path, 'x-default': path } : {};
     const article = path === '/buying-guides' ? null : guideBySlug(path.slice('/buying-guides/'.length));
-    return (path === '/buying-guides' ? buyingGuides.some(isBuyingGuidePublished) || isCostGuidePublished() || isSplashGuidePublished() : !!article && isBuyingGuidePublished(article))
+    return (path === '/buying-guides' ? buyingGuides.some(isBuyingGuidePublished) || isCostGuidePublished() || isSplashGuidePublished() || isShadeGuidePublished() : !!article && isBuyingGuidePublished(article))
       ? { en: path, 'x-default': path } : {};
   }
   // An accessible but noindex pre-release catalogue must not be advertised

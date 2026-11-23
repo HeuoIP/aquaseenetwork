@@ -14,7 +14,7 @@ const components: Components = {
     ? <Link href={href} className="font-medium text-accent underline underline-offset-4 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">{children}</Link>
     : <a href={href} className="font-medium text-accent underline underline-offset-4 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">{children}</a>,
   hr: () => <hr className="my-14 border-line" />,
-  table: ({ children }) => <div className="my-8 max-w-full overflow-x-auto rounded-sm border border-line" role="region" aria-label="Pool slide comparison table" tabIndex={0}><table className="w-full min-w-[42rem] border-collapse text-left text-sm leading-relaxed text-body">{children}</table></div>,
+  table: ({ children }) => <div className="my-8 max-w-full overflow-x-auto rounded-sm border border-line" role="region" aria-label="Guide comparison table" tabIndex={0}><table className="w-full min-w-[42rem] border-collapse text-left text-sm leading-relaxed text-body">{children}</table></div>,
   thead: ({ children }) => <thead className="bg-ink text-paper">{children}</thead>,
   th: ({ children }) => <th scope="col" className="min-w-36 border-r border-white/15 px-4 py-3 align-top font-semibold last:border-0">{children}</th>,
   td: ({ children }) => <td className="border-r border-t border-line px-4 py-4 align-top last:border-r-0">{children}</td>,

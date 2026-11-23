@@ -3,6 +3,8 @@ import { collectionFor } from '@/content/commercial-collections';
 import { costGuide, isCostGuidePublished } from '@/content/seo/cost-guide';
 import { splashGuide, isSplashGuidePublished } from '@/content/seo/splash-guide';
 
+import { shadeGuide, isShadeGuidePublished } from '@/content/seo/shade-guide';
+
 export const dynamic = 'force-static';
 export async function GET() {
   const root = 'https://www.aquasee.art';
@@ -29,6 +31,9 @@ export async function GET() {
     `URL: ${root}${splashGuide.path}`, '',
     'A splash pad is a coordinated play area and water system; a feature is one element. Static spray, manual control, touch activation and programmed effects require different components and operating plans.', '',
     'The article explains site, water and supplier interfaces, public safety guidance scope and the information needed for an enquiry. Its third-party examples are not AQUASEE products or endorsements.', '');
+  if (isShadeGuidePublished()) lines.push('## Buying guide: pool shade sail installation', '',
+    `URL: ${root}${shadeGuide.path}`, '',
+    'A procurement planning guide covering shade objectives, site inputs, support review, fabric requirements, quotation scope and installation responsibilities. Concept images illustrate planning questions. Product suitability and local requirements need project-specific confirmation.', '');
   lines.push('## Concept Collection', '',
     `URL: ${root}/concept-collection`, '',
     'The visuals are AI-assisted concept studies. They are not photographs of completed products or client installations. They have not been manufactured or engineering verified; safety, dimensions, materials, compliance, supply and installation are unconfirmed. They cannot be ordered.', '',

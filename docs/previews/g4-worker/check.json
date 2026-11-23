@@ -1,0 +1,85 @@
+{
+  "base": "http://127.0.0.1:8791",
+  "checkedAt": "2026-11-23T09:43:43.921Z",
+  "sourceBlocks": 112,
+  "viewports": [
+    {
+      "width": 1440,
+      "overflow": 0,
+      "javascriptErrors": [],
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "overflow": 0,
+      "javascriptErrors": [],
+      "status": "PASS"
+    },
+    {
+      "width": 320,
+      "overflow": 0,
+      "javascriptErrors": [],
+      "status": "PASS"
+    }
+  ],
+  "assets": [
+    {
+      "path": "/images/guides/g4/g4-pool-shade-hero-v1.webp",
+      "status": 200,
+      "sha256": "5b1001ae981a955b17bad3da3a4239c381881a9bff44099e32c945e495bb6f4b"
+    },
+    {
+      "path": "/images/guides/g4/g4-shade-objectives-v1.webp",
+      "status": 200,
+      "sha256": "abdda7d30827acbd923df8f455e9c3d880a1f9ba7e403f9ac919f0983439c6be"
+    },
+    {
+      "path": "/images/guides/g4/g4-site-inputs-v1.webp",
+      "status": 200,
+      "sha256": "6102c31f5b866a33629dfbb2be746bf2aac1923f072316f356126f96c9c76d62"
+    }
+  ],
+  "routes": [
+    {
+      "path": "/buying-guides",
+      "status": 200
+    },
+    {
+      "path": "/collections/pool-shade",
+      "status": 200
+    },
+    {
+      "path": "/buying-guides/choose-a-pool-slide",
+      "status": 200
+    },
+    {
+      "path": "/buying-guides/pool-slide-total-cost",
+      "status": 200
+    },
+    {
+      "path": "/buying-guides/splash-pad-features-small-resorts",
+      "status": 200
+    },
+    {
+      "path": "/inquiry/personal",
+      "status": 200
+    },
+    {
+      "path": "/inquiry/business",
+      "status": 200
+    },
+    {
+      "path": "/sitemap.xml",
+      "status": 200
+    },
+    {
+      "path": "/llms.txt",
+      "status": 200
+    },
+    {
+      "path": "/llms-full.txt",
+      "status": 200
+    }
+  ],
+  "status": "PASS"
+}

@@ -46,6 +46,7 @@ export default function config(phase: string): NextConfig {
     execFileSync(process.execPath, ['scripts/seo/sync-cost-guide.mjs', '--check'], { cwd: process.cwd(), stdio: 'inherit' });
     execFileSync(process.execPath, ['scripts/seo/sync-cost-guide-images.mjs', '--check'], { cwd: process.cwd(), stdio: 'inherit' });
     execFileSync(process.execPath, ['scripts/seo/sync-splash-guide.mjs', '--check'], { cwd: process.cwd(), stdio: 'inherit' });
+    execFileSync(process.execPath, ['scripts/seo/sync-shade-guide.mjs', '--check'], { cwd: process.cwd(), stdio: 'inherit' });
     execFileSync(process.execPath, ['scripts/catalog-source-coverage.mjs'], { cwd: process.cwd(), stdio: 'inherit' });
     execFileSync(process.execPath, ['scripts/product-catalog-check.mjs'], { cwd: process.cwd(), stdio: 'inherit' });
   }
