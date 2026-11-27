@@ -9,3 +9,5 @@ Publication integration adds actual edition timestamp, index eligibility, en/x-d
 Baseline: commit 1a5e00593c3765c4460c40d94359dccd8c308438; Worker da7caddf-93b3-49cf-9086-20dde66c5df2 at 100% before this release. Follow PR checks and existing production workflow, then record actual deployment/verification separately. This record is authority, not a claim that deployment has already succeeded.
 
 Release continuation on 27 November 2026: actual publication edition timestamp updated to 2026-11-27T20:00:11+08:00. The 26 November timestamp remains the approval-recording time; no earlier completed deployment is claimed. Approved article and image bytes are unchanged.
+
+Repository LF normalization: original reviewed asset manifest hash 94b50ff7a7a9ab14f4318abbd36c13a2c66ac21f8ffc8af58ba28c68b20ebd8b; publication derivative manifest hash bf254d081d7f91fc7b4334becc63a6ff823002d4647d5169d4db491a81081268. Only text-file line endings differ. Approved article and selected WebP bytes remain identical. Historical review-manifest hashes refer to the original local review package.
