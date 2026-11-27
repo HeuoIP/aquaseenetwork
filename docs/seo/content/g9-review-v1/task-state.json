@@ -1,0 +1,29 @@
+{
+  "task": "AQ03-G9-20261127",
+  "version": "G9 V1.1",
+  "status": "Awaiting Victor review",
+  "updatedAt": "2026-11-27T20:55:20+08:00",
+  "topicAuthorization": "Victor approved climbing and requested repeated natural misting/shade association",
+  "article": "article.en.md",
+  "sourceSha256": "1814c7c79187836a2dbf85535078c1704e038bd3151ef59eea60f0cd8d7a22ba",
+  "previewCandidate": "http://127.0.0.1:8796/buying-guides/playground-climbing-nets",
+  "worktree": "E:/02_AQUASEE事业部/AQ03_Nora_官网与SEO_GEO/WORKTREES/g9",
+  "approval": null,
+  "productionChanged": false,
+  "factsChecked": "Primary HUCK/KOMPAN/CPSC/CDC documents; no AQUASEE product specs invented",
+  "visuals": "2 owner-attributed Leo R&D concepts + 2 Aria editorial diagrams",
+  "technical": "PASS: actual Worker; 100 source blocks; 9 FAQs; four served image hashes; 1440/390/320px with no page overflow or JavaScript errors; hero contrast, Metadata/Schema and inquiry navigation checked.",
+  "nextOwner": "Victor reviews concrete G9 V1.1 webpage; Nora revises or releases under same-version authorization",
+  "preview": "http://127.0.0.1:8796/buying-guides/playground-climbing-nets",
+  "selfScore": 90,
+  "reviewPackageDigest": "d265987d80b3e34e1750f8636369c02269152355505a5693cbc29a140ac2cd1a",
+  "leoImages": "Fox cover and boat/forest body concept from owner-specified directory; concept disclosures visible; generation model not recorded",
+  "notionPage": "https://app.notion.com/p/425e618fcec281809c50ce77ee90ccf6",
+  "notionReadback": {
+    "matches": 1,
+    "status": "Awaiting Approval",
+    "gateState": "Awaiting User Approval",
+    "approvalStatus": "Pending",
+    "publishedUrl": null
+  }
+}

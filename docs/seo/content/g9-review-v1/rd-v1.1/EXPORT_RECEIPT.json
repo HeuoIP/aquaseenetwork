@@ -1,0 +1,54 @@
+{
+  "task": "AQ03-G9-20261127",
+  "package": "rd-v1.1",
+  "recorded_at": "2026-11-27T20:51:19.953347+08:00",
+  "owner_source_record": "E:\\01_公司共享资源与知识库\\跨岗位协作\\任务交接\\AQ03-G9-20261127\\Nora\\leo-owner-source-record.json",
+  "owner_record_sha256": "dbe3aaf4b1e6b3a98ba265bfef035f8fa5ff111f4d985ee809e82135eec476e1",
+  "identity": "Leo R&D concept per owner/source identification; original generation tool/model not recorded, not inferred from filename",
+  "tools": {
+    "python": "3.14.3",
+    "Pillow": "12.3.0",
+    "libwebp": "1.6.0"
+  },
+  "parameters": {
+    "format": "WebP",
+    "quality": 92,
+    "method": 6,
+    "lossless": false,
+    "resize": false,
+    "crop": false,
+    "redraw": false,
+    "metadata": "No generated EXIF or attribution embedded; provenance in sidecar",
+    "color_handling": "RGB pixel encoding for export; no deliberate color, exposure or content adjustment"
+  },
+  "assets": [
+    {
+      "source": "E:\\01_公司共享资源与知识库\\AI产出\\小红书图\\雾中狐狸主题游乐堡.png",
+      "source_sha256": "0da329a60d49dab78c87a1e98a0b3bffb7d240106613b705a31a84accb6cf504",
+      "source_bytes": 3036926,
+      "source_mode": "RGB",
+      "output": "g9-leo-fox-concept-v1.1.webp",
+      "output_sha256": "8713c5819fffc0fdfff0241113b3cebecf5f18774ab3aff0e89076a75597c8c6",
+      "output_bytes": 492372,
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio_preserved": true,
+      "decode_check": "pass",
+      "source_unchanged": true
+    },
+    {
+      "source": "E:\\01_公司共享资源与知识库\\AI产出\\小红书图\\ChatGPT 图像 2026年11月27日 19_14_58.png",
+      "source_sha256": "d7b12e9890aad7c5b89e857882d1b1b43a1bfb8dbf52ccfe78b0adef13cd5e6e",
+      "source_bytes": 1578453,
+      "source_mode": "RGB",
+      "output": "g9-leo-boat-forest-concept-v1.1.webp",
+      "output_sha256": "6cf09973fa9b62ce2ae0339e1709b90b96e7df9dc6baf873af97848cf03bd42c",
+      "output_bytes": 292972,
+      "width": 1536,
+      "height": 512,
+      "aspect_ratio_preserved": true,
+      "decode_check": "pass",
+      "source_unchanged": true
+    }
+  ]
+}
