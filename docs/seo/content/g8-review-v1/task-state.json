@@ -1,0 +1,24 @@
+{
+  "task": "AQ03-G8-20261125",
+  "version": "G8 V1",
+  "status": "Awaiting Victor review",
+  "updatedAt": "2026-11-25T19:43:57+08:00",
+  "preview": "http://127.0.0.1:8795/buying-guides/misting-playground-planning",
+  "previewRuntimeSession": 49567,
+  "worktree": "E:/02_AQUASEE事业部/AQ03_Nora_官网与SEO_GEO/WORKTREES/g8",
+  "branch": "codex/g8-misting-playground-20261125",
+  "sourceSha256": "17d399cf14a10b5c065541111a3d24fa8ce99036ab70ff05fba4283a761e6aa2",
+  "reviewPackageDigest": "4589024229e270d523b4bd1efb288fc6867dbb1ff1c9748d66fb5808c40d3fac",
+  "notionPage": "https://app.notion.com/p/423e618fcec281c49777e2508a979a53",
+  "notionReadback": {
+    "matches": 1,
+    "status": "Awaiting Approval",
+    "gateState": "Awaiting User Approval",
+    "publicationDate": null,
+    "publishedUrl": null
+  },
+  "approval": null,
+  "productionChanged": false,
+  "nextOwner": "Victor reviews; Nora revises or releases after specific approval",
+  "separateResearch": "TASK-20261125-0001-CP-AQ03 received 26/26 seeds, not full research completion"
+}

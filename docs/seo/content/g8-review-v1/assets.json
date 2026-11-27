@@ -1,0 +1,32 @@
+{
+  "cover": {
+    "src": "/images/guides/g8/g8-concept-cover-v1.webp",
+    "width": 1600,
+    "height": 900,
+    "disclosure": "Original vector concept illustration",
+    "alt": "Original vector concept of a nature-themed dry play area with a small land slide, climbing screen, shaded rest and a separate optional mist element.",
+    "caption": "Original vector concept illustration, not an AQUASEE project or available product. Play, shade and optional mist are shown as experience elements; their layout, safety and operating conditions require project-specific review.",
+    "textEquivalent": "An abstract landscape includes a low exploration mound with a tunnel and land slide, a climbing screen, a fabric shade over rest seating, and a separate ground-level mist node. There is no pool and no mist shown on the slide or climbing surfaces. The unoccupied scene does not establish safe separation, verified shade coverage, accessibility or cooling performance.",
+    "sha256": "0295e4e8005a363faa6dcd786f26c4c0ceb5e5cd4dc1e66e7d991ecdd03c8669"
+  },
+  "zones": {
+    "src": "/images/guides/g8/g8-zoning-v1.webp",
+    "width": 1600,
+    "height": 1000,
+    "disclosure": "Editorial concept diagram",
+    "alt": "Concept diagram separating dry play, shaded rest and optional mist, with arrival circulation and service access identified for assessment.",
+    "caption": "Editorial interface diagram, not a buildable site plan. Review dry play, shade, optional mist, accessible circulation, service access and mist-off operation together. Zone edges do not represent verified spray limits, safe clearances or drainage design.",
+    "textEquivalent": "Dry play contains climbing, slide and exploration activities. Shaded rest requires supervision and sightline review. Optional mist requires assessment of drift, wet surfaces, drainage, hygiene and operation when mist is off. Arrival circulation and service access are conceptual routes to assess. Review exits, buffers, surfacing and accessible movement with the project team. No dimensions, safety radii, compliant access route or engineered drainage capacity are established.",
+    "sha256": "2c1394be7135ad7ab4f63ea6f0638732f7f49ae25dbe7ab5184648b01ebc652c"
+  },
+  "responsibilities": {
+    "src": "/images/guides/g8/g8-responsibilities-v1.webp",
+    "width": 1600,
+    "height": 900,
+    "disclosure": "Editorial concept diagram",
+    "alt": "Site brief linked to play, shade, water and operations, with designer or installer, structure specialist, water specialist and operator responsibilities to agree.",
+    "caption": "Editorial procurement checklist: agree who is responsible for play and installation, shade structures, water systems and operation. The role labels are responsibilities to assign, not services or qualifications claimed by AQUASEE.",
+    "textEquivalent": "The common site brief records location, users and age, use hours and climate, survey and utilities, budget and scope, plus who closes each information gap. Agree the designer or installer's play and installation scope, including age, surfacing, exits and handover. Agree the structure specialist's shade design, coverage, supports and inspection responsibilities. Agree the water specialist's source, hygiene, drainage and servicing scope. Agree the site's operator, including checks, mist-off operation, shutdown and records. One party may hold several roles, subject to an explicit agreed scope.",
+    "sha256": "023630a56d6bf75342413a54d294c766365f6ddfbadeccf63434f996da82b5ef"
+  }
+}

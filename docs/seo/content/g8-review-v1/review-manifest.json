@@ -1,0 +1,37 @@
+{
+  "task": "AQ03-G8-20261125",
+  "version": "G8 V1",
+  "status": "Awaiting Victor review; not published",
+  "preparedAt": "2026-11-25T19:43:00+08:00",
+  "preview": "http://127.0.0.1:8795/buying-guides/misting-playground-planning",
+  "productionBaseline": "1a5e00593c3765c4460c40d94359dccd8c308438",
+  "strategyAtFinalReview": {
+    "version": "v2.1.2",
+    "decision": "D-014; D-013 four directions retained",
+    "sha256": "aef996c75bb5dedfe405ec9d26e54336054a38ccdd16c8c938bc14476327da81"
+  },
+  "publicationApproval": null,
+  "files": {
+    "article.en.md": "17d399cf14a10b5c065541111a3d24fa8ce99036ab70ff05fba4283a761e6aa2",
+    "assets.json": "94b50ff7a7a9ab14f4318abbd36c13a2c66ac21f8ffc8af58ba28c68b20ebd8b",
+    "metadata.json": "c4f18e770ee8cb616b7b90897f30dc7220469b707ccd8d5d067940d0385000e7",
+    "outline.md": "631274d33b9438e50727894ca9034f171dab7ece22b4cb28baacb97bbfe3b41e",
+    "research-and-intent-map.md": "02d9abf90fc0e2f59bbd2e3a5cf7a1ef55317ce2e609c415813fd00203565bc8",
+    "visual-acceptance.md": "0c3dcb4ba9bb8a9f38ee912bbd194ca57487c48a4953a3b7f67b6af23ff6c05b",
+    "visual-brief.md": "da133faca560a93b0d3ec540a20b6f558630ad3f40fb33142e115332039bd947"
+  },
+  "applicationFiles": {
+    "src\\app\\[locale]\\buying-guides\\misting-playground-planning\\page.tsx": "76ef8caafc3cf717bf9f1d062525744ae975542514e1d2b5c99ee9a95e5f41b9",
+    "src\\content\\seo\\misting-guide.ts": "7355fa24c7410a0a05d73c74923f5fbf53d1ffebbb1a81074fdee1441f33c15b"
+  },
+  "sourceBlocks": 103,
+  "selfScore": 91,
+  "limitations": [
+    "Exact country demand and reliable volume/KD/CPC unavailable",
+    "No site engineering or independent human expert review claimed",
+    "No actual inquiry submission or email delivery test",
+    "No production deployment/indexing observation for G8",
+    "Formal navigation/taxonomy rollout is outside this article preview"
+  ],
+  "packageDigest": "4589024229e270d523b4bd1efb288fc6867dbb1ff1c9748d66fb5808c40d3fac"
+}

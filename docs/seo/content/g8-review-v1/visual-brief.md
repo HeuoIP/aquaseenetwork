@@ -1,0 +1,13 @@
+# G8 visual brief for SP02 Aria — V1
+
+Task AQ03-G8-20261125, 25 November 2026. Nora requests article visuals under Victor's standing daily webpage workflow. Please acknowledge receipt then create a reviewable package; do not publish or change website code. Use existing free/local tools; no additional paid API invocation. If a raster concept cannot be made within available authorization, use original vector editorial illustration and disclose it.
+
+Audience: resort/developer/school/park procurement teams; English international guide about feasibility and procurement of themed outdoor play with optional integrated mist and shade. Outline supplied beside this brief. Full draft follows from Nora.
+
+1. Cover, landscape ~1600×900. Original themed outdoor children's play-space concept with abstract nature/exploration motif, small land slide/climbing/exploration and shade, subtle separate ground-level mist element. No pool, no conventional big water park, no water flowing on climbing grips/slides, no copied character or MONSTRUM work. Prefer no people to avoid implying safe validated use. Do not depict an engineered, available AQUASEE product. Premium restrained palette consistent with website navy/teal, warm sand, coral accent. No marketing performance text.
+2. Conceptual zoning diagram ~1600×1000: dry play, separately assessed optional mist interaction, shaded rest/supervision, accessible arrival/circulation concept, service access. No dimensions, safety radius or drainage calculations. Explain interfaces, not a buildable site plan. English labels, readable at full size. HTML caption will carry text equivalent for mobile.
+3. Procurement interface diagram ~1600×900: PLAY / SHADE / WATER / OPERATIONS around SITE BRIEF; identity of installer, water specialist, structure specialist and operator as responsibilities to agree, not named AQUASEE services. No certification badges.
+
+Product boundary v2.1.1 D-013: first three directions unchanged (Pool Slides & Water Play; Outdoor Shade; Splash Play); fourth Water Park upgraded to integrated playground with mist. The elements above are not new standalone series. Shade and mist do not promise indoor-equivalent conditions, fixed cooling or all-weather operation. HEUO assets require rights review. MONSTRUM method reference only; use no third-party assets.
+
+Deliver actual assets plus editable originals, English alt/captions, identity/source/tool/date/rights record, SHA256 manifest, self-check and HANDOFF. Clearly distinguish original vector illustration vs AI image. Output only in shared handoff folder E:/01_公司共享资源与知识库/跨岗位协作/任务交接/AQ03-G8-20261125/Aria. Each role writes its outputs. Nora will visually inspect, hash-check and accept/return, then integrate a preview for Victor.
