@@ -1,3 +1,4 @@
+import { mistingGuide, isMistingGuidePublished } from '@/content/seo/misting-guide';
 import { productCategories } from '@/content/products';
 import { costGuide, isCostGuidePublished } from '@/content/seo/cost-guide';
 import { splashGuide, isSplashGuidePublished } from '@/content/seo/splash-guide';
@@ -25,6 +26,7 @@ export async function GET() {
     ...(isSplashGuidePublished() ? ['', `- [${splashGuide.title}](${root}${splashGuide.path}) — How small venues can plan water-play interactions, systems and site responsibilities. No AQUASEE SKU or completed project is claimed.`] : []),
     '',
     ...(isShadeGuidePublished() ? [`- [${shadeGuide.title}](${root}${shadeGuide.path}) — Pool shade site planning, support review and quotation checklist.`, ''] : []),
+    ...(isMistingGuidePublished() ? [`- [${mistingGuide.title}](${root}${mistingGuide.path}) — Climate, shade, water and procurement responsibilities for outdoor play with optional mist.`, ''] : []),
     '## Concept Collection',
     '',
     `- [Concept Collection](${root}/concept-collection) — AI-assisted visual studies. Not manufactured, engineering verified, approved for safety, confirmed for supply or available to order.`,

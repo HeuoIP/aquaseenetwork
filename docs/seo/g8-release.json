@@ -1,0 +1,15 @@
+{
+  "task": "AQ03-G8-20261125",
+  "version": "G8 V1",
+  "sourceSha256": "17d399cf14a10b5c065541111a3d24fa8ce99036ab70ff05fba4283a761e6aa2",
+  "assetsSha256": "94b50ff7a7a9ab14f4318abbd36c13a2c66ac21f8ffc8af58ba28c68b20ebd8b",
+  "reviewPackageDigest": "4589024229e270d523b4bd1efb288fc6867dbb1ff1c9748d66fb5808c40d3fac",
+  "approvedBy": "Victor, AQUASEE site owner",
+  "authorizationText": "上线吧",
+  "authorizationContinuation": "继续",
+  "approvalRecordedAt": "2026-11-26T09:13:41+08:00",
+  "decisionRef": "docs/seo/g8-release-decision.md",
+  "publishedAt": "2026-11-27T20:00:11+08:00",
+  "previousCommit": "1a5e00593c3765c4460c40d94359dccd8c308438",
+  "previousWorkerVersion": "da7caddf-93b3-49cf-9086-20dde66c5df2"
+}

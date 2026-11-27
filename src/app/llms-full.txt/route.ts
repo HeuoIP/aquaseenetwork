@@ -1,3 +1,4 @@
+import { mistingGuide, isMistingGuidePublished } from '@/content/seo/misting-guide';
 import { productCategories } from '@/content/products';
 import { collectionFor } from '@/content/commercial-collections';
 import { costGuide, isCostGuidePublished } from '@/content/seo/cost-guide';
@@ -34,6 +35,7 @@ export async function GET() {
   if (isShadeGuidePublished()) lines.push('## Buying guide: pool shade sail installation', '',
     `URL: ${root}${shadeGuide.path}`, '',
     'A procurement planning guide covering shade objectives, site inputs, support review, fabric requirements, quotation scope and installation responsibilities. Concept images illustrate planning questions. Product suitability and local requirements need project-specific confirmation.', '');
+  if (isMistingGuidePublished()) lines.push('## Procurement guide: misting playground planning', '', `URL: ${root}${mistingGuide.path}`, '', 'Planning themed outdoor play with shade and optional mist: climate limits, wet/dry interfaces, water-management responsibilities and quotation scope. Original vector concept illustrations are not completed projects or engineered products. No fixed cooling result or local installation ability is claimed.', '');
   lines.push('## Concept Collection', '',
     `URL: ${root}/concept-collection`, '',
     'The visuals are AI-assisted concept studies. They are not photographs of completed products or client installations. They have not been manufactured or engineering verified; safety, dimensions, materials, compliance, supply and installation are unconfirmed. They cannot be ordered.', '',
