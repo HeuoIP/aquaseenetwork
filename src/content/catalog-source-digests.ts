@@ -227,7 +227,7 @@ export const catalogSourceDigests: Readonly<Record<string, string>> = {
   "src/content/ru/site.ts": "a90335cc1ba8d538b394b224ad5967df6ff4252f695926032b25d0b78bf0611d",
   "src/content/ru/ui.ts": "cafa3b34fb90f750d4066a1b2529ae962a50a1b9eb5cd68bb996a3ccd195ebf7",
   "src/content/seo/buying-guides.ts": "7516f7eaa6c79cba4c07abc7104c75bd0874d45233c235477fbe71abacafbe28",
-  "src/content/seo/climbing-guide.ts": "78db3810322b3e33ef6ba407f74e3e8f766469fdea52cc14e8c47d9d33716d4d",
+  "src/content/seo/climbing-guide.ts": "635b7eac99ac515486019167d6fd2523d90bdaf9993b4234605d65ac4fa4e0e0",
   "src/content/seo/cost-guide-image-manifest.generated.ts": "3a430c025a0446eb45dc309462445fdf66c0d4cadb77bb7e406e58b065aacc11",
   "src/content/seo/cost-guide.ts": "14e21bb9162ac518bf7489eadb7a16fef8f492c5f34bdd7549f89098f7d102ca",
   "src/content/seo/guide-image-manifest.generated.ts": "b652235aaf450a5944c0b2f895dea72f4e1e9ed666313f5013dc18fdeb3923e3",
