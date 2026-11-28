@@ -1,3 +1,4 @@
+import { climbingGuide, climbingAssets, climbingRelease, isClimbingGuidePublished } from '@/content/seo/climbing-guide';
 import { mistingGuide, isMistingGuidePublished } from '@/content/seo/misting-guide';
 import { productCategories } from '@/content/products';
 import { costGuide, isCostGuidePublished } from '@/content/seo/cost-guide';
@@ -27,6 +28,7 @@ export async function GET() {
     '',
     ...(isShadeGuidePublished() ? [`- [${shadeGuide.title}](${root}${shadeGuide.path}) — Pool shade site planning, support review and quotation checklist.`, ''] : []),
     ...(isMistingGuidePublished() ? [`- [${mistingGuide.title}](${root}${mistingGuide.path}) — Climate, shade, water and procurement responsibilities for outdoor play with optional mist.`, ''] : []),
+    ...(isClimbingGuidePublished() ? [`- [${climbingGuide.title}](${root}${climbingGuide.path}) — Climbing system selection, shade timing, optional misting interfaces and quotation scope. R&D concept imagery is illustrative.`, ''] : []),
     '## Concept Collection',
     '',
     `- [Concept Collection](${root}/concept-collection) — AI-assisted visual studies. Not manufactured, engineering verified, approved for safety, confirmed for supply or available to order.`,

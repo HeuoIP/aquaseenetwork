@@ -1,3 +1,4 @@
+import { climbingGuide, climbingAssets, climbingRelease, isClimbingGuidePublished } from '@/content/seo/climbing-guide';
 import { mistingGuide, isMistingGuidePublished } from '@/content/seo/misting-guide';
 import { productCategories } from '@/content/products';
 import { collectionFor } from '@/content/commercial-collections';
@@ -36,6 +37,7 @@ export async function GET() {
     `URL: ${root}${shadeGuide.path}`, '',
     'A procurement planning guide covering shade objectives, site inputs, support review, fabric requirements, quotation scope and installation responsibilities. Concept images illustrate planning questions. Product suitability and local requirements need project-specific confirmation.', '');
   if (isMistingGuidePublished()) lines.push('## Procurement guide: misting playground planning', '', `URL: ${root}${mistingGuide.path}`, '', 'Planning themed outdoor play with shade and optional mist: climate limits, wet/dry interfaces, water-management responsibilities and quotation scope. Original vector concept illustrations are not completed projects or engineered products. No fixed cooling result or local installation ability is claimed.', '');
+  if (isClimbingGuidePublished()) lines.push('## Procurement guide: playground climbing nets', '', `URL: ${root}${climbingGuide.path}`, '', 'Distinguish a net component from a complete climber; coordinate shade objectives, optional misting, equipment documentation, maintenance and quotation responsibilities. Two Leo R&D concepts and two editorial diagrams illustrate the guide, not approved equipment combinations, available models or completed installations.', '');
   lines.push('## Concept Collection', '',
     `URL: ${root}/concept-collection`, '',
     'The visuals are AI-assisted concept studies. They are not photographs of completed products or client installations. They have not been manufactured or engineering verified; safety, dimensions, materials, compliance, supply and installation are unconfirmed. They cannot be ordered.', '',

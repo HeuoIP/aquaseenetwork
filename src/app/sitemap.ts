@@ -1,3 +1,4 @@
+import { climbingGuide, climbingAssets, climbingRelease, isClimbingGuidePublished } from '@/content/seo/climbing-guide';
 import { mistingGuide, mistingRelease, isMistingGuidePublished } from '@/content/seo/misting-guide';
 import type { MetadataRoute } from 'next';
 import { getDictionary } from '@/lib/dictionary';
@@ -75,6 +76,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       if (isCostGuidePublished()) entries.push({
         url: `${base}${costGuide.path}`, lastModified: new Date(costGuidePublishedAt()!), changeFrequency: 'monthly', priority: 0.8,
         alternates: { languages: toAbsolute(await languageAlternates(costGuide.path)) },
+      });
+      if (isClimbingGuidePublished()) entries.push({
+        url: `${base}${climbingGuide.path}`, lastModified: new Date(climbingRelease.publishedAt), changeFrequency: 'monthly', priority: 0.8,
+        alternates: { languages: toAbsolute(await languageAlternates(climbingGuide.path)) },
       });
       if (isMistingGuidePublished()) entries.push({
         url: `${base}${mistingGuide.path}`, lastModified: new Date(mistingRelease.publishedAt), changeFrequency: 'monthly', priority: 0.8,

@@ -1,0 +1,26 @@
+{
+  "recordedAt": "2026-11-27T20:50:39+08:00",
+  "userStatement": "E:\\01_公司共享资源与知识库\\AI产出\\小红书图 他的图在这里",
+  "sourceBasis": "Owner-provided attribution and requested editorial reuse supersedes the prior absence of a source link; no independent engineering or exclusive copyright certification is claimed.",
+  "selected": [
+    {
+      "source": "E:/01_公司共享资源与知识库/AI产出/小红书图/雾中狐狸主题游乐堡.png",
+      "sha256": "0da329a60d49dab78c87a1e98a0b3bffb7d240106613b705a31a84accb6cf504",
+      "identity": "Leo R&D concept image per Victor source identification",
+      "authorization": "Victor requested more Leo R&D images, then explicitly identified this shared directory in current chat",
+      "generationToolModel": "not recorded; not inferred",
+      "stage": "concept visualization, not verified SKU/prototype/install",
+      "use": "G9 article illustration and review; preserve visible concept disclosure"
+    },
+    {
+      "source": "E:/01_公司共享资源与知识库/AI产出/小红书图/ChatGPT 图像 2026年11月27日 19_14_58.png",
+      "sha256": "d7b12e9890aad7c5b89e857882d1b1b43a1bfb8dbf52ccfe78b0adef13cd5e6e",
+      "identity": "Leo R&D concept image per Victor source identification",
+      "authorization": "Victor requested more Leo R&D images, then explicitly identified this shared directory in current chat",
+      "generationToolModel": "not recorded; not inferred",
+      "stage": "concept visualization, not verified SKU/prototype/install",
+      "use": "G9 article illustration and review; preserve visible concept disclosure"
+    }
+  ],
+  "excluded": "Wave/leaf/space images with prominent water-stream or splash-pad appearance not selected for this climbing/misting guide."
+}

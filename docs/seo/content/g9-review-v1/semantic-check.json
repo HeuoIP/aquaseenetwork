@@ -1,0 +1,41 @@
+{
+  "purpose": "User-requested semantic coverage, not ranking or keyword-density prediction",
+  "sections": [
+    {
+      "heading": "What are you buying: a climbing net or a complete rope climber?",
+      "misting": true,
+      "shade": true
+    },
+    {
+      "heading": "How should the climbing challenge match the intended users?",
+      "misting": true,
+      "shade": true
+    },
+    {
+      "heading": "Where should shade fall around playground climbing nets?",
+      "misting": true,
+      "shade": true
+    },
+    {
+      "heading": "Where should misting sit beside a rope climbing playground?",
+      "misting": true,
+      "shade": true
+    },
+    {
+      "heading": "What rope, fittings and surface documents should you request?",
+      "misting": true,
+      "shade": true
+    },
+    {
+      "heading": "Who maintains the nets, misting and shade?",
+      "misting": true,
+      "shade": true
+    },
+    {
+      "heading": "How should the quote separate climbing, misting and shade?",
+      "misting": true,
+      "shade": true
+    }
+  ],
+  "questions": 9
+}

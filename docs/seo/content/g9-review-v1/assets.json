@@ -1,0 +1,42 @@
+{
+  "cover": {
+    "src": "/images/guides/g9/g9-leo-fox-concept-v1.1.webp",
+    "width": 1536,
+    "height": 1024,
+    "alt": "Fox-themed playground concept with a climbing net, overhead fabric shade and misting around the play structure.",
+    "caption": "Leo R&D concept visualization. Not a completed installation, verified available model or approval for wet use. Depicted people, materials, shade coverage and misting placement are illustrative; equipment suitability and site interfaces require separate assessment.",
+    "textEquivalent": "A fox-themed play structure includes a climbing net and slide beneath fabric shade, with mist depicted nearby. The rendering supplies no verified equipment dimensions, dry boundary, shade study or cooling result.",
+    "disclosure": "AQUASEE R&D concept — Leo",
+    "sha256": "8713c5819fffc0fdfff0241113b3cebecf5f18774ab3aff0e89076a75597c8c6"
+  },
+  "zones": {
+    "src": "/images/guides/g9/g9-interfaces-v1.webp",
+    "width": 1600,
+    "height": 1000,
+    "alt": "Concept diagram linking climbing equipment review, time-based shade and independent supports, and optional misting drift, water and mist-off questions.",
+    "caption": "Editorial interface diagram, not a site plan. Assess equipment use zones, shade timing and supports, mist drift and wet surfaces, water and drainage, circulation, supervision and mist-off operation. No safety clearance or verified dry boundary is established.",
+    "textEquivalent": "Shade: assess dates, hours and coverage; review supports and connections; do not assume the climber can support shade. Climbing: confirm the equipment and intended users; assess use zones, exits, surfacing, visibility and maintenance access. Optional misting: assess drift, wetting and drainage; confirm water-system responsibilities and a mist-off operating mode. Circulation and supervision are questions to resolve. The diagram supplies no dimensions, safety radius, wet-use approval, sun study or engineered drainage design.",
+    "disclosure": "Editorial concept diagram",
+    "sha256": "26902867f35263324b40a9c3316920b2229c305f37f2d20ee003ed3c9e0a3f9e"
+  },
+  "responsibilities": {
+    "src": "/images/guides/g9/g9-scope-v1.webp",
+    "width": 1600,
+    "height": 900,
+    "alt": "Quote checklist comparing climbing, shade, misting and site or operator scope, with responsibilities and evidence to agree for each.",
+    "caption": "Editorial quotation checklist: compare inclusions, exclusions, responsibilities and evidence across the climbing, shade, misting and site or operator scope. These are procurement packages, not new product series or AQUASEE service commitments.",
+    "textEquivalent": "Climbing: establish whether the quote covers a net or complete climber, ropes, fittings and surfacing; agree supplier, installer, inspection and repair responsibilities; request actual model documents and use, care and warranty scope. Shade: agree covering, supports, foundations and climbing interfaces; assign structural design, installation and inspection; request time-based shade objectives and design and maintenance scope. Misting: agree water, controls, utilities, drainage and servicing; assign system supplier, trades and water-management responsibilities; request wetting and drift assessment, shutdown, restart and care instructions. Site and operator: agree site works, access, handover, running costs and who closes gaps; obtain commissioning records and named tasks and exclusions. One contractor may not provide every package. These are questions for proposals, not claims that AQUASEE provides local installation, engineering or water services.",
+    "disclosure": "Editorial concept diagram",
+    "sha256": "2e1337c36893554be73e320b1ea2d34e027b6e596b0e9dc67cb070f63c8110f0"
+  },
+  "rdStudy": {
+    "src": "/images/guides/g9/g9-leo-boat-forest-concept-v1.1.webp",
+    "width": 1536,
+    "height": 512,
+    "alt": "Forest boat-themed playground concept combining a climbing ramp, net passage, fabric shade and nearby misting.",
+    "caption": "Leo R&D concept visualization. Not a completed installation, verified available model or approval for wet use. Depicted people, materials, shade coverage and misting placement are illustrative; equipment suitability and site interfaces require separate assessment. This concept combines several play activities; it is not a standalone climbing-net product specification.",
+    "textEquivalent": "The boat-themed concept depicts a climbing ramp, net passage and slides below broad fabric shade, with misting near the play space. A canopy in a rendering does not establish shade at agreed dates and hours; the image does not demonstrate a safe misting or climbing layout.",
+    "disclosure": "AQUASEE R&D concept — Leo",
+    "sha256": "6cf09973fa9b62ce2ae0339e1709b90b96e7df9dc6baf873af97848cf03bd42c"
+  }
+}

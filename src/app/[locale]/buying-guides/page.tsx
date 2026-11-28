@@ -1,3 +1,4 @@
+import { climbingGuide, climbingAssets, climbingRelease, isClimbingGuidePublished } from '@/content/seo/climbing-guide';
 import { mistingGuide, mistingAssets, mistingRelease, isMistingGuidePublished } from '@/content/seo/misting-guide';
 import type { Metadata } from 'next';
 import Image from 'next/image';
@@ -35,6 +36,7 @@ export default async function BuyingGuidesPage({ params }: PageProps<'/[locale]/
   if (locale !== 'en') notFound();
   const anyPublished = buyingGuides.some(isBuyingGuidePublished);
   const visibleGuides = [
+    ...(isClimbingGuidePublished() ? [{ id: 'climbing-guide', topic: 'Cool Playgrounds', kind: 'Procurement Guide', guide: climbingGuide, cover: climbingAssets.cover }] as const : []),
     ...(anyPublished ? buyingGuides.filter(isBuyingGuidePublished) : buyingGuides),
     ...(isCostGuidePublished() ? [{ id: 'pool-slide-cost-v21', topic: 'Pool Slides', kind: 'Buying Guide', guide: costGuide, cover: costGuideAssets.cover }] as const : []),
     ...(isShadeGuidePublished() ? [{ id: 'shade-guide', topic: 'Pool Shade', kind: 'Buying Guide', guide: shadeGuide, cover: shadeGuideAssets.cover }] as const : []),
@@ -56,10 +58,10 @@ export default async function BuyingGuidesPage({ params }: PageProps<'/[locale]/
       </div>
       <div className="grid max-w-4xl gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
         {visibleGuides.filter((article) => article.topic === topic).map((article) => {
-          const publishedAt = article.id === 'misting-guide' ? mistingRelease.publishedAt : article.id === 'pool-slide-cost-v21' ? costGuidePublishedAt() : article.id === 'splash-guide' ? splashGuideRelease.publishedAt : article.id === 'shade-guide' ? shadeGuideRelease.publishedAt : guidePublishedAt(article);
+          const publishedAt = article.id === 'climbing-guide' ? climbingRelease.publishedAt : article.id === 'misting-guide' ? mistingRelease.publishedAt : article.id === 'pool-slide-cost-v21' ? costGuidePublishedAt() : article.id === 'splash-guide' ? splashGuideRelease.publishedAt : article.id === 'shade-guide' ? shadeGuideRelease.publishedAt : guidePublishedAt(article);
           return <article key={article.id} className="group overflow-hidden border border-line bg-paper">
             <Link href={article.guide.path} className="block focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
-              <div className="relative aspect-[16/9] overflow-hidden bg-sand"><Image src={article.cover.src} alt={article.cover.alt} width={1672} height={941} sizes="(min-width: 768px) 50vw, 100vw" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" /><ImageDisclosure className="absolute bottom-3 left-3">{article.id === 'misting-guide' ? 'Original vector concept' : 'AI concept visualization'}</ImageDisclosure></div>
+              <div className="relative aspect-[16/9] overflow-hidden bg-sand"><Image src={article.cover.src} alt={article.cover.alt} width={1672} height={941} sizes="(min-width: 768px) 50vw, 100vw" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" /><ImageDisclosure className="absolute bottom-3 left-3">{article.id === 'climbing-guide' ? 'AQUASEE R&D concept — Leo' : article.id === 'misting-guide' ? 'Original vector concept' : 'AI concept visualization'}</ImageDisclosure></div>
               <div className="p-6 sm:p-8">
                 <p className="font-mono text-xs uppercase tracking-[0.16em] text-accent">{article.topic} / {article.kind}</p>
                 <h3 className="mt-4 font-display text-3xl leading-tight text-ink">{article.guide.title}</h3>

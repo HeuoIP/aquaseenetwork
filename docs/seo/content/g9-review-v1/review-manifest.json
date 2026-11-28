@@ -1,0 +1,38 @@
+{
+  "task": "AQ03-G9-20261127",
+  "version": "G9 V1.1",
+  "preparedAt": "2026-11-27T20:55:20+08:00",
+  "status": "Awaiting Victor concrete-version review",
+  "topicApproved": true,
+  "publicationApproval": null,
+  "strategyVersion": "v2.1.2 / D-014",
+  "strategySha256": "aef996c75bb5dedfe405ec9d26e54336054a38ccdd16c8c938bc14476327da81",
+  "productionBaseline": "44cf8666f0fc1ac37582775e64ebbfbed63c7387",
+  "preview": "http://127.0.0.1:8796/buying-guides/playground-climbing-nets",
+  "files": {
+    "article.en.md": "1814c7c79187836a2dbf85535078c1704e038bd3151ef59eea60f0cd8d7a22ba",
+    "assets.json": "e0f5702193c66c6559042440824d34bd9cc03fb87f991f55f8a08e3bd8f51198",
+    "metadata.json": "0b8c90ac2ccab3d11a3e423e5e011e606022f9f7d28f0335b66cd2effc486007",
+    "outline.md": "040d7bcceea6d55af3fd3fe91bf7fb2b47de48c457493d0cea62948f5d608231",
+    "research-and-intent-map.md": "548380aa20c9902f7f709b55c28a662e9b7c2538b2882dc33e4f0664c567c066",
+    "semantic-check.json": "a1a53690ca9114e1a1032edc5a086f3c0d9ee10bc09480b4270b18fe689b079b",
+    "visual-acceptance.md": "0bbded91563dc8f8efa73e3b3c447db60f0f8d766729aa40aec40b08c2cf2635",
+    "image-preference.md": "c60dc74ce8ce97e22a91a02953e45de7421a668ca961e08522af1e3162d07aff",
+    "leo-image-receipt.md": "6d28fd55c2fb894b51995a3201b8134c872f215fc20b2788fe106cf3d3c8651d",
+    "leo-owner-source-record.json": "dbe3aaf4b1e6b3a98ba265bfef035f8fa5ff111f4d985ee809e82135eec476e1",
+    "quality-review.md": "7a29d58c481bfed71bfa6b000da64c71ed0d7dc0808350e798e63ed65c3101bd"
+  },
+  "applicationFiles": {
+    "src/content/seo/climbing-guide.ts": "730630c224ae3670359b46d4d6e18d98373879517f6ad5186192fe3358203c59",
+    "src/app/[locale]/buying-guides/playground-climbing-nets/page.tsx": "f5823c7cb0292405e4dcd381ee2f05b8ccefb3ea268dff00dd0d6e9fe389272b",
+    "src/lib/metadata.ts": "c6a432e5ce041d3624c8a4aacbf97acb2f0fde75455cea7356f3d7727f67cf5a"
+  },
+  "selectedVisuals": "2 owner-attributed Leo R&D concepts + 2 Aria editorial diagrams",
+  "leoVisuals": "Fox cover and boat/forest body concept from owner-specified directory; concept disclosures visible; generation model not recorded",
+  "sourceBlocks": 100,
+  "faqCount": 9,
+  "selfScore": 90,
+  "verificationSha256": "6d15ad2345230dd3d8434ca8a9dcc0a7603336ea72b3de85ecb1b4136cb4fb19",
+  "imageCount": 4,
+  "packageDigest": "d265987d80b3e34e1750f8636369c02269152355505a5693cbc29a140ac2cd1a"
+}

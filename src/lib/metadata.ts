@@ -1,3 +1,4 @@
+import { climbingGuide, isClimbingGuidePublished } from '@/content/seo/climbing-guide';
 import { mistingGuide, isMistingGuidePublished } from '@/content/seo/misting-guide';
 import type { Metadata } from 'next';
 import { LOCALE_TAGS, PUBLISHED_LOCALES, DEFAULT_LOCALE, localePath, type Locale } from '@/lib/locale';
@@ -27,6 +28,7 @@ export const SITE_ORIGIN = 'https://www.aquasee.art';
  */
 export function pathExistsIn(dict: Dictionary, path: string): boolean {
   if (path === '/buying-guides') return dict.locale === 'en' && (buyingGuides.some(isBuyingGuidePublished) || isCostGuidePublished() || isSplashGuidePublished() || isShadeGuidePublished());
+  if (path === climbingGuide.path) return dict.locale === 'en' && isClimbingGuidePublished();
   if (path === mistingGuide.path) return dict.locale === 'en' && isMistingGuidePublished();
   if (path === costGuide.path) return dict.locale === 'en' && isCostGuidePublished();
   if (path === shadeGuide.path) return dict.locale === 'en' && isShadeGuidePublished();
@@ -88,6 +90,7 @@ export async function localeAvailability(): Promise<Record<string, string[]>> {
   out[splashGuide.path] = ['en'];
   out[shadeGuide.path] = ['en'];
   out[mistingGuide.path] = ['en'];
+  out[climbingGuide.path] = ['en'];
   for (const locale of PUBLISHED_LOCALES) {
     const dict = await getDictionary(locale);
     if (!dict.products || !catalogUi(locale)) continue;
@@ -120,6 +123,7 @@ export async function localeAvailability(): Promise<Record<string, string[]>> {
  */
 export async function languageAlternates(path: string): Promise<Record<string, string>> {
   if (path === '/buying-guides' || path.startsWith('/buying-guides/')) {
+    if (path === climbingGuide.path) return isClimbingGuidePublished() ? { en: path, 'x-default': path } : {};
     if (path === mistingGuide.path) return isMistingGuidePublished() ? { en: path, 'x-default': path } : {};
     if (path === costGuide.path) return isCostGuidePublished() ? { en: path, 'x-default': path } : {};
     if (path === shadeGuide.path) return isShadeGuidePublished() ? { en: path, 'x-default': path } : {};

@@ -1,0 +1,14 @@
+{
+  "task": "AQ03-G9-20261127",
+  "version": "G9 V1.1",
+  "sourceSha256": "1814c7c79187836a2dbf85535078c1704e038bd3151ef59eea60f0cd8d7a22ba",
+  "assetsSha256": "e0f5702193c66c6559042440824d34bd9cc03fb87f991f55f8a08e3bd8f51198",
+  "reviewPackageDigest": "d265987d80b3e34e1750f8636369c02269152355505a5693cbc29a140ac2cd1a",
+  "approvedBy": "Victor, AQUASEE site owner",
+  "authorizationText": "发布吧",
+  "approvalRecordedAt": "2026-11-27T21:01:50+08:00",
+  "decisionRef": "docs/seo/g9-release-decision.md",
+  "publishedAt": "2026-11-28T08:16:30+08:00",
+  "previousCommit": "44cf8666f0fc1ac37582775e64ebbfbed63c7387",
+  "previousWorkerVersion": "879bbdb0-762b-456d-9373-3d6db84ea3a4"
+}

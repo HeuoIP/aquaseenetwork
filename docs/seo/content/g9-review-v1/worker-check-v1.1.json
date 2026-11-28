@@ -1,0 +1,94 @@
+{
+  "environment": "local OpenNext Worker",
+  "base": "http://127.0.0.1:8796",
+  "path": "/buying-guides/playground-climbing-nets",
+  "checkedAt": "2026-11-27T12:54:21.804Z",
+  "sourceBlocks": 100,
+  "faqCount": 9,
+  "viewports": [
+    {
+      "width": 1440,
+      "overflow": 0,
+      "javascriptErrors": [],
+      "status": "PASS"
+    },
+    {
+      "width": 390,
+      "overflow": 0,
+      "javascriptErrors": [],
+      "status": "PASS"
+    },
+    {
+      "width": 320,
+      "overflow": 0,
+      "javascriptErrors": [],
+      "status": "PASS"
+    }
+  ],
+  "assets": [
+    {
+      "path": "/images/guides/g9/g9-leo-fox-concept-v1.1.webp",
+      "status": 200,
+      "sha256": "8713c5819fffc0fdfff0241113b3cebecf5f18774ab3aff0e89076a75597c8c6"
+    },
+    {
+      "path": "/images/guides/g9/g9-interfaces-v1.webp",
+      "status": 200,
+      "sha256": "26902867f35263324b40a9c3316920b2229c305f37f2d20ee003ed3c9e0a3f9e"
+    },
+    {
+      "path": "/images/guides/g9/g9-scope-v1.webp",
+      "status": 200,
+      "sha256": "2e1337c36893554be73e320b1ea2d34e027b6e596b0e9dc67cb070f63c8110f0"
+    },
+    {
+      "path": "/images/guides/g9/g9-leo-boat-forest-concept-v1.1.webp",
+      "status": 200,
+      "sha256": "6cf09973fa9b62ce2ae0339e1709b90b96e7df9dc6baf873af97848cf03bd42c"
+    }
+  ],
+  "routes": [
+    {
+      "path": "/buying-guides/pool-shade-installation",
+      "status": 200
+    },
+    {
+      "path": "/buying-guides/misting-playground-planning",
+      "status": 200
+    },
+    {
+      "path": "/inquiry/business",
+      "status": 200
+    },
+    {
+      "path": "/buying-guides",
+      "status": 200
+    },
+    {
+      "path": "/collections/compact-water-parks",
+      "status": 200
+    },
+    {
+      "path": "/buying-guides/pool-slide-total-cost",
+      "status": 200
+    },
+    {
+      "path": "/buying-guides/misting-playground-planning",
+      "status": 200
+    },
+    {
+      "path": "/sitemap.xml",
+      "status": 200
+    },
+    {
+      "path": "/llms.txt",
+      "status": 200
+    },
+    {
+      "path": "/llms-full.txt",
+      "status": 200
+    }
+  ],
+  "conversion": "CTA navigates to actual business form; no submission/email delivery tested",
+  "status": "PASS"
+}
